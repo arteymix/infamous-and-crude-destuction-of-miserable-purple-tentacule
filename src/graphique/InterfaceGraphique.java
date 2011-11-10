@@ -170,7 +170,9 @@ public final class InterfaceGraphique extends JFrame {
                         mainCanvas.showHighscores = !mainCanvas.showHighscores;
                         break;
                     default:
+                        if(!enabledKeys.contains(arg0.getKeyCode())) {
                         enabledKeys.add(arg0.getKeyCode());
+                        }
                         break;
                 }
             }
