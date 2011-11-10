@@ -1,6 +1,5 @@
 package graphique;
 
-import content.ImageBank;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -95,8 +94,11 @@ public class Ovni extends Dessinable implements Collisionable
                 x -= 3 * vitesseX;
                 break;
             case 3:// mouvement du boss 1
+                mouvtBoss12(15, 45);
                 break;
             case 4:// mouvement du boss 2
+                vitesseX = 3;
+                mouvtBoss12(15, 745);
                 break;
             case 5:// mouvement du boss 3
                 break;
@@ -104,6 +106,31 @@ public class Ovni extends Dessinable implements Collisionable
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
 
         }
+    }
+
+    private void mouvtBoss12(int ymin, int ymax)
+    {
+        final int XMIN = 75;
+        final int XMAX = 800 - 75;
+        final int YMIN = ymin;
+        final int YMAX = ymax;
+        if (x == XMIN)
+        {
+            x += 3 * vitesseX;
+        }
+        else if (x == XMAX)
+        {
+            x -= 3 * vitesseX;
+        }
+        if (y == YMIN)
+        {
+            y += 3 * vitesseX;
+        }
+        else if (y == YMAX)
+        {
+            y -= 3 * vitesseX;
+        }
+
     }
 
     public void setVitesseX(int vitesseX)
@@ -129,7 +156,32 @@ public class Ovni extends Dessinable implements Collisionable
     @Override
     public Rectangle getRectangle()
     {
-        return new Rectangle();
+        int longeur = 0, hauteur = 0;
+        switch (id)
+        {
+            case 1://Grandeur du rectangle d'un enemi normal 
+                longeur = hauteur = 10;
+                break;
+            case 2:// Grandeur du rectangle  du supersonic
+                longeur = 15;
+                hauteur = 10;
+                break;
+            case 3:// Grandeur du rectangle  du boss 1
+                longeur = 45;
+                hauteur = 30;
+                break;
+            case 4:// Grandeur du rectangle  du boss 2
+                longeur = hauteur = 45;
+                break;
+            case 5:// Grandeur du rectangle  du boss 3
+                longeur = 50;
+                hauteur = 40;
+                break;
+            default:
+                System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
+
+        }
+        return new Rectangle(longeur, hauteur);
     }
 
     @Override
