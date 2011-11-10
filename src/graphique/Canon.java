@@ -20,7 +20,7 @@ public final class Canon extends Dessinable implements Collisionable {
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
-    private double heigh = 75, width = 100;
+    private double heigh = 100, width = 100;
     private int vie;
     Color col;
     private final double NUMERO_DU_CANON;
@@ -73,8 +73,8 @@ public final class Canon extends Dessinable implements Collisionable {
                     break;
             }
             // On gere l'evenement
-
-        } else if (NUMERO_DU_CANON == 1) {
+        }
+        else if (NUMERO_DU_CANON == 1) {
 
             switch (e) {
                 case KeyEvent.VK_A:
@@ -96,9 +96,6 @@ public final class Canon extends Dessinable implements Collisionable {
         }
     }
 
-
-    
-
     private void moveCanonGauche() {
 
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
@@ -108,12 +105,11 @@ public final class Canon extends Dessinable implements Collisionable {
     }
 
     private void moveCanonDroite() {
-        
+
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
-        
     }
 
     public void draw(Graphics g) {
@@ -147,12 +143,13 @@ public final class Canon extends Dessinable implements Collisionable {
      * Effectue un tir!
      */
     private void tirer() {
-        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur(C.x - A.x, C.y - A.y)));
+        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y)/2)));
     }
 
     @Override
     public void dessiner(Graphics g) {
         g.drawImage(image, (int) position.x, (int) position.y, null);
+        
     }
 
     @Override

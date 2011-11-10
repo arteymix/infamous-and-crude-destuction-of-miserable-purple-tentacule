@@ -13,30 +13,24 @@ import util.Vecteur;
 public class Projectile extends Dessinable implements Collisionable {
 
     private Vecteur position, vitesse = new Vecteur(10, -10);
-    
-    private final int POSITION_INIT_Y;
+    private static double GRAVITY = 1.0;
 
-    public Projectile(Vecteur point,Vecteur orientation) {
+    public Projectile(Vecteur point, Vecteur orientation) {
         position = point;
-        POSITION_INIT_Y = (int) point.y;
-    }    
+        vitesse = orientation;
+    }
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawRect((int) (position.x += vitesse.x), (int) (position.y += vitesse.y), 10, 10);
-        vitesse.y += 1;
-        if (position.y >= POSITION_INIT_Y) {
-            isDessinable = false;
-        }
-    }   
+    }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        g.drawRect((int) (position.x += vitesse.x), (int) (position.y += vitesse.y), 10, 10);
-        vitesse.y += 1;
-        if (position.y >= POSITION_INIT_Y) {
-            isDessinable = false;
+        if (position.y > 700) {
+            this.isDessinable = false;
         }
+        g.drawRect((int) (position.x -= vitesse.x), (int) (position.y -= vitesse.y), 10, 10);
+        vitesse.y -= GRAVITY;
     }
 
     @Override
@@ -52,5 +46,4 @@ public class Projectile extends Dessinable implements Collisionable {
 
         }
     }
-
 }

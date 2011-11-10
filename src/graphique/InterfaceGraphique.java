@@ -36,8 +36,8 @@ public final class InterfaceGraphique extends JFrame {
      */
     public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
     public static Vecteur canvasSize = new Vecteur(800, 800);
-    private Canon canon1 = new Canon(new Vecteur(0, 648), 0, null);
-    private Canon canon2 = new Canon(new Vecteur(689, 648), 1, null);
+    private static Canon canon1 = new Canon(new Vecteur(0, 648), 0, null);
+    private static Canon canon2 = new Canon(new Vecteur(689, 648), 1, null);
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuEditer = new JMenu(Traductions.get("menu.editer")),
@@ -67,11 +67,13 @@ public final class InterfaceGraphique extends JFrame {
                     canon2.isDessinable = true;
                     if (composantesDessinables.contains(canon2)) {
                         // Aucuns problèmes, c2 des déjà dessiné
-                    } else {
+                    }
+                    else {
                         // On le rajoute!
                         composantesDessinables.add(canon2);
                     }
-                } else {
+                }
+                else {
                     canon2.isDessinable = false;
                 }
             }
@@ -129,24 +131,25 @@ public final class InterfaceGraphique extends JFrame {
                 try {
                     long tempsDuRendu = System.currentTimeMillis() - currentTime;
                     if (tempsDuRendu > 20) {
-                        
                         Thread.sleep(0);
-                    } else {                        
+                    }
+                    else {
                         Thread.sleep(20 - tempsDuRendu);
                     }
 
-                } catch (InterruptedException ex) {
+                }
+                catch (InterruptedException ex) {
                     Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 while (Main.isPaused) {
                     try {
                         Thread.sleep(10);
-                    } catch (InterruptedException ex) {
+                    }
+                    catch (InterruptedException ex) {
                         Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
-
         }
     };
 
@@ -170,8 +173,8 @@ public final class InterfaceGraphique extends JFrame {
                         mainCanvas.showHighscores = !mainCanvas.showHighscores;
                         break;
                     default:
-                        if(!enabledKeys.contains(arg0.getKeyCode())) {
-                        enabledKeys.add(arg0.getKeyCode());
+                        if (!enabledKeys.contains(arg0.getKeyCode())) {
+                            enabledKeys.add(arg0.getKeyCode());
                         }
                         break;
                 }
