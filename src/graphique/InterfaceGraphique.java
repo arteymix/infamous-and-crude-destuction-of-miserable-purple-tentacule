@@ -62,20 +62,8 @@ public final class InterfaceGraphique extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
+                canon2.isValidTarget = cbmitemNombreDeCanons.getState();
 
-                if (cbmitemNombreDeCanons.getState()) {
-                    canon2.isDessinable = true;
-                    if (composantesDessinables.contains(canon2)) {
-                        // Aucuns problèmes, c2 des déjà dessiné
-                    }
-                    else {
-                        // On le rajoute!
-                        composantesDessinables.add(canon2);
-                    }
-                }
-                else {
-                    canon2.isDessinable = false;
-                }
             }
         });
         menuFichier.add(mitemQuitter);
@@ -187,6 +175,7 @@ public final class InterfaceGraphique extends JFrame {
         });
         // On rajoute le canon 1 par défaut.
         composantesDessinables.add(canon1);
+        composantesDessinables.add(canon2);
         this.add(mainCanvas);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));

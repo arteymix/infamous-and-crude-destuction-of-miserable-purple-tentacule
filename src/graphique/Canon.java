@@ -16,6 +16,7 @@ import util.Vecteur;
  */
 public final class Canon extends Dessinable implements Collisionable {
 
+    public boolean isValidTarget = true;
     private Vecteur A, B, C, D, E, F, G, H;
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
