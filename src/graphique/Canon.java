@@ -97,6 +97,9 @@ public final class Canon extends Dessinable implements Collisionable {
         }
     }
 
+    /**
+     * 
+     */
     private void moveCanonGauche() {
 
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
@@ -116,11 +119,15 @@ public final class Canon extends Dessinable implements Collisionable {
     public void draw(Graphics g) {
     }
 
+    /**
+     * 
+     * @param s 
+     */
     public void setImage(String s) {
         image = Toolkit.getDefaultToolkit().getImage(s);
     }
 
-    public void moveGauche() {
+    private void moveGauche() {
         if (this.position.x > 0) {
             A.x -= MOVEMENT_INCREMENT;
             B.x -= MOVEMENT_INCREMENT;
@@ -130,7 +137,10 @@ public final class Canon extends Dessinable implements Collisionable {
         }
     }
 
-    public void moveDroite() {
+    /**
+     * 
+     */
+    private void moveDroite() {
         if (this.position.x + width < InterfaceGraphique.canvasSize.x) {
             A.x += MOVEMENT_INCREMENT;
             B.x += MOVEMENT_INCREMENT;
@@ -144,13 +154,13 @@ public final class Canon extends Dessinable implements Collisionable {
      * Effectue un tir!
      */
     private void tirer() {
-        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y)/2)));
+        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2)));
     }
 
     @Override
     public void dessiner(Graphics g) {
         g.drawImage(image, (int) position.x, (int) position.y, null);
-        
+
     }
 
     @Override

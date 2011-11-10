@@ -9,8 +9,8 @@ import util.Dessinable;
 import util.Traductions;
 
 /**
- *
- * @author Guillaume Poirier-Morency
+ * Classe contenant le canvas principal oû les dessins seront effectués.
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class MainCanvas extends JComponent {
 

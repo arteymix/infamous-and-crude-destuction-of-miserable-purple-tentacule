@@ -4,8 +4,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 /**
- *
- * @author Guillaume Poirier-Morency
+ * Interface implément
+ * @author Guillaume Poirier-Morency && Nafie Hamranie
  */
 public abstract class Dessinable {
 

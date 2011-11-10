@@ -1,8 +1,8 @@
 package util;
 
 /**
- *
- * @author Guillaume Poirier-Morency
+ * Objet vecteur pour simplifier les différents calculs.
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class Vecteur {
 

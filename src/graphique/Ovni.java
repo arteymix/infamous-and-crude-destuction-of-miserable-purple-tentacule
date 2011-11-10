@@ -10,8 +10,8 @@ import util.Dessinable;
 import util.Vecteur;
 
 /**
- *
- * @author Nafie Hamrani
+ * Classe pour les ovnis.
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class Ovni extends Dessinable implements Collisionable
 {
