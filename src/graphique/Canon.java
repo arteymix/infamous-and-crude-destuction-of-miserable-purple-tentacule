@@ -25,12 +25,14 @@ public final class Canon extends Dessinable implements Collisionable {
     Color col;
     private final double NUMERO_DU_CANON;
     private Vecteur teteDeCanon;
+    private static final double MOVEMENT_INCREMENT = 3.0;
+    private static final double ANGLE_INCREMENT = Math.PI / 100.0;
 
     public Canon(Vecteur v, int numeroDuCanon, Image img) {
         position = v;
         this.image = img;
         teteDeCanon = piedDeCanon().additionAffine(new Vecteur(5, -20));
-        
+
         A = piedDeCanon().additionAffine(new Vecteur(15, -70));
         B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
@@ -85,7 +87,7 @@ public final class Canon extends Dessinable implements Collisionable {
                     this.tirer();
                     break;
                 case KeyEvent.VK_O:
-                    moveCanonGauche();                   
+                    moveCanonGauche();
                     break;
                 case KeyEvent.VK_P:
                     moveCanonDroite();
@@ -94,18 +96,24 @@ public final class Canon extends Dessinable implements Collisionable {
         }
     }
 
+
+    
+
     private void moveCanonGauche() {
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);        
+
+        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
+        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
+        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
     }
 
     private void moveCanonDroite() {
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Math.PI / 100);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Math.PI / 100);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Math.PI / 100);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Math.PI / 100);
+        
+        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
+        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
+        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
+        
     }
 
     public void draw(Graphics g) {
@@ -116,22 +124,22 @@ public final class Canon extends Dessinable implements Collisionable {
     }
 
     public void moveGauche() {
-        if(this.position.x > 0) {
-        A.x -= 3;
-        B.x -= 3;
-        C.x -= 3;
-        D.x -= 3;
-        position.x -= 3;
+        if (this.position.x > 0) {
+            A.x -= MOVEMENT_INCREMENT;
+            B.x -= MOVEMENT_INCREMENT;
+            C.x -= MOVEMENT_INCREMENT;
+            D.x -= MOVEMENT_INCREMENT;
+            position.x -= MOVEMENT_INCREMENT;
         }
     }
 
     public void moveDroite() {
-        if(this.position.x + width < InterfaceGraphique.canvasSize.x) {
-        A.x += 3;
-        B.x += 3;
-        C.x += 3;
-        D.x += 3;
-        position.x += 3;
+        if (this.position.x + width < InterfaceGraphique.canvasSize.x) {
+            A.x += MOVEMENT_INCREMENT;
+            B.x += MOVEMENT_INCREMENT;
+            C.x += MOVEMENT_INCREMENT;
+            D.x += MOVEMENT_INCREMENT;
+            position.x += MOVEMENT_INCREMENT;
         }
     }
 
@@ -152,7 +160,7 @@ public final class Canon extends Dessinable implements Collisionable {
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
-        g.drawRect((int) (position.x), (int) (position.y), (int)width,(int) heigh);
+        g.drawRect((int) (position.x), (int) (position.y), (int) width, (int) heigh);
     }
 
     @Override
