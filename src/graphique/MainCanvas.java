@@ -29,7 +29,7 @@ public class MainCanvas extends JComponent {
             g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 0, 60);
             g.drawString("Points : " + points + " points", 0, 75);
         } else {
-            g.drawImage(Main.ib.canon0, 0, 0, null);
+            g.drawImage(Main.imageBank.canon0, 0, 0, null);
 
         }
         // Génération des nuages            

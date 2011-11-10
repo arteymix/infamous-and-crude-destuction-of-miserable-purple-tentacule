@@ -13,10 +13,7 @@ public abstract class Dessinable {
      * Image de l'objet dessinable. Utilisé avec les références de la banque d'images.
      */
     public Image image;
-    /**
-     *
-     */
-    public boolean mustBeDestroyed = false;
+   
     /**
      * Définit si l'objet est dessinable. Si il ne l'est pas, il doit être déréférencé.
      * En temps normaux, ce paramètre est vérifié chaque fois que les composantes doivent

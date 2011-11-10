@@ -2,6 +2,9 @@ package main;
 
 import content.ImageBank;
 import graphique.InterfaceGraphique;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -9,7 +12,7 @@ import graphique.InterfaceGraphique;
  */
 public class Main {
 
-    public static ImageBank ib;
+    public static ImageBank imageBank;
     /**
      * Variable définissant la durée entre chaque frame. Elle peut être diminué
      * si le système est rapide, c'est-à-dire qu'il n'a pas besoin d'autant de 
@@ -37,13 +40,13 @@ public class Main {
     public static Thread threadRenduGraphique;
 
     public static void main(String[] args) {
-        /*
+        
         try {
-        ib = new ImageBank();
+        imageBank = new ImageBank();
         } catch (IOException ex) {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-         */
+        
         // Thread pour le rendu
         threadRenduGraphique = new Thread() {
 
