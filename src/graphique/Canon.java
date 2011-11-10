@@ -1,37 +1,36 @@
 package graphique;
 
-import content.ImageBank;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
 
 /**
  * 
- * @author Nafie Hamrani
+ * @author Nafie Hamrani && Guillaume Poirier-Morency
  */
 public final class Canon extends Dessinable implements Collisionable {
 
     private Vecteur A, B, C, D, E, F, G, H;
-    private double x, y, xDirection;
-    private double heigh = 100, width = 100;
+    // La variable position devrait être changée par les points E F G et H.
+    private Vecteur position;
+    // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
+    private double heigh = 75, width = 100;
     private int vie;
     Color col;
     private final double NUMERO_DU_CANON;
     private Vecteur teteDeCanon;
 
     public Canon(Vecteur v, int numeroDuCanon, Image img) {
+        position = v;
         this.image = img;
         teteDeCanon = piedDeCanon().additionAffine(new Vecteur(5, -20));
-        this.x = v.x;
-        this.y = v.y;
+        
         A = piedDeCanon().additionAffine(new Vecteur(15, -70));
         B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
@@ -44,7 +43,7 @@ public final class Canon extends Dessinable implements Collisionable {
 
     public Vecteur piedDeCanon() {
 
-        return new Vecteur(x + width / 2, y + 20);
+        return new Vecteur(position.x + width / 2, position.y + 20);
 
 
     }
@@ -89,8 +88,7 @@ public final class Canon extends Dessinable implements Collisionable {
                     this.tirer();
                     break;
                 case KeyEvent.VK_O:
-                    moveCanonGauche();
-                    // 
+                    moveCanonGauche();                   
                     break;
                 case KeyEvent.VK_P:
                     moveCanonDroite();
@@ -103,8 +101,7 @@ public final class Canon extends Dessinable implements Collisionable {
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);
-        System.out.println(this.piedDeCanon().y);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Math.PI / 100);        
     }
 
     private void moveCanonDroite() {
@@ -126,10 +123,7 @@ public final class Canon extends Dessinable implements Collisionable {
         B.x -= 3;
         C.x -= 3;
         D.x -= 3;
-        x -= 3;
-
-
-
+        position.x -= 3;
     }
 
     public void moveDroite() {
@@ -137,9 +131,7 @@ public final class Canon extends Dessinable implements Collisionable {
         B.x += 3;
         C.x += 3;
         D.x += 3;
-        x += 3;
-
-
+        position.x += 3;
     }
 
     /**
@@ -151,9 +143,7 @@ public final class Canon extends Dessinable implements Collisionable {
 
     @Override
     public void dessiner(Graphics g) {
-
-        g.drawImage(image, (int) x, (int) y, null);
-
+        g.drawImage(image, (int) position.x, (int) position.y, null);
     }
 
     @Override
@@ -161,13 +151,12 @@ public final class Canon extends Dessinable implements Collisionable {
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
-        g.drawRect((int) (x), (int) (y), 100, 100);
-
+        g.drawRect((int) (position.x), (int) (position.y), (int)width,(int) heigh);
     }
 
     @Override
     public Rectangle getRectangle() {
-        return new Rectangle((int) x, (int) y, (int) width, (int) this.heigh);
+        return new Rectangle((int) position.x, (int) position.y, (int) width, (int) this.heigh);
     }
 
     @Override
