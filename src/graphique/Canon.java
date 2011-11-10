@@ -42,10 +42,7 @@ public final class Canon extends Dessinable implements Collisionable {
     }
 
     public Vecteur piedDeCanon() {
-
         return new Vecteur(position.x + width / 2, position.y + 20);
-
-
     }
 
     /**

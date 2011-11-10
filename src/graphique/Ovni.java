@@ -20,8 +20,7 @@ public class Ovni extends Dessinable implements Collisionable {
 
     public Ovni(int x, int id) {
         this.x = x;
-        this.id = id;       
-        
+        this.id = id;
     }
 
     public void mouvement() {
@@ -57,12 +56,6 @@ public class Ovni extends Dessinable implements Collisionable {
         img = Toolkit.getDefaultToolkit().getImage(s);
     }
 
-    
-
-    
-
-    
-
     @Override
     public void dessiner(Graphics g) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -73,17 +66,13 @@ public class Ovni extends Dessinable implements Collisionable {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-   
-
     @Override
     public Rectangle getRectangle() {
-        return new Rectangle(x,y,50,50);
+        return new Rectangle(x, y, 50, 50);
     }
 
     @Override
     public void collision(Collisionable c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-   
 }

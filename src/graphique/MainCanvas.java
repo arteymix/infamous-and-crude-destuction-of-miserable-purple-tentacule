@@ -21,9 +21,7 @@ public class MainCanvas extends JComponent {
     @Override
     public void paint(Graphics g) {
         // Le jeu!
-
         if (InterfaceGraphique.isDebugEnabled) {
-            
             // On affiche les variables seulement en mode de débogage...
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 0, 30);
@@ -55,8 +53,6 @@ public class MainCanvas extends JComponent {
 
                 }
             }
-
-
             if (d.isDessinable) {
                 if (InterfaceGraphique.isDebugEnabled) {
                     d.dessinerDeboguage(g);
@@ -64,15 +60,13 @@ public class MainCanvas extends JComponent {
                     d.dessiner(g);
                 }
             } else {
-                
+
                 InterfaceGraphique.composantesDessinables.remove(d);
             }
         }
         // On montre les highscores on top of everything!
-        if(showHighscores) {
-        g.drawString("LES HIGHSCORES AFFICHENT ICI!",400,400);
-          
-        
+        if (showHighscores) {
+            g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);
         }
     }
 }

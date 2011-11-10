@@ -17,12 +17,9 @@ public class Projectile extends Dessinable implements Collisionable {
     private final int POSITION_INIT_Y;
 
     public Projectile(Vecteur point,Vecteur orientation) {
-
         position = point;
         POSITION_INIT_Y = (int) point.y;
-    }
-
-    
+    }    
 
     @Override
     public void dessiner(Graphics g) {
@@ -31,9 +28,7 @@ public class Projectile extends Dessinable implements Collisionable {
         if (position.y >= POSITION_INIT_Y) {
             isDessinable = false;
         }
-    }
-
-   
+    }   
 
     @Override
     public void dessinerDeboguage(Graphics g) {

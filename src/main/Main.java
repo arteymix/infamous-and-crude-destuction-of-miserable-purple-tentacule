@@ -2,9 +2,6 @@ package main;
 
 import content.ImageBank;
 import graphique.InterfaceGraphique;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -47,7 +44,6 @@ public class Main {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
          */
-
         // Thread pour le rendu
         threadRenduGraphique = new Thread() {
 
@@ -64,14 +60,11 @@ public class Main {
                          * subites en cours de jeu. Si le temps de redraw est plus grand que 10 ms,
                          * soit 100 fps, on passe directement au prochain frame.
                          */
-
                         tempsDuRendu = (System.currentTimeMillis() - startedTime);
-
                         if (tempsDuRendu > 10.0) {
                             Thread.sleep(0);
                         } else {
                             Thread.sleep((int) (latency - tempsDuRendu));
-
                         }
                         while (isPaused) {
                             Thread.sleep(10);

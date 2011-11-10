@@ -12,17 +12,12 @@ import util.Vecteur;
  */
 public final class ProjectileEnnemi extends Dessinable implements Collisionable {
 
-    
     private Vecteur position;
-
-    
 
     @Override
     public void dessiner(Graphics g) {
         g.drawRect((int) position.x, (int) position.y, 10, 10);
     }
-
-   
 
     @Override
     public void dessinerDeboguage(Graphics g) {
@@ -38,6 +33,4 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
     public void collision(Collisionable c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    
 }

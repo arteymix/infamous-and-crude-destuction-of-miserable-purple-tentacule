@@ -1,7 +1,6 @@
 package graphique;
 
 import content.KeySetting;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
@@ -115,9 +114,10 @@ public final class InterfaceGraphique extends JFrame {
         @Override
         public void run() {
             while (Main.isRunning) {
+                long currentTime = System.currentTimeMillis();
                 for (int i = 0; i < enabledKeys.size(); i++) {
                     switch (enabledKeys.get(i)) {
-                        
+
                         default:
                             if (!Main.isPaused) {
                                 canon1.gererEvenementDuClavier(enabledKeys.get(i), 1);
@@ -127,11 +127,18 @@ public final class InterfaceGraphique extends JFrame {
                     }
                 }
                 try {
-                    Thread.sleep(20);
+                    long tempsDuRendu = System.currentTimeMillis() - currentTime;
+                    if (tempsDuRendu > 20) {
+                        
+                        Thread.sleep(0);
+                    } else {                        
+                        Thread.sleep(20 - tempsDuRendu);
+                    }
+
                 } catch (InterruptedException ex) {
                     Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                while(Main.isPaused) {
+                while (Main.isPaused) {
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
@@ -139,6 +146,7 @@ public final class InterfaceGraphique extends JFrame {
                     }
                 }
             }
+
         }
     };
 
@@ -151,24 +159,20 @@ public final class InterfaceGraphique extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent arg0) {
-                switch(arg0.getKeyCode()) {
+                switch (arg0.getKeyCode()) {
 
-                        case KeySetting.QUIT:
-                            Main.isPaused = !Main.isPaused;
-                            // TODO Quitter la partie ici... Ou demander une confirmation?
-                            break;
-                        case KeySetting.SHOW_HIGHSCORES:
-                            // On inverse la valeur du show highscores...
-                            mainCanvas.showHighscores = !mainCanvas.showHighscores;
-                            break;
-
-
-
+                    case KeySetting.QUIT:
+                        Main.isPaused = !Main.isPaused;
+                        // TODO Quitter la partie ici... Ou demander une confirmation?
+                        break;
+                    case KeySetting.SHOW_HIGHSCORES:
+                        // On inverse la valeur du show highscores...
+                        mainCanvas.showHighscores = !mainCanvas.showHighscores;
+                        break;
                     default:
-                enabledKeys.add(arg0.getKeyCode());
-                break;
-}
-
+                        enabledKeys.add(arg0.getKeyCode());
+                        break;
+                }
             }
 
             @Override

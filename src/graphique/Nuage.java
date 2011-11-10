@@ -12,9 +12,6 @@ import util.Vecteur;
 public final class Nuage extends Dessinable {
 
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
-    
-
-   
 
     @Override
     public void dessiner(Graphics g) {
@@ -25,8 +22,6 @@ public final class Nuage extends Dessinable {
             position.x += 0.5;
         }
     }
-
-    
 
     @Override
     public void dessinerDeboguage(Graphics g) {
