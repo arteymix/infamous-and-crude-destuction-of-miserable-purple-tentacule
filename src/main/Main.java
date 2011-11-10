@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  * @author Guillaume Poirier-Morency
  */
 public class Main {
+
     public static ImageBank ib;
     /**
      * Variable définissant la durée entre chaque frame. Elle peut être diminué
@@ -23,7 +24,6 @@ public class Main {
      * Variable définissant si le mode débogage est activé.
      */
     public static long tempsDuRendu = 0;
-    
     /**
      * Variable définissant si le programme est en exécution afin d'avertir les threads
      * dans le programme en cas de fermeture.
@@ -34,17 +34,20 @@ public class Main {
      */
     public static boolean isPaused = false;
     private static InterfaceGraphique tp2 = new InterfaceGraphique();
-
     /**
      * @param args the command line arguments
      */
     public static Thread threadRenduGraphique;
+
     public static void main(String[] args) {
+        /*
         try {
-            ib = new ImageBank();
+        ib = new ImageBank();
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+         */
+
         // Thread pour le rendu
         threadRenduGraphique = new Thread() {
 
@@ -53,7 +56,7 @@ public class Main {
                 while (isRunning) {
                     long startedTime = System.currentTimeMillis();
                     // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
-                    tp2.mainCanvas.repaint();                    
+                    tp2.mainCanvas.repaint();
                     try {
                         /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                          * En quelque sorte, si le rendu est trop long, on attendra moins 
@@ -61,18 +64,17 @@ public class Main {
                          * subites en cours de jeu. Si le temps de redraw est plus grand que 10 ms,
                          * soit 100 fps, on passe directement au prochain frame.
                          */
-                        
+
                         tempsDuRendu = (System.currentTimeMillis() - startedTime);
-                        
+
                         if (tempsDuRendu > 10.0) {
                             Thread.sleep(0);
                         } else {
-                            Thread.sleep((int)(latency - tempsDuRendu));
+                            Thread.sleep((int) (latency - tempsDuRendu));
 
                         }
                         while (isPaused) {
-                        
-                        Thread.sleep(10);
+                            Thread.sleep(10);
                         }
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();

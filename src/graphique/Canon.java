@@ -20,26 +20,25 @@ import util.Vecteur;
 public final class Canon extends Dessinable implements Collisionable {
 
     private Vecteur A, B, C, D, E, F, G, H;
-    double x, y, xDirection;
-    double heigh = 100, width = 100;
-    int vie;
+    private double x, y, xDirection;
+    private double heigh = 100, width = 100;
+    private int vie;
     Color col;
     private final double NUMERO_DU_CANON;
     private Vecteur teteDeCanon;
 
     public Canon(Vecteur v, int numeroDuCanon, Image img) {
+        this.image = img;
         teteDeCanon = piedDeCanon().additionAffine(new Vecteur(5, -20));
         this.x = v.x;
         this.y = v.y;
-
         A = piedDeCanon().additionAffine(new Vecteur(15, -70));
         B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
         D = piedDeCanon().additionAffine(new Vecteur(15, +0));
-
         vie = 10;
 
-        image = Main.ib.canon0;
+        //image = Main.ib.canon0;
         NUMERO_DU_CANON = numeroDuCanon;
     }
 
@@ -55,9 +54,9 @@ public final class Canon extends Dessinable implements Collisionable {
      * @param e
      * @param eventType 
      */
-    public void gererEvenementDuClavier(KeyEvent e, int eventType) {
+    public void gererEvenementDuClavier(Integer e, int eventType) {
         if (NUMERO_DU_CANON == 0) {
-            switch (e.getKeyCode()) {
+            switch (e) {
                 case KeyEvent.VK_LEFT:
                     moveGauche();
                     break;
@@ -79,7 +78,7 @@ public final class Canon extends Dessinable implements Collisionable {
 
         } else if (NUMERO_DU_CANON == 1) {
 
-            switch (e.getKeyCode()) {
+            switch (e) {
                 case KeyEvent.VK_A:
                     moveGauche();
                     break;

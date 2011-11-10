@@ -4,6 +4,8 @@ import content.KeySetting;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Vecteur;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -107,6 +109,38 @@ public final class InterfaceGraphique extends JFrame {
         jmb.add(menuAide);
         setJMenuBar(jmb);
     }
+    private ArrayList<Integer> enabledKeys = new ArrayList<Integer>();
+    public Thread keyBoardListener = new Thread() {
+
+        @Override
+        public void run() {
+            while (Main.isRunning) {
+                for (int i = 0; i < enabledKeys.size(); i++) {
+                    switch (enabledKeys.get(i)) {
+                        
+                        default:
+                            if (!Main.isPaused) {
+                                canon1.gererEvenementDuClavier(enabledKeys.get(i), 1);
+                                canon2.gererEvenementDuClavier(enabledKeys.get(i), 1);
+                            }
+                            break;
+                    }
+                }
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                while(Main.isPaused) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        }
+    };
 
     /**
      * Constructeur pour générer l'interface graphique.
@@ -117,31 +151,38 @@ public final class InterfaceGraphique extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent arg0) {
-                switch (arg0.getKeyCode()) {
-                    case KeySetting.QUIT:
-                        Main.isPaused = !Main.isPaused;
-                        // TODO Quitter la partie ici... Ou demander une confirmation?                        
-                        break;
-                    case KeySetting.SHOW_HIGHSCORES:
-                        // On inverse la valeur du show highscores...
-                        mainCanvas.showHighscores = !mainCanvas.showHighscores;
-                        break;
+                switch(arg0.getKeyCode()) {
+
+                        case KeySetting.QUIT:
+                            Main.isPaused = !Main.isPaused;
+                            // TODO Quitter la partie ici... Ou demander une confirmation?
+                            break;
+                        case KeySetting.SHOW_HIGHSCORES:
+                            // On inverse la valeur du show highscores...
+                            mainCanvas.showHighscores = !mainCanvas.showHighscores;
+                            break;
+
+
+
                     default:
-                        if (!Main.isPaused) {
-                            canon1.gererEvenementDuClavier(arg0, 1);
-                            canon2.gererEvenementDuClavier(arg0, 1);
-                        }
-                        break;
-                }
+                enabledKeys.add(arg0.getKeyCode());
+                break;
+}
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent arg0) {
+                enabledKeys.remove((Integer) arg0.getKeyCode());
             }
         });
         // On rajoute le canon 1 par défaut.
         composantesDessinables.add(canon1);
-        
         this.add(mainCanvas);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
         this.setVisible(true);
         this.pack();
+        this.keyBoardListener.start();
     }
 }
