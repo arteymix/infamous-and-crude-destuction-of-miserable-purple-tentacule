@@ -1,6 +1,5 @@
 package graphique;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 import javax.swing.JComponent;
@@ -23,7 +22,7 @@ public class MainCanvas extends JComponent {
         // Le jeu!
         if (InterfaceGraphique.isDebugEnabled) {
             // On affiche les variables seulement en mode de débogage...
-            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);
+            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);            
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 0, 30);
             g.drawString(Traductions.get("debug.modedebogage") + " : " + (InterfaceGraphique.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 0, 45);
             g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 0, 60);
@@ -60,7 +59,6 @@ public class MainCanvas extends JComponent {
                     d.dessiner(g);
                 }
             } else {
-
                 InterfaceGraphique.composantesDessinables.remove(d);
             }
         }

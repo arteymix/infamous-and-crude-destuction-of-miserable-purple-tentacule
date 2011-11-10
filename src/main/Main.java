@@ -64,7 +64,7 @@ public class Main {
                          * soit 100 fps, on passe directement au prochain frame.
                          */
                         tempsDuRendu = (System.currentTimeMillis() - startedTime);
-                        if (tempsDuRendu > 10.0) {
+                        if (tempsDuRendu > 10) {
                             Thread.sleep(0);
                         } else {
                             Thread.sleep((int) (latency - tempsDuRendu));

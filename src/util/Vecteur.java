@@ -49,7 +49,6 @@ public class Vecteur {
         double nouvelangle = orientation() + a;
         y = norme() * Math.sin(nouvelangle);
         x = norme() * Math.cos(nouvelangle);
-
     }
 
     /**

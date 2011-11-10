@@ -29,7 +29,7 @@ public class Projectile extends Dessinable implements Collisionable {
         if (position.y > 700) {
             this.isDessinable = false;
         }
-        g.drawRect((int) (position.x -= vitesse.x), (int) (position.y -= vitesse.y), 10, 10);
+        g.drawRect((int) ((position.x) -= vitesse.x)-5, (int) (position.y -= vitesse.y)-5, 10, 10);
         vitesse.y -= GRAVITY;
     }
 
