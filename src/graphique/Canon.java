@@ -116,19 +116,23 @@ public final class Canon extends Dessinable implements Collisionable {
     }
 
     public void moveGauche() {
+        if(this.position.x > 0) {
         A.x -= 3;
         B.x -= 3;
         C.x -= 3;
         D.x -= 3;
         position.x -= 3;
+        }
     }
 
     public void moveDroite() {
+        if(this.position.x + width < InterfaceGraphique.canvasSize.x) {
         A.x += 3;
         B.x += 3;
         C.x += 3;
         D.x += 3;
         position.x += 3;
+        }
     }
 
     /**
