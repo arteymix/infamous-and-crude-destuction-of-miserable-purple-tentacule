@@ -30,13 +30,10 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
      * ArrayList des composantes dessinables.
      */
     public static boolean isDebugEnabled = true;
-    /**
-     * Variable indiquant le pointage du joueur.
-     */
     public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
     public static Vecteur canvasSize = new Vecteur(800, 800);
-    private static Canon canon1 = new Canon(new Vecteur(0, 648), 0, null);
-    private static Canon canon2 = new Canon(new Vecteur(689, 648), 1, null);
+    private static Canon canon1 = new Canon(new Vecteur(0, 648), 0);
+    private static Canon canon2 = new Canon(new Vecteur(689, 648), 1);
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuEditer = new JMenu(Traductions.get("menu.editer")),
@@ -105,34 +102,26 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
             while (Main.isRunning) {
                 long currentTime = System.currentTimeMillis();
                 for (int i = 0; i < enabledKeys.size(); i++) {
-                    switch (enabledKeys.get(i)) {
-
-                        default:
-                            if (!Main.isPaused) {
-                                canon1.gererEvenementDuClavier(enabledKeys.get(i), 1);
-                                canon2.gererEvenementDuClavier(enabledKeys.get(i), 1);
-                            }
-                            break;
+                    if (!Main.isPaused) {
+                        canon1.gererEvenementDuClavier(enabledKeys.get(i), 1);
+                        canon2.gererEvenementDuClavier(enabledKeys.get(i), 1);
                     }
                 }
                 try {
                     long tempsDuRendu = System.currentTimeMillis() - currentTime;
                     if (tempsDuRendu > 20) {
                         Thread.sleep(0);
-                    }
-                    else {
+                    } else {
                         Thread.sleep(20 - tempsDuRendu);
                     }
 
-                }
-                catch (InterruptedException ex) {
+                } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
                 while (Main.isPaused) {
                     try {
                         Thread.sleep(10);
-                    }
-                    catch (InterruptedException ex) {
+                    } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
                 }

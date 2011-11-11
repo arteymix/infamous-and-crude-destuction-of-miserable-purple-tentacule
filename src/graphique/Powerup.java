@@ -33,6 +33,15 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void collision(Collisionable c) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        // Un powerup peut peut être détruit par sa collision avec un projectile ennemi ou un ovni
+        if (c instanceof ProjectileEnnemi | c instanceof Ovni) {
+            this.isDessinable = false;
+        }
+    }
+
+    @Override
+    public int getDommage() {
+        // Un powerup ne cause pas de dommages à son contact, sauf exceptions.
+        return 0;
     }
 }

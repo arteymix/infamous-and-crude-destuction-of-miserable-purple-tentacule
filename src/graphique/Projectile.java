@@ -17,7 +17,13 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     private Vecteur position, vitesse = new Vecteur(10, -10);
     private static double GRAVITY = 1.0;
 
-    public Projectile(Vecteur point, Vecteur orientation) {
+    /**
+     * Un Projectile est un objet qui représente un tir de canon.
+     * @param point est le point initial d'où le projectile est tiré.
+     * @param orientation est l'orientation initiale du projectile.
+     * @param id est propre à chaque projectile et définit ses caractéristiquesé
+     */
+    public Projectile(Vecteur point, Vecteur orientation, int id) {
         position = point;
         vitesse = orientation;
         image = Main.imageBank.missile;
@@ -28,8 +34,8 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         if (position.y > 700) {
             this.isDessinable = false;
         }
-        
-        g.drawImage(image, (int) ((position.x) -= vitesse.x)-5, (int) (position.y -= vitesse.y)-5, 50, 50, null);
+
+        g.drawImage(image, (int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 50, 50, null);
         vitesse.y -= GRAVITY;
     }
 
@@ -38,7 +44,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         if (position.y > 700) {
             this.isDessinable = false;
         }
-        g.drawRect((int) ((position.x) -= vitesse.x)-5, (int) (position.y -= vitesse.y)-5, 10, 10);
+        g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);
         vitesse.y -= GRAVITY;
     }
 
@@ -49,10 +55,15 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public void collision(Collisionable c) {
-        if (!(c instanceof Canon)) {
+        if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             // Le projectile a frappé quelque chose, il sera détruit!
             this.isDessinable = false;
-
+            System.out.println(this + " reçoit collision de " + c);
         }
+    }
+
+    @Override
+    public int getDommage() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

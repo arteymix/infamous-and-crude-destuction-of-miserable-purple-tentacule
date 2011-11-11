@@ -190,4 +190,9 @@ public class Ovni extends Dessinable implements Collisionable, Serializable
     {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public int getDommage() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

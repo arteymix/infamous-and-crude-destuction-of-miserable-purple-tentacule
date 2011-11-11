@@ -34,4 +34,9 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     public void collision(Collisionable c) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    @Override
+    public int getDommage() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

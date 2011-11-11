@@ -1,11 +1,11 @@
 package graphique;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -25,25 +25,27 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
     private double heigh = 100, width = 100;
-    private int vie;    
+    private int vie;
     private final double NUMERO_DU_CANON;
-    private Vecteur teteDeCanon;
     private static final double MOVEMENT_INCREMENT = 3.0;
     private static final double ANGLE_INCREMENT = Math.PI / 100.0;
 
-    public Canon(Vecteur v, int numeroDuCanon, Image img) {
+    public Canon(Vecteur v, int numeroDuCanon) {
         position = v;
-        this.image = img;
-        teteDeCanon = piedDeCanon().additionAffine(new Vecteur(5, -20));
-
+        switch (numeroDuCanon) {
+            case 0:
+                this.image = Main.imageBank.canon0;
+                break;
+            case 1:
+                this.image = Main.imageBank.canon1;
+                break;
+        }
+        NUMERO_DU_CANON = numeroDuCanon;
         A = piedDeCanon().additionAffine(new Vecteur(15, -70));
         B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
         D = piedDeCanon().additionAffine(new Vecteur(15, +0));
         vie = 10;
-
-        //image = Main.ib.canon0;
-        NUMERO_DU_CANON = numeroDuCanon;
     }
 
     public Vecteur piedDeCanon() {
@@ -155,12 +157,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Effectue un tir!
      */
     private void tirer() {
-        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2)));
+        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
     }
 
     @Override
     public void dessiner(Graphics g) {
-        if(!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
+        if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
         g.drawImage(image, (int) position.x, (int) position.y, null);
@@ -169,10 +171,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if(!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
+        if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
-        
+
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
@@ -186,6 +188,20 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void collision(Collisionable c) {
-        System.out.println("Kolizion!");
+        if (!(c instanceof Canon) && !(c instanceof Projectile)) {
+            this.vie -= c.getDommage();
+
+            System.out.println(this + " reçoit collision de " + c);
+        }
+        if (vie < 0) {
+            this.isDessinable = false;
+            System.out.println(this + " a été détruit par " + c);
+        }
+    }
+
+    @Override
+    public int getDommage() {
+        // Entrer en collision avec un canon ne cause pas de dommages, mais le projectile ennemi disparaît quand même.
+        return 0;
     }
 }
