@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Vecteur;
 
@@ -19,10 +20,17 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     public Projectile(Vecteur point, Vecteur orientation) {
         position = point;
         vitesse = orientation;
+        image = Main.imageBank.missile;
     }
 
     @Override
     public void dessiner(Graphics g) {
+        if (position.y > 700) {
+            this.isDessinable = false;
+        }
+        
+        g.drawImage(image, (int) ((position.x) -= vitesse.x)-5, (int) (position.y -= vitesse.y)-5, 50, 50, null);
+        vitesse.y -= GRAVITY;
     }
 
     @Override
