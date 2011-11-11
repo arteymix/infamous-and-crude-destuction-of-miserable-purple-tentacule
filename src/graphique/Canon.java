@@ -17,9 +17,9 @@ import util.Vecteur;
 public final class Canon extends Dessinable implements Collisionable, Serializable {
 
     /**
-     * Variable définissant si le canon est une cible valide pour un projectile ennemi.
+     * Variable définissant si le canon 2 est une cible valide pour un projectile ennemi.
      */
-    public boolean isValidTarget = true;
+    public boolean isCanon2ValidTarget = false;
     private Vecteur A, B, C, D, E, F, G, H;
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
@@ -76,7 +76,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
                     break;
             }
             // On gere l'evenement
-        } else if (NUMERO_DU_CANON == 1) {
+        } else if (NUMERO_DU_CANON == 1 && isCanon2ValidTarget) {
 
             switch (e) {
                 case KeyEvent.VK_A:
@@ -160,12 +160,19 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessiner(Graphics g) {
+        if(!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
+            return;
+        }
         g.drawImage(image, (int) position.x, (int) position.y, null);
 
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
+        if(!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
+            return;
+        }
+        
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);

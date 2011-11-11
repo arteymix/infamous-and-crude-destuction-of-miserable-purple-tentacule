@@ -51,9 +51,10 @@ public class Main implements Serializable {
             @Override
             public void run() {
                 while (isRunning) {
-                    long startedTime = System.currentTimeMillis();
+                    long startedTime = System.currentTimeMillis();                    
                     // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
                     tp2.mainCanvas.repaint();
+                    
                     try {
                         /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                          * En quelque sorte, si le rendu est trop long, on attendra moins 
@@ -62,6 +63,7 @@ public class Main implements Serializable {
                          * soit 100 fps, on passe directement au prochain frame.
                          */
                         tempsDuRendu = (System.currentTimeMillis() - startedTime);
+                        
                         if (tempsDuRendu > 10) {
                             Thread.sleep(0);
                         } else {

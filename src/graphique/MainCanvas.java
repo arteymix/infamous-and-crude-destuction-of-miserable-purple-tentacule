@@ -1,5 +1,6 @@
 package graphique;
 
+import content.GameValues;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
@@ -21,19 +22,16 @@ public class MainCanvas extends JComponent implements Serializable {
     @Override
     public void paint(Graphics g) {
         // Le jeu!
-        if (InterfaceGraphique.isDebugEnabled) {
+        if (InterfaceGraphique.isDebugEnabled | true) { // Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
-            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);            
+            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 0, 30);
             g.drawString(Traductions.get("debug.modedebogage") + " : " + (InterfaceGraphique.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 0, 45);
             g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 0, 60);
             g.drawString("Points : " + points + " points", 0, 75);
-        } else {
-            g.drawImage(Main.imageBank.canon0, 0, 0, null);
-
         }
         // Génération des nuages            
-        if ((new Random()).nextInt(1000) == 1) {
+        if ((new Random()).nextInt(GameValues.PROBABILITE_APPARITION_NUAGE) == 1) {
             InterfaceGraphique.composantesDessinables.add(new Nuage());
         }
         for (int i = 0; i < InterfaceGraphique.composantesDessinables.size(); i++) {
