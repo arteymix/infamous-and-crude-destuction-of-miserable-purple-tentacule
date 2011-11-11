@@ -3,6 +3,7 @@ package content;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.Serializable;
+import javax.imageio.ImageIO;
 
 /**
  * Fichier d'objet pour la banque d'images.
@@ -11,7 +12,8 @@ import java.io.Serializable;
 public class ImageBank implements Serializable {
     
     public Image canon0 =Toolkit.getDefaultToolkit().getImage("");
-  public  final Image CANON1 = Toolkit.getDefaultToolkit().getImage("");
+    public final Image nuage;
+    public  final Image CANON1 = Toolkit.getDefaultToolkit().getImage("");
     public  final Image CANON2 = Toolkit.getDefaultToolkit().getImage("");
     public  final Image ENEMI = Toolkit.getDefaultToolkit().getImage("");
     public  final Image ENEMIOR = Toolkit.getDefaultToolkit().getImage("");
@@ -30,6 +32,7 @@ public class ImageBank implements Serializable {
         
             //canon0 = ImageIO.read(is);
         
+    nuage = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/nuage.png")));
 
     }
 
