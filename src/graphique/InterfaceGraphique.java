@@ -127,14 +127,14 @@ public final class InterfaceGraphique extends JFrame {
 
                 }
                 catch (InterruptedException ex) {
-                    Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                    ex.printStackTrace();
                 }
                 while (Main.isPaused) {
                     try {
                         Thread.sleep(10);
                     }
                     catch (InterruptedException ex) {
-                        Logger.getLogger(InterfaceGraphique.class.getName()).log(Level.SEVERE, null, ex);
+                        ex.printStackTrace();
                     }
                 }
             }

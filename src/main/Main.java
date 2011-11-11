@@ -5,6 +5,7 @@ import graphique.InterfaceGraphique;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,6 +46,7 @@ public class Main {
         imageBank = new ImageBank();
         } catch (IOException ex) {
         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
         
         // Thread pour le rendu
@@ -74,10 +76,13 @@ public class Main {
                         }
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
+                        
                     }
                 }
             }
         };
+        
         threadRenduGraphique.start();
+        
     }
 }

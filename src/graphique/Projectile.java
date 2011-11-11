@@ -40,7 +40,7 @@ public class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        if (!(c instanceof Projectile)) {
+        if (!(c instanceof Canon)) {
             // Le projectile a frappé quelque chose, il sera détruit!
             this.isDessinable = false;
 

@@ -1,6 +1,5 @@
 package graphique;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -16,14 +15,16 @@ import util.Vecteur;
  */
 public final class Canon extends Dessinable implements Collisionable {
 
+    /**
+     * Variable définissant si le canon est une cible valide pour un projectile ennemi.
+     */
     public boolean isValidTarget = true;
     private Vecteur A, B, C, D, E, F, G, H;
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
     private double heigh = 100, width = 100;
-    private int vie;
-    Color col;
+    private int vie;    
     private final double NUMERO_DU_CANON;
     private Vecteur teteDeCanon;
     private static final double MOVEMENT_INCREMENT = 3.0;
@@ -74,8 +75,7 @@ public final class Canon extends Dessinable implements Collisionable {
                     break;
             }
             // On gere l'evenement
-        }
-        else if (NUMERO_DU_CANON == 1) {
+        } else if (NUMERO_DU_CANON == 1) {
 
             switch (e) {
                 case KeyEvent.VK_A:
@@ -178,6 +178,6 @@ public final class Canon extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        // On ne gere pas la collision avec le canon...
+        System.out.println("Kolizion!");
     }
 }
