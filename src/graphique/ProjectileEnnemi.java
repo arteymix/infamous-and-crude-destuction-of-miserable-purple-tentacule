@@ -3,6 +3,7 @@ package graphique;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
+import java.io.Serializable;
 import util.Collisionable;
 import util.Vecteur;
 
@@ -10,7 +11,7 @@ import util.Vecteur;
  * Fichier de classe pour un projectile ennemi.
  * @author Guillaume Poirier-Morency
  */
-public final class ProjectileEnnemi extends Dessinable implements Collisionable {
+public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
 
     private Vecteur position;
 

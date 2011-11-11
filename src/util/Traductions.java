@@ -1,12 +1,13 @@
 package util;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  * Classe pour le système de traductions.
  * @author Guillaume Poirier-Morency
  */
-public class Traductions {
+public class Traductions implements Serializable {
 
     private static String langue = "fr";
     private static boolean isInitAlready = false;

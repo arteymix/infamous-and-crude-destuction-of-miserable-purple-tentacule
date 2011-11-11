@@ -3,6 +3,7 @@ package graphique;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.util.Random;
 import main.Main;
 import util.Collisionable;
@@ -13,7 +14,7 @@ import util.Vecteur;
  * Classe pour les ovnis.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public class Ovni extends Dessinable implements Collisionable
+public class Ovni extends Dessinable implements Collisionable, Serializable
 {
 
     private static boolean isBoss = false;

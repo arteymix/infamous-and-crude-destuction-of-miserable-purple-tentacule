@@ -10,7 +10,7 @@ import java.awt.Rectangle;
  *
  * @author Guillaume Poirier-Morency
  */
-public interface Collisionable {
+public interface Collisionable{
     /**
      * Retourne le Rectangle de l'objet Collisionable.
      * @return 

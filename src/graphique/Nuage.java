@@ -1,6 +1,7 @@
 package graphique;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.Random;
 import util.Dessinable;
 import util.Vecteur;
@@ -9,7 +10,7 @@ import util.Vecteur;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Nuage extends Dessinable {
+public final class Nuage extends Dessinable implements Serializable {
 
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
 

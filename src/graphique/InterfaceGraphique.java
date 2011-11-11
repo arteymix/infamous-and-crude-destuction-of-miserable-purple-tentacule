@@ -3,12 +3,11 @@ package graphique;
 import content.KeySetting;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.Vecteur;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
@@ -25,7 +24,7 @@ import util.Traductions;
  * Fichier de classe pour l'interface graphique.
  * @author Guillaume Poirier-Morency
  */
-public final class InterfaceGraphique extends JFrame {
+public final class InterfaceGraphique extends JFrame implements Serializable {
 
     /**
      * ArrayList des composantes dessinables.

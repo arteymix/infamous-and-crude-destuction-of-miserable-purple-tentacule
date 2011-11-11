@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.io.Serializable;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -13,7 +14,7 @@ import util.Vecteur;
  * 
  * @author Nafie Hamrani && Guillaume Poirier-Morency
  */
-public final class Canon extends Dessinable implements Collisionable {
+public final class Canon extends Dessinable implements Collisionable, Serializable {
 
     /**
      * Variable définissant si le canon est une cible valide pour un projectile ennemi.

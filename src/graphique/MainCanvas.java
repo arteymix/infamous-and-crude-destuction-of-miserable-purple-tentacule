@@ -1,6 +1,7 @@
 package graphique;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.Random;
 import javax.swing.JComponent;
 import main.Main;
@@ -12,7 +13,7 @@ import util.Traductions;
  * Classe contenant le canvas principal oû les dessins seront effectués.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public class MainCanvas extends JComponent {
+public class MainCanvas extends JComponent implements Serializable {
 
     public static int points = 0;
     public boolean showHighscores = false;

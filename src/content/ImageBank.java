@@ -1,21 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package content;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import java.io.Serializable;
 
 /**
- *
- * @author Usager
+ * Fichier d'objet pour la banque d'images.
+ * @author Guillaume Poirier-Morency
  */
-public class ImageBank {
+public class ImageBank implements Serializable {
     
-    public final Image canon0;
+    public Image canon0 =Toolkit.getDefaultToolkit().getImage("");
   public  final Image CANON1 = Toolkit.getDefaultToolkit().getImage("");
     public  final Image CANON2 = Toolkit.getDefaultToolkit().getImage("");
     public  final Image ENEMI = Toolkit.getDefaultToolkit().getImage("");
@@ -25,8 +20,16 @@ public class ImageBank {
     public  final Image BOSS1 = Toolkit.getDefaultToolkit().getImage("");
     public  final Image BOSS2 = Toolkit.getDefaultToolkit().getImage("");
     public  final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
-    public ImageBank() throws IOException {
-    canon0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/canon0.jpg")));
+    public ImageBank() throws Exception  {
+        
+        
+        /* Voici un exemple pour récupérer une image du JAR
+         * 
+         */
+        //InputStream is = getClass().getResourceAsStream("canon0.jpg");
+        
+            //canon0 = ImageIO.read(is);
+        
 
     }
 

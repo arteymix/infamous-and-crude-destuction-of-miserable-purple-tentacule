@@ -2,12 +2,13 @@ package util;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.io.Serializable;
 
 /**
  * Interface implément
  * @author Guillaume Poirier-Morency && Nafie Hamranie
  */
-public abstract class Dessinable {
+public abstract class Dessinable implements Serializable {
 
     /**
      * Image de l'objet dessinable. Utilisé avec les références de la banque d'images.

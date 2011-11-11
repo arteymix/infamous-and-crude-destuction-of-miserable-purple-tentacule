@@ -2,16 +2,13 @@ package main;
 
 import content.ImageBank;
 import graphique.InterfaceGraphique;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import java.io.Serializable;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class Main {
+public class Main implements Serializable {
 
     public static ImageBank imageBank;
     /**
@@ -41,14 +38,13 @@ public class Main {
     public static Thread threadRenduGraphique;
 
     public static void main(String[] args) {
-        
+
         try {
-        imageBank = new ImageBank();
-        } catch (IOException ex) {
-        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        
+            imageBank = new ImageBank();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-        
+
         // Thread pour le rendu
         threadRenduGraphique = new Thread() {
 
@@ -76,13 +72,11 @@ public class Main {
                         }
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
-                        
+
                     }
                 }
             }
         };
-        
         threadRenduGraphique.start();
-        
     }
 }
