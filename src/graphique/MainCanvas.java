@@ -1,6 +1,5 @@
 package graphique;
 
-import content.GameValues;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
@@ -31,7 +30,7 @@ public class MainCanvas extends JComponent implements Serializable {
             g.drawString("Points : " + points + " points", 0, 75);
         }
         // Génération des nuages            
-        if ((new Random()).nextInt(GameValues.PROBABILITE_APPARITION_NUAGE) == 1) {
+        if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
             InterfaceGraphique.composantesDessinables.add(new Nuage());
         }
         for (int i = 0; i < InterfaceGraphique.composantesDessinables.size(); i++) {

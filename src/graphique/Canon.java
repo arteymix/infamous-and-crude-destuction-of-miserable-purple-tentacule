@@ -27,8 +27,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private double heigh = 100, width = 100;
     private int vie;
     private final double NUMERO_DU_CANON;
-    private static final double MOVEMENT_INCREMENT = 3.0;
-    private static final double ANGLE_INCREMENT = Math.PI / 100.0;
+    public static final int VIE_INIT_CANON = 10;
+    public static final double MOVEMENT_INCREMENT_CANON = 3.0;
+    public static final double ANGLE_INCREMENT_CANON = Math.PI / 100.0;
+    
 
     public Canon(Vecteur v, int numeroDuCanon) {
         position = v;
@@ -45,7 +47,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
         D = piedDeCanon().additionAffine(new Vecteur(15, +0));
-        vie = 10;
+        vie = VIE_INIT_CANON;
     }
 
     public Vecteur piedDeCanon() {
@@ -105,18 +107,18 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      */
     private void moveCanonGauche() {
 
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT);
+        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
     }
 
     private void moveCanonDroite() {
 
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT);
+        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
     }
 
     public void draw(Graphics g) {
@@ -132,11 +134,11 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     private void moveGauche() {
         if (this.position.x > 0) {
-            A.x -= MOVEMENT_INCREMENT;
-            B.x -= MOVEMENT_INCREMENT;
-            C.x -= MOVEMENT_INCREMENT;
-            D.x -= MOVEMENT_INCREMENT;
-            position.x -= MOVEMENT_INCREMENT;
+            A.x -= MOVEMENT_INCREMENT_CANON;
+            B.x -= MOVEMENT_INCREMENT_CANON;
+            C.x -= MOVEMENT_INCREMENT_CANON;
+            D.x -= MOVEMENT_INCREMENT_CANON;
+            position.x -= MOVEMENT_INCREMENT_CANON;
         }
     }
 
@@ -145,11 +147,11 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      */
     private void moveDroite() {
         if (this.position.x + width < InterfaceGraphique.canvasSize.x) {
-            A.x += MOVEMENT_INCREMENT;
-            B.x += MOVEMENT_INCREMENT;
-            C.x += MOVEMENT_INCREMENT;
-            D.x += MOVEMENT_INCREMENT;
-            position.x += MOVEMENT_INCREMENT;
+            A.x += MOVEMENT_INCREMENT_CANON;
+            B.x += MOVEMENT_INCREMENT_CANON;
+            C.x += MOVEMENT_INCREMENT_CANON;
+            D.x += MOVEMENT_INCREMENT_CANON;
+            position.x += MOVEMENT_INCREMENT_CANON;
         }
     }
 
