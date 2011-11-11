@@ -15,13 +15,13 @@ import util.Traductions;
  */
 public class MainCanvas extends JComponent implements Serializable {
 
-    public static int points = 0;
+    public int points = 0;
     public boolean showHighscores = false;
 
     @Override
     public void paint(Graphics g) {
         // Le jeu!
-        if (InterfaceGraphique.isDebugEnabled | true) { // Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
+        if (InterfaceGraphique.isDebugEnabled | true) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 0, 30);

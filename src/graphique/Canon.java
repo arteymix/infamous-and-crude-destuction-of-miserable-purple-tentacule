@@ -30,16 +30,15 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     public static final int VIE_INIT_CANON = 10;
     public static final double MOVEMENT_INCREMENT_CANON = 3.0;
     public static final double ANGLE_INCREMENT_CANON = Math.PI / 100.0;
-    
 
     public Canon(Vecteur v, int numeroDuCanon) {
         position = v;
         switch (numeroDuCanon) {
             case 0:
-                this.image = Main.imageBank.canon0;
+                //this.image = Main.imageBank.canon0;
                 break;
             case 1:
-                this.image = Main.imageBank.canon1;
+                //this.image = Main.imageBank.canon1;
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
@@ -167,6 +166,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
+
         g.drawImage(image, (int) position.x, (int) position.y, null);
 
     }

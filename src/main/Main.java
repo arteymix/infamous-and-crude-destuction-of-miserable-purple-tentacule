@@ -55,7 +55,7 @@ public class Main implements Serializable {
                     // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
                     tp2.mainCanvas.repaint();
                     
-                    try {
+                    try {                        
                         /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                          * En quelque sorte, si le rendu est trop long, on attendra moins 
                          * longtemps avant le suivant afin de ne pas causer d'accélération 

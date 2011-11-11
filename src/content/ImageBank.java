@@ -28,5 +28,6 @@ public class ImageBank implements Serializable {
     public ImageBank() throws Exception {
         nuage = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/nuage.png")));
         missile = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/missile.png")));
+        canon0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/canon0.jpg")));
     }
 }
