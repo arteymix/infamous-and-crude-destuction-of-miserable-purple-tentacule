@@ -2,6 +2,7 @@ package content;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.imageio.ImageIO;
 
@@ -11,7 +12,7 @@ import javax.imageio.ImageIO;
  */
 public class ImageBank implements Serializable {
 
-    public Image canon0 = Toolkit.getDefaultToolkit().getImage("");
+    public final Image canon0;
     public final Image nuage;
     public final Image missile;
     public final Image CANON1 = Toolkit.getDefaultToolkit().getImage("");
@@ -23,9 +24,9 @@ public class ImageBank implements Serializable {
     public final Image BOSS1 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS2 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
-    public  Image canon1;
+    public Image canon1;
 
-    public ImageBank() throws Exception {
+    public ImageBank() throws IOException {
         nuage = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/nuage.png")));
         missile = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/missile.png")));
         canon0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/canon0.jpg")));

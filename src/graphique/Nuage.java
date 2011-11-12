@@ -14,7 +14,7 @@ import main.Main;
  */
 public final class Nuage extends Dessinable implements Serializable {
 public static final int PROBABILITE_APPARITION_NUAGE = 1000;
-    private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
+    private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);    
     Image img = Main.imageBank.nuage;
 
     @Override

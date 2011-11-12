@@ -18,23 +18,25 @@ import util.Vecteur;
 public class MainCanvas extends JComponent implements Serializable {
 
     public int points = 0;
-    public boolean showHighscores = false;
-public static Vecteur canvasSize = new Vecteur(800, 800);
+    boolean showHighscores = false;
+    static final Vecteur canvasSize = new Vecteur(800, 800);
 
-public MainCanvas() {
-super();
-this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
-}
+    public MainCanvas() {
+        super();
+        this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
+    }
+
     @Override
     public void paint(Graphics g) {
         // Le jeu!
         if (InterfaceGraphique.isDebugEnabled | true) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
-            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 0, 15);
-            g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 0, 30);
-            g.drawString(Traductions.get("debug.modedebogage") + " : " + (InterfaceGraphique.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 0, 45);
-            g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 0, 60);
-            g.drawString("Points : " + points + " points", 0, 75);
+            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
+            g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);
+            g.drawString(Traductions.get("debug.modedebogage") + " : " + (InterfaceGraphique.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
+            g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 5, 60);
+            g.drawString("Points : " + points + " points", 5, 75);
+            g.drawRect(0, 0, (int)canvasSize.x-1,(int)canvasSize.y-1);
         }
         // Génération des nuages            
         if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {

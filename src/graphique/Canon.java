@@ -18,7 +18,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     /**
      * Variable définissant si le canon 2 est une cible valide pour un projectile ennemi.
      */
-    public boolean isCanon2ValidTarget = false;
+    boolean isCanon2ValidTarget = false;
     private Vecteur A, B, C, D, E, F, G, H;
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
@@ -26,9 +26,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private double heigh = 100, width = 100;
     private int vie;
     private final double NUMERO_DU_CANON;
-    public static final int VIE_INIT_CANON = 10;
-    public static final double MOVEMENT_INCREMENT_CANON = 3.0;
-    public static final double ANGLE_INCREMENT_CANON = Math.PI / 100.0;
+    private static final int VIE_INIT_CANON = 10;
+    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
+    private static final double ANGLE_INCREMENT_CANON = Math.PI / 100.0;
 
     public Canon(Vecteur v, int numeroDuCanon) {
         position = v;
@@ -49,7 +49,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     }
 
     public Vecteur piedDeCanon() {
-        return new Vecteur(position.x + width / 2, position.y + 20);
+        return new Vecteur(position.x + width / 2, position.y + heigh /4);
     }
 
     /**
@@ -144,7 +144,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     private void moveDroite() {
-        if (this.position.x + width < MainCanvas.canvasSize.x) {
+        if (this.position.x + width +1 < MainCanvas.canvasSize.x) {
             A.x += MOVEMENT_INCREMENT_CANON;
             B.x += MOVEMENT_INCREMENT_CANON;
             C.x += MOVEMENT_INCREMENT_CANON;
