@@ -1,5 +1,6 @@
 package graphique;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
@@ -8,6 +9,7 @@ import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Traductions;
+import util.Vecteur;
 
 /**
  * Classe contenant le canvas principal oû les dessins seront effectués.
@@ -17,7 +19,12 @@ public class MainCanvas extends JComponent implements Serializable {
 
     public int points = 0;
     public boolean showHighscores = false;
+public static Vecteur canvasSize = new Vecteur(800, 800);
 
+public MainCanvas() {
+super();
+this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
+}
     @Override
     public void paint(Graphics g) {
         // Le jeu!

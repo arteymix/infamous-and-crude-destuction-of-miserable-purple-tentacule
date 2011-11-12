@@ -19,7 +19,7 @@ public static final int PROBABILITE_APPARITION_NUAGE = 1000;
 
     @Override
     public void dessiner(Graphics g) {
-        if (position.x > InterfaceGraphique.canvasSize.x) {
+        if (position.x > MainCanvas.canvasSize.x) {
             isDessinable = false;
         } else {
             g.drawImage(img, (int) position.x, (int) position.y, null);
@@ -29,7 +29,7 @@ public static final int PROBABILITE_APPARITION_NUAGE = 1000;
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.x > InterfaceGraphique.canvasSize.x) {
+        if (position.x > MainCanvas.canvasSize.x) {
             isDessinable = false;
         } else {
             g.drawRect((int) position.x, (int) position.y, 200, 100);

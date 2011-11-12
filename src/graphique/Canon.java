@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -145,7 +144,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     private void moveDroite() {
-        if (this.position.x + width < InterfaceGraphique.canvasSize.x) {
+        if (this.position.x + width < MainCanvas.canvasSize.x) {
             A.x += MOVEMENT_INCREMENT_CANON;
             B.x += MOVEMENT_INCREMENT_CANON;
             C.x += MOVEMENT_INCREMENT_CANON;

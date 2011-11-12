@@ -31,7 +31,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
      */
     public static boolean isDebugEnabled = true;
     public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
-    public static Vecteur canvasSize = new Vecteur(800, 800);
+    
     private static Canon canon1 = new Canon(new Vecteur(0, 648), 0);
     private static Canon canon2 = new Canon(new Vecteur(689, 648), 1);
     private JMenuBar jmb = new JMenuBar();
@@ -166,7 +166,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
         composantesDessinables.add(canon2);
         this.add(mainCanvas);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
+        
         this.setVisible(true);
         this.pack();
         this.keyBoardListener.start();
