@@ -37,7 +37,7 @@ public class Main implements Serializable {
      * @param args the command line arguments
      */
     public static Thread threadRenduGraphique;
-    public static SoundManager threadSon = new SoundManager();
+    public static SoundManager son = new SoundManager();
 
     public static void main(String[] args) {
 
@@ -85,6 +85,6 @@ public class Main implements Serializable {
             }
         };
         threadRenduGraphique.start();
-        threadSon.start();
+        son.start();
     }
 }

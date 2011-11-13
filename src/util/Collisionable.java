@@ -13,8 +13,10 @@ import java.awt.Rectangle;
 public interface Collisionable {
 
     /**
-     * Retourne le Rectangle de l'objet Collisionable.
-     * @return 
+     * Retourne le Rectangle de l'objet Collisionable. Ce Rectangle sert d'objet
+     * de calcul lorsqu'un objet Collisionable entre en collision avec un autre
+     * objet du même type. 
+     * @return le rectangle de l'objet Collisionable.
      */
     public Rectangle getRectangle();
 
