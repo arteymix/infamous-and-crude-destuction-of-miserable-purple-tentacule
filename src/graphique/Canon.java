@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -27,8 +28,8 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private int vie;
     private final double NUMERO_DU_CANON;
     private static final int VIE_INIT_CANON = 10;
-    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
-    private static final double ANGLE_INCREMENT_CANON = Math.PI / 100.0;
+    private static final double MOVEMENT_INCREMENT_CANON = 1.0;
+    private static final double ANGLE_INCREMENT_CANON = Math.PI / 600.0;
 
     public Canon(Vecteur v, int numeroDuCanon) {
         position = v;
@@ -157,7 +158,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Effectue un tir!
      */
     private void tirer() {
+        
+        
         InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
+        
     }
 
     @Override

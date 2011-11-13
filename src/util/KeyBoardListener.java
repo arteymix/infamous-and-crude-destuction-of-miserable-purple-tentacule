@@ -39,12 +39,10 @@ public class KeyBoardListener extends Thread {
      * @param i 
      */
     public void remove(Integer i) {
-        try {
+        
         enabledKeys.remove(i);
         
-        } catch(IndexOutOfBoundsException iaobe) {
-        iaobe.printStackTrace();
-        }
+        
     }
 
     /**
@@ -62,8 +60,13 @@ public class KeyBoardListener extends Thread {
             long currentTime = System.currentTimeMillis();
             for (int i = 0; i < enabledKeys.size(); i++) {
                 if (!Main.isPaused) {
+                    
+                    try {
                     canon1.gererEvenementDuClavier(enabledKeys.get(i), 1);
                     canon2.gererEvenementDuClavier(enabledKeys.get(i), 1);
+                    } catch(IndexOutOfBoundsException iaobe) {
+        iaobe.printStackTrace();
+        }
                 }
             }
             try {

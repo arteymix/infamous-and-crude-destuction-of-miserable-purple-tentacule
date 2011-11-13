@@ -34,7 +34,7 @@ public static final int PROBABILITE_APPARITION_NUAGE = 1000;
         } else {
             g.drawRect((int) position.x, (int) position.y, 200, 100);
             g.drawString("Nuage", (int) position.x + 100, (int) position.y + 50);
-            position.x += 0.5;
+            position.x += 0.25;
         }
     }
 }

@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import main.Main;
 import util.Collisionable;
@@ -28,6 +30,7 @@ public class MainCanvas extends JComponent implements Serializable {
 
     @Override
     public void paint(Graphics g) {
+       
         // Le jeu!
         if (InterfaceGraphique.isDebugEnabled | true) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
@@ -38,6 +41,7 @@ public class MainCanvas extends JComponent implements Serializable {
             g.drawString("Points : " + points + " points", 5, 75);
             g.drawRect(0, 0, (int)canvasSize.x-1,(int)canvasSize.y-1);
         }
+        
         // Génération des nuages            
         if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
             InterfaceGraphique.composantesDessinables.add(new Nuage());
@@ -73,5 +77,6 @@ public class MainCanvas extends JComponent implements Serializable {
         if (showHighscores) {
             g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);
         }
+        Main.tempsDuRendu = (System.currentTimeMillis() - Main.startedTime);
     }
 }

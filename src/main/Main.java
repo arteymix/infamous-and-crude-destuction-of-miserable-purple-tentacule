@@ -18,7 +18,7 @@ public class Main implements Serializable {
      * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
      * latence devrait être augmentée.
      */
-    public static double latency = 10;
+    public static double latency = 2;
     /**
      * Variable définissant si le mode débogage est activé.
      */
@@ -36,8 +36,9 @@ public class Main implements Serializable {
     /**
      * @param args the command line arguments
      */
-    public static Thread threadRenduGraphique;
+    public static Thread rendu;
     public static SoundManager son = new SoundManager();
+    public static long startedTime;
 
     public static void main(String[] args) {
 
@@ -51,24 +52,24 @@ public class Main implements Serializable {
         /*TODO Créer un objet pour le thread de rendu graphique!
          * 
          */
-        threadRenduGraphique = new Thread("Thread pour le rendu graphique") {
+        rendu = new Thread("Thread pour le rendu graphique") {
 
             @Override
             public void run() {
                 while (isRunning) {
-                    long startedTime = System.currentTimeMillis();                    
+                    startedTime = System.currentTimeMillis();
                     // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
                     tp2.mainCanvas.repaint();
-                    
-                    try {                        
+
+                    try {
                         /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                          * En quelque sorte, si le rendu est trop long, on attendra moins 
                          * longtemps avant le suivant afin de ne pas causer d'accélération 
                          * subites en cours de jeu. Si le temps de redraw est plus grand que 10 ms,
                          * soit 100 fps, on passe directement au prochain frame.
                          */
-                        tempsDuRendu = (System.currentTimeMillis() - startedTime);
-                        
+
+
                         if (tempsDuRendu > latency) {
                             Thread.sleep(0);
                         } else {
@@ -84,7 +85,7 @@ public class Main implements Serializable {
                 }
             }
         };
-        threadRenduGraphique.start();
+        rendu.start();
         son.start();
     }
 }
