@@ -21,6 +21,7 @@ public class KeyBoardListener extends Thread {
      * @param canon2 
      */
     public KeyBoardListener(Canon canon1, Canon canon2) {
+        super("Thread pour le multitouch du clavier");
        this.canon1 = canon1;
        this.canon2 = canon2;
     }
@@ -67,10 +68,10 @@ public class KeyBoardListener extends Thread {
             }
             try {
                 long tempsDuRendu = System.currentTimeMillis() - currentTime;
-                if (tempsDuRendu > 20) {
+                if (tempsDuRendu > 2*(int)Main.latency) {
                     Thread.sleep(0);
                 } else {
-                    Thread.sleep(20 - tempsDuRendu);
+                    Thread.sleep(2*(int)Main.latency - tempsDuRendu);
                 }
 
             } catch (InterruptedException ex) {
@@ -78,7 +79,7 @@ public class KeyBoardListener extends Thread {
             }
             while (Main.isPaused) {
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep((int)Main.latency);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

@@ -51,7 +51,7 @@ public class Main implements Serializable {
         /*TODO Créer un objet pour le thread de rendu graphique!
          * 
          */
-        threadRenduGraphique = new Thread() {
+        threadRenduGraphique = new Thread("Thread pour le rendu graphique") {
 
             @Override
             public void run() {
@@ -69,7 +69,7 @@ public class Main implements Serializable {
                          */
                         tempsDuRendu = (System.currentTimeMillis() - startedTime);
                         
-                        if (tempsDuRendu > 10) {
+                        if (tempsDuRendu > latency) {
                             Thread.sleep(0);
                         } else {
                             Thread.sleep((int) (latency - tempsDuRendu));

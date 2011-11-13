@@ -14,12 +14,15 @@ import main.Main;
  * @author Guillaume Poirier-Morency
  */
 public class SoundManager extends Thread {
-
+public SoundManager() {
+super("Thread pour le son");
+}
     /**
      * Joue le AudioInputStream en entrée.
      * @param ais 
      */
     public void play(AudioInputStream ais) {
+        
     }
 
     @Override
@@ -38,7 +41,7 @@ public class SoundManager extends Thread {
                 }
             }
             try {
-                Thread.sleep(10);
+                Thread.sleep((int)Main.latency);
             } catch (InterruptedException ex) {
                 Logger.getLogger(SoundManager.class.getName()).log(Level.SEVERE, null, ex);
             }
