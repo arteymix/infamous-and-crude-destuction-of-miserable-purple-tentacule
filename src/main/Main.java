@@ -3,6 +3,7 @@ package main;
 import content.ImageBank;
 import graphique.InterfaceGraphique;
 import java.io.Serializable;
+import util.SoundManager;
 
 /**
  *
@@ -36,6 +37,7 @@ public class Main implements Serializable {
      * @param args the command line arguments
      */
     public static Thread threadRenduGraphique;
+    public static SoundManager threadSon = new SoundManager();
 
     public static void main(String[] args) {
 
@@ -46,6 +48,9 @@ public class Main implements Serializable {
         }
 
         // Thread pour le rendu
+        /*TODO Créer un objet pour le thread de rendu graphique!
+         * 
+         */
         threadRenduGraphique = new Thread() {
 
             @Override
@@ -80,5 +85,6 @@ public class Main implements Serializable {
             }
         };
         threadRenduGraphique.start();
+        threadSon.start();
     }
 }
