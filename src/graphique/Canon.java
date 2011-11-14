@@ -50,7 +50,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     }
 
     public Vecteur piedDeCanon() {
-        return new Vecteur(position.x + width / 2, position.y + heigh /4);
+        return new Vecteur(position.x + width / 2, position.y + heigh / 4);
     }
 
     /**
@@ -145,7 +145,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     private void moveDroite() {
-        if (this.position.x + width +1 < MainCanvas.canvasSize.x) {
+        if (this.position.x + width + 1 < MainCanvas.canvasSize.x) {
             A.x += MOVEMENT_INCREMENT_CANON;
             B.x += MOVEMENT_INCREMENT_CANON;
             C.x += MOVEMENT_INCREMENT_CANON;
@@ -158,10 +158,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Effectue un tir!
      */
     private void tirer() {
-        
-        
+
+
         InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
-        
+
     }
 
     @Override
@@ -170,7 +170,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
             return;
         }
 
-        g.drawImage(image, (int) position.x, (int) position.y, null);
+        g.drawImage(image, (int) position.x, (int) position.y, this);
 
     }
 
