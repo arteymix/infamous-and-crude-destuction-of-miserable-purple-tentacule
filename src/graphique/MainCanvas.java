@@ -77,6 +77,6 @@ public class MainCanvas extends JComponent implements Serializable {
         if (showHighscores) {
             g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);
         }
-        Main.tempsDuRendu = (System.currentTimeMillis() - Main.startedTime);
+        Main.paintDone = true;
     }
 }

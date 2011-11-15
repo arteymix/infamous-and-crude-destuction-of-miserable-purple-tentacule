@@ -1,6 +1,5 @@
 package content;
 
-import java.applet.Applet;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -12,10 +11,9 @@ import javax.imageio.ImageIO;
  * @author Guillaume Poirier-Morency
  */
 
-public final class ImageBank implements Serializable {
 
-public class ImageBank extends Applet implements Serializable {
 
+public class ImageBank implements Serializable {
 
     public final Image canon0;
     public final Image nuage;
