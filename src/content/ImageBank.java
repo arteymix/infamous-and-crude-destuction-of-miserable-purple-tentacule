@@ -38,6 +38,6 @@ public class ImageBank implements Serializable {
         background1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
         nuage = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
         missile = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));
-        canon0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/submarine1.gif")));
+        canon0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
     }
 }

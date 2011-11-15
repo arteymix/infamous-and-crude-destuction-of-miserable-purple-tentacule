@@ -38,8 +38,6 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         private TypeDeProjectile(Image img, int dommages) {
             this.image = img;
             this.dommages = dommages;
-
-
         }
     }
 
@@ -64,7 +62,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         }
 
 
-        g.drawImage(TDP.image, (int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 50, 50, null);
+        g.drawImage(TDP.image, (int) ((position.x) -= vitesse.x)-25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
         vitesse.y -= GRAVITY;
     }
 

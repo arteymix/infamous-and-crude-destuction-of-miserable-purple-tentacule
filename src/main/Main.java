@@ -19,7 +19,7 @@ public class Main implements Serializable {
      * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
      * latence devrait être augmentée.
      */
-    public static double latency = 5;
+    public static double latency = 10;
     /**
      * Variable définissant si le mode débogage est activé.
      */
@@ -33,7 +33,7 @@ public class Main implements Serializable {
      * 
      */
     public static boolean isPaused = false;
-    private static InterfaceGraphique tp2 = new InterfaceGraphique();
+    private static InterfaceGraphique tp2;
     /**
      * @param args the command line arguments
      */
@@ -43,12 +43,14 @@ public class Main implements Serializable {
     public static boolean paintDone = false;
 
     public static void main(String[] args) {
-SoundManager.play(SoundBank.MISSILE);
+
+        SoundManager.play(SoundBank.MISSILE);
         try {
             imageBank = new ImageBank();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        tp2 = new InterfaceGraphique();
 
         // Thread pour le rendu
         /*TODO Créer un objet pour le thread de rendu graphique!
@@ -59,6 +61,7 @@ SoundManager.play(SoundBank.MISSILE);
 
             @Override
             public void run() {
+
                 while (isRunning) {
 
                     startedTime = System.currentTimeMillis();
@@ -95,6 +98,6 @@ SoundManager.play(SoundBank.MISSILE);
             }
         };
         rendu.start();
-        
+
     }
 }

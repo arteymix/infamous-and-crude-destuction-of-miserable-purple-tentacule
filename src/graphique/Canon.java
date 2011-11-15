@@ -5,6 +5,9 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -32,6 +35,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 600.0;
 
     public Canon(Vecteur v, int numeroDuCanon) {
+        image = Main.imageBank.canon0;
         position = v;
         switch (numeroDuCanon) {
             case 0:
@@ -124,8 +128,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
     }
 
-    public void draw(Graphics g) {
-    }
+    
 
     /**
      * 
@@ -162,18 +165,24 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Effectue un tir!
      */
     private void tirer() {
-
-
-        InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
-
+        // TODO Gérer les tirs fou!
+        if (nbMissile < 20) {
+            nbMissile++;
+        } else {
+            InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
+            nbMissile = 0;
+        }
     }
+    private int nbMissile = 0;
 
     @Override
     public void dessiner(Graphics g) {
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
-
+int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
+        int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
+        g.fillPolygon(xPoints, yPoints, 4);
         g.drawImage(image, (int) position.x, (int) position.y, this);
 
     }
