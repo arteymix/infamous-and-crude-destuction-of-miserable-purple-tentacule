@@ -134,6 +134,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         pack();
         setVisible(true);
+        
         keyBoardListener.start();
     }
 }

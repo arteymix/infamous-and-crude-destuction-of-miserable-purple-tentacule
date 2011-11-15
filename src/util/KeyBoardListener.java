@@ -62,8 +62,8 @@ public class KeyBoardListener extends Thread {
                 if (!Main.isPaused) {
                     
                     try {
-                    canon1.gererEvenementDuClavier(enabledKeys.get(i), 1);
-                    canon2.gererEvenementDuClavier(enabledKeys.get(i), 1);
+                    canon1.gererEvenementDuClavier(enabledKeys.get(i));
+                    canon2.gererEvenementDuClavier(enabledKeys.get(i));
                     } catch(IndexOutOfBoundsException iaobe) {
         iaobe.printStackTrace();
         }

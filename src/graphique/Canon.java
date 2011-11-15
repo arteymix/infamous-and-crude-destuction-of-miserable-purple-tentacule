@@ -5,13 +5,13 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
 
 /**
- * 
+ * Classe pour le Canon. Les canons sont instanciés au début du programme et non
+ * à la volée. Il y a deux canons possibles.
  * @author Nafie Hamrani && Guillaume Poirier-Morency
  */
 public final class Canon extends Dessinable implements Collisionable, Serializable {
@@ -49,6 +49,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         vie = VIE_INIT_CANON;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Vecteur piedDeCanon() {
         return new Vecteur(position.x + width / 2, position.y + heigh / 4);
     }
@@ -58,7 +62,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * @param e
      * @param eventType 
      */
-    public void gererEvenementDuClavier(Integer e, int eventType) {
+    public void gererEvenementDuClavier(Integer e) {
         if (NUMERO_DU_CANON == 0) {
             switch (e) {
                 case KeyEvent.VK_LEFT:

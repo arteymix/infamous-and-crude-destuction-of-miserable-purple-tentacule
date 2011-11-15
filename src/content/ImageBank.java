@@ -11,7 +11,11 @@ import javax.imageio.ImageIO;
  * Fichier d'objet pour la banque d'images.
  * @author Guillaume Poirier-Morency
  */
+
+public final class ImageBank implements Serializable {
+
 public class ImageBank extends Applet implements Serializable {
+
 
     public final Image canon0;
     public final Image nuage;
@@ -27,6 +31,10 @@ public class ImageBank extends Applet implements Serializable {
     public final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
     public Image canon1;
 
+    /**
+     * Constructeur pour ImageBank. 
+     * @throws IOException 
+     */
     public ImageBank() throws IOException {
         nuage = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
         missile = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));

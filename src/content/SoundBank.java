@@ -12,9 +12,7 @@ import javax.sound.sampled.AudioInputStream;
  * Des méthodes statiques seront crée afin d'utiliser les sons correctement. 
  * @author Guillaume Poirier-Morency
  */
-public class SoundBank {
-public SoundBank() {
+public final class SoundBank {
 
-}
     public final static AudioInputStream MISSILE = new AudioInputStream(ClassLoader.getSystemResourceAsStream("content/sounds/nuage.png"), new AudioFormat(new Encoding(""), 10.0f, 1, 1, 2, 1.2f, true), 10);
 }
