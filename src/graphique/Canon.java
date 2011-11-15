@@ -199,7 +199,6 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     public void collision(Collisionable c) {
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             this.vie -= c.getDommage();
-
             System.out.println(this + " reçoit collision de " + c);
         }
         if (vie < 0) {

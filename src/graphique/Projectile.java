@@ -18,6 +18,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     private Vecteur position, vitesse = new Vecteur(8, -8);
     private static double GRAVITY = 1.0;
     private final TypeDeProjectile TDP;
+    private Rectangle rectangle;
 
     private enum TypeDeProjectile {
 
@@ -53,6 +54,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         vitesse = orientation;
         image = Main.imageBank.missile;
         TDP = TypeDeProjectile.PROJECTILE_0;
+        rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         if (position.y > MainCanvas.canvasSize.y | position.x < 0 | position.x > MainCanvas.canvasSize.x) {
             this.isDessinable = false;
         }
-        
+
 
         g.drawImage(TDP.image, (int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 50, 50, null);
         vitesse.y -= GRAVITY;
@@ -77,7 +79,9 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public Rectangle getRectangle() {
-        return new Rectangle((int) position.x, (int) position.x, 10, 10);
+        rectangle.x = (int) position.x;
+        rectangle.y = (int) position.y;
+        return rectangle;
     }
 
     @Override

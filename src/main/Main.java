@@ -1,6 +1,7 @@
 package main;
 
 import content.ImageBank;
+import content.SoundBank;
 import graphique.InterfaceGraphique;
 import java.io.Serializable;
 import util.SoundManager;
@@ -42,7 +43,7 @@ public class Main implements Serializable {
     public static boolean paintDone = false;
 
     public static void main(String[] args) {
-
+SoundManager.play(SoundBank.MISSILE);
         try {
             imageBank = new ImageBank();
         } catch (Exception ex) {
@@ -94,6 +95,6 @@ public class Main implements Serializable {
             }
         };
         rendu.start();
-        son.start();
+        
     }
 }

@@ -1,8 +1,6 @@
 package content;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioFormat.Encoding;
-import javax.sound.sampled.AudioInputStream;
+import java.io.InputStream;
 
 /**
  * Banque de sons pour le TP2. Les sons sont statiques pour une question 
@@ -14,5 +12,5 @@ import javax.sound.sampled.AudioInputStream;
  */
 public final class SoundBank {
 
-    public final static AudioInputStream MISSILE = new AudioInputStream(ClassLoader.getSystemResourceAsStream("content/sounds/nuage.png"), new AudioFormat(new Encoding(""), 10.0f, 1, 1, 2, 1.2f, true), 10);
+    public final static InputStream MISSILE = ClassLoader.getSystemResourceAsStream("content/sounds/nuage.png");
 }

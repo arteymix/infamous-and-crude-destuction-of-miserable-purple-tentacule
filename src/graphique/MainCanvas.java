@@ -4,8 +4,6 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComponent;
 import main.Main;
 import util.Collisionable;
@@ -25,23 +23,24 @@ public class MainCanvas extends JComponent implements Serializable {
 
     public MainCanvas() {
         super();
-        this.setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
+        setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
+
     }
 
     @Override
     public void paint(Graphics g) {
-       
         // Le jeu!
-        if (InterfaceGraphique.isDebugEnabled | true) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
+        if (InterfaceGraphique.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);
             g.drawString(Traductions.get("debug.modedebogage") + " : " + (InterfaceGraphique.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
             g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 5, 60);
             g.drawString("Points : " + points + " points", 5, 75);
-            g.drawRect(0, 0, (int)canvasSize.x-1,(int)canvasSize.y-1);
+            g.drawRect(0, 0, (int) canvasSize.x - 1, (int) canvasSize.y - 1);
+        } else {
+            g.drawImage(Main.imageBank.background1, 0, 0, null);
         }
-        
         // Génération des nuages            
         if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
             InterfaceGraphique.composantesDessinables.add(new Nuage());
@@ -60,7 +59,6 @@ public class MainCanvas extends JComponent implements Serializable {
                             ((Collisionable) e).collision((Collisionable) d);
                         }
                     }
-
                 }
             }
             if (d.isDessinable) {
