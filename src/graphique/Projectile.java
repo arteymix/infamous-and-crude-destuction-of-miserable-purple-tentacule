@@ -22,16 +22,16 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     private enum TypeDeProjectile {
 
-        PROJECTILE_0(Main.imageBank.missile, 5),
-        PROJECTILE_1(Main.imageBank.missile, 5),
-        PROJECTILE_2(Main.imageBank.missile, 5),
-        PROJECTILE_3(Main.imageBank.missile, 5),
-        PROJECTILE_4(Main.imageBank.missile, 5),
-        PROJECTILE_5(Main.imageBank.missile, 5),
-        PROJECTILE_6(Main.imageBank.missile, 5),
-        PROJECTILE_7(Main.imageBank.missile, 5),
-        PROJECTILE_8(Main.imageBank.missile, 5),
-        PROJECTILE_9(Main.imageBank.missile, 5);
+        PROJECTILE_0(Main.imageBank.MISSILE, 5),
+        PROJECTILE_1(Main.imageBank.MISSILE, 5),
+        PROJECTILE_2(Main.imageBank.MISSILE, 5),
+        PROJECTILE_3(Main.imageBank.MISSILE, 5),
+        PROJECTILE_4(Main.imageBank.MISSILE, 5),
+        PROJECTILE_5(Main.imageBank.MISSILE, 5),
+        PROJECTILE_6(Main.imageBank.MISSILE, 5),
+        PROJECTILE_7(Main.imageBank.MISSILE, 5),
+        PROJECTILE_8(Main.imageBank.MISSILE, 5),
+        PROJECTILE_9(Main.imageBank.MISSILE, 5);
         public final Image image;
         public final int dommages;
 
@@ -50,7 +50,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     public Projectile(Vecteur point, Vecteur orientation, int id) {
         position = point;
         vitesse = orientation;
-        image = Main.imageBank.missile;
+        image = Main.imageBank.MISSILE;
         TDP = TypeDeProjectile.PROJECTILE_0;
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }

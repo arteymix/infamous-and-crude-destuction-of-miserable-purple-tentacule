@@ -35,14 +35,14 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 600.0;
 
     public Canon(Vecteur v, int numeroDuCanon) {
-        image = Main.imageBank.canon0;
+        image = Main.imageBank.CANON_0;
         position = v;
         switch (numeroDuCanon) {
             case 0:
-                //this.image = Main.imageBank.canon0;
+                //this.image = Main.imageBank.CANON_0;
                 break;
             case 1:
-                //this.image = Main.imageBank.canon1;
+                //this.image = Main.imageBank.CANON_1;
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;

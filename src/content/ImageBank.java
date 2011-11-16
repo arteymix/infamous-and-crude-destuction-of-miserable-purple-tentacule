@@ -10,15 +10,12 @@ import javax.imageio.ImageIO;
  * Fichier d'objet pour la banque d'images.
  * @author Guillaume Poirier-Morency
  */
-
-
-
 public class ImageBank implements Serializable {
 
-    public final Image canon0;
-    public final Image nuage;
-    public final Image missile;
-     public final Image background1;
+    public final Image CANON_0;
+    public final Image NUAGE;
+    public final Image MISSILE;
+    public final Image BACKGROUND_1;
     public final Image CANON1 = Toolkit.getDefaultToolkit().getImage("");
     public final Image CANON2 = Toolkit.getDefaultToolkit().getImage("");
     public final Image ENEMI = Toolkit.getDefaultToolkit().getImage("");
@@ -28,16 +25,17 @@ public class ImageBank implements Serializable {
     public final Image BOSS1 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS2 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
-    public Image canon1;
+    public Image CANON_1;
 
     /**
      * Constructeur pour ImageBank. 
-     * @throws IOException 
+     * @throws IOException si un fichier ne peut être lu.
      */
     public ImageBank() throws IOException {
-        background1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
-        nuage = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
-        missile = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));
-        canon0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
+        BACKGROUND_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
+        NUAGE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
+        MISSILE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));
+        CANON_0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
+        CANON_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
     }
 }

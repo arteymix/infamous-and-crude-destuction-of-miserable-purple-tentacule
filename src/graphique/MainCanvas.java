@@ -39,7 +39,7 @@ public class MainCanvas extends JComponent implements Serializable {
             g.drawString("Points : " + points + " points", 5, 75);
             g.drawRect(0, 0, (int) canvasSize.x - 1, (int) canvasSize.y - 1);
         } else {
-            g.drawImage(Main.imageBank.background1, 0, 0, null);
+            g.drawImage(Main.imageBank.BACKGROUND_1, 0, 0, null);
         }
         // Génération des nuages            
         if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
