@@ -57,6 +57,8 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public void dessiner(Graphics g) {
+        
+        
         if (position.y > MainCanvas.canvasSize.y | position.x < 0 | position.x > MainCanvas.canvasSize.x) {
             this.isDessinable = false;
         }

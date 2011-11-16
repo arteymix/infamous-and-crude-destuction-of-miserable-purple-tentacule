@@ -18,11 +18,11 @@ import util.SoundManager;
  */
 public class Exemples extends Dessinable implements Collisionable {
 
-    private Rectangle r;
+    private Rectangle rectangle;
 
     public Exemples() {
         this.image = Main.imageBank.BOSS1;
-        r = new Rectangle(10, 10, 10, 10);
+        rectangle = new Rectangle(10, 10, 10, 10);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Exemples extends Dessinable implements Collisionable {
 
     @Override
     public Rectangle getRectangle() {
-        return r;
+        return rectangle;
     }
 
     @Override

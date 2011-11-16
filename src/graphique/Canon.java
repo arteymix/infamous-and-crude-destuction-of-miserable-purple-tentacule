@@ -5,8 +5,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import main.Main;
 import util.Collisionable;
 import util.Dessinable;
@@ -31,8 +29,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private int vie;
     private final double NUMERO_DU_CANON;
     private static final int VIE_INIT_CANON = 10;
-    private static final double MOVEMENT_INCREMENT_CANON = 1.0;
-    private static final double ANGLE_INCREMENT_CANON = Math.PI / 600.0;
+    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
+    private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
+    private boolean peutTirer = true;
+    private static final int LATENCE_DU_TIR = 250;
 
     public Canon(Vecteur v, int numeroDuCanon) {
         image = Main.imageBank.CANON_0;
@@ -128,8 +128,6 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
     }
 
-    
-
     /**
      * 
      * @param s 
@@ -166,21 +164,32 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      */
     private void tirer() {
         // TODO Gérer les tirs fou!
-        if (nbMissile < 20) {
-            nbMissile++;
-        } else {
+        if (peutTirer) {
             InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
-            nbMissile = 0;
+            peutTirer = false;
+            // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
+            (new Thread() {
+
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(LATENCE_DU_TIR);
+                    } catch (InterruptedException ie) {
+                        ie.printStackTrace();
+                    } finally {
+                        peutTirer = true;
+                    }
+                }
+            }).start();
         }
     }
-    private int nbMissile = 0;
 
     @Override
     public void dessiner(Graphics g) {
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
-int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
+        int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.fillPolygon(xPoints, yPoints, 4);
         g.drawImage(image, (int) position.x, (int) position.y, this);
