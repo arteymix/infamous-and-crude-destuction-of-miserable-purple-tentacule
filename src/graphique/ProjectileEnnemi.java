@@ -17,6 +17,11 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      *
      */
     private Vecteur position;
+    public static final int MISSILE_0 = 0;
+    public ProjectileEnnemi(int id) {
+    
+    
+    }
 
     @Override
     public void dessiner(Graphics g) {

@@ -45,7 +45,13 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
     private KeyBoardListener keyBoardListener = new KeyBoardListener(canon1, canon2);
 
     private void configurerMenus() {
+        mitemQuitter.addActionListener(new ActionListener() {
 
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Main.close();
+            }
+        });
         cbmitemDebug.setState(isDebugEnabled);
         cbmitemDebug.addActionListener(new ActionListener() {
 

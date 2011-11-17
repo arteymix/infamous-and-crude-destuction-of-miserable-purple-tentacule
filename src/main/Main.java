@@ -11,7 +11,8 @@ import util.SoundManager;
  * @author Guillaume Poirier-Morency
  */
 public class Main implements Serializable {
-public static long timerSeconds = 0;
+
+    public static long timerSeconds = 0;
     public static ImageBank imageBank;
     /**
      * Variable définissant la durée entre chaque frame. Elle peut être diminué
@@ -42,9 +43,14 @@ public static long timerSeconds = 0;
     public static long startedTime;
     public static boolean paintDone = false;
 
+    public static void close() {
+    System.exit(0);
+    
+    }
+    
     public static void main(String[] args) {
 
-        SoundManager.play(SoundBank.MISSILE);
+
         try {
             imageBank = new ImageBank();
         } catch (Exception ex) {
@@ -79,8 +85,6 @@ public static long timerSeconds = 0;
                          * subites en cours de jeu. Si le temps de redraw est plus grand que 10 ms,
                          * soit 100 fps, on passe directement au prochain frame.
                          */
-
-
                         if (tempsDuRendu > latency) {
                             Thread.sleep(0);
                         } else {

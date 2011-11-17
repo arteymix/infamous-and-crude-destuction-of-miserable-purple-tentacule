@@ -61,7 +61,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
             this.isDessinable = false;
         }
 
-        
+
 
         g.drawImage(TDP.IMAGE, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
 

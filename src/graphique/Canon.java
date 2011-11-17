@@ -37,8 +37,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     Image imageSubCanon;
 
     public Canon(Vecteur v, int numeroDuCanon) {
+        if(numeroDuCanon == 0) {
         image = Main.imageBank.CANON_0;
         imageSubCanon = Main.imageBank.SUBCANON1;
+        } else {
+        image = Main.imageBank.CANON_1;
+        imageSubCanon = Main.imageBank.SUBCANON2;
+        }
 
         position = v;
         switch (numeroDuCanon) {
