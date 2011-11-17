@@ -26,6 +26,7 @@ public class ImageBank implements Serializable {
     public final Image BOSS2 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
     public Image CANON_1;
+    public final Image SUBCANON1;
 
     /**
      * Constructeur pour ImageBank. 
@@ -35,7 +36,8 @@ public class ImageBank implements Serializable {
         BACKGROUND_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
         NUAGE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
         MISSILE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));
-        CANON_0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
+        CANON_0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/submarine1.gif")));
         CANON_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
+        SUBCANON1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon1.gif")));
     }
 }

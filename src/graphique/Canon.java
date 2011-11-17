@@ -1,6 +1,7 @@
 package graphique;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
@@ -25,7 +26,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
-    private double heigh = 100, width = 100;
+    private double heigh = 100, width = 255;
     private int vie;
     private final double NUMERO_DU_CANON;
     private static final int VIE_INIT_CANON = 10;
@@ -33,9 +34,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
     private boolean peutTirer = true;
     private static final int LATENCE_DU_TIR = 250;
+     Image imageSubCanon;
 
     public Canon(Vecteur v, int numeroDuCanon) {
-        image = Main.imageBank.CANON_0;
+        imageCanon = Main.imageBank.CANON_0;
+        imageSubCanon = Main.imageBank.SUBCANON1;
+        
         position = v;
         switch (numeroDuCanon) {
             case 0:
@@ -133,7 +137,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * @param s 
      */
     public void setImage(String s) {
-        image = Toolkit.getDefaultToolkit().getImage(s);
+        imageCanon = Toolkit.getDefaultToolkit().getImage(s);
     }
 
     private void moveGauche() {
@@ -191,8 +195,8 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        g.fillPolygon(xPoints, yPoints, 4);
-        g.drawImage(image, (int) position.x, (int) position.y, this);
+        g.drawImage(imageSubCanon,xPoints[1],yPoints[1], this);
+        g.drawImage(imageCanon, (int) position.x, (int) position.y, this);
 
     }
 

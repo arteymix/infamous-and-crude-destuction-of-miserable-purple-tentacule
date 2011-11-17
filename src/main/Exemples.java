@@ -21,13 +21,13 @@ public class Exemples extends Dessinable implements Collisionable {
     private Rectangle rectangle;
 
     public Exemples() {
-        this.image = Main.imageBank.BOSS1;
+        this.imageCanon = Main.imageBank.BOSS1;
         rectangle = new Rectangle(10, 10, 10, 10);
     }
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawImage(image, 1, 1, 1, 1, null);
+        g.drawImage(imageCanon, 1, 1, 1, 1, null);
     }
 
     @Override
