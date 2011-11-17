@@ -6,6 +6,7 @@ package main;
 
 import content.SoundBank;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 import util.Collisionable;
 import util.Dessinable;
@@ -48,5 +49,10 @@ public class Exemples extends Dessinable implements Collisionable {
     @Override
     public int getDommage() {
         return 5;
+    }
+
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+        return true;
     }
 }

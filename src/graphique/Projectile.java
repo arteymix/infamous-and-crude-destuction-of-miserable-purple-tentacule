@@ -20,6 +20,11 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     private final TypeDeProjectile TDP;
     private Rectangle rectangle;
 
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     private enum TypeDeProjectile {
 
         PROJECTILE_0(Main.imageBank.MISSILE, 5),

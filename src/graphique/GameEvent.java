@@ -1,6 +1,7 @@
 package graphique;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import main.Main;
 import util.Dessinable;
 import util.Vecteur;
@@ -38,6 +39,11 @@ public class GameEvent {
         public void dessinerDeboguage(Graphics g) {
            g.drawRect((int) position.x, (int) position.y, 10,10);
             onDessiner(g);
+        }
+
+        @Override
+        public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     };
 }

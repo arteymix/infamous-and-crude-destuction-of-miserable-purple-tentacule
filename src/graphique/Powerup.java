@@ -5,6 +5,7 @@
 package graphique;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.Serializable;
 import util.Collisionable;
@@ -43,5 +44,10 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
     public int getDommage() {
         // Un powerup ne cause pas de dommages à son contact, sauf exceptions.
         return 0;
+    }
+
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+        return true;
     }
 }

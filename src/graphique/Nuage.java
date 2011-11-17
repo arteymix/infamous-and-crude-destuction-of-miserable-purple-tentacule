@@ -39,4 +39,9 @@ public class Nuage extends Dessinable implements Serializable {
             position.x += 0.25;
         }
     }
+
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+       return true;
+    }
 }

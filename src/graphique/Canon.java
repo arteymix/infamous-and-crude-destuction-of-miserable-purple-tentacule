@@ -198,13 +198,16 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessiner(Graphics g) {
+        
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
+        
         g.drawImage(imageSubCanon, xPoints[1], yPoints[1], this);
         g.drawImage(image, (int) position.x, (int) position.y, this);
+        
 
     }
 
@@ -241,5 +244,11 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     public int getDommage() {
         // Entrer en collision avec un canon ne cause pas de dommages, mais le projectile ennemi disparaît quand même.
         return 0;
+    }
+
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+        System.out.println("shit");
+        return true;
     }
 }

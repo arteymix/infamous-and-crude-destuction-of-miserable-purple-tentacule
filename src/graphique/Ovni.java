@@ -154,7 +154,6 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     @Override
     public void dessiner(Graphics g) {
         mouvement();
-
         g.drawImage(img, (int) x, (int) y, this);
     }
 
@@ -201,5 +200,10 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     @Override
     public int getDommage() {
         return 0;
+    }
+
+    @Override
+    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+        return true;
     }
 }

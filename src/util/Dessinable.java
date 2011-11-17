@@ -1,15 +1,15 @@
 package util;
 
-import java.applet.Applet;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.ImageObserver;
 import java.io.Serializable;
 
 /**
  * Interface implément
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public abstract class Dessinable extends Applet implements Serializable {
+public abstract class Dessinable implements Serializable, ImageObserver {
 
     /**
      * Image de l'objet dessinable. Utilisé avec les références de la banque d'images.
