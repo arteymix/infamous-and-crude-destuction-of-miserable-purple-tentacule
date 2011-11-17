@@ -35,12 +35,13 @@ public class Traductions implements Serializable {
         fr.put("menu.fichier", "Fichier");
         fr.put("menu.editer", "Éditer");
         fr.put("menu.langue", "Langues");
-        fr.put("menu.aide", "Aide");
+        fr.put("menu.aide", "?");
         fr.put("menu.quitter", "Quitter");
         fr.put("menu.modedebogage", "Mode de débogage");
         fr.put("menu.deuxcanons", "Deux canons");
         fr.put("menu.francais", "Français");
         fr.put("menu.anglais", "Anglais");
+        fr.put("menu.nouvelle", "Nouvelle Partie");
 
         fr.put("debug.latence", "Latence");
         fr.put("debug.tempsrendu", "Temps de rendu");

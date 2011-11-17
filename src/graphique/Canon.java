@@ -117,19 +117,22 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     private void moveCanonGauche() {
-
+        
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        
     }
 
     private void moveCanonDroite() {
+        System.out.println(new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2).orientation());
 
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+
     }
 
     /**
@@ -172,7 +175,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
             InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
-            (new Thread() {
+            (new Thread("Thread pour le temps d'attente entre chaque tir de canon.") {
 
                 @Override
                 public void run() {

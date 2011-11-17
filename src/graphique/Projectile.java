@@ -60,7 +60,11 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         if (position.y > MainCanvas.canvasSize.y | position.x < 0 | position.x > MainCanvas.canvasSize.x) {
             this.isDessinable = false;
         }
+
+        
+
         g.drawImage(TDP.IMAGE, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
+
         vitesse.y -= GRAVITY;
     }
 

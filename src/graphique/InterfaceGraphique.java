@@ -35,14 +35,14 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
     private Canon canon2 = new Canon(new Vecteur(689, 699), 1);
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
-            menuEditer = new JMenu(Traductions.get("menu.editer")),
             menuLangue = new JMenu(Traductions.get("menu.langue")),
             menuAide = new JMenu(Traductions.get("menu.aide"));
-    private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter"));
+    private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
+            mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle"));
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage"));
     private JCheckBoxMenuItem cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons"));
     public MainCanvas mainCanvas = new MainCanvas();
-    private KeyBoardListener keyBoardListener = new KeyBoardListener(canon1,canon2);
+    private KeyBoardListener keyBoardListener = new KeyBoardListener(canon1, canon2);
 
     private void configurerMenus() {
 
@@ -62,9 +62,15 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
 
             }
         });
+        menuFichier.add(mitemNouvellePartie);
+        menuFichier.addSeparator();
+        menuFichier.add(cbmitemDebug);
+        menuFichier.add(cbmitemNombreDeCanons);
+        menuFichier.add(menuLangue);
+        menuFichier.addSeparator();
         menuFichier.add(mitemQuitter);
-        menuEditer.add(cbmitemDebug);
-        menuEditer.add(cbmitemNombreDeCanons);
+
+
         ButtonGroup bg = new ButtonGroup();
         JRadioButtonMenuItem fr = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
         fr.setSelected(true);
@@ -88,9 +94,14 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
         bg.add(fr);
         menuLangue.add(fr);
         menuLangue.add(en);
+        menuAide.add(new JMenuItem("Aide..."));
+        menuAide.addSeparator();
+        menuAide.add(new JMenuItem("Tableau de pointage..."));
+        menuAide.add(new JMenuItem("Trophées..."));
+        menuAide.addSeparator();
+        menuAide.add(new JMenuItem("À propos..."));
         jmb.add(menuFichier);
-        jmb.add(menuEditer);
-        jmb.add(menuLangue);
+
         jmb.add(menuAide);
         setJMenuBar(jmb);
     }
@@ -131,10 +142,10 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
         composantesDessinables.add(canon1);
         composantesDessinables.add(canon2);
         add(mainCanvas);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
-        
+        setTitle("La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
         keyBoardListener.start();
     }
 }

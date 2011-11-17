@@ -31,7 +31,7 @@ public class Vecteur implements Serializable {
      * @return l'orientation de ce vecteur.
      */
     public double orientation() {
-        return Math.tan(y / x);
+        return Math.asin(3);
 
     }
 
