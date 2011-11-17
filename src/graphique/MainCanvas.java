@@ -3,9 +3,13 @@ package graphique;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
+
 import javax.swing.JComponent;
+
 import main.Main;
+
 import util.Collisionable;
 import util.Dessinable;
 import util.Traductions;
@@ -30,6 +34,7 @@ public class MainCanvas extends JComponent implements Serializable {
     @Override
     public void paint(Graphics g) {
         // Le jeu!
+        ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
         if (InterfaceGraphique.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
@@ -62,15 +67,28 @@ public class MainCanvas extends JComponent implements Serializable {
                 }
             }
             if (d.isDessinable) {
-                if (InterfaceGraphique.isDebugEnabled) {
-                    d.dessinerDeboguage(g);
+                if (!(d instanceof Canon)) {
+                    if (InterfaceGraphique.isDebugEnabled) {
+                        d.dessinerDeboguage(g);
+                    } else {
+                        d.dessiner(g);
+                    }
                 } else {
-                    d.dessiner(g);
+                    listeDeCanonDessinable.add((Canon) d);
                 }
             } else {
                 InterfaceGraphique.composantesDessinables.remove(d);
             }
         }
+        for (Canon c : listeDeCanonDessinable) {
+            if (InterfaceGraphique.isDebugEnabled) {
+                c.dessinerDeboguage(g);
+            } else {
+                c.dessiner(g);
+            }
+
+        }
+
         // On montre les highscores on top of everything!
         if (showHighscores) {
             g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);

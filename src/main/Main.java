@@ -70,7 +70,6 @@ public class Main implements Serializable {
                     tp2.mainCanvas.repaint();
                     try {
                         while (!paintDone) {
-
                             Thread.sleep(0, 1);
                         }
                         tempsDuRendu = (System.currentTimeMillis() - Main.startedTime);
