@@ -19,9 +19,8 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      */
     private Vecteur position;
     public static final int MISSILE_0 = 0;
+
     public ProjectileEnnemi(int id) {
-    
-    
     }
 
     @Override
@@ -51,6 +50,6 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
 
     @Override
     public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return true;
     }
 }

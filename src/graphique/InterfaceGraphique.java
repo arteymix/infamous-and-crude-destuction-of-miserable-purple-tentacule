@@ -43,7 +43,8 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
     private JCheckBoxMenuItem cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons"));
     public MainCanvas mainCanvas = new MainCanvas();
     private KeyBoardListener keyBoardListener = new KeyBoardListener(canon1, canon2);
-private ButtonGroup bg = new ButtonGroup();
+    private ButtonGroup bg = new ButtonGroup();
+
     private void configurerMenus() {
         mitemQuitter.addActionListener(new ActionListener() {
 
@@ -75,7 +76,6 @@ private ButtonGroup bg = new ButtonGroup();
         menuFichier.add(menuLangue);
         menuFichier.addSeparator();
         menuFichier.add(mitemQuitter);
-        
         JRadioButtonMenuItem fr = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
         fr.setSelected(true);
         JRadioButtonMenuItem en = new JRadioButtonMenuItem(Traductions.get("menu.anglais"));
@@ -105,7 +105,6 @@ private ButtonGroup bg = new ButtonGroup();
         menuAide.addSeparator();
         menuAide.add(new JMenuItem("À propos..."));
         jmb.add(menuFichier);
-
         jmb.add(menuAide);
         setJMenuBar(jmb);
     }

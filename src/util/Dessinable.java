@@ -21,9 +21,6 @@ public abstract class Dessinable implements Serializable, ImageObserver {
      * être calculés.     * 
      */
     public boolean isDessinable = true;
-    
-    
-    
 
     /**
      * Dessiner le composant sur un Graphics.

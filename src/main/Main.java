@@ -1,7 +1,6 @@
 package main;
 
 import content.ImageBank;
-import content.SoundBank;
 import graphique.InterfaceGraphique;
 import java.io.Serializable;
 import util.SoundManager;
@@ -12,7 +11,13 @@ import util.SoundManager;
  */
 public class Main implements Serializable {
 
+    /**
+     * Timer qui donne le temps depuis le début du jeu.
+     */
     public static long timerSeconds = 0;
+    /**
+     * 
+     */
     public static ImageBank imageBank;
     /**
      * Variable définissant la durée entre chaque frame. Elle peut être diminué
@@ -39,15 +44,30 @@ public class Main implements Serializable {
      * @param args the command line arguments
      */
     public static Thread rendu;
+    /**
+     * 
+     */
     public static SoundManager son = new SoundManager();
+    /**
+     * 
+     */
     public static long startedTime;
+    /**
+     * 
+     */
     public static boolean paintDone = false;
 
+    /**
+     * 
+     */
     public static void close() {
-    System.exit(0);
-    
+    System.exit(0);    
     }
     
+    /**
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
 
 
@@ -57,12 +77,10 @@ public class Main implements Serializable {
             ex.printStackTrace();
         }
         tp2 = new InterfaceGraphique();
-
         // Thread pour le rendu
         /*TODO Créer un objet pour le thread de rendu graphique!
          * 
          */
-
         rendu = new Thread("Thread pour le rendu graphique") {
 
             @Override
@@ -101,6 +119,5 @@ public class Main implements Serializable {
             }
         };
         rendu.start();
-
     }
 }

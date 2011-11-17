@@ -25,8 +25,7 @@ public class GameEvent {
          this.isDessinable  = false;
          }
             nbFrame--;
-           position.x--;
-        
+           position.x--;        
         }
 
         @Override

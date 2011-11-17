@@ -63,19 +63,9 @@ public class MainCanvas extends JComponent implements Serializable {
         if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
             InterfaceGraphique.composantesDessinables.add(new Nuage());
         }
-
-
-
         // Génération des Ovnis    
         Ovni.createOvni();
-
-
-
         // END Génération des Ovnis
-
-
-
-
         for (int i = 0; i < InterfaceGraphique.composantesDessinables.size(); i++) {
             Dessinable d = InterfaceGraphique.composantesDessinables.get(i);
             // TODO Gestion des collisions ici
