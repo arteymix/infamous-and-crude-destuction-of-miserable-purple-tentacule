@@ -25,7 +25,7 @@ public class ImageBank implements Serializable {
     public final Image BOSS1 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS2 = Toolkit.getDefaultToolkit().getImage("");
     public final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
-    public Image CANON_1;
+    public final Image CANON_1;
     public final Image SUBCANON1;
 
     /**

@@ -11,7 +11,7 @@ import util.SoundManager;
  * @author Guillaume Poirier-Morency
  */
 public class Main implements Serializable {
-
+public static long timerSeconds = 0;
     public static ImageBank imageBank;
     /**
      * Variable définissant la durée entre chaque frame. Elle peut être diminué
@@ -61,7 +61,7 @@ public class Main implements Serializable {
 
             @Override
             public void run() {
-
+                timerSeconds++;
                 while (isRunning) {
 
                     startedTime = System.currentTimeMillis();

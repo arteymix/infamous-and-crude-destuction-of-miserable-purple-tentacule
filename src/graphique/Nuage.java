@@ -20,6 +20,7 @@ public class Nuage extends Dessinable implements Serializable {
 
     @Override
     public void dessiner(Graphics g) {
+        
         if (position.x > MainCanvas.canvasSize.x) {
             isDessinable = false;
         } else {

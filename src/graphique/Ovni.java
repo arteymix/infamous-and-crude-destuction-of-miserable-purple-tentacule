@@ -1,4 +1,4 @@
-package graphique;
+          package graphique;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -16,15 +16,30 @@ import util.Vecteur;
  */
 public class Ovni extends Dessinable implements Collisionable, Serializable
 {
-
+public static final int PROBABILITE_APPARITION_OVNI = 1000;
     private static boolean isBoss = false;
     double x, y, vitesseX = 1.0;
     int id, vie;
     Image img;
     private static Random r = new Random();
-
+    public static final int ENNEMI_NORMAL = 1;
+    public static final int ENNEMI_SUPERSONIQUE = 2;
+    public static final int ENNEMI_BOSS_1 = 3;
+    public static final int ENNEMI_BOSS_2 = 4;
+    public static final int ENNEMI_BOSS_3 = 5;
+    
+    
+/**
+     * 
+     * @param v
+     * @param id 
+     */
     public Ovni(Vecteur v, int id)
     {
+       
+       
+        
+           
         if (isBoss)
         {
             isDessinable = false;
@@ -143,6 +158,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable
     public void dessiner(Graphics g)
     {
         mouvement();
+        
         g.drawImage(img, (int) x, (int) y, null);
     }
 

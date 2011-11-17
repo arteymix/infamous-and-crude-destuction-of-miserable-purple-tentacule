@@ -50,7 +50,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     public Projectile(Vecteur point, Vecteur orientation, int id) {
         position = point;
         vitesse = orientation;
-        imageCanon = Main.imageBank.MISSILE;
+        image = Main.imageBank.MISSILE;
         TDP = TypeDeProjectile.PROJECTILE_0;
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }

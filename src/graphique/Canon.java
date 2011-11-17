@@ -37,7 +37,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     Image imageSubCanon;
 
     public Canon(Vecteur v, int numeroDuCanon) {
-        imageCanon = Main.imageBank.CANON_0;
+        image = Main.imageBank.CANON_0;
         imageSubCanon = Main.imageBank.SUBCANON1;
 
         position = v;
@@ -137,7 +137,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * @param s 
      */
     public void setImage(String s) {
-        imageCanon = Toolkit.getDefaultToolkit().getImage(s);
+        image = Toolkit.getDefaultToolkit().getImage(s);
     }
 
     private void moveGauche() {
@@ -196,7 +196,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawImage(imageSubCanon, xPoints[1], yPoints[1], this);
-        g.drawImage(imageCanon, (int) position.x, (int) position.y, this);
+        g.drawImage(image, (int) position.x, (int) position.y, this);
 
     }
 

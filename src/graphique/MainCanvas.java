@@ -24,7 +24,7 @@ public class MainCanvas extends JComponent implements Serializable {
     /**
      * points contient les points du/des joueur/s.
      */
-    public int points = 0;
+    public static int points = 0;
     /**
      * Cette variable définit si les highscores doivent être affiché.
      */
@@ -47,7 +47,8 @@ public class MainCanvas extends JComponent implements Serializable {
     public void paint(Graphics g) {
         // Le jeu!
         ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
-        if (InterfaceGraphique.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
+        if (InterfaceGraphique.isDebugEnabled)
+        { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);
@@ -55,22 +56,36 @@ public class MainCanvas extends JComponent implements Serializable {
             g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 5, 60);
             g.drawString("Points : " + points + " points", 5, 75);
             g.drawRect(0, 0, (int) canvasSize.x - 1, (int) canvasSize.y - 1);
-        } else {
+        } else
+        {
             g.drawImage(Main.imageBank.BACKGROUND_1, 0, 0, null);
         }
         // Génération des nuages            
-        if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
+        if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1)
+        {
             InterfaceGraphique.composantesDessinables.add(new Nuage());
         }
-        for (int i = 0; i < InterfaceGraphique.composantesDessinables.size(); i++) {
+        // Génération des Ovnis    
+        if ((new Random()).nextInt(Ovni.PROBABILITE_APPARITION_OVNI) == 1)
+        {
+            InterfaceGraphique.composantesDessinables.add(new Ovni(new Vecteur(0,300), (new Random()).nextInt(4)+1));
+        }
+        
+
+        for (int i = 0; i < InterfaceGraphique.composantesDessinables.size(); i++)
+        {
             Dessinable d = InterfaceGraphique.composantesDessinables.get(i);
             // TODO Gestion des collisions ici
-            if (d instanceof Collisionable) {
-                for (int j = 0; j < InterfaceGraphique.composantesDessinables.size(); j++) {
+            if (d instanceof Collisionable)
+            {
+                for (int j = 0; j < InterfaceGraphique.composantesDessinables.size(); j++)
+                {
                     Dessinable e;
                     // Il est important de spécifier que d != e pour ne pas provoquer d'intercollision.
-                    if (((e = InterfaceGraphique.composantesDessinables.get(j)) instanceof Collisionable) && !d.equals(e)) {
-                        if (((Collisionable) d).getRectangle().intersects(((Collisionable) e).getRectangle())) {
+                    if (((e = InterfaceGraphique.composantesDessinables.get(j)) instanceof Collisionable) && !d.equals(e))
+                    {
+                        if (((Collisionable) d).getRectangle().intersects(((Collisionable) e).getRectangle()))
+                        {
                             // On provoque une collision entre chacun.
                             ((Collisionable) d).collision((Collisionable) e);
                             ((Collisionable) e).collision((Collisionable) d);
@@ -78,29 +93,39 @@ public class MainCanvas extends JComponent implements Serializable {
                     }
                 }
             }
-            if (d.isDessinable) {
-                if (!(d instanceof Canon)) {
-                    if (InterfaceGraphique.isDebugEnabled) {
+            if (d.isDessinable)
+            {
+                if (!(d instanceof Canon))
+                {
+                    if (InterfaceGraphique.isDebugEnabled)
+                    {
                         d.dessinerDeboguage(g);
-                    } else {
+                    } else
+                    {
                         d.dessiner(g);
                     }
-                } else {
+                } else
+                {
                     listeDeCanonDessinable.add((Canon) d);
                 }
-            } else {
+            } else
+            {
                 InterfaceGraphique.composantesDessinables.remove(d);
             }
         }
-        for (Canon c : listeDeCanonDessinable) {
-            if (InterfaceGraphique.isDebugEnabled) {
+        for (Canon c : listeDeCanonDessinable)
+        {
+            if (InterfaceGraphique.isDebugEnabled)
+            {
                 c.dessinerDeboguage(g);
-            } else {
+            } else
+            {
                 c.dessiner(g);
             }
         }
         // On montre les highscores on top of everything!
-        if (showHighscores) {
+        if (showHighscores)
+        {
             g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);
         }
         Main.paintDone = true;
