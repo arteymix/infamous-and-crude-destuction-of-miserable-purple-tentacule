@@ -34,12 +34,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
     private boolean peutTirer = true;
     private static final int LATENCE_DU_TIR = 250;
-     Image imageSubCanon;
+    Image imageSubCanon;
 
     public Canon(Vecteur v, int numeroDuCanon) {
         imageCanon = Main.imageBank.CANON_0;
         imageSubCanon = Main.imageBank.SUBCANON1;
-        
+
         position = v;
         switch (numeroDuCanon) {
             case 0:
@@ -195,7 +195,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        g.drawImage(imageSubCanon,xPoints[1],yPoints[1], this);
+        g.drawImage(imageSubCanon, xPoints[1], yPoints[1], this);
         g.drawImage(imageCanon, (int) position.x, (int) position.y, this);
 
     }

@@ -13,6 +13,9 @@ import util.Vecteur;
  */
 public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
 
+    /**
+     *
+     */
     private Vecteur position;
 
     @Override

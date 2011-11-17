@@ -21,14 +21,26 @@ import util.Vecteur;
  */
 public class MainCanvas extends JComponent implements Serializable {
 
+    /**
+     * points contient les points du/des joueur/s.
+     */
     public int points = 0;
+    /**
+     * Cette variable définit si les highscores doivent être affiché.
+     */
     boolean showHighscores = false;
+    /**
+     * Ce vecteur est le vecteur dimension du canvas ou les composants et
+     * graphics sont dessinés.
+     */
     static final Vecteur canvasSize = new Vecteur(800, 800);
 
+    /**
+     * 
+     */
     public MainCanvas() {
         super();
         setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
-
     }
 
     @Override
@@ -86,9 +98,7 @@ public class MainCanvas extends JComponent implements Serializable {
             } else {
                 c.dessiner(g);
             }
-
         }
-
         // On montre les highscores on top of everything!
         if (showHighscores) {
             g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);

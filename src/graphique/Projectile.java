@@ -32,12 +32,12 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
         PROJECTILE_7(Main.imageBank.MISSILE, 5),
         PROJECTILE_8(Main.imageBank.MISSILE, 5),
         PROJECTILE_9(Main.imageBank.MISSILE, 5);
-        public final Image image;
-        public final int dommages;
+        public final Image IMAGE;
+        public final int DOMMAGES;
 
         private TypeDeProjectile(Image img, int dommages) {
-            this.image = img;
-            this.dommages = dommages;
+            this.IMAGE = img;
+            this.DOMMAGES = dommages;
         }
     }
 
@@ -57,14 +57,10 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public void dessiner(Graphics g) {
-        
-        
         if (position.y > MainCanvas.canvasSize.y | position.x < 0 | position.x > MainCanvas.canvasSize.x) {
             this.isDessinable = false;
         }
-
-
-        g.drawImage(TDP.image, (int) ((position.x) -= vitesse.x)-25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
+        g.drawImage(TDP.IMAGE, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
         vitesse.y -= GRAVITY;
     }
 
@@ -95,6 +91,6 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public int getDommage() {
-        return TDP.dommages;
+        return TDP.DOMMAGES;
     }
 }
