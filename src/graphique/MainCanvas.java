@@ -61,15 +61,21 @@ public class MainCanvas extends JComponent implements Serializable {
             g.drawImage(Main.imageBank.BACKGROUND_1, 0, 0, null);
         }
         // Génération des nuages            
-        if ((new Random()).nextInt(Nuage.PROBABILITE_APPARITION_NUAGE) == 1)
-        {
-            InterfaceGraphique.composantesDessinables.add(new Nuage());
+        if ((new Random()).nextInt(100) == 1) {
+        InterfaceGraphique.composantesDessinables.add(new Ovni(new Vecteur(0,300), (new Random()).nextInt(4)+1));
+            System.out.println("shit");
+        
         }
+            
+        
         // Génération des Ovnis    
-        if ((new Random()).nextInt(Ovni.PROBABILITE_APPARITION_OVNI) == 1)
-        {
-            InterfaceGraphique.composantesDessinables.add(new Ovni(new Vecteur(0,300), (new Random()).nextInt(4)+1));
-        }
+        
+        
+        
+        
+        // END Génération des Ovnis
+        
+        
         
 
         for (int i = 0; i < InterfaceGraphique.composantesDessinables.size(); i++)

@@ -16,6 +16,11 @@ import util.Vecteur;
  */
 public class Ovni extends Dessinable implements Collisionable, Serializable
 {
+    
+    
+    
+    
+    
 public static final int PROBABILITE_APPARITION_OVNI = 1000;
     private static boolean isBoss = false;
     double x, y, vitesseX = 1.0;
@@ -158,8 +163,8 @@ public static final int PROBABILITE_APPARITION_OVNI = 1000;
     public void dessiner(Graphics g)
     {
         mouvement();
-        
-        g.drawImage(img, (int) x, (int) y, null);
+       
+        g.drawImage(img, (int) x, (int) y, this);
     }
 
     @Override
@@ -204,11 +209,11 @@ public static final int PROBABILITE_APPARITION_OVNI = 1000;
     @Override
     public void collision(Collisionable c)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public int getDommage() {
-        throw new UnsupportedOperationException("Not supported yet.");
+       return 0;
     }
 }

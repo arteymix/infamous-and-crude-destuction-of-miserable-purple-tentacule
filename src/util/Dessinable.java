@@ -21,6 +21,9 @@ public abstract class Dessinable extends Applet implements Serializable {
      * être calculés.     * 
      */
     public boolean isDessinable = true;
+    
+    
+    
 
     /**
      * Dessiner le composant sur un Graphics.

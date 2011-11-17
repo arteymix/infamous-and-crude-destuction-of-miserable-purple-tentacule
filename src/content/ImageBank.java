@@ -16,9 +16,8 @@ public class ImageBank implements Serializable {
     public final Image NUAGE;
     public final Image MISSILE;
     public final Image BACKGROUND_1;
-    public final Image CANON1 = Toolkit.getDefaultToolkit().getImage("");
-    public final Image CANON2 = Toolkit.getDefaultToolkit().getImage("");
-    public final Image ENEMI = Toolkit.getDefaultToolkit().getImage("");
+    
+    public final Image ENEMI;
     public final Image ENEMIOR = Toolkit.getDefaultToolkit().getImage("");
     public final Image SUPERSONIC = Toolkit.getDefaultToolkit().getImage("");
     public final Image SUPERSONICOR = Toolkit.getDefaultToolkit().getImage("");
@@ -39,5 +38,9 @@ public class ImageBank implements Serializable {
         CANON_0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/submarine1.gif")));
         CANON_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/canon0.jpg")));
         SUBCANON1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon1.gif")));
+        
+        
+        ENEMI = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/pieuvre.gif")));
+        
     }
 }
