@@ -31,8 +31,8 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
      */
     static boolean isDebugEnabled = true;
     static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
-    private Canon canon1 = new Canon(new Vecteur(0, 699), 0);
-    private Canon canon2 = new Canon(new Vecteur(689, 699), 1);
+    private Canon canon1 = new Canon(0);
+    private Canon canon2 = new Canon(1);
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuLangue = new JMenu(Traductions.get("menu.langue")),

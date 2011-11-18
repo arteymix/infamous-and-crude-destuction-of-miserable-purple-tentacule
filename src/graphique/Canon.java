@@ -34,24 +34,19 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
     private boolean peutTirer = true;
     private static final int LATENCE_DU_TIR = 250;
-    Image imageSubCanon;
+    private Image imageSubCanon;
 
-    public Canon(Vecteur v, int numeroDuCanon) {
-        if(numeroDuCanon == 0) {
-        image = Main.imageBank.CANON_0;
-        imageSubCanon = Main.imageBank.SUBCANON1;
-        } else {
-        image = Main.imageBank.CANON_1;
-        imageSubCanon = Main.imageBank.SUBCANON2;
-        }
-
-        position = v;
+    public Canon(int numeroDuCanon) {          
         switch (numeroDuCanon) {
             case 0:
-                //this.image = Main.imageBank.CANON_0;
+                image = Main.imageBank.CANON_0;
+        imageSubCanon = Main.imageBank.SUBCANON1;
+        position = new Vecteur(0, 699);
                 break;
             case 1:
-                //this.image = Main.imageBank.CANON_1;
+                image = Main.imageBank.CANON_1;
+        imageSubCanon = Main.imageBank.SUBCANON2;
+        position = new Vecteur(689, 699);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
