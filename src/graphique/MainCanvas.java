@@ -44,7 +44,7 @@ public class MainCanvas extends JComponent implements Serializable {
     }
 
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
         // Le jeu!
         ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
         if (InterfaceGraphique.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
@@ -85,7 +85,7 @@ public class MainCanvas extends JComponent implements Serializable {
             if (d.isDessinable) {
                 if (!(d instanceof Canon)) {
                     if (InterfaceGraphique.isDebugEnabled) {
-                        d.dessinerDeboguage(g);
+                        d.dessinerDeboguage(g);                   
                     } else {
                         d.dessiner(g);
                     }
@@ -108,5 +108,6 @@ public class MainCanvas extends JComponent implements Serializable {
             g.drawString("LES HIGHSCORES AFFICHENT ICI!", 400, 400);
         }
         Main.paintDone = true;
+        
     }
 }

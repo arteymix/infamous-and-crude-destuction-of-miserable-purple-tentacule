@@ -32,6 +32,7 @@ public class ImageBank implements Serializable {
      * @throws IOException si un fichier ne peut être lu.
      */
     public ImageBank() throws IOException {
+        
         BACKGROUND_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
         NUAGE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
         MISSILE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));

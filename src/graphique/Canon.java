@@ -36,17 +36,17 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final int LATENCE_DU_TIR = 250;
     private Image imageSubCanon;
 
-    public Canon(int numeroDuCanon) {          
+    public Canon(int numeroDuCanon) {
         switch (numeroDuCanon) {
             case 0:
                 image = Main.imageBank.CANON_0;
-        imageSubCanon = Main.imageBank.SUBCANON1;
-        position = new Vecteur(0, 699);
+                imageSubCanon = Main.imageBank.SUBCANON1;
+                position = new Vecteur(0, 699);
                 break;
             case 1:
                 image = Main.imageBank.CANON_1;
-        imageSubCanon = Main.imageBank.SUBCANON2;
-        position = new Vecteur(689, 699);
+                imageSubCanon = Main.imageBank.SUBCANON2;
+                position = new Vecteur(689, 699);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
@@ -117,22 +117,17 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     private void moveCanonGauche() {
-        
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        
     }
 
     private void moveCanonDroite() {
-        System.out.println(new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2).orientation());
-
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-
     }
 
     /**
@@ -193,17 +188,16 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessiner(Graphics g) {
-        
+
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        
+
         g.drawImage(imageSubCanon, xPoints[1], yPoints[1], this);
         g.drawImage(image, (int) position.x, (int) position.y, this);
         
-
     }
 
     @Override
