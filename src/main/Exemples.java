@@ -21,6 +21,9 @@ public class Exemples extends Dessinable implements Collisionable {
 
     private Rectangle rectangle;
 
+    /**
+     * 
+     */
     public Exemples() {
         this.image = Main.imageBank.BOSS1;
         rectangle = new Rectangle(10, 10, 10, 10);
@@ -49,10 +52,5 @@ public class Exemples extends Dessinable implements Collisionable {
     @Override
     public int getDommage() {
         return 5;
-    }
-
-    @Override
-    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        return true;
-    }
+    }    
 }

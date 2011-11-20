@@ -12,5 +12,8 @@ import java.io.InputStream;
  */
 public final class SoundBank {
 
+    /**
+     * 
+     */
     public final static InputStream MISSILE = ClassLoader.getSystemResourceAsStream("content/sounds/nuage.png");
 }

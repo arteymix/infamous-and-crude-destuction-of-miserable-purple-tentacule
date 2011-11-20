@@ -40,9 +40,6 @@ public class GameEvent {
             onDessiner(g);
         }
 
-        @Override
-        public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+       
     };
 }

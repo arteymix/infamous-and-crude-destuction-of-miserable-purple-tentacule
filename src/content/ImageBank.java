@@ -12,20 +12,62 @@ import javax.imageio.ImageIO;
  */
 public class ImageBank implements Serializable {
 
+    /**
+     * 
+     */
     public final Image CANON_0;
+    /**
+     * 
+     */
     public final Image NUAGE;
+    /**
+     * 
+     */
     public final Image MISSILE;
+    /**
+     * 
+     */
     public final Image BACKGROUND_1;    
+    /**
+     * 
+     */
     public final Image ENEMI;
+    /**
+     * 
+     */
     public final Image ENEMIOR = Toolkit.getDefaultToolkit().getImage("");
+    /**
+     * 
+     */
     public final Image SUPERSONIC = Toolkit.getDefaultToolkit().getImage("");
+    /**
+     * 
+     */
     public final Image SUPERSONICOR = Toolkit.getDefaultToolkit().getImage("");
+    /**
+     * 
+     */
     public final Image BOSS1 = Toolkit.getDefaultToolkit().getImage("");
+    /**
+     * 
+     */
     public final Image BOSS2 = Toolkit.getDefaultToolkit().getImage("");
+    /**
+     * 
+     */
     public final Image BOSS3 = Toolkit.getDefaultToolkit().getImage("");
+    /**
+     * 
+     */
     public final Image CANON_1;
+    /**
+     * 
+     */
     public final Image SUBCANON1;
-     public final Image SUBCANON2;
+    /**
+     * 
+     */
+    public final Image SUBCANON2;
 
     /**
      * Constructeur pour ImageBank. 

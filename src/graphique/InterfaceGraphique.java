@@ -41,6 +41,9 @@ public final class InterfaceGraphique extends JFrame implements Serializable {
             mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle"));
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage"));
     private JCheckBoxMenuItem cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons"));
+    /**
+     * 
+     */
     public MainCanvas mainCanvas = new MainCanvas();
     private KeyBoardListener keyBoardListener = new KeyBoardListener(canon1, canon2);
     private ButtonGroup bg = new ButtonGroup();

@@ -43,10 +43,19 @@ public class Vecteur implements Serializable {
         return Math.sqrt(x * x + y * y);
     }
 
+    /**
+     * 
+     * @param v
+     * @return
+     */
     public Vecteur additionAffine(Vecteur v) {
         return new Vecteur(this.x += v.x, this.y += v.y);
     }
 
+    /**
+     * 
+     * @param a
+     */
     public void ajouterAngle(double a) {
         double nouvelangle = orientation() + a;
         y = norme() * Math.sin(nouvelangle);
@@ -62,6 +71,11 @@ public class Vecteur implements Serializable {
         return this.x * v.x + this.y * v.y;
     }
 
+    /**
+     * 
+     * @param origine
+     * @param angle
+     */
     public void rotation(Vecteur origine, double angle) {
         double localx = x - origine.x;
         double localy = y - origine.y;

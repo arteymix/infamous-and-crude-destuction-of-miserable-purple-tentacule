@@ -43,6 +43,10 @@ public class MainCanvas extends JComponent implements Serializable {
         setPreferredSize(new Dimension((int) canvasSize.x, (int) canvasSize.y));
     }
 
+    /**
+     * 
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g) {
         // Le jeu!

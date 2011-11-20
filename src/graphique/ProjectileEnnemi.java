@@ -1,6 +1,5 @@
 package graphique;
 
-import java.awt.Image;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
@@ -18,8 +17,15 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      *
      */
     private Vecteur position;
+    /**
+     * 
+     */
     public static final int MISSILE_0 = 0;
 
+    /**
+     * 
+     * @param id
+     */
     public ProjectileEnnemi(int id) {
     }
 
@@ -48,8 +54,5 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        return true;
-    }
+    
 }

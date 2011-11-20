@@ -36,6 +36,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private static final int LATENCE_DU_TIR = 250;
     private Image imageSubCanon;
 
+    /**
+     * 
+     * @param numeroDuCanon
+     */
     public Canon(int numeroDuCanon) {
         switch (numeroDuCanon) {
             case 0:
@@ -68,7 +72,6 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     /**
      * 
      * @param e
-     * @param eventType 
      */
     public void gererEvenementDuClavier(Integer e) {
         if (NUMERO_DU_CANON == 0) {
@@ -195,8 +198,8 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
 
-        g.drawImage(imageSubCanon, xPoints[1], yPoints[1], this);
-        g.drawImage(image, (int) position.x, (int) position.y, this);
+        g.drawImage(imageSubCanon, xPoints[1], yPoints[1], null);
+        g.drawImage(image, (int) position.x, (int) position.y, null);
         
     }
 
@@ -235,9 +238,5 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         return 0;
     }
 
-    @Override
-    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-        System.out.println("shit");
-        return true;
-    }
+  
 }

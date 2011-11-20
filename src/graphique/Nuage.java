@@ -14,6 +14,9 @@ import main.Main;
  */
 public class Nuage extends Dessinable implements Serializable {
 
+    /**
+     * 
+     */
     public static final int PROBABILITE_APPARITION_NUAGE = 1000;
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
     Image img = Main.imageBank.NUAGE;
@@ -24,7 +27,7 @@ public class Nuage extends Dessinable implements Serializable {
         if (position.x > MainCanvas.canvasSize.x) {
             isDessinable = false;
         } else {
-            g.drawImage(img, (int) position.x, (int) position.y, this);
+            g.drawImage(img, (int) position.x, (int) position.y, null);
             position.x += 0.5;
         }
     }
@@ -40,8 +43,5 @@ public class Nuage extends Dessinable implements Serializable {
         }
     }
 
-    @Override
-    public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
-       return true;
-    }
+    
 }

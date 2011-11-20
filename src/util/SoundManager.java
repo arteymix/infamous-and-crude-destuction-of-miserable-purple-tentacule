@@ -1,7 +1,7 @@
 package util;
 
 import java.io.InputStream;
-import sun.audio.AudioPlayer;
+
 
 /**
  *
@@ -14,6 +14,6 @@ public class SoundManager {
      * @param ais 
      */
     public static void play(InputStream ais) {
-        AudioPlayer.player.start(ais);
+     
     }
 }

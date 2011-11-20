@@ -12,6 +12,11 @@ public class Traductions implements Serializable {
     private static String langue = "fr";
     private static boolean isInitAlready = false;
 
+    /**
+     * 
+     * @param variable
+     * @return
+     */
     public static String get(String variable) {
         if (!isInitAlready) {
             init();
@@ -27,10 +32,17 @@ public class Traductions implements Serializable {
         return null;
     }
 
+    /**
+     * 
+     * @param s
+     */
     public static void setLangue(String s) {
         langue = s;
     }
 
+    /**
+     * 
+     */
     public static void init() {
         fr.put("menu.fichier", "Fichier");
         fr.put("menu.editer", "Éditer");
