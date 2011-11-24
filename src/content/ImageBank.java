@@ -68,6 +68,9 @@ public class ImageBank implements Serializable {
      * 
      */
     public final Image SUBCANON2;
+    /**
+     * 
+     */
     public final Image MEDUSE;
 
     /**

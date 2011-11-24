@@ -221,6 +221,9 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         keyBoardListener.start();
     }
 
+    /**
+     * 
+     */
     @Override
     public void run() {
         timerSeconds++;

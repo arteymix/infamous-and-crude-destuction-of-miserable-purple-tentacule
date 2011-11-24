@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.Serializable;
 import java.util.Random;
+import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -19,39 +20,33 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
-    public static final int PROBABILITE_APPARITION_OVNI = 1000;
-    private static boolean isBoss = false;
+    
     double x, y, vitesseX = 1.0;
     int id, vie;
     Image img;
     private static Random r = new Random();
-    /**
+    
+    /*
+     * 
+     * 
+     * 
+     * 
+     * 
+     * LES CONSTANTES ONT ÉTÉ TRANSFÉRÉ DANS :
+     * 
+     * Main.gameValues.ovni.XXXXXXXXXXXXXXX
+     * 
+     * 
+     * 
      * 
      */
-    public static final int ENNEMI_NORMAL = 1;
-    /**
-     * 
-     */
-    public static final int ENNEMI_SUPERSONIQUE = 2;
-    /**
-     * 
-     */
-    public static final int ENNEMI_BOSS_1 = 3;
-    /**
-     * 
-     */
-    public static final int ENNEMI_BOSS_2 = 4;
-    /**
-     * 
-     */
-    public static final int ENNEMI_BOSS_3 = 5;
 
     private Ovni(Vecteur v, int id) {
 
         /* On va pas faire ça compliqué. Il y a une méthode en dessous qui
          * s'appelle create ovni vas-y! 
          */
-        if (isBoss) {
+        if (Main.gameValues.ovni.isBoss) {
             isDessinable = false;
         }
         this.x = v.x;

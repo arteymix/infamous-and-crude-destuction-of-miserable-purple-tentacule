@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -28,14 +29,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
-    private double heigh = 100, width = 255;
-    public int vie = 1000;
+    /**
+     * 
+     */
+    public int vie;
     private final double NUMERO_DU_CANON;
-    private static final int VIE_INIT_CANON = 1000;
-    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
-    private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
     private boolean peutTirer = true;
-    private static final int LATENCE_DU_TIR = 250;
     private Image imageSubCanon;
 
     /**
@@ -61,7 +60,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
         D = piedDeCanon().additionAffine(new Vecteur(15, +0));
-        vie = VIE_INIT_CANON;
+        vie = Main.gameValues.canon.VIE_INIT_CANON;
     }
 
     /**
@@ -70,7 +69,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * @return ce vecteur.
      */
     public Vecteur piedDeCanon() {
-        return new Vecteur(position.x + width / 2, position.y + heigh / 4);
+        return new Vecteur(position.x + Main.gameValues.canon.width / 2, position.y + Main.gameValues.canon.heigh / 4);
     }
 
     /**
@@ -123,17 +122,17 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     private void moveCanonGauche() {
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
     }
 
     private void moveCanonDroite() {
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
     }
 
     /**
@@ -141,11 +140,11 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      */
     private void moveGauche() {
         if (this.position.x > 0) {
-            A.x -= MOVEMENT_INCREMENT_CANON;
-            B.x -= MOVEMENT_INCREMENT_CANON;
-            C.x -= MOVEMENT_INCREMENT_CANON;
-            D.x -= MOVEMENT_INCREMENT_CANON;
-            position.x -= MOVEMENT_INCREMENT_CANON;
+            A.x -= Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            B.x -= Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            C.x -= Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            D.x -= Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            position.x -= Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
         }
     }
 
@@ -153,12 +152,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Déplace le canon vers la droite de MOVEMENT_INCREMENT_CANON pixels.
      */
     private void moveDroite() {
-        if (this.position.x + width + 1 < MainCanvas.CANVAS_SIZE.x) {
-            A.x += MOVEMENT_INCREMENT_CANON;
-            B.x += MOVEMENT_INCREMENT_CANON;
-            C.x += MOVEMENT_INCREMENT_CANON;
-            D.x += MOVEMENT_INCREMENT_CANON;
-            position.x += MOVEMENT_INCREMENT_CANON;
+        if (this.position.x + Main.gameValues.canon.width + 1 < MainCanvas.CANVAS_SIZE.x) {
+            A.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            B.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            C.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            D.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
+            position.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
         }
     }
 
@@ -176,7 +175,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(LATENCE_DU_TIR);
+                        Thread.sleep(Main.gameValues.canon.LATENCE_DU_TIR);
                     } catch (InterruptedException ie) {
                         ie.printStackTrace();
                     } finally {
@@ -219,12 +218,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
-        g.drawRect((int) (position.x), (int) (position.y), (int) width, (int) heigh);
+        g.drawRect((int) (position.x), (int) (position.y), (int) Main.gameValues.canon.width, (int) Main.gameValues.canon.heigh);
     }
 
     @Override
     public Rectangle getRectangle() {
-        return new Rectangle((int) position.x, (int) position.y, (int) width, (int) this.heigh);
+        return new Rectangle((int) position.x, (int) position.y, (int) Main.gameValues.canon.width, (int) Main.gameValues.canon.heigh);
     }
 
     @Override

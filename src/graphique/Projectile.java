@@ -5,6 +5,7 @@ import util.Dessinable;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Vecteur;
 
@@ -15,7 +16,7 @@ import util.Vecteur;
 public class Projectile extends Dessinable implements Collisionable, Serializable {
 
     private Vecteur position, vitesse = new Vecteur(8, -8);
-    private static double GRAVITY = 0.8;
+    
     private final TypeDeProjectile TDP;
     private Rectangle rectangle;
 
@@ -64,7 +65,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
         g.drawImage(TDP.IMAGE, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
 
-        vitesse.y -= GRAVITY;
+        vitesse.y -= Main.gameValues.projectile.GRAVITY;
     }
 
     @Override
@@ -73,7 +74,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
             this.isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);
-        vitesse.y -= GRAVITY;
+        vitesse.y -= Main.gameValues.projectile.GRAVITY;
     }
 
     @Override

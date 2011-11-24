@@ -1,5 +1,6 @@
 package main;
 
+import content.GameValues;
 import content.Highscores;
 import graphique.InterfaceGraphique;
 import java.io.Serializable;
@@ -9,10 +10,13 @@ import java.io.Serializable;
  * @author Guillaume Poirier-Morency
  */
 public class Main implements Serializable {
-
+public static GameValues gameValues = new GameValues();
     private static Thread rendu;
     private static InterfaceGraphique ig;
-public static Highscores highscore = new Highscores();
+    /**
+     * 
+     */
+    public static Highscores highscore = new Highscores();
     /**
      * Lance la fermeture du jeu. Pour l'instant, cette méthode ne contient
      * qu'un System.exit(0), mais pourra éventuellement gérer une fermeture plus
@@ -29,6 +33,7 @@ public static Highscores highscore = new Highscores();
     /**
      * 
      * @param args
+     * @throws Exception  
      */
     public static void main(String[] args) throws Exception {
         // Thread pour le rendu

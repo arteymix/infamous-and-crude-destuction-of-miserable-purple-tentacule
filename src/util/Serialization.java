@@ -17,6 +17,8 @@ import java.io.ObjectOutputStream;
 public class Serialization {
      /**
      * Ce code a été adapté du site web : http://ydisanto.developpez.com/tutoriels/java/serialisation-binaire/ 
+     * @param o 
+     * @param filename 
      */
     public static void serialize(Object o, String filename) {
         try {
@@ -44,8 +46,6 @@ public class Serialization {
      * objet de configuration.
      * @param filename est le nom du fichier à désérialiser.
      * @return l'objet désérialisé.
-     * @throws IOException est lancée lorsque le fichier d'objet ne peut être récupéré. 
-     * @throws ClassNotFoundException est lancée lorsque l'objet trouvé ne correspond pas à ce qui est recherché. 
      */
     public static Object unSerialize(String filename) {
         Object p = null;

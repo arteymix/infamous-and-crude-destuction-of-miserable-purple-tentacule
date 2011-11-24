@@ -15,21 +15,25 @@ import util.Serialization;
  */
 public class Highscores extends HashMap<String, Integer> implements Serializable {
 
+    /**
+     * 
+     */
     public Highscores() {
         Highscores h;
         if ((h = (Highscores) Serialization.unSerialize("highscores.serial")) != null) {
-
             super.putAll(h);
-
-
         }
     }
 
+    /**
+     * 
+     * @param s
+     * @param i
+     * @return
+     */
     @Override
     public Integer put(String s, Integer i) {
-
         Integer jkl = super.put(s, i);
-
         // On sérialize quand le dictionnaire est altéré.
         Serialization.serialize(this, "highscores.serial");
         return jkl;

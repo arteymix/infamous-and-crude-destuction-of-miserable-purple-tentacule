@@ -24,7 +24,8 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
 Rectangle rectangle = new Rectangle(0,0,30,30);
     /**
      * 
-     * @param id
+ * @param init 
+ * @param id
      */
     public ProjectileEnnemi(Vecteur init,int id) {
         position = new Vecteur(init.x,init.y);
