@@ -1,8 +1,6 @@
 package graphique;
 
 import java.awt.Graphics;
-import java.awt.Image;
-import main.Main;
 import util.Dessinable;
 import util.Vecteur;
 
@@ -30,7 +28,7 @@ public class GameEvent {
 
         @Override
         public void dessiner(Graphics g) {
-            g.drawImage(Main.imageBank.NUAGE, (int) position.x, (int) position.y, null);
+            g.drawImage(InterfaceGraphique.imageBank.NUAGE, (int) position.x, (int) position.y, null);
            onDessiner(g);
         }
 

@@ -17,7 +17,7 @@ public class Vecteur implements Serializable {
     public double x, y;
 
     /**
-     * 
+     * Constructeur de l'objet Vecteur.
      * @param x
      * @param y 
      */

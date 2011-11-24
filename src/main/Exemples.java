@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
 import content.SoundBank;
+import graphique.InterfaceGraphique;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
 import util.Collisionable;
 import util.Dessinable;
@@ -25,7 +21,7 @@ public class Exemples extends Dessinable implements Collisionable {
      * 
      */
     public Exemples() {
-        this.image = Main.imageBank.BOSS1;
+        this.image = InterfaceGraphique.imageBank.BOSS1;
         rectangle = new Rectangle(10, 10, 10, 10);
     }
 

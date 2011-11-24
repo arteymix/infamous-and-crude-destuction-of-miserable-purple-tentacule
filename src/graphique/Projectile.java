@@ -5,7 +5,6 @@ import util.Dessinable;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.Serializable;
-import main.Main;
 import util.Collisionable;
 import util.Vecteur;
 
@@ -16,26 +15,22 @@ import util.Vecteur;
 public class Projectile extends Dessinable implements Collisionable, Serializable {
 
     private Vecteur position, vitesse = new Vecteur(8, -8);
-    private static double GRAVITY = 1.0;
+    private static double GRAVITY = 0.8;
     private final TypeDeProjectile TDP;
     private Rectangle rectangle;
 
-    
-     
-     
-
     private enum TypeDeProjectile {
 
-        PROJECTILE_0(Main.imageBank.MISSILE, 5),
-        PROJECTILE_1(Main.imageBank.MISSILE, 5),
-        PROJECTILE_2(Main.imageBank.MISSILE, 5),
-        PROJECTILE_3(Main.imageBank.MISSILE, 5),
-        PROJECTILE_4(Main.imageBank.MISSILE, 5),
-        PROJECTILE_5(Main.imageBank.MISSILE, 5),
-        PROJECTILE_6(Main.imageBank.MISSILE, 5),
-        PROJECTILE_7(Main.imageBank.MISSILE, 5),
-        PROJECTILE_8(Main.imageBank.MISSILE, 5),
-        PROJECTILE_9(Main.imageBank.MISSILE, 5);
+        PROJECTILE_0(InterfaceGraphique.imageBank.MISSILE, 1),
+        PROJECTILE_1(InterfaceGraphique.imageBank.MISSILE, 2),
+        PROJECTILE_2(InterfaceGraphique.imageBank.MISSILE, 3),
+        PROJECTILE_3(InterfaceGraphique.imageBank.MISSILE, 4),
+        PROJECTILE_4(InterfaceGraphique.imageBank.MISSILE, 5),
+        PROJECTILE_5(InterfaceGraphique.imageBank.MISSILE, 6),
+        PROJECTILE_6(InterfaceGraphique.imageBank.MISSILE, 7),
+        PROJECTILE_7(InterfaceGraphique.imageBank.MISSILE, 8),
+        PROJECTILE_8(InterfaceGraphique.imageBank.MISSILE, 9),
+        PROJECTILE_9(InterfaceGraphique.imageBank.MISSILE, 10);
         public final Image IMAGE;
         public final int DOMMAGES;
 
@@ -54,14 +49,14 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
     public Projectile(Vecteur point, Vecteur orientation, int id) {
         position = point;
         vitesse = orientation;
-        image = Main.imageBank.MISSILE;
+        image = InterfaceGraphique.imageBank.MISSILE;
         TDP = TypeDeProjectile.PROJECTILE_0;
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }
 
     @Override
     public void dessiner(Graphics g) {
-        if (position.y > MainCanvas.canvasSize.y | position.x < 0 | position.x > MainCanvas.canvasSize.x) {
+        if (position.y > MainCanvas.CANVAS_SIZE.y | position.x < 0 | position.x > MainCanvas.CANVAS_SIZE.x) {
             this.isDessinable = false;
         }
 
@@ -74,7 +69,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.y > MainCanvas.canvasSize.y | position.x < 0 | position.x > MainCanvas.canvasSize.x) {
+        if (position.y > MainCanvas.CANVAS_SIZE.y | position.x < 0 | position.x > MainCanvas.CANVAS_SIZE.x) {
             this.isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);

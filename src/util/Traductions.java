@@ -14,8 +14,8 @@ public class Traductions implements Serializable {
 
     /**
      * 
-     * @param variable
-     * @return
+     * @param variable 
+     * @return la traduction correspondant à la variable.
      */
     public static String get(String variable) {
         if (!isInitAlready) {
@@ -33,15 +33,17 @@ public class Traductions implements Serializable {
     }
 
     /**
-     * 
-     * @param s
+     * Change la langue du dictionnaire. La valeur retournée par get(String variable)
+     * est définit en fonction de la langue.
+     * @param s est le String représentant la langue. Il peut prendre les 
+     * valeurs "en" et "fr".
      */
     public static void setLangue(String s) {
         langue = s;
     }
 
     /**
-     * 
+     * Initialise le dictionnaire de traductions.
      */
     public static void init() {
         fr.put("menu.fichier", "Fichier");

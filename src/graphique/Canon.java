@@ -6,7 +6,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
-import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -20,6 +19,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     /**
      * Variable définissant si le canon 2 est une cible valide pour un projectile ennemi.
+     * Cette variable est particulièrement utile lorsque le joueur joue en mode
+     * solo, ainsi les projectiles auto-guidées ne se dirigent pas vers le
+     * deuxième canon.
      */
     boolean isCanon2ValidTarget = false;
     private Vecteur A, B, C, D, E, F, G, H;
@@ -37,19 +39,20 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private Image imageSubCanon;
 
     /**
-     * 
-     * @param numeroDuCanon
+     * Constructeur pour l'objet de canon.
+     * @param numeroDuCanon est le numéro de canon. Deux valeurs sont possibles,
+     * 0 qui définit le canon 1 et 1 qui définit le canon 2.
      */
     public Canon(int numeroDuCanon) {
         switch (numeroDuCanon) {
             case 0:
-                image = Main.imageBank.CANON_0;
-                imageSubCanon = Main.imageBank.SUBCANON1;
+                image = InterfaceGraphique.imageBank.CANON_0;
+                imageSubCanon = InterfaceGraphique.imageBank.SUBCANON1;
                 position = new Vecteur(0, 699);
                 break;
             case 1:
-                image = Main.imageBank.CANON_1;
-                imageSubCanon = Main.imageBank.SUBCANON2;
+                image = InterfaceGraphique.imageBank.CANON_1;
+                imageSubCanon = InterfaceGraphique.imageBank.SUBCANON2;
                 position = new Vecteur(689, 699);
                 break;
         }
@@ -62,8 +65,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     }
 
     /**
-     * 
-     * @return 
+     * Retourne le vecteur position du pied de canon. Les missiles prennent
+     * origine à cette position.
+     * @return ce vecteur.
      */
     public Vecteur piedDeCanon() {
         return new Vecteur(position.x + width / 2, position.y + heigh / 4);
@@ -95,7 +99,6 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
             }
             // On gere l'evenement
         } else if (NUMERO_DU_CANON == 1 && isCanon2ValidTarget) {
-
             switch (e) {
                 case KeyEvent.VK_A:
                     moveGauche();
@@ -141,6 +144,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         image = Toolkit.getDefaultToolkit().getImage(s);
     }
 
+    /**
+     * Déplace le canon vers la gauche de MOVEMENT_INCREMENT_CANON pixels.
+     */
     private void moveGauche() {
         if (this.position.x > 0) {
             A.x -= MOVEMENT_INCREMENT_CANON;
@@ -152,10 +158,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     }
 
     /**
-     * 
+     * Déplace le canon vers la droite de MOVEMENT_INCREMENT_CANON pixels.
      */
     private void moveDroite() {
-        if (this.position.x + width + 1 < MainCanvas.canvasSize.x) {
+        if (this.position.x + width + 1 < MainCanvas.CANVAS_SIZE.x) {
             A.x += MOVEMENT_INCREMENT_CANON;
             B.x += MOVEMENT_INCREMENT_CANON;
             C.x += MOVEMENT_INCREMENT_CANON;
@@ -191,16 +197,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessiner(Graphics g) {
-
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-
         g.drawImage(imageSubCanon, xPoints[1], yPoints[1], null);
         g.drawImage(image, (int) position.x, (int) position.y, null);
-        
     }
 
     @Override
@@ -208,7 +211,6 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
-
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
@@ -237,6 +239,4 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         // Entrer en collision avec un canon ne cause pas de dommages, mais le projectile ennemi disparaît quand même.
         return 0;
     }
-
-  
 }
