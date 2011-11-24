@@ -65,7 +65,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     public static void createOvni() {
         // Ici tu mets l'algo de génération aléatoire pour le id
-        if ((new Random()).nextInt(100) == 1) {
+        if ((new Random()).nextInt(2) == 1) {
             InterfaceGraphique.composantesDessinables.add(new Ovni(new Vecteur(0, 300), 1));
         }
         /* Bon je te laisse coder l'algorithme de génération en fonction de tes
@@ -128,7 +128,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
-    private void mouvement() {
+    private void action() {
         switch (id) {
             case 1:// mouvement d'un enemi normal 
                 x += 3 * vitesseX;
@@ -148,6 +148,9 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
 
+        }
+        if ((new Random()).nextInt(100) == 1) {
+            tirer(0);
         }
     }
 
@@ -179,7 +182,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessiner(Graphics g) {
-        mouvement();
+        action();
         g.drawImage(img, (int) x, (int) y, null);
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, vie * 7, 10);
@@ -192,15 +195,13 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        mouvement();
+        action();
         g.drawOval((int) (x), (int) (y), 100, 100);
         if (x > MainCanvas.CANVAS_SIZE.x) {
             isDessinable = false;
 
         }
-        if ((new Random()).nextInt(100) == 1) {
-            tirer(0);
-        }
+        
     }
 
     @Override

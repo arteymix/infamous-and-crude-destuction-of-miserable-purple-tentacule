@@ -18,7 +18,7 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class MainCanvas extends JComponent implements Serializable {
-
+Canon canon1, canon2;
     /**
      * La variable points contient les points du/des joueur/s.
      */
@@ -39,6 +39,7 @@ public class MainCanvas extends JComponent implements Serializable {
      */
     MainCanvas() {
         super();
+        
         setPreferredSize(new Dimension((int) CANVAS_SIZE.x, (int) CANVAS_SIZE.y));
     }
     /**
@@ -63,6 +64,8 @@ private final Font FONT = new Font("Comic sans ms",Font.BOLD,15);
                     g.drawString(Traductions.get("debug.modedebogage") + " : " + (InterfaceGraphique.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
                     g.drawString("Nombre de composantes dessinable : " + InterfaceGraphique.composantesDessinables.size() + " composantes", 5, 60);
                     g.drawString("Points : " + points + " points", 5, 75);
+                    g.drawString("Vies canon 1 : " + canon1.vie + " vies", 5, 90);
+                    g.drawString("Vies canon 2 : " + canon2.vie + " vies", 5, 105);
                     g.drawRect(0, 0, (int) CANVAS_SIZE.x - 1, (int) CANVAS_SIZE.y - 1);
                 } else {
                     // Le background est dessiné ici.

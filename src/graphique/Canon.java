@@ -29,9 +29,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
     private double heigh = 100, width = 255;
-    private int vie = 1000;
+    public int vie = 1000;
     private final double NUMERO_DU_CANON;
-    private static final int VIE_INIT_CANON = 100;
+    private static final int VIE_INIT_CANON = 1000;
     private static final double MOVEMENT_INCREMENT_CANON = 3.0;
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
     private boolean peutTirer = true;
@@ -207,7 +207,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         g.drawImage(imageSubCanon, xPoints[1], yPoints[1], null);
         g.drawImage(image, (int) position.x, (int) position.y, null);
         g.setColor(Color.RED);
-        g.fillRect((int) position.x, (int) position.y, vie, 10);
+        g.fillRect((int) position.x, (int) position.y, vie / 5, 10);
         g.setColor(Color.BLACK);
     }
 

@@ -40,7 +40,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
     /**
      * 
      */
-    Canon canon1, canon2;
+    
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuLangue = new JMenu(Traductions.get("menu.langue")),
@@ -117,7 +117,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                canon2.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
+                mainCanvas.canon2.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
 
             }
         });
@@ -174,9 +174,9 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                     +"Le programme va s'interrompre!");
             Main.close();
         }
-        canon1 = new Canon(0);
-        canon2 = new Canon(1);
-        keyBoardListener = new KeyBoardListener(canon1, canon2);
+        mainCanvas.canon1 = new Canon(0);
+        mainCanvas.canon2 = new Canon(1);
+        keyBoardListener = new KeyBoardListener(mainCanvas.canon1, mainCanvas.canon2);
         configurerMenus();
         addKeyListener(new KeyAdapter() {
 
@@ -211,8 +211,8 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             }
         });
         // On rajoute le canon 1 par défaut.
-        composantesDessinables.add(canon1);
-        composantesDessinables.add(canon2);
+        composantesDessinables.add(mainCanvas.canon1);
+        composantesDessinables.add(mainCanvas.canon2);
         add(mainCanvas);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();

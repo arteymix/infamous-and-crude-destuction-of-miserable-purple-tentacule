@@ -68,6 +68,7 @@ public class ImageBank implements Serializable {
      * 
      */
     public final Image SUBCANON2;
+    public final Image MEDUSE;
 
     /**
      * Constructeur pour ImageBank. 
@@ -83,6 +84,7 @@ public class ImageBank implements Serializable {
         SUBCANON1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon1.gif")));       
         SUBCANON2 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon2.gif"))); 
         ENEMI = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/pieuvre.gif")));
+        MEDUSE =ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/meduse.gif")));
         
     }
 }
