@@ -83,7 +83,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     private void tirer(int id) {
         // Sa devrait être cool maintenant...
-        InterfaceGraphique.composantesDessinables.add(new ProjectileEnnemi(ProjectileEnnemi.MISSILE_0));
+        InterfaceGraphique.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x,y),ProjectileEnnemi.MISSILE_0));
     }
 
     private void configurerOvni(int id) {
@@ -182,15 +182,25 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         mouvement();
         g.drawImage(img, (int) x, (int) y, null);
         g.setColor(Color.RED);
-        g.fillRect((int)x,(int) y, vie*7, 10);
+        g.fillRect((int) x, (int) y, vie * 7, 10);
         g.setColor(Color.BLACK);
+        if (x > MainCanvas.CANVAS_SIZE.x) {
+            isDessinable = false;
+
+        }
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
         mouvement();
         g.drawOval((int) (x), (int) (y), 100, 100);
+        if (x > MainCanvas.CANVAS_SIZE.x) {
+            isDessinable = false;
 
+        }
+        if ((new Random()).nextInt(100) == 1) {
+            tirer(0);
+        }
     }
 
     @Override

@@ -1,9 +1,9 @@
 package graphique;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
 import util.Collisionable;
@@ -29,9 +29,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
     private double heigh = 100, width = 255;
-    private int vie;
+    private int vie = 1000;
     private final double NUMERO_DU_CANON;
-    private static final int VIE_INIT_CANON = 10;
+    private static final int VIE_INIT_CANON = 100;
     private static final double MOVEMENT_INCREMENT_CANON = 3.0;
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
     private boolean peutTirer = true;
@@ -137,14 +137,6 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     }
 
     /**
-     * 
-     * @param s 
-     */
-    public void setImage(String s) {
-        image = Toolkit.getDefaultToolkit().getImage(s);
-    }
-
-    /**
      * Déplace le canon vers la gauche de MOVEMENT_INCREMENT_CANON pixels.
      */
     private void moveGauche() {
@@ -202,8 +194,21 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
+        ////////////
+        /*
+        Graphics2D g2d = (Graphics2D) g;
+        AffineTransform affineTransform = new AffineTransform();
+        //rotate the image 
+        affineTransform.translate(piedDeCanon().x + 20, piedDeCanon().y);
+        affineTransform.rotate(Math.toRadians(180));
+        //draw the image using the AffineTransform 
+        g2d.drawImage(imageSubCanon, affineTransform, null);
+        ///*/
         g.drawImage(imageSubCanon, xPoints[1], yPoints[1], null);
         g.drawImage(image, (int) position.x, (int) position.y, null);
+        g.setColor(Color.RED);
+        g.fillRect((int) position.x, (int) position.y, vie, 10);
+        g.setColor(Color.BLACK);
     }
 
     @Override
@@ -227,6 +232,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             this.vie -= c.getDommage();
             System.out.println(this + " reçoit collision de " + c);
+            System.out.println(vie);
         }
         if (vie < 0) {
             this.isDessinable = false;

@@ -21,37 +21,45 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      * 
      */
     public static final int MISSILE_0 = 0;
-
+Rectangle rectangle = new Rectangle(0,0,10,10);
     /**
      * 
      * @param id
      */
-    public ProjectileEnnemi(int id) {
+    public ProjectileEnnemi(Vecteur init,int id) {
+        position = new Vecteur(init.x,init.y);
     }
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawRect((int) position.x, (int) position.y, 10, 10);
+        g.drawRect((int) position.x, (int) position.y++, 10, 100);
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        g.drawRect((int) position.x, (int) position.y, 10, 10);
+        g.drawRect((int) position.x, (int) position.y++, 10, 100);
     }
 
     @Override
     public Rectangle getRectangle() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        rectangle.x = (int)this.position.x;
+        rectangle.y = (int)this.position.x;
+        return rectangle;
     }
+    
+    
 
     @Override
     public void collision(Collisionable c) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(c instanceof Projectile | c instanceof Canon) {
+        this.isDessinable = false;
+        
+        }
     }
 
     @Override
     public int getDommage() {
-        throw new UnsupportedOperationException("Not supported yet.");
+      return 10;
     }
 
     

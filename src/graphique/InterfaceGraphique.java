@@ -17,8 +17,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
 import main.Main;
 import util.Dessinable;
 import util.KeyBoardListener;
@@ -36,8 +34,13 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      */
     static boolean isDebugEnabled = true;
     static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
-    Canon canon1;
-    Canon canon2;
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    Canon canon1, canon2;
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuLangue = new JMenu(Traductions.get("menu.langue")),
@@ -62,6 +65,37 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      * avec un serveur de sons.
      */
     public static SoundManager son = new SoundManager();
+    /**
+     * Variable définissant la durée entre chaque frame. Elle peut être diminué
+     * si le système est rapide, c'est-à-dire qu'il n'a pas besoin d'autant de 
+     * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
+     * latence devrait être augmentée.
+     */
+    public static double latency = 10;
+    /**
+     * Variable définissant si le mode débogage est activé.
+     */
+    public static long tempsDuRendu = 0;
+    /**
+     * Objet pour la banque d'images qui contient des images pour le rendu.
+     */
+    public static ImageBank imageBank;
+    /**
+     * 
+     */
+    public static boolean isPaused = false;
+    /**
+     * Est true quand le rendu est fini, false quand le rendu est en cours.
+     */
+    public static boolean paintDone = false;
+    /**
+     * Variable qui contient le temps de jeu.
+     */
+    public static long time;
+    /**
+     * Timer qui donne le temps depuis le début du jeu.
+     */
+    public static long timerSeconds = 0;
 
     private void configurerMenus() {
         mitemQuitter.addActionListener(new ActionListener() {
@@ -133,11 +167,12 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      */
     public InterfaceGraphique() {
 
-        try {
-            System.out.println("La banque d'images n'a pas pu être instancié!");
+        try {          
             imageBank = new ImageBank();
         } catch (IOException ex) {
-            System.out.println("La banque d'images n'a pas pu être instancié!");
+            System.out.println("La banque d'images n'a pas pu être instancié!"
+                    +"Le programme va s'interrompre!");
+            Main.close();
         }
         canon1 = new Canon(0);
         canon2 = new Canon(1);
@@ -220,35 +255,5 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             }
         }
     }
-    /**
-     * Variable définissant la durée entre chaque frame. Elle peut être diminué
-     * si le système est rapide, c'est-à-dire qu'il n'a pas besoin d'autant de 
-     * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
-     * latence devrait être augmentée.
-     */
-    public static double latency = 10;
-    /**
-     * Variable définissant si le mode débogage est activé.
-     */
-    public static long tempsDuRendu = 0;
-    /**
-     * Objet pour la banque d'images qui contient des images pour le rendu.
-     */
-    public static ImageBank imageBank;
-    /**
-     * 
-     */
-    public static boolean isPaused = false;
-    /**
-     * Est true quand le rendu est fini, false quand le rendu est en cours.
-     */
-    public static boolean paintDone = false;
-    /**
-     * Variable qui contient le temps de jeu.
-     */
-    public static long time;
-    /**
-     * Timer qui donne le temps depuis le début du jeu.
-     */
-    public static long timerSeconds = 0;
+    
 }
