@@ -36,7 +36,7 @@ public class Nuage extends Dessinable implements Serializable {
     @Override
     public void dessiner(Graphics g) {
         
-        if (position.x > Main.gameValues.CANVAS_SIZE.x) {
+        if (position.x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
         } else {
             g.drawImage(img, (int) position.x, (int) position.y, null);
@@ -48,7 +48,7 @@ public class Nuage extends Dessinable implements Serializable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.x > Main.gameValues.CANVAS_SIZE.x) {
+        if (position.x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
         } else {
             g.drawRect((int) position.x, (int) position.y, 200, 100);

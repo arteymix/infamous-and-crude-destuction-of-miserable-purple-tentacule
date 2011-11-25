@@ -37,7 +37,7 @@ Rectangle rectangle = new Rectangle(0,0,30,30);
     @Override
     public void dessiner(Graphics g) {        
         g.drawImage(image, (int) position.x, (int) position.y++,rectangle.width, rectangle.height, null);
-        if(position.y >= Main.gameValues.CANVAS_SIZE.y) {
+        if(position.y >= Main.gameValues.canvasSize.y) {
         isDessinable = false;
         
         }
@@ -46,7 +46,7 @@ Rectangle rectangle = new Rectangle(0,0,30,30);
     @Override
     public void dessinerDeboguage(Graphics g) {
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
-        if(position.y >= Main.gameValues.CANVAS_SIZE.y) {
+        if(position.y >= Main.gameValues.canvasSize.y) {
         isDessinable = false;
         
         }

@@ -3,14 +3,13 @@ package content;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
-import java.io.Serializable;
 import javax.imageio.ImageIO;
 
 /**
  * Fichier d'objet pour la banque d'images.
  * @author Guillaume Poirier-Morency
  */
-public class ImageBank implements Serializable {
+public class ImageBank {
 
     /**
      * 

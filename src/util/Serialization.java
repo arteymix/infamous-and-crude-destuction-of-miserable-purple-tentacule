@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import java.io.FileInputStream;
@@ -11,14 +7,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /**
- *
+ * Classe contenant les méthodes de sérialisation utiles.
  * @author guillaume
  */
 public class Serialization {
-     /**
+
+    /**
      * Ce code a été adapté du site web : http://ydisanto.developpez.com/tutoriels/java/serialisation-binaire/ 
-     * @param o 
-     * @param filename 
+     * @param o est l'objet à sérialiser.
+     * @param filename est le nom du fichier où l'objet sera sérialisé.
      */
     public static void serialize(Object o, String filename) {
         try {
@@ -64,9 +61,7 @@ public class Serialization {
         } catch (IOException ioe) {
         } catch (ClassNotFoundException cnfe) {
         } finally {
-            return  p;
-
+            return p;
         }
-
     }
 }

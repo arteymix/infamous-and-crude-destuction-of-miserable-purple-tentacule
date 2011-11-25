@@ -57,7 +57,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public void dessiner(Graphics g) {
-        if (position.y > Main.gameValues.CANVAS_SIZE.y | position.x < 0 | position.x > Main.gameValues.CANVAS_SIZE.x) {
+        if (position.y > Main.gameValues.canvasSize.y | position.x < 0 | position.x > Main.gameValues.canvasSize.x) {
             this.isDessinable = false;
         }
 
@@ -70,7 +70,7 @@ public class Projectile extends Dessinable implements Collisionable, Serializabl
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.y > Main.gameValues.CANVAS_SIZE.y | position.x < 0 | position.x > Main.gameValues.CANVAS_SIZE.x) {
+        if (position.y > Main.gameValues.canvasSize.y | position.x < 0 | position.x > Main.gameValues.canvasSize.x) {
             this.isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);

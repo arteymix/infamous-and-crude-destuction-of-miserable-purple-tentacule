@@ -1,7 +1,6 @@
 package main;
 
 import content.SoundBank;
-import graphique.InterfaceGraphique;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import util.Collisionable;
@@ -18,7 +17,7 @@ public class Exemples extends Dessinable implements Collisionable {
     private Rectangle rectangle;
 
     /**
-     * 
+     * Constructeur d'un exemple.
      */
     public Exemples() {
         this.image = Main.imageBank.BOSS1;
@@ -48,5 +47,5 @@ public class Exemples extends Dessinable implements Collisionable {
     @Override
     public int getDommage() {
         return 5;
-    }    
+    }
 }
