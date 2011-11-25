@@ -4,12 +4,60 @@
  */
 package content;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import util.Dessinable;
+import util.SoundManager;
+import util.Vecteur;
+
 /**
  * Contient tous les param
  * @author guillaume
  */
-public class GameValues {
-
+public class GameValues implements Serializable {
+     /**
+     * Variable définissant si le programme est en exécution afin d'avertir les threads
+     * dans le programme en cas de fermeture.
+     */
+    public  boolean isRunning = true;
+    /**
+     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
+     * avec un serveur de sons.
+     */
+    public  SoundManager son = new SoundManager();
+    /**
+     * Variable définissant la durée entre chaque frame. Elle peut être diminué
+     * si le système est rapide, c'est-à-dire qu'il n'a pas besoin d'autant de 
+     * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
+     * latence devrait être augmentée.
+     */
+    public  double latency = 10;
+    /**
+     * Variable définissant si le mode débogage est activé.
+     */
+    public  long tempsDuRendu = 0;
+    
+    /**
+     * 
+     */
+    public  boolean isPaused = false;
+    /**
+     * Est true quand le rendu est fini, false quand le rendu est en cours.
+     */
+    public  boolean paintDone = false;
+    /**
+     * Variable qui contient le temps de jeu.
+     */
+    public  long time;
+    /**
+     * Timer qui donne le temps depuis le début du jeu.
+     */
+    public  long timerSeconds = 0;
+ /**
+     * ArrayList des composantes dessinables.
+     */
+    public boolean isDebugEnabled = true;
+    public ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
     /**
      * La variable points contient les points du/des joueur/s.
      */
@@ -22,6 +70,11 @@ public class GameValues {
     public Canon canon = new Canon();
     public Projectile projectile = new Projectile();
     public Ovni ovni = new Ovni();
+     /**
+     * Ce vecteur est le vecteur dimension du canvas ou les composants et
+     * graphics sont dessinés.
+     */
+    public  Vecteur CANVAS_SIZE = new Vecteur(800, 800);
 
     public class Nuage {
 
@@ -44,7 +97,7 @@ public class GameValues {
 
     public class Ovni {
 
-        public int PROBABILITE_APPARITION_OVNI = 1000;
+        public int PROBABILITE_APPARITION_OVNI = 100;
         public boolean isBoss = false;
         /**
          * 

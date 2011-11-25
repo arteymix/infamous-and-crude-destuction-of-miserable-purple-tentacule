@@ -60,8 +60,8 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     public static void createOvni() {
         // Ici tu mets l'algo de génération aléatoire pour le id
-        if ((new Random()).nextInt(2) == 1) {
-            InterfaceGraphique.composantesDessinables.add(new Ovni(new Vecteur(0, 300), 1));
+        if ((new Random()).nextInt(Main.gameValues.ovni.PROBABILITE_APPARITION_OVNI) == 1) {
+            Main.gameValues.composantesDessinables.add(new Ovni(new Vecteur(0, 300), 1));
         }
         /* Bon je te laisse coder l'algorithme de génération en fonction de tes
          * besoins. Le constructeur peut être private maintenant!
@@ -78,7 +78,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     private void tirer(int id) {
         // Sa devrait être cool maintenant...
-        InterfaceGraphique.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x,y),ProjectileEnnemi.MISSILE_0));
+        Main.gameValues.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x,y),ProjectileEnnemi.MISSILE_0));
     }
 
     private void configurerOvni(int id) {
@@ -86,33 +86,33 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         switch (id) {
             case 1://img enemi et enemi or et vie
                 if (r.nextInt(10000) == 1) {
-                    img = InterfaceGraphique.imageBank.ENEMIOR;
+                    img = Main.imageBank.ENEMIOR;
                     vie = 30;
                 } else {
-                    img = InterfaceGraphique.imageBank.ENEMI;
+                    img = Main.imageBank.ENEMI;
                     vie = 10;
                 }
                 break;
             case 2:// img supersonic et supersonicor
                 if (r.nextInt(10000) == 1) {
-                    img = InterfaceGraphique.imageBank.SUPERSONICOR;
+                    img = Main.imageBank.SUPERSONICOR;
                     vie = 200;
                     vitesseX = 3;
                 } else {
-                    img = InterfaceGraphique.imageBank.SUPERSONIC;
+                    img = Main.imageBank.SUPERSONIC;
                     vitesseX = 2;
                 }
                 break;
             case 3:// img boss 1
-                img = InterfaceGraphique.imageBank.BOSS1;
+                img = Main.imageBank.BOSS1;
                 vie = 1000;
                 break;
             case 4:// img boss 2
-                img = InterfaceGraphique.imageBank.BOSS2;
+                img = Main.imageBank.BOSS2;
                 vie = 1500;
                 break;
             case 5:// img boss 3
-                img = InterfaceGraphique.imageBank.BOSS3;
+                img = Main.imageBank.BOSS3;
                 vie = 2000;
                 break;
             default:
@@ -182,7 +182,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, vie * 7, 10);
         g.setColor(Color.BLACK);
-        if (x > MainCanvas.CANVAS_SIZE.x) {
+        if (x > Main.gameValues.CANVAS_SIZE.x) {
             isDessinable = false;
 
         }
@@ -192,7 +192,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     public void dessinerDeboguage(Graphics g) {
         action();
         g.drawOval((int) (x), (int) (y), 100, 100);
-        if (x > MainCanvas.CANVAS_SIZE.x) {
+        if (x > Main.gameValues.CANVAS_SIZE.x) {
             isDessinable = false;
 
         }

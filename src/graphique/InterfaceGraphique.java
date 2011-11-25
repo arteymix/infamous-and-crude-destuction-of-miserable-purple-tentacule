@@ -29,11 +29,7 @@ import util.Traductions;
  */
 public final class InterfaceGraphique extends JFrame implements Serializable, Runnable {
 
-    /**
-     * ArrayList des composantes dessinables.
-     */
-    static boolean isDebugEnabled = true;
-    static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
+   
     /**
      * 
      */
@@ -55,47 +51,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
     public MainCanvas mainCanvas = new MainCanvas();
     private KeyBoardListener keyBoardListener;
     private ButtonGroup bg = new ButtonGroup();
-    /**
-     * Variable définissant si le programme est en exécution afin d'avertir les threads
-     * dans le programme en cas de fermeture.
-     */
-    public static boolean isRunning = true;
-    /**
-     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
-     * avec un serveur de sons.
-     */
-    public static SoundManager son = new SoundManager();
-    /**
-     * Variable définissant la durée entre chaque frame. Elle peut être diminué
-     * si le système est rapide, c'est-à-dire qu'il n'a pas besoin d'autant de 
-     * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
-     * latence devrait être augmentée.
-     */
-    public static double latency = 10;
-    /**
-     * Variable définissant si le mode débogage est activé.
-     */
-    public static long tempsDuRendu = 0;
-    /**
-     * Objet pour la banque d'images qui contient des images pour le rendu.
-     */
-    public static ImageBank imageBank;
-    /**
-     * 
-     */
-    public static boolean isPaused = false;
-    /**
-     * Est true quand le rendu est fini, false quand le rendu est en cours.
-     */
-    public static boolean paintDone = false;
-    /**
-     * Variable qui contient le temps de jeu.
-     */
-    public static long time;
-    /**
-     * Timer qui donne le temps depuis le début du jeu.
-     */
-    public static long timerSeconds = 0;
+   
 
     private void configurerMenus() {
         mitemQuitter.addActionListener(new ActionListener() {
@@ -105,12 +61,12 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 Main.close();
             }
         });
-        cbmitemDebug.setState(isDebugEnabled);
+        cbmitemDebug.setState(Main.gameValues.isDebugEnabled);
         cbmitemDebug.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                isDebugEnabled = cbmitemDebug.getState();
+                Main.gameValues.isDebugEnabled = cbmitemDebug.getState();
             }
         });
         cbmitemNombreDeCanons.addActionListener(new ActionListener() {
@@ -167,13 +123,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      */
     public InterfaceGraphique() {
 
-        try {          
-            imageBank = new ImageBank();
-        } catch (IOException ex) {
-            System.out.println("La banque d'images n'a pas pu être instancié!"
-                    +"Le programme va s'interrompre!");
-            Main.close();
-        }
+        
         mainCanvas.canon1 = new Canon(0);
         mainCanvas.canon2 = new Canon(1);
         keyBoardListener = new KeyBoardListener(mainCanvas.canon1, mainCanvas.canon2);
@@ -185,7 +135,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 switch (arg0.getKeyCode()) {
 
                     case KeySetting.QUIT:
-                        isPaused = !isPaused;
+                        Main.gameValues.isPaused = !Main.gameValues.isPaused;
                         // TODO Quitter la partie ici... Ou demander une confirmation?
                         break;
                     case KeySetting.SHOW_HIGHSCORES:
@@ -211,8 +161,8 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             }
         });
         // On rajoute le canon 1 par défaut.
-        composantesDessinables.add(mainCanvas.canon1);
-        composantesDessinables.add(mainCanvas.canon2);
+        Main.gameValues.composantesDessinables.add(mainCanvas.canon1);
+        Main.gameValues.composantesDessinables.add(mainCanvas.canon2);
         add(mainCanvas);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
@@ -226,30 +176,30 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      */
     @Override
     public void run() {
-        timerSeconds++;
-        while (isRunning) {
+        Main.gameValues.timerSeconds++;
+        while (Main.gameValues.isRunning) {
 
-            time = System.currentTimeMillis();
-            paintDone = false;
+            Main.gameValues.time = System.currentTimeMillis();
+            Main.gameValues.paintDone = false;
             // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
             mainCanvas.repaint();
             try {
-                while (!paintDone) {
+                while (!Main.gameValues.paintDone) {
                     Thread.sleep(0, 1);
                 }
-                tempsDuRendu = (System.currentTimeMillis() - time);
+                Main.gameValues.tempsDuRendu = (System.currentTimeMillis() - Main.gameValues.time);
                 /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                  * En quelque sorte, si le rendu est trop long, on attendra moins 
                  * longtemps avant le suivant afin de ne pas causer d'accélération 
                  * subites en cours de jeu. Si le temps de redraw est plus grand que 10 ms,
                  * soit 100 fps, on passe directement au prochain frame.
                  */
-                if (tempsDuRendu > latency) {
+                if (Main.gameValues.tempsDuRendu > Main.gameValues.latency) {
                     Thread.sleep(0);
                 } else {
-                    Thread.sleep((int) (latency - tempsDuRendu));
+                    Thread.sleep((int) (Main.gameValues.latency - Main.gameValues.tempsDuRendu));
                 }
-                while (isPaused) {
+                while (Main.gameValues.isPaused) {
                     Thread.sleep(10);
                 }
             } catch (InterruptedException ex) {

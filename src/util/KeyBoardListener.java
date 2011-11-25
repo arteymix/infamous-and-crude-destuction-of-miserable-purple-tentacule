@@ -4,7 +4,7 @@ import graphique.Canon;
 
 import graphique.InterfaceGraphique;
 import java.util.ArrayList;
-
+import main.Main;
 
 /**
  * Le KeyBoardListener est un ArrayListe itéré par un Thread interne. Il permet
@@ -68,10 +68,10 @@ public class KeyBoardListener extends Thread {
      */
     @Override
     public void run() {
-        while (InterfaceGraphique.isRunning) {
+        while (Main.gameValues.isRunning) {
             long currentTime = System.currentTimeMillis();
             for (int i = 0; i < enabledKeys.size(); i++) {
-                if (!InterfaceGraphique.isPaused) {
+                if (!Main.gameValues.isPaused) {
 
                     try {
                         CANON_1.gererEvenementDuClavier(enabledKeys.get(i));
@@ -83,18 +83,18 @@ public class KeyBoardListener extends Thread {
             }
             try {
                 long tempsDuRendu = System.currentTimeMillis() - currentTime;
-                if (tempsDuRendu > 2 * (int) InterfaceGraphique.latency) {
+                if (tempsDuRendu > 2 * (int) Main.gameValues.latency) {
                     Thread.sleep(0);
                 } else {
-                    Thread.sleep(2 * (int) InterfaceGraphique.latency - tempsDuRendu);
+                    Thread.sleep(2 * (int) Main.gameValues.latency - tempsDuRendu);
                 }
 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            while (InterfaceGraphique.isPaused) {
+            while (Main.gameValues.isPaused) {
                 try {
-                    Thread.sleep((int) InterfaceGraphique.latency);
+                    Thread.sleep((int) Main.gameValues.latency);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

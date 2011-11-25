@@ -45,13 +45,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     public Canon(int numeroDuCanon) {
         switch (numeroDuCanon) {
             case 0:
-                image = InterfaceGraphique.imageBank.CANON_0;
-                imageSubCanon = InterfaceGraphique.imageBank.SUBCANON1;
+                image = Main.imageBank.CANON_0;
+                imageSubCanon = Main.imageBank.SUBCANON1;
                 position = new Vecteur(0, 699);
                 break;
             case 1:
-                image = InterfaceGraphique.imageBank.CANON_1;
-                imageSubCanon = InterfaceGraphique.imageBank.SUBCANON2;
+                image = Main.imageBank.CANON_1;
+                imageSubCanon = Main.imageBank.SUBCANON2;
                 position = new Vecteur(689, 699);
                 break;
         }
@@ -152,7 +152,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Déplace le canon vers la droite de MOVEMENT_INCREMENT_CANON pixels.
      */
     private void moveDroite() {
-        if (this.position.x + Main.gameValues.canon.width + 1 < MainCanvas.CANVAS_SIZE.x) {
+        if (this.position.x + Main.gameValues.canon.width + 1 < Main.gameValues.CANVAS_SIZE.x) {
             A.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
             B.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
             C.x += Main.gameValues.canon.MOVEMENT_INCREMENT_CANON;
@@ -167,7 +167,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private void tirer() {
         // TODO Gérer les tirs fou!
         if (peutTirer) {
-            InterfaceGraphique.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
+            Main.gameValues.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
             (new Thread("Thread pour le temps d'attente entre chaque tir de canon.") {

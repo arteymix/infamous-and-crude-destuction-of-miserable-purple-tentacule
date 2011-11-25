@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Vecteur;
 
@@ -29,13 +30,14 @@ Rectangle rectangle = new Rectangle(0,0,30,30);
      */
     public ProjectileEnnemi(Vecteur init,int id) {
         position = new Vecteur(init.x,init.y);
-        image = InterfaceGraphique.imageBank.MEDUSE;
+        image = Main.imageBank.MEDUSE;
+        
     }
 
     @Override
     public void dessiner(Graphics g) {        
         g.drawImage(image, (int) position.x, (int) position.y++,rectangle.width, rectangle.height, null);
-        if(position.y >= MainCanvas.CANVAS_SIZE.y) {
+        if(position.y >= Main.gameValues.CANVAS_SIZE.y) {
         isDessinable = false;
         
         }
@@ -44,7 +46,7 @@ Rectangle rectangle = new Rectangle(0,0,30,30);
     @Override
     public void dessinerDeboguage(Graphics g) {
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
-        if(position.y >= MainCanvas.CANVAS_SIZE.y) {
+        if(position.y >= Main.gameValues.CANVAS_SIZE.y) {
         isDessinable = false;
         
         }

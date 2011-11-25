@@ -3,7 +3,7 @@ package graphique;
 import java.awt.Graphics;
 import util.Dessinable;
 import util.Vecteur;
-
+import main.Main;
 /**
  * Contient une série d'évévements que l'on peut afficher en jeu à divers moments.
  * @author Guillaume Poirier-Morency
@@ -28,7 +28,7 @@ public class GameEvent {
 
         @Override
         public void dessiner(Graphics g) {
-            g.drawImage(InterfaceGraphique.imageBank.NUAGE, (int) position.x, (int) position.y, null);
+            g.drawImage(Main.imageBank.NUAGE, (int) position.x, (int) position.y, null);
            onDessiner(g);
         }
 
