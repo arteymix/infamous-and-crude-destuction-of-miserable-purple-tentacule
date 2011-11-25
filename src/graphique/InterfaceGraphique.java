@@ -59,7 +59,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                mainCanvas.canon2.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
+                Main.gameValues.canon.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
 
             }
         });

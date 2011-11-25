@@ -24,8 +24,8 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * solo, ainsi les projectiles auto-guidées ne se dirigent pas vers le
      * deuxième canon.
      */
-    boolean isCanon2ValidTarget = false;
-    private Vecteur A, B, C, D, E, F, G, H;
+    
+    private Vecteur A, B, C, D;
     // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
@@ -43,6 +43,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 0 qui définit le canon 1 et 1 qui définit le canon 2.
      */
     public Canon(int numeroDuCanon) {
+
         switch (numeroDuCanon) {
             case 0:
                 image = Main.imageBank.CANON_0;
@@ -97,7 +98,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
                     break;
             }
             // On gere l'evenement
-        } else if (NUMERO_DU_CANON == 1 && isCanon2ValidTarget) {
+        } else if (NUMERO_DU_CANON == 1 && Main.gameValues.canon.isCanon2ValidTarget) {
             switch (e) {
                 case KeyEvent.VK_A:
                     moveGauche();
@@ -122,19 +123,24 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Déplace le canon (direction de tir) vers la gauche.
      */
     private void moveCanonGauche() {
+
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+
     }
+
     /**
      * Déplace le canon (direction de tir) vers la gauche.
      */
     private void moveCanonDroite() {
+
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
+
     }
 
     /**
@@ -190,7 +196,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessiner(Graphics g) {
-        if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
+        if (!Main.gameValues.canon.isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
@@ -214,7 +220,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
+        if (!Main.gameValues.canon.isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
             return;
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};

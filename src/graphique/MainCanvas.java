@@ -20,8 +20,7 @@ import util.Vecteur;
  */
 public class MainCanvas extends JComponent implements Serializable {
 
-    Canon canon1, canon2;
-    boolean showHighscores = false;
+    public Canon canon1, canon2;
 
     /**
      * Constructeur pour le canvas où le rendu est effectué.

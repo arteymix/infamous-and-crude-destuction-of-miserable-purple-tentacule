@@ -78,7 +78,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     private void tirer(int id) {
         // Sa devrait être cool maintenant...
-        Main.gameValues.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x,y),ProjectileEnnemi.MISSILE_0));
+        Main.gameValues.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x,y),Main.gameValues.projectileEnnemi.MISSILE_0));
     }
 
     private void configurerOvni(int id) {

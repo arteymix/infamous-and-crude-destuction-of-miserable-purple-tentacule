@@ -1,21 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package content;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import util.Dessinable;
-import util.SoundManager;
 import util.Vecteur;
 
 /**
  * Contient tous les paramètres du jeu.
+ * Les paramètres propres aux objets ne doivent pas être placés ici, ils seront
+ * sérialisé avec l'ArrayList. Il sert aussi à regrouper les variables afin de
+ * faciliter l'implémentation de mode de jeu.
  * @author Guillaume Poirier-Morency et Nafie Hamrani
  */
 public class GameValues implements Serializable {
 
+    public boolean showHighscores = false;
     /**
      * Variable définissant si le programme est en exécution afin d'avertir les threads
      * dans le programme en cas de fermeture.
@@ -27,7 +26,7 @@ public class GameValues implements Serializable {
      * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
      * latence devrait être augmentée.
      */
-    public  double latency = 10;
+    public double latency = 10;
     /**
      * Variable définissant si le mode débogage est activé.
      */
@@ -67,19 +66,23 @@ public class GameValues implements Serializable {
     /**
      * 
      */
-    public Nuage nuage = new Nuage();
+    public NuageValues nuage = new NuageValues();
     /**
      * 
      */
-    public Canon canon = new Canon();
+    public CanonValues canon = new CanonValues();
     /**
      * 
      */
-    public Projectile projectile = new Projectile();
+    public ProjectileValues projectile = new ProjectileValues();
     /**
      * 
      */
-    public Ovni ovni = new Ovni();
+    public OvniValues ovni = new OvniValues();
+    /**
+     * 
+     */
+    public ProjectileEnnemiValues projectileEnnemi = new ProjectileEnnemiValues();
     /**
      * Ce vecteur est le vecteur dimension du canvas ou les composants et
      * graphics sont dessinés.
@@ -89,7 +92,7 @@ public class GameValues implements Serializable {
     /**
      * 
      */
-    public class Nuage implements Serializable {
+    public class NuageValues implements Serializable {
 
         /**
          * 
@@ -100,8 +103,9 @@ public class GameValues implements Serializable {
     /**
      * 
      */
-    public class Canon implements Serializable {
+    public class CanonValues implements Serializable {
 
+        public boolean isCanon2ValidTarget = false;
         /**
          * 
          */
@@ -130,7 +134,7 @@ public class GameValues implements Serializable {
     /**
      * 
      */
-    public class Projectile implements Serializable {
+    public class ProjectileValues implements Serializable {
 
         /**
          * 
@@ -138,10 +142,18 @@ public class GameValues implements Serializable {
         public double GRAVITY = 0.8;
     }
 
+    public class ProjectileEnnemiValues implements Serializable {
+
+        /**
+         *
+         */
+        public final int MISSILE_0 = 0;
+    }
+
     /**
      * 
      */
-    public class Ovni implements Serializable {
+    public class OvniValues implements Serializable {
 
         /**
          * 
