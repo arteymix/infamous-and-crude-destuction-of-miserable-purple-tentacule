@@ -1,3 +1,18 @@
+/*   This file is part of TP2.
+ *
+ *   TP2 is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   TP2 is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package util;
 
 import java.io.Serializable;
@@ -46,6 +61,8 @@ public class Traductions implements Serializable {
      * Initialise le dictionnaire de traductions.
      */
     public static void init() {
+        fr.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
+        
         fr.put("menu.fichier", "Fichier");
         fr.put("menu.editer", "Éditer");
         fr.put("menu.langue", "Langues");
@@ -56,6 +73,11 @@ public class Traductions implements Serializable {
         fr.put("menu.francais", "Français");
         fr.put("menu.anglais", "Anglais");
         fr.put("menu.nouvelle", "Nouvelle Partie");
+        
+        fr.put("menu.item.aide", "Aide...");
+        fr.put("menu.item.tableau", "Tableau de pointage...");
+        fr.put("menu.item.trophe", "Trophées...");
+        fr.put("menu.item.apropos", "À propos...");      
 
         fr.put("debug.latence", "Latence");
         fr.put("debug.tempsrendu", "Temps de rendu");
@@ -65,6 +87,9 @@ public class Traductions implements Serializable {
         fr.put("debug.active", "Activé");
         fr.put("debug.desactive", "Désactivé");
         
+        fr.put("debug.tempsdurendu", "Temps du rendu");
+        fr.put("debug.tempsdurendu", "Temps du rendu");
+        fr.put("debug.tempsdurendu", "Temps du rendu");
         fr.put("debug.tempsdurendu", "Temps du rendu");
         fr.put("debug.tempsdurendu", "Temps du rendu");
         fr.put("debug.tempsdurendu", "Temps du rendu");

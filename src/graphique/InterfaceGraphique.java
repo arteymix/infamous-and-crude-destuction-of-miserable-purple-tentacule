@@ -1,3 +1,18 @@
+/*   This file is part of TP2.
+ *
+ *   TP2 is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   TP2 is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package graphique;
 
 import content.KeySetting;
@@ -70,7 +85,6 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         menuFichier.add(menuLangue);
         menuFichier.addSeparator();
         menuFichier.add(mitemQuitter);
-
         JRadioButtonMenuItem fr = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
         fr.setSelected(true);
         JRadioButtonMenuItem en = new JRadioButtonMenuItem(Traductions.get("menu.anglais"));
@@ -93,12 +107,12 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         bg.add(fr);
         menuLangue.add(fr);
         menuLangue.add(en);
-        menuAide.add(new JMenuItem("Aide..."));
+        menuAide.add(new JMenuItem(Traductions.get("menu.item.aide")));
         menuAide.addSeparator();
-        menuAide.add(new JMenuItem("Tableau de pointage..."));
-        menuAide.add(new JMenuItem("Trophées..."));
+        menuAide.add(new JMenuItem(Traductions.get("menu.item.tableau")));
+        menuAide.add(new JMenuItem(Traductions.get("menu.item.trophe")));
         menuAide.addSeparator();
-        menuAide.add(new JMenuItem("À propos..."));
+        menuAide.add(new JMenuItem(Traductions.get("menu.item.apropos")));
         jmb.add(menuFichier);
         jmb.add(menuAide);
         setJMenuBar(jmb);
@@ -159,7 +173,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         setIconImage(Main.imageBank.MEDUSE);
         pack();
         setVisible(true);
-        setTitle("La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
+        setTitle(Traductions.get("title"));
         keyBoardListener.start();
     }
 
@@ -201,7 +215,6 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 }
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
-
             }
         }
     }
