@@ -44,7 +44,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.close(0);
+                Main.close(Main.CODE_DE_SORTIE_OK);
             }
         });
         cbmitemDebug.setState(Main.gameValues.isDebugEnabled);

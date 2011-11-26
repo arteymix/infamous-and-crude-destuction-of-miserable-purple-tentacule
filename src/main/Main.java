@@ -39,18 +39,31 @@ public class Main implements Serializable {
      * @param i est le statut de fermeture.
      */
     public static void close(int i) {
-        if (i == 0) {
+        if (i == CODE_DE_SORTIE_OK) {
             Main.gameValues.isRunning = false;
-            Serialization.serialize(gameValues, "save.serial");
-            System.out.println("saved");
+            /* On récupère 
+             * 
+             */            
+            i = Serialization.serialize(gameValues, "save.serial");
+            if (i == CODE_DE_SORTIE_OK) {
+                System.out.println("Save was successful!");
+            } else {
+                System.out.println("Save failed! Code de sortie : " + i);
+            }
+            // Le thread de swing est stoppé
             interfaceGraphique.dispose();
             System.exit(i);
         } else {
             System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
+             // Le thread de swing est stoppé
             interfaceGraphique.dispose();
             System.exit(i);
         }
     }
+    
+    public static final int CODE_DE_SORTIE_OK = 0,
+            CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
+            CODE_DE_SORTIE_AUTRE = 2;
 
     /**
      * 

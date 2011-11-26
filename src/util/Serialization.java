@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import main.Main;
 
 /**
  * Classe contenant les méthodes de sérialisation utiles.
@@ -17,7 +18,7 @@ public class Serialization {
      * @param o est l'objet à sérialiser.
      * @param filename est le nom du fichier où l'objet sera sérialisé.
      */
-    public static void serialize(Object o, String filename) {
+    public static int serialize(Object o, String filename) {
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -30,10 +31,12 @@ public class Serialization {
                     oos.close();
                 } finally {
                     fos.close();
+                    return Main.CODE_DE_SORTIE_OK;
                 }
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
+            return Main.CODE_DE_SORTIE_SERIALIZATION_FAILED;
         }
     }
 
