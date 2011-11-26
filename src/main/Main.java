@@ -24,7 +24,6 @@ public final class Main implements Serializable {
     public static void setGameLevel(int i) {
 
         switch (i) {
-
             case RESET:
                 /* Les valeurs du jeu sont remises à zéro en réinstanciant la
                  * variable gameValues. 
@@ -33,12 +32,22 @@ public final class Main implements Serializable {
             case LEVEL_1:
             case LEVEL_2:
             case LEVEL_3:
-
-
-
+            case LEVEL_BONUS:
         }
     }
-    public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3;
+
+    /**
+     * Méthode appelée lorsqu'une partie se termine, la méthode close() est appelée par la suite.
+     */
+    public static void terminerPartie() {
+
+        if (gameValues.points > 1000) {
+            highscore.LEET_OBTAINED = true;
+        } else if (gameValues.points > 250) {
+            highscore.PRO_OBTAINED = true;
+        }
+    }
+    public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
     /**
      * 
      */
@@ -102,12 +111,10 @@ public final class Main implements Serializable {
             CODE_DE_SORTIE_AUTRE = 2;
 
     /**
-     * 
-     * @param args
-     * @throws Exception  
+     * Méthode principale du programme.
+     * @param args est un tableau d'arguments provenant de la ligne de commande.
      */
-    public static void main(String[] args) throws Exception {
-
+    public static void main(String[] args) {
         if ((gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null) {
             gameValues = new GameValues();
             System.out.println("Un nouveau gameValues sera généré");
