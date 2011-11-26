@@ -112,13 +112,16 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         mainCanvas.canon2 = new Canon(1);
         keyBoardListener = new KeyBoardListener(mainCanvas.canon1, mainCanvas.canon2);
         configurerMenus();
+        /* Le KeyListener du canon est implémenté dans KeyBoardListener afin
+         * de rendre possible le multitouch. 
+         */
         addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyPressed(KeyEvent arg0) {
                 switch (arg0.getKeyCode()) {
 
-                    case KeySetting.QUIT:
+                    case KeySetting.PAUSE:
                         Main.gameValues.isPaused = !Main.gameValues.isPaused;
                         // TODO Quitter la partie ici... Ou demander une confirmation?
                         break;
@@ -131,6 +134,10 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                         }
 
                         break;
+                    case KeySetting.QUIT:
+                        //TODO Message d'avertissement ici
+                        System.out.println("En pressant sur ESCAPE, vous quittez le jeu.");
+                        Main.close(0);
                     default:
                         if (!keyBoardListener.contains(arg0.getKeyCode())) {
                             keyBoardListener.add(arg0.getKeyCode());
@@ -149,6 +156,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         Main.gameValues.composantesDessinables.add(mainCanvas.canon2);
         add(mainCanvas);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(Main.imageBank.MEDUSE);
         pack();
         setVisible(true);
         setTitle("La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");

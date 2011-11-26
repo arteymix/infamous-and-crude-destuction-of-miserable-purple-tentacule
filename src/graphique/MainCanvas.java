@@ -33,7 +33,6 @@ public final class MainCanvas extends JComponent implements Serializable {
      */
     MainCanvas() {
         super();
-
         setPreferredSize(new Dimension((int) Main.gameValues.canvasSize.x, (int) Main.gameValues.canvasSize.y));
     }
     /**
@@ -97,7 +96,7 @@ public final class MainCanvas extends JComponent implements Serializable {
                         for (int j = 0; j < Main.gameValues.composantesDessinables.size(); j++) {
                             Dessinable e;
                             // Il est important de spécifier que d != e pour ne pas provoquer d'intercollision.
-                            if (((e = Main.gameValues.composantesDessinables.get(j)) instanceof Collisionable) && d!=e) {
+                            if (((e = Main.gameValues.composantesDessinables.get(j)) instanceof Collisionable) && d != e) {
                                 if (((Collisionable) d).getRectangle().intersects(((Collisionable) e).getRectangle())) {
                                     // On provoque une collision entre chacun.
                                     ((Collisionable) d).collision((Collisionable) e);
