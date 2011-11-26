@@ -1,5 +1,6 @@
 package graphique;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -89,7 +90,9 @@ public final class MainCanvas extends JComponent implements Serializable {
                 // END Génération des Ovnis
                 for (int i = 0; i < Main.gameValues.composantesDessinables.size(); i++) {
                     Dessinable d = Main.gameValues.composantesDessinables.get(i);
-                    // TODO Gestion des collisions ici
+                    /* Sous-boucle pour les collisions, question de tenter toutes
+                     * les collisions possibles. 
+                     */
                     if (d instanceof Collisionable) {
                         for (int j = 0; j < Main.gameValues.composantesDessinables.size(); j++) {
                             Dessinable e;
@@ -118,9 +121,13 @@ public final class MainCanvas extends JComponent implements Serializable {
 
                     }
                 }
+                //<editor-fold defaultstate="collapsed" desc="Boucle pour supprimer les objets non dessinable. Autrement, il arrive que certains objets ne soient pas dessinés, car la liste de composantes dessinables est dynamique.">
                 for (Dessinable d : aEnlever) {
                     Main.gameValues.composantesDessinables.remove(d);
                 }
+                //</editor-fold>
+
+                //<editor-fold defaultstate="collapsed" desc="Les canons sont dessinés à la toute fin (ici), afin de s'assurer qu'ils apparaissent par dessus les missiles.">
                 for (Canon c : listeDeCanonDessinable) {
                     if (Main.gameValues.isDebugEnabled) {
                         c.dessinerDeboguage(g);
@@ -128,9 +135,31 @@ public final class MainCanvas extends JComponent implements Serializable {
                         c.dessiner(g);
                     }
                 }
+                //</editor-fold>
                 break;
             case HIGHSCORES:
-                g.drawString("LES HIGHSCORES AFFICHENT!", 400, 400);
+                /* En cas où c'est le rendu des meilleurs scores qui est activé,
+                 * on itère le dictionnaire dans Main.highscores.
+                 */
+                int x = 100;
+                if (Main.gameValues.isDebugEnabled) {
+                    g.setColor(Color.BLACK);
+                } else {
+                    g.setColor(Color.WHITE);
+                }
+                g.drawString(Main.highscore.toString(), x, 400);
+                g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours..."), x, 415);
+                g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours..."), x, 430);
+                g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours..."), x, 445);
+                g.drawString("Nuke " + (Main.highscore.NUKE_OBTAINED ? "complété!" : "en cours..."), x, 460);
+                g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours..."), x, 475);
+                g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours..."), x, 490);
+                g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours..."), x, 505);
+                if (Main.gameValues.isDebugEnabled) {
+                    g.setColor(Color.WHITE);
+                } else {
+                    g.setColor(Color.BLACK);
+                }
         }
         Main.gameValues.paintDone = true;
     }

@@ -28,6 +28,11 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
         }
 
     }
+    
+    public boolean NOOB_OBTAINED,
+            OWN_OBTAINED,
+            PWN_OBTAINED,NUKE_OBTAINED,PRO_OBTAINED,LEET_OBTAINED,BAZINGA_OBTAINED;
+            
 
     /**
      * Version altéré du put conventionel d'un dictionnaire afin de rajouter un
