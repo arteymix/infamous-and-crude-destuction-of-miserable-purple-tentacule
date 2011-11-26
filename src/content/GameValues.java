@@ -12,8 +12,11 @@ import util.Vecteur;
  * faciliter l'implémentation de mode de jeu.
  * @author Guillaume Poirier-Morency et Nafie Hamrani
  */
-public class GameValues implements Serializable {
+public final class GameValues implements Serializable {
 
+    /**
+     * 
+     */
     public boolean showHighscores = false;
     /**
      * Variable définissant si le programme est en exécution afin d'avertir les threads
@@ -105,6 +108,9 @@ public class GameValues implements Serializable {
      */
     public class CanonValues implements Serializable {
 
+        /**
+         * 
+         */
         public boolean isCanon2ValidTarget = false;
         /**
          * 
@@ -142,6 +148,9 @@ public class GameValues implements Serializable {
         public double GRAVITY = 0.8;
     }
 
+    /**
+     * 
+     */
     public class ProjectileEnnemiValues implements Serializable {
 
         /**

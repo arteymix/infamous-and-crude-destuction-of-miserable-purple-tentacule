@@ -12,14 +12,19 @@ import main.Main;
 import util.Collisionable;
 import util.Dessinable;
 import util.Traductions;
-import util.Vecteur;
 
 /**
  * Classe contenant le canvas principal oû les dessins seront effectués.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public class MainCanvas extends JComponent implements Serializable {
+public final class MainCanvas extends JComponent implements Serializable {
 
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     public Canon canon1, canon2;
 
     /**

@@ -12,7 +12,7 @@ import util.Vecteur;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Nuage extends Dessinable implements Serializable {
+public final class Nuage extends Dessinable implements Serializable {
 
     /**
      * 

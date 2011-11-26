@@ -13,7 +13,7 @@ import util.Vecteur;
  * Fichier de classe pour un projectile.
  * @author Guillaume Poirier-Morency
  */
-public class Projectile extends Dessinable implements Collisionable, Serializable {
+public final class Projectile extends Dessinable implements Collisionable, Serializable {
 
     private Vecteur position, vitesse = new Vecteur(8, -8);
     

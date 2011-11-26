@@ -13,8 +13,35 @@ import util.SoundManager;
  *
  * @author Guillaume Poirier-Morency
  */
-public class Main implements Serializable {
+public final class Main implements Serializable {
 
+    /**
+     * Une fois toutes les variables accessibles depuis gameValue, il devient
+     * trivial de définir les paramètres associés à chaque niveau. Une série de
+     * constantes est définis dans la classe Main sous forme de LEVEL_X. 
+     * @param i
+     */
+    public static void setGameLevel(int i) {
+
+        switch (i) {
+
+            case RESET:
+                /* Les valeurs du jeu sont remises à zéro en réinstanciant la
+                 * variable gameValues. 
+                 */
+                gameValues = new GameValues();
+            case LEVEL_1:
+            case LEVEL_2:
+            case LEVEL_3:
+
+
+
+        }
+    }
+    public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3;
+    /**
+     * 
+     */
     public static GameValues gameValues = new GameValues();
     private static Thread rendu;
     private static InterfaceGraphique interfaceGraphique;
@@ -23,7 +50,7 @@ public class Main implements Serializable {
      */
     public static ImageBank imageBank;
     /**
-     * 
+     * Objet contenant les highscores du joueur.
      */
     public static Highscores highscore = new Highscores();
     /**
@@ -40,10 +67,11 @@ public class Main implements Serializable {
      */
     public static void close(int i) {
         if (i == CODE_DE_SORTIE_OK) {
+            highscore.close();
             Main.gameValues.isRunning = false;
             /* On récupère 
              * 
-             */            
+             */
             i = Serialization.serialize(gameValues, "save.serial");
             if (i == CODE_DE_SORTIE_OK) {
                 System.out.println("Save was successful!");
@@ -55,12 +83,20 @@ public class Main implements Serializable {
             System.exit(i);
         } else {
             System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
-             // Le thread de swing est stoppé
+            // Le thread de swing est stoppé
             interfaceGraphique.dispose();
             System.exit(i);
         }
     }
-    
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     public static final int CODE_DE_SORTIE_OK = 0,
             CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
             CODE_DE_SORTIE_AUTRE = 2;
@@ -71,6 +107,7 @@ public class Main implements Serializable {
      * @throws Exception  
      */
     public static void main(String[] args) throws Exception {
+
         if ((gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null) {
             gameValues = new GameValues();
             System.out.println("Un nouveau gameValues sera généré");

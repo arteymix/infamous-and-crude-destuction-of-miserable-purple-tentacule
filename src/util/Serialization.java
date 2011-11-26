@@ -11,12 +11,13 @@ import main.Main;
  * Classe contenant les méthodes de sérialisation utiles.
  * @author guillaume
  */
-public class Serialization {
+public final class Serialization {
 
     /**
      * Ce code a été adapté du site web : http://ydisanto.developpez.com/tutoriels/java/serialisation-binaire/ 
      * @param o est l'objet à sérialiser.
      * @param filename est le nom du fichier où l'objet sera sérialisé.
+     * @return  
      */
     public static int serialize(Object o, String filename) {
         try {
