@@ -59,16 +59,18 @@ public class Vecteur implements Serializable {
     }
 
     /**
-     * 
-     * @param v
-     * @return
+     * Effectue une addition affine (si l'on interprète ce vecteur comme un 
+     * point) de ce vecteur avec un vecteur quelconque. Autrement il s'agit d'une
+     * simple addition vectorielle.
+     * @param v est le vecteur additionné au vecteur de cet objet.
+     * @return le vecteur résultant à l'addition affine.
      */
     public Vecteur additionAffine(Vecteur v) {
         return new Vecteur(this.x += v.x, this.y += v.y);
     }
 
     /**
-     * 
+     * Ajoute l'angle a à l'angle du vecteur avec l'axe des x positifs.
      * @param a
      */
     public void ajouterAngle(double a) {
@@ -87,9 +89,11 @@ public class Vecteur implements Serializable {
     }
 
     /**
-     * 
-     * @param origine
-     * @param angle
+     * Effectue une transformation affine de rotation en recentrant l'origine sur
+     * le Vecteur origine spécifié en paramètre.
+     * @param origine est le vecteur origine du point autour duquel la rotation
+     * est effectuée.
+     * @param angle est l'angle de rotation.
      */
     public void rotation(Vecteur origine, double angle) {
         double localx = x - origine.x;

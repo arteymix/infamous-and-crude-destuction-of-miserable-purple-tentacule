@@ -17,7 +17,6 @@ package util;
 
 import java.io.InputStream;
 
-
 /**
  *
  * @author Guillaume Poirier-Morency

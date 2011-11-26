@@ -33,7 +33,6 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      * Vecteur définissant la position du projectile ennemi dans l'espace.
      */
     private Vecteur position;
-  
     /**
      *
      */
@@ -77,8 +76,16 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
 
     @Override
     public void collision(Collisionable c) {
-        if (c instanceof Projectile | c instanceof Canon) {
+        if (c instanceof Projectile) {
+
             this.isDessinable = false;
+
+        } else if (c instanceof Canon) {
+            if (((Canon) c).NUMERO_DU_CANON == 1 && !Main.gameValues.canon.isCanon2ValidTarget) {
+          // Ne rien faire, le canon ne  peut être atteint, il est invisible.
+            } else {
+                this.isDessinable = false;
+            }
 
         }
     }

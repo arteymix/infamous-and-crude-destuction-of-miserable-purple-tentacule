@@ -20,7 +20,9 @@ import java.awt.Image;
 import java.io.Serializable;
 
 /**
- * Interface implément
+ * Classe abstraite des objets Dessinable. Ces objets se dessinent sur le panneau
+ * principal. Ce que l'on nomme rendu est la somme du rendu de tous les objets
+ * dessinables.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public abstract class Dessinable implements Serializable {

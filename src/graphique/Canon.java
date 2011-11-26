@@ -47,7 +47,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     public int vie;
-    private final double NUMERO_DU_CANON;
+    public final int NUMERO_DU_CANON;
     private boolean peutTirer = true;
     private Image imageSubCanon;
 
@@ -255,9 +255,15 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     @Override
     public void collision(Collisionable c) {
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
-            this.vie -= c.getDommage();
+            if(this.NUMERO_DU_CANON == 1 && !Main.gameValues.canon.isCanon2ValidTarget) {
+                
+                System.out.println("Canon 2 ne peut être atteint, il est invisible.");
+            } else {
+             this.vie -= c.getDommage();
             System.out.println(this + " reçoit collision de " + c);
             System.out.println(vie);
+            }
+           
         }
         if (vie < 0) {
             this.isDessinable = false;

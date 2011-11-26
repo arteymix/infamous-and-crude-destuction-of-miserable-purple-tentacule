@@ -74,7 +74,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
 
     /**
      * Retourne tous les scores sous forme d'un tableau de String.
-     * @return 
+     * @return un tableau de String contenant les scores des joueurs.
      */
     public String[] getScores() {
         // TODO Finir l'implémentation ici!

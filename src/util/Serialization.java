@@ -32,7 +32,7 @@ public final class Serialization {
      * Ce code a été adapté du site web : http://ydisanto.developpez.com/tutoriels/java/serialisation-binaire/ 
      * @param o est l'objet à sérialiser.
      * @param filename est le nom du fichier où l'objet sera sérialisé.
-     * @return  
+     * @return  un code de sortie pour vérifier l'état de la sérialisation.
      */
     public static int serialize(Object o, String filename) {
         try {
