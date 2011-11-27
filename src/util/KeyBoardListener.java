@@ -17,7 +17,6 @@ package util;
 
 import graphique.Canon;
 
-import graphique.InterfaceGraphique;
 import java.util.ArrayList;
 import main.Main;
 
@@ -27,7 +26,9 @@ import main.Main;
  * simuler le multitouch du clavier avec le KeyListener de Swing.
  * La référence de la classe Main est fait implicitement, ce qui veut dire que
  * ce code fonctionnera uniquement avec la structure de classe du TP2 et ne peut
- * être adapté à d'autres projets à moins d'altérer ce code.
+ * être adapté à d'autres projets à moins d'altérer ce code. De plus, les accès
+ * aux méthodes de l'ArrayList sont synchronisés afin d'éviter les références
+ * nulles et les autres exceptions de threads concurrents.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class KeyBoardListener extends Thread {
@@ -56,7 +57,7 @@ public class KeyBoardListener extends Thread {
      * clavier.
      * @param i est la touche à ajouter.
      */
-    public void add(Integer i) {
+    public synchronized void add(Integer i) {
         enabledKeys.add(i);
     }
 
@@ -65,7 +66,7 @@ public class KeyBoardListener extends Thread {
      * clavier.
      * @param i est la touche à enlever.
      */
-    public void remove(Integer i) {
+    public synchronized void remove(Integer i) {
         enabledKeys.remove(i);
     }
 
@@ -74,7 +75,7 @@ public class KeyBoardListener extends Thread {
      * @param i vérifie si la liste contient la clé i.
      * @return true si la clé est contenue, false autrement.
      */
-    public boolean contains(Integer i) {
+    public synchronized boolean contains(Integer i) {
         return enabledKeys.contains(i);
     }
 
@@ -87,11 +88,15 @@ public class KeyBoardListener extends Thread {
             long currentTime = System.currentTimeMillis();
             for (int i = 0; i < enabledKeys.size(); i++) {
                 if (!Main.gameValues.isPaused) {
-
+                    /* TODO Enlever la gestion d'exceptions
+                     * Techniquement, les accès à l'ArrayList sont synchrnoisé,
+                     * alors il ne devrait pas y avoir de problèmes.
+                     */
                     try {
                         CANON_1.gererEvenementDuClavier(enabledKeys.get(i));
                         CANON_2.gererEvenementDuClavier(enabledKeys.get(i));
                     } catch (IndexOutOfBoundsException iaobe) {
+                        System.out.println("La clé du clavier recherché n'a pas été trouvée");
                         iaobe.printStackTrace();
                     }
                 }
@@ -116,6 +121,5 @@ public class KeyBoardListener extends Thread {
             }
         }
     }
-
-    ;
+;
 }

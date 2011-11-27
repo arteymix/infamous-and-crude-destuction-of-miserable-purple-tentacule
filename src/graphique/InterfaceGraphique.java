@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import main.Main;
 import util.KeyBoardListener;
@@ -59,7 +60,11 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.close(Main.CODE_DE_SORTIE_OK);
+                 
+                        if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
+                            Main.close(Main.CODE_DE_SORTIE_OK);
+                        }
+                
             }
         });
         cbmitemDebug.setState(Main.gameValues.isDebugEnabled);
@@ -137,7 +142,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
                     case KeySetting.PAUSE:
                         Main.gameValues.isPaused = !Main.gameValues.isPaused;
-                        // TODO Quitter la partie ici... Ou demander une confirmation?
+                        
                         break;
                     case KeySetting.SHOW_HIGHSCORES:
                         // On inverse la valeur du show highscores...
@@ -149,9 +154,10 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
                         break;
                     case KeySetting.QUIT:
-                        //TODO Message d'avertissement ici
-                        System.out.println("En pressant sur ESCAPE, vous quittez le jeu.");
-                        Main.close(0);
+                        
+                        if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
+                            Main.close(0);
+                        }
                     default:
                         if (!keyBoardListener.contains(arg0.getKeyCode())) {
                             keyBoardListener.add(arg0.getKeyCode());

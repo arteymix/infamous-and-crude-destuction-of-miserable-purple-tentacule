@@ -191,7 +191,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Effectue un tir!
      */
     private void tirer() {
-        // TODO Gérer les tirs fou!
+       
         if (peutTirer) {
             Main.gameValues.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
             peutTirer = false;

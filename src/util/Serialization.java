@@ -24,7 +24,7 @@ import main.Main;
 
 /**
  * Classe contenant les méthodes de sérialisation utiles.
- * @author guillaume
+ * @author Guillaume Poirier-Morency
  */
 public final class Serialization {
 
@@ -78,7 +78,9 @@ public final class Serialization {
                 }
             }
         } catch (IOException ioe) {
+            ioe.printStackTrace();
         } catch (ClassNotFoundException cnfe) {
+            cnfe.printStackTrace();
         } finally {
             return p;
         }
