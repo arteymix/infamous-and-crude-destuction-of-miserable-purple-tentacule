@@ -59,8 +59,17 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     public static void createOvni() {
         // Ici tu mets l'algo de génération aléatoire pour le id
-        if ((new Random()).nextInt(Main.gameValues.ovni.PROBABILITE_APPARITION_OVNI) == 1) {
-            Main.gameValues.composantesDessinables.add(new Ovni(10,10,initializeID()));
+      // if ((new Random()).nextInt(Main.gameValues.ovni.PROBABILITE_APPARITION_OVNI) == 1) {
+           int i = initializeID();
+           int y=new Random().nextInt(250);
+           
+           if(i == 1) {
+                Main.gameValues.composantesDessinables.add(new Ovni(0,y,initializeID()));
+           } else if (i == 2) {
+                Main.gameValues.composantesDessinables.add(new Ovni((int)Main.gameValues.canvasSize.x -100,y,initializeID()));
+               System.out.println("supersonik");
+       //    }
+            
         }
         /* Bon je te laisse coder l'algorithme de génération en fonction de tes
          * besoins. Le constructeur peut être private maintenant!
@@ -72,10 +81,12 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     }
     private static int initializeID() {
         int generateur = new Random().nextInt(100);
+        
         if (generateur < 75) {
             return 1;
         }
         else if (generateur < 100) {
+            
             return 2;
         }
         else {
@@ -144,7 +155,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 x += 3 * vitesseX;
                 break;
             case 2:// mouvement du supersonic
-                x += 3 * vitesseX;
+                x -= 3 * vitesseX;
                 break;
             case 3:// mouvement du boss 1
                 mouvtBoss12(15, 45);

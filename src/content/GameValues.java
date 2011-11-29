@@ -197,7 +197,7 @@ public final class GameValues implements Serializable {
         /**
          * 
          */
-        public final int PROBABILITE_APPARITION_OVNI = 1000;
+        public final int PROBABILITE_APPARITION_OVNI = 100;
         /**
          * 
          */
