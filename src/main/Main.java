@@ -21,6 +21,9 @@ import content.ImageBank;
 import graphique.InterfaceGraphique;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import util.Serialization;
 import util.SoundManager;
 
@@ -57,16 +60,31 @@ public final class Main implements Serializable {
      * trophées.
      */
     public static void terminerPartie() {
-
+        gameValues.isPaused = true;
+        highscore.partiesCompletes++;
+        String achievements = "Achievements :\n";
         if (gameValues.points > 1000) {
-            highscore.LEET_OBTAINED = true;
+            if (!highscore.LEET_OBTAINED) {
+                achievements += "1337 obtenu!\n";
+                highscore.LEET_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+
         } else if (gameValues.points > 250) {
-            highscore.PRO_OBTAINED = true;
+            if (!highscore.PRO_OBTAINED) {
+                achievements += "Pro obtenu!\n";
+                highscore.PRO_OBTAINED = true;
+            } else {
+                // pro deja obtenu
+            }
+
+
         }
+
+        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
         close(0);
     }
-    
-    
     /**
      * Constantes pour le niveau de jeu.
      */
@@ -74,6 +92,31 @@ public final class Main implements Serializable {
     /**
      * 
      */
+    public static Thread gameTimer = new Thread() {
+
+        @Override
+        public void run() {
+
+            while (Main.gameValues.isRunning) {
+                if (Main.gameValues.remainingTime <= 0) {
+                    // Le timer a atteint échéance, on stoppe la partie.
+                    terminerPartie();
+
+                } else if (!Main.gameValues.isPaused) {
+                    // Le jeu est en cours, mais il n'est pas en pause.
+                    Main.gameValues.remainingTime--;
+                } else {
+                    // Le jeu est en pause, on ne fait rien.
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    };
     public static GameValues gameValues;
     private static Thread rendu;
     private static InterfaceGraphique interfaceGraphique;
@@ -121,7 +164,7 @@ public final class Main implements Serializable {
         }
     }
     /**
-     * 
+     * java -jar TP2.jar -q
      */
     /**
      * 
@@ -146,12 +189,10 @@ public final class Main implements Serializable {
         } else {
             System.out.println("Une ancien gameValues sera utilisé");
         }
-
-        
-            imageBank = new ImageBank();
-       
+        imageBank = new ImageBank();
         interfaceGraphique = new InterfaceGraphique();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();
+        gameTimer.start();
     }
 }

@@ -76,7 +76,9 @@ public final class MainCanvas extends JComponent implements Serializable {
             g.drawString("Points : " + Main.gameValues.points + " points", 5, 75);
             g.drawString("Vies canon 1 : " + canon1.getVie() + " vies", 5, 90);
             g.drawString("Vies canon 2 : " + canon2.getVie() + " vies", 5, 105);
+            g.drawString("Temps restant : " +Main.gameValues.remainingTime, 5, 120);
             g.drawRect(0, 0, (int) Main.gameValues.canvasSize.x - 1, (int) Main.gameValues.canvasSize.y - 1);
+
         } else {
             // Le background est dessiné ici.
             switch (Main.gameValues.level) {

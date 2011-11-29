@@ -29,10 +29,21 @@ import util.Vecteur;
  */
 public final class GameValues implements Serializable {
 
+    public long remainingTime = 100;
+
     /**
-     * 
+     * Retourne le temps restants sous forme d'un String formaté.
+     * @return le temps restants sous forme d'un String formaté.
      */
-    public int partiesCompletes = 0;
+    public String getRemainingTime() {
+
+
+// TODO formater le temps en minutes secondes.
+
+
+        return null;
+
+    }
     /**
      * 
      */

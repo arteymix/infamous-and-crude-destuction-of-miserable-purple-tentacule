@@ -43,7 +43,6 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             System.out.println("Aucun fichier de highscores n'a été trouvé, un nouveau fichier sera généré!");
         }
     }
-    
     /**
      * 
      */
@@ -72,7 +71,10 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             PRO_OBTAINED,
             LEET_OBTAINED,
             BAZINGA_OBTAINED;
-            
+    /**
+     *
+     */
+    public int partiesCompletes = 0;
 
     /**
      * Version altéré du put conventionel d'un dictionnaire afin de rajouter un
