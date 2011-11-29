@@ -102,6 +102,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
     public void collision(Collisionable c) {
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             // Le projectile a frappé quelque chose, il sera détruit!
+            
             this.isDessinable = false;
              Main.gameValues.composantesDessinables.add(new Explosion(this.position));
             System.out.println(this + " reçoit collision de " + c);

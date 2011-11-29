@@ -186,6 +186,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         g.setColor(Color.BLACK);
         if (x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
+            
 
         }
     }
@@ -196,6 +197,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         g.drawOval((int) (x), (int) (y), 100, 100);
         if (x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
+            
 
         }
 
@@ -242,6 +244,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         }
         if (vie <= 0) {
             this.isDessinable = false;
+            Main.gameValues.points += 100;
         }
     }
 

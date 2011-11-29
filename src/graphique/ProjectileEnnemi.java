@@ -58,6 +58,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
             isDessinable = false;
 
 
+
         }
     }
 
@@ -66,6 +67,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
         if (position.y >= Main.gameValues.canvasSize.y) {
             isDessinable = false;
+
 
         }
     }
@@ -80,8 +82,8 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     @Override
     public void collision(Collisionable c) {
         if (c instanceof Projectile) {
-
             this.isDessinable = false;
+            Main.gameValues.points += 25;
             // On se sert de l'explosion du projectile...
         } else if (c instanceof Canon) {
             if (((Canon) c).NUMERO_DU_CANON == 1 && !Main.gameValues.canon.isCanon2ValidTarget) {
@@ -90,7 +92,6 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
                 this.isDessinable = false;
                 Main.gameValues.composantesDessinables.add(new Explosion(this.position));
             }
-
         }
     }
 

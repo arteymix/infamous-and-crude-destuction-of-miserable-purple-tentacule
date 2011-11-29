@@ -92,7 +92,7 @@ public class ImageBank implements Serializable {
      * Constructeur pour ImageBank. 
      * @throws IOException si un fichier ne peut être lu.
      */
-    public ImageBank() throws IOException {
+    public ImageBank() throws IOException  {
 
         BACKGROUND1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/background1.jpg"));
         NUAGE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/nuage.png"));

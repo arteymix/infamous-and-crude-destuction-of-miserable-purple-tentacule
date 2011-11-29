@@ -45,7 +45,7 @@ public final class GameValues implements Serializable {
      * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
      * latence devrait être augmentée.
      */
-    public double latency = 10;
+    public double latency = 15;
     /**
      * Variable définissant si le mode débogage est activé.
      */
