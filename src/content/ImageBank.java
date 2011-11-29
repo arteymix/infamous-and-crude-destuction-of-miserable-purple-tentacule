@@ -54,7 +54,7 @@ public class ImageBank implements Serializable {
     /**
      * 
      */
-    public final Image SUPERSONIC = Toolkit.getDefaultToolkit().getImage("");
+    public final Image SUPERSONIC;
     /**
      * 
      */
@@ -86,7 +86,7 @@ public class ImageBank implements Serializable {
     /**
      * 
      */
-    public final Image MEDUSE;
+    public final Image PROJECTILE_PIEUVRE;
 
     /**
      * Constructeur pour ImageBank. 
@@ -97,12 +97,13 @@ public class ImageBank implements Serializable {
         BACKGROUND_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
         NUAGE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
         MISSILE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));
-        CANON_0 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/submarine1.gif")));
-        CANON_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/submarine2.gif")));
+        CANON_0 = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/submarine1.gif");
+        CANON_1 = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/submarine1.gif");
         SUBCANON1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon1.gif")));       
         SUBCANON2 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon2.gif"))); 
-        ENEMI = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/pieuvre.gif")));
-        MEDUSE =ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/meduse.gif")));
+        ENEMI = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/pieuvre.gif");
+        PROJECTILE_PIEUVRE =ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/meduse.gif")));
+        SUPERSONIC = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/meduse.gif");
         
     }
 }

@@ -45,7 +45,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      */
     public ProjectileEnnemi(Vecteur init, int id) {
         position = new Vecteur(init.x, init.y);
-        image = Main.imageBank.MEDUSE;
+        image = Main.imageBank.PROJECTILE_PIEUVRE;
 
     }
 

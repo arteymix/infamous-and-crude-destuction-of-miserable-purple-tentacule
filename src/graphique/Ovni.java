@@ -20,12 +20,11 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
-    
     double x, y, vitesseX = 1.0;
     int id, vie;
     Image img;
     private static Random r = new Random();
-    
+
     /*
      * 
      * 
@@ -40,16 +39,17 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      * 
      * 
      */
-
     private Ovni(Vecteur v, int id) {
 
         /* On va pas faire ça compliqué. Il y a une méthode en dessous qui
          * s'appelle create ovni vas-y! 
          */
+        initializeID();
         if (Main.gameValues.ovni.isBoss) {
             isDessinable = false;
         }
         this.x = v.x;
+        this.y = v.y;
         this.id = id;
         configurerOvni(id);
 
@@ -61,7 +61,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     public static void createOvni() {
         // Ici tu mets l'algo de génération aléatoire pour le id
         if ((new Random()).nextInt(Main.gameValues.ovni.PROBABILITE_APPARITION_OVNI) == 1) {
-            Main.gameValues.composantesDessinables.add(new Ovni(new Vecteur(0, 300), 1));
+            Main.gameValues.composantesDessinables.add(new Ovni(new Vecteur(0, 100), 1));
         }
         /* Bon je te laisse coder l'algorithme de génération en fonction de tes
          * besoins. Le constructeur peut être private maintenant!
@@ -78,7 +78,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     private void tirer(int id) {
         // Sa devrait être cool maintenant...
-        Main.gameValues.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x,y),Main.gameValues.projectileEnnemi.MISSILE_0));
+        Main.gameValues.composantesDessinables.add(new ProjectileEnnemi(new Vecteur(x, y), Main.gameValues.projectileEnnemi.MISSILE_0));
     }
 
     private void configurerOvni(int id) {
@@ -129,7 +129,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 x += 3 * vitesseX;
                 break;
             case 2:// mouvement du supersonic
-                x -= 3 * vitesseX;
+                x += 3 * vitesseX;
                 break;
             case 3:// mouvement du boss 1
                 mouvtBoss12(15, 45);
@@ -196,7 +196,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
             isDessinable = false;
 
         }
-        
+
     }
 
     @Override
@@ -223,7 +223,6 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
-
         }
         rectangle.x = (int) x;
         rectangle.y = (int) y;
@@ -247,5 +246,16 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     @Override
     public int getDommage() {
         return 0;
+    }
+
+    private int initializeID() {
+        int generateur = new Random().nextInt(100);
+        if (generateur > 75) {
+            return 1;
+        } else if (generateur > 100) {
+            return 2;
+        } else {
+            return 0;
+        }// else if(timer == 300){id = 3,4,5}// dependement du stage
     }
 }
