@@ -59,12 +59,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
             case 0:
                 image0 = Main.imageBank.CANON0;
                 image1 = Main.imageBank.SUBCANON1;
-                position = new Vecteur(0, 699);
+                position = new Vecteur(0, Main.gameValues.canvasSize.y-101);
                 break;
             case 1:
                 image0 = Main.imageBank.CANON1;
                 image1 = Main.imageBank.SUBCANON2;
-                position = new Vecteur(689, 699);
+                position = new Vecteur(Main.gameValues.canvasSize.x-256, Main.gameValues.canvasSize.y-101);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
@@ -155,7 +155,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
-
+        
     }
 
     /**

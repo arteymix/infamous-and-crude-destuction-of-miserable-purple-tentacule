@@ -52,7 +52,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
      * 
      */
     public static void createNuage() {
-        if ((new Random()).nextInt(Main.gameValues.nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
+        if ((new Random()).nextInt(Main.gameValues.decorFlottant.PROBABILITE_APPARITION_NUAGE) == 1) {
             Main.gameValues.composantesDessinables.add(new DecorFlottant(NUAGE));
         }
     }

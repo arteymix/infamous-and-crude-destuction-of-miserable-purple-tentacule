@@ -85,7 +85,7 @@ public final class GameValues implements Serializable {
     /**
      * 
      */
-    public NuageValues nuage = new NuageValues();
+    public DecorFlottantValues decorFlottant = new DecorFlottantValues();
     /**
      * 
      */
@@ -106,12 +106,12 @@ public final class GameValues implements Serializable {
      * Ce vecteur est le vecteur dimension du canvas ou les composants et
      * graphics sont dessinés.
      */
-    public Vecteur canvasSize = new Vecteur(800, 800);
+    public Vecteur canvasSize = new Vecteur(1024, 768);
 
     /**
      * 
      */
-    public class NuageValues implements Serializable {
+    public class DecorFlottantValues implements Serializable {
 
         /**
          * 
@@ -139,7 +139,7 @@ public final class GameValues implements Serializable {
         /**
          * 
          */
-        public final double ANGLE_INCREMENT_CANON = Math.PI / 200.0;
+        public final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
         /**
          * 
          */
