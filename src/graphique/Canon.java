@@ -57,12 +57,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
         switch (numeroDuCanon) {
             case 0:
-                image0 = Main.imageBank.CANON_0;
+                image0 = Main.imageBank.CANON0;
                 image1 = Main.imageBank.SUBCANON1;
                 position = new Vecteur(0, 699);
                 break;
             case 1:
-                image0 = Main.imageBank.CANON_1;
+                image0 = Main.imageBank.CANON1;
                 image1 = Main.imageBank.SUBCANON2;
                 position = new Vecteur(689, 699);
                 break;

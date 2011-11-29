@@ -52,7 +52,9 @@ public final class Main implements Serializable {
     }
 
     /**
-     * Méthode appelée lorsqu'une partie se termine, la méthode close() est appelée par la suite.
+     * Méthode appelée lorsqu'une partie se termine, la méthode close() est 
+     * appelée par la suite. Cette méthode calcule si le joueur a obtenu les
+     * trophées.
      */
     public static void terminerPartie() {
 
@@ -61,15 +63,18 @@ public final class Main implements Serializable {
         } else if (gameValues.points > 250) {
             highscore.PRO_OBTAINED = true;
         }
+        close(0);
     }
     
     
-    
+    /**
+     * Constantes pour le niveau de jeu.
+     */
     public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
     /**
      * 
      */
-    public static GameValues gameValues = new GameValues();
+    public static GameValues gameValues;
     private static Thread rendu;
     private static InterfaceGraphique interfaceGraphique;
     /**
@@ -132,8 +137,8 @@ public final class Main implements Serializable {
      * Méthode principale du programme.
      * @param args est un tableau d'arguments provenant de la ligne de commande.
      */
-    public static void main(String[] args) {
-        if ((gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null) {
+    public static void main(String[] args) throws IOException {
+        if ((gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null | true) { // TODO Fix the save
             gameValues = new GameValues();
             System.out.println("Un nouveau gameValues sera généré");
 
@@ -141,13 +146,9 @@ public final class Main implements Serializable {
             System.out.println("Une ancien gameValues sera utilisé");
         }
 
-        try {
+        
             imageBank = new ImageBank();
-        } catch (IOException ex) {
-            System.out.println("La banque d'images n'a pas pu être instancié!"
-                    + "Le programme va s'interrompre!");
-            close(1);
-        }
+       
         interfaceGraphique = new InterfaceGraphique();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();

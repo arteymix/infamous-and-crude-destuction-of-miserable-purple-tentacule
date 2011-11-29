@@ -30,7 +30,7 @@ public class ImageBank implements Serializable {
     /**
      * 
      */
-    public final Image CANON_0;
+    public final Image CANON0;
     /**
      * 
      */
@@ -42,7 +42,7 @@ public class ImageBank implements Serializable {
     /**
      * 
      */
-    public final Image BACKGROUND_1;    
+    public final Image BACKGROUND1;
     /**
      * 
      */
@@ -74,7 +74,7 @@ public class ImageBank implements Serializable {
     /**
      * 
      */
-    public final Image CANON_1;
+    public final Image CANON1;
     /**
      * 
      */
@@ -93,17 +93,27 @@ public class ImageBank implements Serializable {
      * @throws IOException si un fichier ne peut être lu.
      */
     public ImageBank() throws IOException {
-        
-        BACKGROUND_1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/background1.jpg")));
-        NUAGE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/nuage.png")));
-        MISSILE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/missile.png")));
-        CANON_0 = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/submarine1.gif");
-        CANON_1 = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/submarine1.gif");
-        SUBCANON1 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon1.gif")));       
-        SUBCANON2 = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/subcanon2.gif"))); 
-        ENEMI = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/pieuvre.gif");
-        PROJECTILE_PIEUVRE =ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/meduse.gif")));
-        SUPERSONIC = Toolkit.getDefaultToolkit().getImage("C:/Users/nafir/Desktop/space invaders/meduse.gif");
-        
+
+        BACKGROUND1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/background1.jpg"));
+        NUAGE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/nuage.png"));
+        MISSILE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/missile.png"));
+
+
+
+        CANON0 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/submarine1.gif"));
+
+
+        CANON1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/submarine2.gif"));
+
+
+        SUBCANON1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/subcanon1.gif"));
+
+
+
+        SUBCANON2 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/subcanon2.gif"));
+        ENEMI = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/pieuvre.gif"));
+        PROJECTILE_PIEUVRE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/meduse.gif")));
+        SUPERSONIC = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/meduse.gif"));
+
     }
 }

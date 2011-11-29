@@ -25,6 +25,8 @@ import main.Main;
  * @author Guillaume Poirier-Morency
  */
 public class GameEvent {
+    
+   
 
     /**
      * Exemple d'objet dessinable pour les GameEvent.
