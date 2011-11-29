@@ -30,7 +30,7 @@ import util.Dessinable;
 import util.Traductions;
 
 /**
- * Classe contenant le canvas principal oû les dessins seront effectués.
+ * Classe contenant le canvas principal où les dessins seront effectués.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class MainCanvas extends JComponent implements Serializable {

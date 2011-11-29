@@ -17,14 +17,15 @@ package content;
 
 import java.io.Serializable;
 import java.util.HashMap;
-
 import javax.swing.JOptionPane;
 import util.Serialization;
 
 /**
  * Classe pour l'objet de highscores. Cet objet hérite d'un dictionnaire 
  * String+Integer afin de stocker les scores des joueurs. Il est sérializable et
- * se sérialize automatiquement lorsqu'un score y est rajouté.
+ * se sérialize automatiquement lorsqu'un score y est rajouté. Le dictionnaire
+ * est trié lorsqu'on lui demande son contenu avec la méthode getScores() qui
+ * retourne un ArrayList de String. Il est trié en fonction des points.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Highscores extends HashMap<String, Integer> implements Serializable {
@@ -41,7 +42,6 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
         } else {
             System.out.println("Aucun fichier de highscores n'a été trouvé, un nouveau fichier sera généré!");
         }
-
     }
     
     public boolean NOOB_OBTAINED,
@@ -77,7 +77,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      * @return un tableau de String contenant les scores des joueurs.
      */
     public String[] getScores() {
-        // TODO Finir l'implémentation ici!
+        // TODO Finir l'implémentation des highscores ici!        
         String[] highscores = new String[this.size()];
         int i = 0;
 

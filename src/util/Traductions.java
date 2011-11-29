@@ -34,7 +34,7 @@ public class Traductions implements Serializable {
      */
     public static String get(String variable) {
         if (!isInitAlready) {
-            init();
+            initFr();
             isInitAlready = true;
         }
         if (langue.equals("fr")) {
@@ -42,9 +42,10 @@ public class Traductions implements Serializable {
         }
         else if (langue.equals("en")) {
             return en.get(variable);
-        }
+        } else {
         System.out.println("Langue non supportée!");
         return null;
+        }
     }
 
     /**
@@ -60,7 +61,7 @@ public class Traductions implements Serializable {
     /**
      * Initialise le dictionnaire de traductions.
      */
-    public static void init() {
+    private static void initFr() {
         fr.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
         
         fr.put("menu.fichier", "Fichier");
@@ -93,6 +94,11 @@ public class Traductions implements Serializable {
         fr.put("debug.tempsdurendu", "Temps du rendu");
         fr.put("debug.tempsdurendu", "Temps du rendu");
         fr.put("debug.tempsdurendu", "Temps du rendu");
+    }
+    
+    private static void initEn() {
+    
+    
     }
     private static HashMap<String, String> en = new HashMap<String, String>();
     private static HashMap<String, String> fr = new HashMap<String, String>();

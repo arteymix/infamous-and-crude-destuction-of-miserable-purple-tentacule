@@ -23,8 +23,8 @@ import util.Dessinable;
 import util.Vecteur;
 
 /**
- *
- * @author Guillaume Poirier-Morency
+ * Classe pour les objets Dessinable comme les nuages et les bancs de poissons.
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class DecorFlottant extends Dessinable implements Serializable {
 
@@ -32,7 +32,6 @@ public final class DecorFlottant extends Dessinable implements Serializable {
      * 
      */
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
-    
 
     private DecorFlottant(int id) {
 
@@ -40,16 +39,14 @@ public final class DecorFlottant extends Dessinable implements Serializable {
 
             case NUAGE:
                 image0 = Main.imageBank.NUAGE;
-
-
-
-
-
+                break;
+            case POISSONS:
+                // TODO Intégrer l'image de poissons...
+                break;
         }
-
-
     }
-    private static final int NUAGE = 0;
+    private static final int NUAGE = 0,
+            POISSONS = 1;
 
     /**
      * 
@@ -58,9 +55,6 @@ public final class DecorFlottant extends Dessinable implements Serializable {
         if ((new Random()).nextInt(Main.gameValues.nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
             Main.gameValues.composantesDessinables.add(new DecorFlottant(NUAGE));
         }
-
-
-
     }
 
     @Override

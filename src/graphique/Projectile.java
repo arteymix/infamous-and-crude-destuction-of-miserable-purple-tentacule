@@ -26,7 +26,7 @@ import util.Vecteur;
 
 /**
  * Fichier de classe pour un projectile.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Projectile extends Dessinable implements Collisionable, Serializable {
 
