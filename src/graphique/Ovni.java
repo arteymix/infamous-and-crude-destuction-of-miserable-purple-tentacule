@@ -19,11 +19,8 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
-
     double x, y, vitesseX = 1.0;
     int id, vie;
-   
-
     private static Random r = new Random();
 
     /*
@@ -40,18 +37,19 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      * 
      * 
      */
-    private Ovni(Vecteur v, int id) {
+    private Ovni(int x, int y, int id) {
 
         /* On va pas faire ça compliqué. Il y a une méthode en dessous qui
          * s'appelle create ovni vas-y! 
          */
-        initializeID();
+        
         if (Main.gameValues.ovni.isBoss) {
             isDessinable = false;
         }
-        this.x = v.x;
-        this.y = v.y;
         this.id = id;
+        this.x=x;
+        this.y=y;
+
         configurerOvni(id);
 
     }
@@ -62,7 +60,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     public static void createOvni() {
         // Ici tu mets l'algo de génération aléatoire pour le id
         if ((new Random()).nextInt(Main.gameValues.ovni.PROBABILITE_APPARITION_OVNI) == 1) {
-            Main.gameValues.composantesDessinables.add(new Ovni(new Vecteur(0, 100), 1));
+            Main.gameValues.composantesDessinables.add(new Ovni(10,10,initializeID()));
         }
         /* Bon je te laisse coder l'algorithme de génération en fonction de tes
          * besoins. Le constructeur peut être private maintenant!
@@ -72,6 +70,20 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
          * 
          */
     }
+    private static int initializeID() {
+        int generateur = new Random().nextInt(100);
+        if (generateur < 75) {
+            return 1;
+        }
+        else if (generateur < 100) {
+            return 2;
+        }
+        else {
+            return 0;
+        }// else if(timer == 300){id = 3,4,5}// dependement du stage
+    }
+
+    
 
     /**
      * 
@@ -89,7 +101,8 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 if (r.nextInt(10000) == 1) {
                     image0 = Main.imageBank.ENNEMI_OR;
                     vie = 30;
-                } else {
+                }
+                else {
                     image0 = Main.imageBank.ENNEMI;
                     vie = 10;
                 }
@@ -99,7 +112,8 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                     image0 = Main.imageBank.SUPERSONIC_OR;
                     vie = 200 * Main.gameValues.level;
                     vitesseX = 3;
-                } else {
+                }
+                else {
                     image0 = Main.imageBank.SUPERSONIC;
                     vitesseX = 2;
                 }
@@ -157,12 +171,14 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         final int YMAX = ymax;
         if (x == XMIN) {
             x += 3 * vitesseX;
-        } else if (x == XMAX) {
+        }
+        else if (x == XMAX) {
             x -= 3 * vitesseX;
         }
         if (y == YMIN) {
             y += 3 * vitesseX;
-        } else if (y == YMAX) {
+        }
+        else if (y == YMAX) {
             y -= 3 * vitesseX;
         }
 
@@ -185,7 +201,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         g.setColor(Color.BLACK);
         if (x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
-            
+
 
         }
     }
@@ -196,7 +212,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         g.drawOval((int) (x), (int) (y), 100, 100);
         if (x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
-            
+
 
         }
 
@@ -252,14 +268,4 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         return 0;
     }
 
-    private int initializeID() {
-        int generateur = new Random().nextInt(100);
-        if (generateur > 75) {
-            return 1;
-        } else if (generateur > 100) {
-            return 2;
-        } else {
-            return 0;
-        }// else if(timer == 300){id = 3,4,5}// dependement du stage
-    }
 }

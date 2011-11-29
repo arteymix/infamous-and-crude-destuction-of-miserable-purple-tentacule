@@ -36,10 +36,10 @@ class Explosion extends Dessinable {
             g.drawImage(image0, (int) POSITION.x, (int) POSITION.y,60,60, null);
             
             nbFrame--;
-            System.out.println("shit");
+           
         } else {
             this.isDessinable = false;
-            System.out.println("shat");
+           
         }
     }
 
@@ -48,10 +48,10 @@ class Explosion extends Dessinable {
         if (nbFrame > 0) {
             g.drawString("EXPLOSION!", (int) POSITION.x, (int) POSITION.y);
             nbFrame--;
-            System.out.println("shit");
+            
         } else {
             this.isDessinable = false;
-            System.out.println("shat");
+           
         }
     }
 }
