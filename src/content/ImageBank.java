@@ -42,7 +42,9 @@ public class ImageBank implements Serializable {
     /**
      * 
      */
+
     public final Image BACKGROUND1;
+
     /**
      * 
      */
@@ -92,6 +94,7 @@ public class ImageBank implements Serializable {
      * Constructeur pour ImageBank. 
      * @throws IOException si un fichier ne peut être lu.
      */
+
     public ImageBank() throws IOException  {
 
         BACKGROUND1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/background1.jpg"));
@@ -114,6 +117,7 @@ public class ImageBank implements Serializable {
         ENEMI = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/pieuvre.gif"));
         PROJECTILE_PIEUVRE = ImageIO.read((ClassLoader.getSystemResourceAsStream("content/images/meduse.gif")));
         SUPERSONIC = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/meduse.gif"));
+
 
     }
 }
