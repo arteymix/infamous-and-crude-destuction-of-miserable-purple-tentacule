@@ -20,9 +20,11 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
+
     double x, y, vitesseX = 1.0;
     int id, vie;
     Image img;
+
     private static Random r = new Random();
 
     /*
@@ -86,33 +88,33 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         switch (id) {
             case 1://img enemi et enemi or et vie
                 if (r.nextInt(10000) == 1) {
-                    img = Main.imageBank.ENEMIOR;
+                    image0 = Main.imageBank.ENEMIOR;
                     vie = 30;
                 } else {
-                    img = Main.imageBank.ENEMI;
+                    image0 = Main.imageBank.ENEMI;
                     vie = 10;
                 }
                 break;
-            case 2:// img supersonic et supersonicor
+            case 2:// image0 supersonic et supersonicor
                 if (r.nextInt(10000) == 1) {
-                    img = Main.imageBank.SUPERSONICOR;
+                    image0 = Main.imageBank.SUPERSONICOR;
                     vie = 200;
                     vitesseX = 3;
                 } else {
-                    img = Main.imageBank.SUPERSONIC;
+                    image0 = Main.imageBank.SUPERSONIC;
                     vitesseX = 2;
                 }
                 break;
-            case 3:// img boss 1
-                img = Main.imageBank.BOSS1;
+            case 3:// image0 boss 1
+                image0 = Main.imageBank.BOSS1;
                 vie = 1000;
                 break;
-            case 4:// img boss 2
-                img = Main.imageBank.BOSS2;
+            case 4:// image0 boss 2
+                image0 = Main.imageBank.BOSS2;
                 vie = 1500;
                 break;
-            case 5:// img boss 3
-                img = Main.imageBank.BOSS3;
+            case 5:// image0 boss 3
+                image0 = Main.imageBank.BOSS3;
                 vie = 2000;
                 break;
             default:
@@ -178,7 +180,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     @Override
     public void dessiner(Graphics g) {
         action();
-        g.drawImage(img, (int) x, (int) y, null);
+        g.drawImage(image0, (int) x, (int) y, null);
         g.setColor(Color.RED);
         g.fillRect((int) x, (int) y, vie * 7, 10);
         g.setColor(Color.BLACK);

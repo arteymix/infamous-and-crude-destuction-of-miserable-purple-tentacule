@@ -62,6 +62,9 @@ public final class Main implements Serializable {
             highscore.PRO_OBTAINED = true;
         }
     }
+    
+    
+    
     public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
     /**
      * 

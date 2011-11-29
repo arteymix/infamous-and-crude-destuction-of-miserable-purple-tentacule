@@ -17,7 +17,6 @@ package graphique;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.io.Serializable;
@@ -40,16 +39,14 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * deuxième canon.
      */
     private Vecteur A, B, C, D;
-    // La variable position devrait être changée par les points E F G et H.
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
     /**
      * 
      */
-    public int vie;
-    public final int NUMERO_DU_CANON;
+    int vie;
+    final int NUMERO_DU_CANON;
     private boolean peutTirer = true;
-    private Image imageSubCanon;
 
     /**
      * Constructeur pour l'objet de canon.
@@ -60,13 +57,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
         switch (numeroDuCanon) {
             case 0:
-                image = Main.imageBank.CANON_0;
-                imageSubCanon = Main.imageBank.SUBCANON1;
+                image0 = Main.imageBank.CANON_0;
+                image1 = Main.imageBank.SUBCANON1;
                 position = new Vecteur(0, 699);
                 break;
             case 1:
-                image = Main.imageBank.CANON_1;
-                imageSubCanon = Main.imageBank.SUBCANON2;
+                image0 = Main.imageBank.CANON_1;
+                image1 = Main.imageBank.SUBCANON2;
                 position = new Vecteur(689, 699);
                 break;
         }
@@ -191,7 +188,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * Effectue un tir!
      */
     private void tirer() {
-       
+
         if (peutTirer) {
             Main.gameValues.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
             peutTirer = false;
@@ -223,14 +220,14 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         /*
         Graphics2D g2d = (Graphics2D) g;
         AffineTransform affineTransform = new AffineTransform();
-        //rotate the image 
+        //rotate the image0 
         affineTransform.translate(piedDeCanon().x + 20, piedDeCanon().y);
         affineTransform.rotate(Math.toRadians(180));
-        //draw the image using the AffineTransform 
+        //draw the image0 using the AffineTransform 
         g2d.drawImage(imageSubCanon, affineTransform, null);
         ///*/
-        g.drawImage(imageSubCanon, xPoints[1], yPoints[1], null);
-        g.drawImage(image, (int) position.x, (int) position.y, null);
+        g.drawImage(image1, xPoints[1], yPoints[1], null);
+        g.drawImage(image0, (int) position.x, (int) position.y, null);
         g.setColor(Color.RED);
         g.fillRect((int) position.x, (int) position.y, vie / 5, 10);
         g.setColor(Color.BLACK);
@@ -255,19 +252,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     @Override
     public void collision(Collisionable c) {
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
-            if(this.NUMERO_DU_CANON == 1 && !Main.gameValues.canon.isCanon2ValidTarget) {
-                
-                System.out.println("Canon 2 ne peut être atteint, il est invisible.");
+            if (this.NUMERO_DU_CANON == 1 && !Main.gameValues.canon.isCanon2ValidTarget) {
             } else {
-             this.vie -= c.getDommage();
-            System.out.println(this + " reçoit collision de " + c);
-            System.out.println(vie);
+                this.vie -= c.getDommage();
             }
-           
         }
         if (vie < 0) {
             this.isDessinable = false;
-            System.out.println(this + " a été détruit par " + c);
         }
     }
 

@@ -45,13 +45,15 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      */
     public ProjectileEnnemi(Vecteur init, int id) {
         position = new Vecteur(init.x, init.y);
-        image = Main.imageBank.PROJECTILE_PIEUVRE;
+
+        image0 = Main.imageBank.PROJECTILE_PIEUVRE;
+
 
     }
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawImage(image, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
+        g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
         if (position.y >= Main.gameValues.canvasSize.y) {
             isDessinable = false;
 
