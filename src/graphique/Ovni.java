@@ -23,7 +23,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
 
     double x, y, vitesseX = 1.0;
     int id, vie;
-    Image img;
+   
 
     private static Random r = new Random();
 

@@ -98,7 +98,7 @@ public final class MainCanvas extends JComponent implements Serializable {
                 ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
                 ArrayList<Dessinable> aEnlever = new ArrayList<Dessinable>();
                 // Génération des nuages 
-                Nuage.createNuage();
+                DecorFlottant.createNuage();
                 // Génération des Ovnis    
                 Ovni.createOvni();
                 // END Génération des Ovnis

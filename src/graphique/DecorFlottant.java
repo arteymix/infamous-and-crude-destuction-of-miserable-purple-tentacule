@@ -16,7 +16,6 @@
 package graphique;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.Random;
 import main.Main;
@@ -27,39 +26,53 @@ import util.Vecteur;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Nuage extends Dessinable implements Serializable {
+public final class DecorFlottant extends Dessinable implements Serializable {
 
     /**
      * 
      */
-    
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
-    Image img = Main.imageBank.NUAGE;
     
+
+    private DecorFlottant(int id) {
+
+        switch (id) {
+
+            case NUAGE:
+                image0 = Main.imageBank.NUAGE;
+
+
+
+
+
+        }
+
+
+    }
+    private static final int NUAGE = 0;
+
     /**
      * 
      */
     public static void createNuage() {
-    if ((new Random()).nextInt(Main.gameValues.nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
-            Main.gameValues.composantesDessinables.add(new Nuage());
+        if ((new Random()).nextInt(Main.gameValues.nuage.PROBABILITE_APPARITION_NUAGE) == 1) {
+            Main.gameValues.composantesDessinables.add(new DecorFlottant(NUAGE));
         }
-    
-    
-    
+
+
+
     }
 
     @Override
     public void dessiner(Graphics g) {
-        
+
         if (position.x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
         } else {
-            g.drawImage(img, (int) position.x, (int) position.y, null);
+            g.drawImage(image0, (int) position.x, (int) position.y, null);
             position.x += 0.5;
         }
     }
-    
-    
 
     @Override
     public void dessinerDeboguage(Graphics g) {
@@ -71,6 +84,4 @@ public final class Nuage extends Dessinable implements Serializable {
             position.x += 0.25;
         }
     }
-
-    
 }
