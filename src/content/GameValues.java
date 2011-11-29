@@ -93,9 +93,9 @@ public final class GameValues implements Serializable {
      */
     public int points = 0;
     /**
-     * Cette variable définit si les highscores doivent être affiché.
+     * Cette variable définit le level du jeu.
      */
-    public int level = 0;
+    public int level = 1;
     /**
      * 
      */
@@ -197,7 +197,7 @@ public final class GameValues implements Serializable {
         /**
          * 
          */
-        public final int PROBABILITE_APPARITION_OVNI = 100;
+        public final int PROBABILITE_APPARITION_OVNI = 2;
         /**
          * 
          */

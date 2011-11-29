@@ -35,7 +35,7 @@ public class Exemples extends Dessinable implements Collisionable {
      * Constructeur d'un exemple.
      */
     public Exemples() {
-        this.image0 = Main.imageBank.BOSS1;
+        this.image0 = Main.imageBank.BOSS;
         rectangle = new Rectangle(10, 10, 10, 10);
     }
 

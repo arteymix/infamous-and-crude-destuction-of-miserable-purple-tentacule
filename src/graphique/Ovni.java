@@ -87,17 +87,17 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         switch (id) {
             case 1://img enemi et enemi or et vie
                 if (r.nextInt(10000) == 1) {
-                    image0 = Main.imageBank.ENEMIOR;
+                    image0 = Main.imageBank.ENNEMI_OR;
                     vie = 30;
                 } else {
-                    image0 = Main.imageBank.ENEMI;
+                    image0 = Main.imageBank.ENNEMI;
                     vie = 10;
                 }
                 break;
             case 2:// image0 supersonic et supersonicor
                 if (r.nextInt(10000) == 1) {
-                    image0 = Main.imageBank.SUPERSONICOR;
-                    vie = 200;
+                    image0 = Main.imageBank.SUPERSONIC_OR;
+                    vie = 200 * Main.gameValues.level;
                     vitesseX = 3;
                 } else {
                     image0 = Main.imageBank.SUPERSONIC;
@@ -105,15 +105,15 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 }
                 break;
             case 3:// image0 boss 1
-                image0 = Main.imageBank.BOSS1;
+                image0 = Main.imageBank.BOSS;
                 vie = 1000;
                 break;
             case 4:// image0 boss 2
-                image0 = Main.imageBank.BOSS2;
+                image0 = Main.imageBank.BOSS;
                 vie = 1500;
                 break;
             case 5:// image0 boss 3
-                image0 = Main.imageBank.BOSS3;
+                image0 = Main.imageBank.BOSS;
                 vie = 2000;
                 break;
             default:

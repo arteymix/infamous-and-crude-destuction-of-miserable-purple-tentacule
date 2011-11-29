@@ -33,27 +33,18 @@ public final class DecorFlottant extends Dessinable implements Serializable {
      */
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
 
-    private DecorFlottant(int id) {
+    private DecorFlottant() {
+        image0 = Main.imageBank.NUAGE;
 
-        switch (id) {
-
-            case NUAGE:
-                image0 = Main.imageBank.NUAGE;
-                break;
-            case POISSONS:
-                // TODO Intégrer l'image de poissons...
-                break;
-        }
     }
-    private static final int NUAGE = 0,
-            POISSONS = 1;
+   
 
     /**
      * 
      */
     public static void createNuage() {
         if ((new Random()).nextInt(Main.gameValues.decorFlottant.PROBABILITE_APPARITION_NUAGE) == 1) {
-            Main.gameValues.composantesDessinables.add(new DecorFlottant(NUAGE));
+            Main.gameValues.composantesDessinables.add(new DecorFlottant());
         }
     }
 
@@ -62,7 +53,8 @@ public final class DecorFlottant extends Dessinable implements Serializable {
 
         if (position.x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
-        } else {
+        }
+        else {
             g.drawImage(image0, (int) position.x, (int) position.y, null);
             position.x += 0.5;
         }
@@ -72,7 +64,8 @@ public final class DecorFlottant extends Dessinable implements Serializable {
     public void dessinerDeboguage(Graphics g) {
         if (position.x > Main.gameValues.canvasSize.x) {
             isDessinable = false;
-        } else {
+        }
+        else {
             g.drawRect((int) position.x, (int) position.y, 200, 100);
             g.drawString("Nuage", (int) position.x + 100, (int) position.y + 50);
             position.x += 0.25;

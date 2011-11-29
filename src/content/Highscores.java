@@ -43,6 +43,10 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             System.out.println("Aucun fichier de highscores n'a été trouvé, un nouveau fichier sera généré!");
         }
     }
+    
+    public void serializeOnTheHeap() {
+    Serialization.serialize(this, "highscores.serial");
+    }
     /**
      * 
      */

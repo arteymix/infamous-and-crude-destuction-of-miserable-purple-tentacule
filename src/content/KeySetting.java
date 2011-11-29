@@ -61,11 +61,11 @@ public final class KeySetting {
     /**
      * 
      */
-    public static final int CANON_2_AIM_LEFT = KeyEvent.VK_O;
+    public static final int CANON_2_AIM_LEFT = KeyEvent.VK_K;
     /**
      * 
      */
-    public static final int CANON_2_AIM_RIGHT = KeyEvent.VK_P;
+    public static final int CANON_2_AIM_RIGHT = KeyEvent.VK_L;
     // Other settings
     /**
      * 

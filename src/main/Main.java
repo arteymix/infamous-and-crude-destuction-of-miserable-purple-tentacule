@@ -17,7 +17,7 @@ package main;
 
 import content.GameValues;
 import content.Highscores;
-import content.ImageBank;
+import content.images.ImageBank;
 import graphique.InterfaceGraphique;
 import java.io.IOException;
 import java.io.Serializable;
@@ -55,6 +55,12 @@ public final class Main implements Serializable {
     }
 
     /**
+     * Méthode appellée lors qu'une nouvelle partie est demandée.
+     */
+    public static void restart() {
+    }
+
+    /**
      * Méthode appelée lorsqu'une partie se termine, la méthode close() est 
      * appelée par la suite. Cette méthode calcule si le joueur a obtenu les
      * trophées.
@@ -67,18 +73,21 @@ public final class Main implements Serializable {
             if (!highscore.LEET_OBTAINED) {
                 achievements += "1337 obtenu!\n";
                 highscore.LEET_OBTAINED = true;
-            } else {
+            }
+            else {
                 // Leet déjà obtenu!
             }
 
-        } else if (gameValues.points > 250) {
+        }
+        else if (gameValues.points > 250) {
             if (!highscore.PRO_OBTAINED) {
                 achievements += "Pro obtenu!\n";
                 highscore.PRO_OBTAINED = true;
-            } else {
+            }
+            else {
                 // pro deja obtenu
             }
-
+            highscore.serializeOnTheHeap();
 
         }
 
@@ -102,15 +111,18 @@ public final class Main implements Serializable {
                     // Le timer a atteint échéance, on stoppe la partie.
                     terminerPartie();
 
-                } else if (!Main.gameValues.isPaused) {
+                }
+                else if (!Main.gameValues.isPaused) {
                     // Le jeu est en cours, mais il n'est pas en pause.
                     Main.gameValues.remainingTime--;
-                } else {
+                }
+                else {
                     // Le jeu est en pause, on ne fait rien.
                 }
                 try {
                     Thread.sleep(1000);
-                } catch (InterruptedException ex) {
+                }
+                catch (InterruptedException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -150,13 +162,15 @@ public final class Main implements Serializable {
             i = Serialization.serialize(gameValues, "save.serial");
             if (i == CODE_DE_SORTIE_OK) {
                 System.out.println("Save was successful!");
-            } else {
+            }
+            else {
                 System.out.println("Save failed! Code de sortie : " + i);
             }
             // Le thread de swing est stoppé
             interfaceGraphique.dispose();
             System.exit(i);
-        } else {
+        }
+        else {
             System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
             // Le thread de swing est stoppé
             interfaceGraphique.dispose();
@@ -182,14 +196,16 @@ public final class Main implements Serializable {
      * @throws IOException  
      */
     public static void main(String[] args) throws IOException {
-        if ((gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null | true) { // TODO Fix the save
+        if (/*(gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null |*/true) { // TODO Fix the save
             gameValues = new GameValues();
             System.out.println("Un nouveau gameValues sera généré");
 
-        } else {
+        }
+        else {
             System.out.println("Une ancien gameValues sera utilisé");
         }
         imageBank = new ImageBank();
+        imageBank.setStage(1);
         interfaceGraphique = new InterfaceGraphique();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();

@@ -7,6 +7,7 @@ package graphique;
 import java.awt.Graphics;
 import util.Dessinable;
 import util.Vecteur;
+import main.Main;
 
 /**
  * Objet pour générer une explosion dans le jeu. Devrait éventuellement permettre
@@ -17,6 +18,7 @@ class Explosion extends Dessinable {
 
     private int nbFrame = 10;
     private final Vecteur POSITION;
+    
 
     /**
      * Constructeur pour une explosion!
@@ -24,13 +26,15 @@ class Explosion extends Dessinable {
      */
     public Explosion(Vecteur position) {
         POSITION = position;
+        image0 = Main.imageBank.EXPLOSION;
     }
 
     @Override
     public void dessiner(Graphics g) {
 
         if (nbFrame > 0) {
-            g.drawString("EXPLOSION!", (int) POSITION.x, (int) POSITION.y);
+            g.drawImage(image0, (int) POSITION.x, (int) POSITION.y,60,60, null);
+            
             nbFrame--;
             System.out.println("shit");
         } else {

@@ -83,10 +83,10 @@ public final class MainCanvas extends JComponent implements Serializable {
             // Le background est dessiné ici.
             switch (Main.gameValues.level) {
                 case 0:
-                    g.drawImage(Main.imageBank.BACKGROUND1, 0, 0,(int)Main.gameValues.canvasSize.x,(int)Main.gameValues.canvasSize.y, null);
+                    g.drawImage(Main.imageBank.BACKGROUND, 0, 0,(int)Main.gameValues.canvasSize.x,(int)Main.gameValues.canvasSize.y, null);
                     break;
                 case 1:
-                    g.drawImage(Main.imageBank.BACKGROUND1, 0, 0,1024,768, null);
+                    g.drawImage(Main.imageBank.BACKGROUND, 0, 0,1024,768, null);
             }
         }
         switch (activity) {

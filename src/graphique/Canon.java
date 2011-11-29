@@ -15,6 +15,7 @@
  */
 package graphique;
 
+import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -66,13 +67,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
         switch (numeroDuCanon) {
             case 0:
-                image0 = Main.imageBank.CANON0;
-                image1 = Main.imageBank.SUBCANON1;
+                image0 = Main.imageBank.SHIP_1;
+                image1 = Main.imageBank.SUBCANON_1;
                 position = new Vecteur(0, Main.gameValues.canvasSize.y - 101);
                 break;
             case 1:
-                image0 = Main.imageBank.CANON1;
-                image1 = Main.imageBank.SUBCANON2;
+                image0 = Main.imageBank.SHIP_2;
+                image1 = Main.imageBank.SUBCANON_2;
                 position = new Vecteur(Main.gameValues.canvasSize.x - 256, Main.gameValues.canvasSize.y - 101);
                 break;
         }
@@ -104,39 +105,38 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         if (NUMERO_DU_CANON == 0) {
             switch (e) {
-                case KeyEvent.VK_LEFT:
+                case KeySetting.CANON_1_LEFT:
                     moveGauche();
                     break;
-                case KeyEvent.VK_RIGHT:
+                case KeySetting.CANON_1_RIGHT:
                     moveDroite();
                     break;
-                case KeyEvent.VK_UP:
+                case KeySetting.CANON_1_SHOOT:
                     this.tirer();
                     break;
-                case KeyEvent.VK_NUMPAD2:
+                case KeySetting.CANON_1_AIM_LEFT:
                     moveCanonGauche();
-                    // 
                     break;
-                case KeyEvent.VK_NUMPAD3:
+                case KeySetting.CANON_1_AIM_RIGHT:
                     moveCanonDroite();
                     break;
             }
             // On gere l'evenement
         } else if (NUMERO_DU_CANON == 1 && Main.gameValues.canon.isCanon2ValidTarget) {
             switch (e) {
-                case KeyEvent.VK_A:
+                case KeySetting.CANON_2_LEFT:
                     moveGauche();
                     break;
-                case KeyEvent.VK_D:
+                case KeySetting.CANON_2_RIGHT:
                     moveDroite();
                     break;
-                case KeyEvent.VK_W:
+                case KeySetting.CANON_2_SHOOT:
                     this.tirer();
                     break;
-                case KeyEvent.VK_O:
+                case KeySetting.CANON_2_AIM_LEFT:
                     moveCanonGauche();
                     break;
-                case KeyEvent.VK_P:
+                case KeySetting.CANON_2_AIM_RIGHT:
                     moveCanonDroite();
                     break;
             }

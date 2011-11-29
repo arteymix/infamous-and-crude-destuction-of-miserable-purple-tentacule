@@ -31,29 +31,10 @@ import util.Vecteur;
 public final class Projectile extends Dessinable implements Collisionable, Serializable {
 
     private Vecteur position, vitesse = new Vecteur(8, -8);
-    private final TypeDeProjectile TDP;
+    
     private Rectangle rectangle;
 
-    private enum TypeDeProjectile {
-
-        PROJECTILE_0(Main.imageBank.MISSILE, 1),
-        PROJECTILE_1(Main.imageBank.MISSILE, 2),
-        PROJECTILE_2(Main.imageBank.MISSILE, 3),
-        PROJECTILE_3(Main.imageBank.MISSILE, 4),
-        PROJECTILE_4(Main.imageBank.MISSILE, 5),
-        PROJECTILE_5(Main.imageBank.MISSILE, 6),
-        PROJECTILE_6(Main.imageBank.MISSILE, 7),
-        PROJECTILE_7(Main.imageBank.MISSILE, 8),
-        PROJECTILE_8(Main.imageBank.MISSILE, 9),
-        PROJECTILE_9(Main.imageBank.MISSILE, 10);
-        public final Image IMAGE;
-        public final int DOMMAGES;
-
-        private TypeDeProjectile(Image img, int dommages) {
-            this.IMAGE = img;
-            this.DOMMAGES = dommages;
-        }
-    }
+    
 
     /**
      * Un Projectile est un objet qui représente un tir de canon.
@@ -64,8 +45,8 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
     public Projectile(Vecteur point, Vecteur orientation, int id) {
         position = point;
         vitesse = orientation;
-        image0 = Main.imageBank.MISSILE;
-        TDP = TypeDeProjectile.PROJECTILE_0;
+        image0 = Main.imageBank.PROJECTILE;
+        
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }
 
@@ -77,7 +58,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
 
 
 
-        g.drawImage(TDP.IMAGE, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, 50, 50, null);
+        g.drawImage(image0, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, null);
 
         vitesse.y -= Main.gameValues.projectile.GRAVITY;
     }
@@ -111,6 +92,6 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
 
     @Override
     public int getDommage() {
-        return TDP.DOMMAGES;
+        return 25;
     }
 }

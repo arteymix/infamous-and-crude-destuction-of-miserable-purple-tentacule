@@ -175,8 +175,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         Main.gameValues.composantesDessinables.add(mainCanvas.canon1);
         Main.gameValues.composantesDessinables.add(mainCanvas.canon2);
         add(mainCanvas);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(Main.imageBank.PROJECTILE_PIEUVRE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         pack();
         setVisible(true);
         setTitle(Traductions.get("title"));

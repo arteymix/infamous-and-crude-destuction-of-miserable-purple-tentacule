@@ -46,14 +46,14 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     public ProjectileEnnemi(Vecteur init, int id) {
         position = new Vecteur(init.x, init.y);
 
-        image0 = Main.imageBank.PROJECTILE_PIEUVRE;
+        image0 = Main.imageBank.PROJECTILE_ENNEMI;
 
 
     }
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
+        g.drawImage(image0, (int) position.x, (int) position.y++,60,60, null);
         if (position.y >= Main.gameValues.canvasSize.y) {
             isDessinable = false;
 
@@ -85,10 +85,12 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
             this.isDessinable = false;
             Main.gameValues.points += 25;
             // On se sert de l'explosion du projectile...
-        } else if (c instanceof Canon) {
+        }
+        else if (c instanceof Canon) {
             if (((Canon) c).NUMERO_DU_CANON == 1 && !Main.gameValues.canon.isCanon2ValidTarget) {
                 // Ne rien faire, le canon ne  peut être atteint, il est invisible.
-            } else {
+            }
+            else {
                 this.isDessinable = false;
                 Main.gameValues.composantesDessinables.add(new Explosion(this.position));
             }
