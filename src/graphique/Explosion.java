@@ -18,6 +18,10 @@ class Explosion extends Dessinable {
     private int nbFrame = 10;
     private final Vecteur POSITION;
 
+    /**
+     * Constructeur pour une explosion!
+     * @param position est la position de l'explosion.
+     */
     public Explosion(Vecteur position) {
         POSITION = position;
     }

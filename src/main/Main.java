@@ -136,6 +136,7 @@ public final class Main implements Serializable {
     /**
      * Méthode principale du programme.
      * @param args est un tableau d'arguments provenant de la ligne de commande.
+     * @throws IOException  
      */
     public static void main(String[] args) throws IOException {
         if ((gameValues = (GameValues) Serialization.unSerialize("save.serial")) == null | true) { // TODO Fix the save

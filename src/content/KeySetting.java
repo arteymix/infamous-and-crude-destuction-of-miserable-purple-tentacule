@@ -75,5 +75,8 @@ public final class KeySetting {
      * 
      */
     public static final int PAUSE = KeyEvent.VK_P;
+    /**
+     * 
+     */
     public static final int QUIT = KeyEvent.VK_ESCAPE;
 }

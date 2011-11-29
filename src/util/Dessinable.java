@@ -31,6 +31,10 @@ public abstract class Dessinable implements Serializable {
      * Image de l'objet dessinable. Utilisé avec les références de la banque d'images.
      */
     public Image image0;
+    /**
+     * Image secondaire pour l'objet dessinable. Il peut servir entre autres au
+     * canon qui est composé de deux images.
+     */
     public Image image1;
     /**
      * Définit si l'objet est dessinable. Si il ne l'est pas, il doit être déréférencé.

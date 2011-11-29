@@ -29,6 +29,9 @@ import util.Vecteur;
  */
 public final class GameValues implements Serializable {
 
+    /**
+     * 
+     */
     public int partiesCompletes = 0;
     /**
      * 

@@ -33,8 +33,8 @@ public class Vecteur implements Serializable {
 
     /**
      * Constructeur de l'objet Vecteur.
-     * @param x
-     * @param y 
+     * @param x est la composante x du vecteur.
+     * @param y est la composante y du vecteur.
      */
     public Vecteur(double x, double y) {
         this.x = x;
@@ -71,7 +71,7 @@ public class Vecteur implements Serializable {
 
     /**
      * Ajoute l'angle a à l'angle du vecteur avec l'axe des x positifs.
-     * @param a
+     * @param a est l'angle à ajouter.
      */
     public void ajouterAngle(double a) {
         double nouvelangle = orientation() + a;

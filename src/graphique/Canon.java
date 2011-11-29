@@ -44,9 +44,18 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     /**
      * 
      */
-    int vie;
+    private int vie;
     final int NUMERO_DU_CANON;
     private boolean peutTirer = true;
+
+    /**
+     * Getter pour les vies, cela empêche les autres composantes du programme
+     * d'altérer les points de vies propres au canon.
+     * @return les points de vie du canon.
+     */
+    int getVie() {
+        return vie;
+    }
 
     /**
      * Constructeur pour l'objet de canon.
@@ -59,12 +68,12 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
             case 0:
                 image0 = Main.imageBank.CANON0;
                 image1 = Main.imageBank.SUBCANON1;
-                position = new Vecteur(0, Main.gameValues.canvasSize.y-101);
+                position = new Vecteur(0, Main.gameValues.canvasSize.y - 101);
                 break;
             case 1:
                 image0 = Main.imageBank.CANON1;
                 image1 = Main.imageBank.SUBCANON2;
-                position = new Vecteur(Main.gameValues.canvasSize.x-256, Main.gameValues.canvasSize.y-101);
+                position = new Vecteur(Main.gameValues.canvasSize.x - 256, Main.gameValues.canvasSize.y - 101);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
@@ -155,7 +164,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), Main.gameValues.canon.ANGLE_INCREMENT_CANON);
-        
+
     }
 
     /**

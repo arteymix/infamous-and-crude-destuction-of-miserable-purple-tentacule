@@ -24,7 +24,7 @@ import main.Main;
 
 /**
  * Classe contenant les méthodes de sérialisation utiles.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Serialization {
 
