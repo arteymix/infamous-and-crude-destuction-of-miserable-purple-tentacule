@@ -13,7 +13,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique;
+package graphique.component;
 
 import content.KeySetting;
 import java.awt.Color;
@@ -56,7 +56,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * d'altérer les points de vies propres au canon.
      * @return les points de vie du canon.
      */
-    int getVie() {
+    public int getVie() {
         return vie;
     }
 
@@ -69,13 +69,13 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
 
         switch (numeroDuCanon) {
             case 0:
-                image0 = Main.imageBank.SHIP_1;
-                image1 = Main.imageBank.SUBCANON_1;
+                image0 = Main.imageBank.ship1;
+                image1 = Main.imageBank.subcanon1;
                 position = new Vecteur(0, Main.gameValues.canvasSize.y - 101);
                 break;
             case 1:
-                image0 = Main.imageBank.SHIP_2;
-                image1 = Main.imageBank.SUBCANON_2;
+                image0 = Main.imageBank.ship2;
+                image1 = Main.imageBank.subcanon2;
                 position = new Vecteur(Main.gameValues.canvasSize.x - 256, Main.gameValues.canvasSize.y - 101);
                 break;
         }

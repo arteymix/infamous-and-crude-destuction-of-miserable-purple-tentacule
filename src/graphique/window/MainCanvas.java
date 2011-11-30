@@ -13,8 +13,11 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique;
+package graphique.window;
 
+import graphique.event.DecorFlottant;
+import graphique.component.Ovni;
+import graphique.component.Canon;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -83,10 +86,10 @@ public final class MainCanvas extends JComponent implements Serializable {
             // Le background est dessiné ici.
             switch (Main.gameValues.level) {
                 case 0:
-                    g.drawImage(Main.imageBank.BACKGROUND, 0, 0,(int)Main.gameValues.canvasSize.x,(int)Main.gameValues.canvasSize.y, null);
+                    g.drawImage(Main.imageBank.background, 0, 0,(int)Main.gameValues.canvasSize.x,(int)Main.gameValues.canvasSize.y, null);
                     break;
                 case 1:
-                    g.drawImage(Main.imageBank.BACKGROUND, 0, 0,1024,768, null);
+                    g.drawImage(Main.imageBank.background, 0, 0,1024,768, null);
             }
         }
         switch (activity) {

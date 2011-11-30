@@ -13,8 +13,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique;
+package graphique.component;
 
+import graphique.event.Explosion;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
@@ -46,7 +47,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     public ProjectileEnnemi(Vecteur init, int id) {
         position = new Vecteur(init.x, init.y);
 
-        image0 = Main.imageBank.PROJECTILE_ENNEMI;
+        image0 = Main.imageBank.projectileEnnemi;
 
 
     }

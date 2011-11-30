@@ -18,8 +18,9 @@ package main;
 import content.GameValues;
 import content.Highscores;
 import content.images.ImageBank;
-import graphique.Canon;
-import graphique.InterfaceGraphique;
+import graphique.component.Canon;
+import graphique.window.InterfaceGraphique;
+import graphique.event.BossInkScreen;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
@@ -97,6 +98,7 @@ public final class Main implements Serializable {
         interfaceGraphique.keyBoardListener.start();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();
+        //gameValues.composantesDessinables.add(new BossInkScreen());
     }
 
     /**

@@ -13,54 +13,48 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package main;
+package graphique.component;
 
-import content.SoundBank;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import util.Collisionable;
 import util.Dessinable;
-import util.SoundManager;
 
 /**
- * Cette classe Java montre des exemples d'utilisation de l'API à titre de 
- * référence pour le développement du jeu.
- * @author guillaume
+ * Objet dessinable pour les powerups.
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public class Exemples extends Dessinable implements Collisionable {
-
-    private Rectangle rectangle;
-
-    /**
-     * Constructeur d'un exemple.
-     */
-    public Exemples() {
-        this.image0 = Main.imageBank.BOSS;
-        rectangle = new Rectangle(10, 10, 10, 10);
-    }
+public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawImage(image0, 1, 1, 1, 1, null);
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        g.drawLine(1, 1, 1, 1);
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public Rectangle getRectangle() {
-        return rectangle;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void collision(Collisionable c) {
-        SoundManager.play(SoundBank.MISSILE);
+        // Un powerup peut peut être détruit par sa collision avec un projectile ennemi ou un ovni
+        if (c instanceof ProjectileEnnemi | c instanceof Ovni) {
+            this.isDessinable = false;
+        }
     }
 
     @Override
     public int getDommage() {
-        return 5;
+        // Un powerup ne cause pas de dommages à son contact, sauf exceptions.
+        return 0;
     }
+
+   
 }

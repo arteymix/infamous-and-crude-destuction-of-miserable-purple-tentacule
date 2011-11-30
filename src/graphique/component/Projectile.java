@@ -13,8 +13,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique;
+package graphique.component;
 
+import graphique.event.Explosion;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
@@ -41,7 +42,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
     public Projectile(Vecteur point, Vecteur orientation, int id) {
         position = point;
         vitesse = orientation;
-        image0 = Main.imageBank.PROJECTILE;
+        image0 = Main.imageBank.projectile;
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }
 

@@ -15,7 +15,7 @@
  */
 package util;
 
-import graphique.Canon;
+import graphique.component.Canon;
 
 import java.util.ArrayList;
 import main.Main;

@@ -1,4 +1,4 @@
-package graphique;
+package graphique.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -110,35 +110,35 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         switch (id) {
             case 1://img enemi et enemi or et vie
                 if (r.nextInt(10000) == 1) {
-                    image0 = Main.imageBank.ENNEMI_OR;
+                    image0 = Main.imageBank.ennemiOr;
                     vie = 30;
                 }
                 else {
-                    image0 = Main.imageBank.ENNEMI;
+                    image0 = Main.imageBank.ennemi;
                     vie = 10;
                 }
                 break;
-            case 2:// image0 supersonic et supersonicor
+            case 2:// image0 ennemiSupersonic et supersonicor
                 if (r.nextInt(10000) == 1) {
-                    image0 = Main.imageBank.SUPERSONIC_OR;
+                    image0 = Main.imageBank.ennemiSupersonicOr;
                     vie = 200 * Main.gameValues.level;
                     vitesseX = 3;
                 }
                 else {
-                    image0 = Main.imageBank.SUPERSONIC;
+                    image0 = Main.imageBank.ennemiSupersonic;
                     vitesseX = 2;
                 }
                 break;
             case 3:// image0 boss 1
-                image0 = Main.imageBank.BOSS;
+                image0 = Main.imageBank.boss;
                 vie = 1000;
                 break;
             case 4:// image0 boss 2
-                image0 = Main.imageBank.BOSS;
+                image0 = Main.imageBank.boss;
                 vie = 1500;
                 break;
             case 5:// image0 boss 3
-                image0 = Main.imageBank.BOSS;
+                image0 = Main.imageBank.boss;
                 vie = 2000;
                 break;
             default:
@@ -154,7 +154,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
             case 1:// mouvement d'un enemi normal 
                 x += 3 * vitesseX;
                 break;
-            case 2:// mouvement du supersonic
+            case 2:// mouvement du ennemiSupersonic
                 x -= 3 * vitesseX;
                 break;
             case 3:// mouvement du boss 1
@@ -236,7 +236,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
             case 1://Grandeur du rectangle d'un enemi normal 
                 longeur = hauteur = 100;
                 break;
-            case 2:// Grandeur du rectangle  du supersonic
+            case 2:// Grandeur du rectangle  du ennemiSupersonic
                 longeur = 150;
                 hauteur = 100;
                 break;

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package graphique;
+package graphique.event;
 
 import java.awt.Graphics;
 import util.Dessinable;
@@ -14,7 +14,7 @@ import main.Main;
  * des explosions de toutes tailles!
  * @author guillaume
  */
-class Explosion extends Dessinable {
+public class Explosion extends Dessinable {
 
     private int nbFrame = 10;
     private final Vecteur POSITION;
@@ -26,7 +26,7 @@ class Explosion extends Dessinable {
      */
     public Explosion(Vecteur position) {
         POSITION = position;
-        image0 = Main.imageBank.EXPLOSION;
+        image0 = Main.imageBank.explosion;
     }
 
     @Override

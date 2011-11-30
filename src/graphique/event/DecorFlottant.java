@@ -13,7 +13,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique;
+package graphique.event;
 
 import java.awt.Graphics;
 import java.io.Serializable;
@@ -34,8 +34,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
     private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
 
     private DecorFlottant() {
-        image0 = Main.imageBank.NUAGE;
-
+        image0 = Main.imageBank.decorFlottant;
     }
    
 

@@ -13,10 +13,10 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique;
+package graphique.window;
 
 import content.KeySetting;
-import graphique.MainCanvas.Activity;
+import graphique.window.MainCanvas.Activity;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
