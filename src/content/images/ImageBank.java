@@ -37,15 +37,13 @@ public class ImageBank implements Serializable {
     public Image SUPERSONIC_OR;
     public Image BOSS;
     public Image PROJECTILE;
-      public Image PROJECTILE_ENNEMI;
+    public Image PROJECTILE_ENNEMI;
     public Image PROJECTILE_ENNEMI_OR;
     public Image PROJECTILE_SUPERSONIC;
     public Image PROJECTILE_SUPERSONIC_OR;
     public Image PROJECTILE_BOSS;
     public Image EXPLOSION;
 
-    
-    
     public void setStage(int i) {
 
 
@@ -60,14 +58,12 @@ public class ImageBank implements Serializable {
         ENNEMI_OR = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ennemi.gif"));
         SUPERSONIC_OR = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ennemiSupersonicOr.gif"));
         BOSS = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/boss.gif"));
-       PROJECTILE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectile.gif"));
-       PROJECTILE_ENNEMI = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemi.gif"));
-       PROJECTILE_ENNEMI_OR = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiOr.gif"));
+        PROJECTILE = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectile.gif"));
+        PROJECTILE_ENNEMI = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemi.gif"));
+        PROJECTILE_ENNEMI_OR = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiOr.gif"));
         PROJECTILE_SUPERSONIC = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiSupersonic.gif"));
         PROJECTILE_SUPERSONIC_OR = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiSupersonicOr.gif"));
         PROJECTILE_BOSS = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileBoss.gif"));
-EXPLOSION= Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/explosion.gif"));
+        EXPLOSION = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/explosion.gif"));
     }
-
-    
 }

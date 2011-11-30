@@ -15,7 +15,7 @@
  */
 package content;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import util.Dessinable;
 import util.Vecteur;
@@ -27,7 +27,7 @@ import util.Vecteur;
  * faciliter l'implémentation de mode de jeu.
  * @author Guillaume Poirier-Morency et Nafie Hamrani
  */
-public final class GameValues implements Serializable {
+public final class GameValues {
 
     public long remainingTime = 100;
 
@@ -125,7 +125,7 @@ public final class GameValues implements Serializable {
     /**
      * 
      */
-    public class DecorFlottantValues implements Serializable {
+    public class DecorFlottantValues  {
 
         /**
          * 
@@ -136,7 +136,7 @@ public final class GameValues implements Serializable {
     /**
      * 
      */
-    public class CanonValues implements Serializable {
+    public class CanonValues  {
 
         /**
          * 
@@ -157,7 +157,7 @@ public final class GameValues implements Serializable {
         /**
          * 
          */
-        public final int LATENCE_DU_TIR = 250;
+        public final int LATENCE_DU_TIR = 0; // 250
         /**
          * 
          */
@@ -170,7 +170,7 @@ public final class GameValues implements Serializable {
     /**
      * 
      */
-    public class ProjectileValues implements Serializable {
+    public class ProjectileValues  {
 
         /**
          * 
@@ -181,7 +181,7 @@ public final class GameValues implements Serializable {
     /**
      * 
      */
-    public class ProjectileEnnemiValues implements Serializable {
+    public class ProjectileEnnemiValues  {
 
         /**
          *
@@ -192,7 +192,7 @@ public final class GameValues implements Serializable {
     /**
      * 
      */
-    public class OvniValues implements Serializable {
+    public class OvniValues  {
 
         /**
          * 
