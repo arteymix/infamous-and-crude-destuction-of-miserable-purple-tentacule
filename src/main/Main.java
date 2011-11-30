@@ -21,8 +21,6 @@ import content.images.ImageBank;
 import graphique.InterfaceGraphique;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.Serialization;
 import util.SoundManager;
@@ -32,6 +30,53 @@ import util.SoundManager;
  * @author Guillaume Poirier-Morency
  */
 public final class Main implements Serializable {
+
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    public static final int CODE_DE_SORTIE_OK = 0,
+            CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
+            CODE_DE_SORTIE_AUTRE = 2;
+    /**
+     * Constantes pour le niveau de jeu.
+     */
+    public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
+    public static GameValues gameValues;
+    private static Thread rendu;
+    private static InterfaceGraphique interfaceGraphique;
+    /**
+     * Objet pour la banque d'images qui contient des images pour le rendu.
+     */
+    public static ImageBank imageBank;
+    /**
+     * Objet contenant les highscores du joueur.
+     */
+    public static Highscores highscore = new Highscores();
+    /**
+     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
+     * avec un serveur de sons.
+     */
+    public static SoundManager son = new SoundManager();
+
+    /**
+     * Méthode principale du programme.
+     * @param args est un tableau d'arguments provenant de la ligne de commande.
+     * @throws IOException  
+     */
+    public static void main(String[] args) throws IOException {
+        gameValues = new GameValues();
+        imageBank = new ImageBank();
+        imageBank.setStage(1);
+        interfaceGraphique = new InterfaceGraphique();
+        rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
+        rendu.start();
+    }
 
     /**
      * Une fois toutes les variables accessibles depuis gameValue, il devient
@@ -89,27 +134,6 @@ public final class Main implements Serializable {
         JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
         close(0);
     }
-    /**
-     * Constantes pour le niveau de jeu.
-     */
-    public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
-    
-    public static GameValues gameValues;
-    private static Thread rendu;
-    private static InterfaceGraphique interfaceGraphique;
-    /**
-     * Objet pour la banque d'images qui contient des images pour le rendu.
-     */
-    public static ImageBank imageBank;
-    /**
-     * Objet contenant les highscores du joueur.
-     */
-    public static Highscores highscore = new Highscores();
-    /**
-     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
-     * avec un serveur de sons.
-     */
-    public static SoundManager son = new SoundManager();
 
     /**
      * Lance la fermeture du jeu. Pour l'instant, cette méthode ne contient
@@ -139,31 +163,5 @@ public final class Main implements Serializable {
             interfaceGraphique.dispose();
             System.exit(i);
         }
-    }
-    /**
-     * java -jar TP2.jar -q
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    public static final int CODE_DE_SORTIE_OK = 0,
-            CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
-            CODE_DE_SORTIE_AUTRE = 2;
-
-    /**
-     * Méthode principale du programme.
-     * @param args est un tableau d'arguments provenant de la ligne de commande.
-     * @throws IOException  
-     */
-    public static void main(String[] args) throws IOException {
-        gameValues = new GameValues();
-        imageBank = new ImageBank();
-        imageBank.setStage(1);
-        interfaceGraphique = new InterfaceGraphique();
-        rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
-        rendu.start();      
     }
 }

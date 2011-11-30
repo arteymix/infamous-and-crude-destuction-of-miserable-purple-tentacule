@@ -18,7 +18,6 @@ package graphique;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.io.Serializable;
 import main.Main;
 import util.Collisionable;
@@ -31,10 +30,7 @@ import util.Vecteur;
 public final class Projectile extends Dessinable implements Collisionable, Serializable {
 
     private Vecteur position, vitesse = new Vecteur(8, -8);
-    
     private Rectangle rectangle;
-
-    
 
     /**
      * Un Projectile est un objet qui représente un tir de canon.
@@ -46,7 +42,6 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
         position = point;
         vitesse = orientation;
         image0 = Main.imageBank.PROJECTILE;
-        
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
     }
 
@@ -83,9 +78,9 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
     public void collision(Collisionable c) {
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             // Le projectile a frappé quelque chose, il sera détruit!
-            
+
             this.isDessinable = false;
-             Main.gameValues.composantesDessinables.add(new Explosion(this.position));
+            Main.gameValues.composantesDessinables.add(new Explosion(this.position));
             System.out.println(this + " reçoit collision de " + c);
         }
     }

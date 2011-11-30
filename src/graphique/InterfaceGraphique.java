@@ -148,8 +148,10 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                         // On inverse la valeur du show highscores...
                         if (mainCanvas.activity.equals(Activity.JEU)) {
                             mainCanvas.activity = Activity.HIGHSCORES;
+                            Main.gameValues.showHighscores = true;
                         } else {
                             mainCanvas.activity = Activity.JEU;
+                            Main.gameValues.showHighscores = false;
                         }
 
                         break;

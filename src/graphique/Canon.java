@@ -18,9 +18,9 @@ package graphique;
 import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
+//import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
+//import java.awt.geom.AffineTransform;
 
 import java.io.Serializable;
 import main.Main;
@@ -104,6 +104,9 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         if (e == null) {
             // null check, un évenement null peut arriver.
             return;
+        }
+        if(Main.gameValues.isPaused | Main.gameValues.showHighscores) {
+        return;
         }
         if (NUMERO_DU_CANON == 0) {
             switch (e) {
@@ -227,17 +230,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        ////////////
-        /*
-        Graphics2D g2d = (Graphics2D) g;
-        AffineTransform affineTransform = new AffineTransform();
-        //rotate the image0 
-        affineTransform.translate(piedDeCanon().x + 20, piedDeCanon().y);
-        affineTransform.rotate(Math.toRadians(180));
-        //draw the image0 using the AffineTransform 
-        g2d.drawImage(imageSubCanon, affineTransform, null);
-        ///*/
-        AffineTransform at = new AffineTransform();
+        //AffineTransform at = new AffineTransform();
         //at.rotate(Main.gameValues.canon.ANGLE_INCREMENT_CANON, piedDeCanon().x,- piedDeCanon().y);
         //Graphics2D g2d = (Graphics2D)g;
         //g2d.drawImage(image1, at, null);
