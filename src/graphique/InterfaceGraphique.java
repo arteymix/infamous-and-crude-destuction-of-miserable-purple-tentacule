@@ -53,7 +53,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      * 
      */
     public MainCanvas mainCanvas = new MainCanvas();
-    private KeyBoardListener keyBoardListener;
+    public KeyBoardListener keyBoardListener;
 
     private void configurerMenus() {
         mitemQuitter.addActionListener(new ActionListener() {
@@ -135,9 +135,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      * Constructeur pour générer l'interface graphique.
      */
     public InterfaceGraphique() {
-        mainCanvas.canon1 = new Canon(0);
-        mainCanvas.canon2 = new Canon(1);
-        keyBoardListener = new KeyBoardListener(mainCanvas.canon1, mainCanvas.canon2);
+       
         configurerMenus();
         /* Le KeyListener du canon est implémenté dans KeyBoardListener afin
          * de rendre possible le multitouch. 
@@ -182,14 +180,13 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             }
         });
         // On rajoute le canon 1 par défaut.
-        Main.gameValues.composantesDessinables.add(mainCanvas.canon1);
-        Main.gameValues.composantesDessinables.add(mainCanvas.canon2);
+        
         add(mainCanvas);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
         pack();
         setVisible(true);
         setTitle(Traductions.get("title"));
-        keyBoardListener.start();
+        
     }
 
     /**

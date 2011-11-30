@@ -18,10 +18,12 @@ package main;
 import content.GameValues;
 import content.Highscores;
 import content.images.ImageBank;
+import graphique.Canon;
 import graphique.InterfaceGraphique;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
+import util.KeyBoardListener;
 import util.Serialization;
 import util.SoundManager;
 
@@ -47,8 +49,14 @@ public final class Main implements Serializable {
      * Constantes pour le niveau de jeu.
      */
     public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
+    /**
+     * 
+     */
     public static GameValues gameValues;
     private static Thread rendu;
+    /**
+     * 
+     */
     public static InterfaceGraphique interfaceGraphique;
     /**
      * Objet pour la banque d'images qui contient des images pour le rendu.
@@ -63,6 +71,13 @@ public final class Main implements Serializable {
      * avec un serveur de sons.
      */
     public static SoundManager son = new SoundManager();
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    public static Canon canon1, canon2;
 
     /**
      * Méthode principale du programme.
@@ -73,7 +88,13 @@ public final class Main implements Serializable {
         gameValues = new GameValues();
         imageBank = new ImageBank();
         imageBank.setStage(1);
+        canon1 = new Canon(0);
+        canon2 = new Canon(1);
+        gameValues.composantesDessinables.add(canon1);
+        gameValues.composantesDessinables.add(canon2);
         interfaceGraphique = new InterfaceGraphique();
+        interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
+        interfaceGraphique.keyBoardListener.start();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();
     }
@@ -107,6 +128,12 @@ public final class Main implements Serializable {
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
             gameValues = new GameValues();
             imageBank.setStage(1);
+            canon1 = new Canon(0);
+            canon2 = new Canon(1);
+            gameValues.composantesDessinables.add(canon1);
+            gameValues.composantesDessinables.add(canon2);
+            interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
+            interfaceGraphique.keyBoardListener.start();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
         }

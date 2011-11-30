@@ -35,7 +35,7 @@ import util.Traductions;
  */
 public final class MainCanvas extends JComponent implements Serializable {
 
-    Canon canon1, canon2;
+    
 
     /**
      * Constructeur pour le canvas où le rendu est effectué.
@@ -74,8 +74,8 @@ public final class MainCanvas extends JComponent implements Serializable {
             g.drawString(Traductions.get("debug.modedebogage") + " : " + (Main.gameValues.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
             g.drawString("Nombre de composantes dessinable"+" : " + Main.gameValues.composantesDessinables.size() + " composantes", 5, 60);
             g.drawString("Points : " + Main.gameValues.points + " points", 5, 75);
-            g.drawString("Vies canon 1 : " + canon1.getVie() + " vies", 5, 90);
-            g.drawString("Vies canon 2 : " + canon2.getVie() + " vies", 5, 105);
+            g.drawString("Vies canon 1 : " + Main.canon1.getVie() + " vies", 5, 90);
+            g.drawString("Vies canon 2 : " + Main.canon2.getVie() + " vies", 5, 105);
             g.drawString("Temps restant : " +Main.gameValues.remainingTime, 5, 120);
             g.drawRect(0, 0, (int) Main.gameValues.canvasSize.x - 1, (int) Main.gameValues.canvasSize.y - 1);
 
