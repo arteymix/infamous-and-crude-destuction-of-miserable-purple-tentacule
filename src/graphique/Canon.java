@@ -267,6 +267,8 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         if (vie < 0) {
             this.isDessinable = false;
+            // Un canon est mort, la partie est fini!
+            Main.terminerPartie();
         }
     }
 

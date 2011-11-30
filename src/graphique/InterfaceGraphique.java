@@ -83,6 +83,14 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             }
         });
+        mitemNouvellePartie.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Main.restart();
+            }
+        });
+        
         menuFichier.add(mitemNouvellePartie);
         menuFichier.addSeparator();
         menuFichier.add(cbmitemDebug);

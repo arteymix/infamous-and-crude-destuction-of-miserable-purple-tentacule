@@ -39,13 +39,14 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
         if ((h = (Highscores) Serialization.unSerialize("highscores.serial")) != null) {
             super.putAll(h);
             System.out.println("Un fichier de highscores a pu être récupéré et sera utilisé.");
+            System.out.println("" + this.NOOB_OBTAINED + this.LEET_OBTAINED + this.BAZINGA_OBTAINED);
         } else {
             System.out.println("Aucun fichier de highscores n'a été trouvé, un nouveau fichier sera généré!");
         }
     }
-    
+
     public void serializeOnTheHeap() {
-    Serialization.serialize(this, "highscores.serial");
+        Serialization.serialize(this, "highscores.serial");
     }
     /**
      * 

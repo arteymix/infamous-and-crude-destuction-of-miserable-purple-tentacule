@@ -49,7 +49,7 @@ public final class Main implements Serializable {
     public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
     public static GameValues gameValues;
     private static Thread rendu;
-    private static InterfaceGraphique interfaceGraphique;
+    public static InterfaceGraphique interfaceGraphique;
     /**
      * Objet pour la banque d'images qui contient des images pour le rendu.
      */
@@ -103,6 +103,15 @@ public final class Main implements Serializable {
      * Méthode appellée lors qu'une nouvelle partie est demandée.
      */
     public static void restart() {
+        Main.gameValues.isPaused = true;
+        if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
+            gameValues = new GameValues();
+            imageBank.setStage(1);
+            rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
+            rendu.start();
+        }
+        Main.gameValues.isPaused = false;
+
     }
 
     /**
@@ -117,6 +126,7 @@ public final class Main implements Serializable {
         if (gameValues.points > 1000) {
             if (!highscore.LEET_OBTAINED) {
                 achievements += "1337 obtenu!\n";
+
                 highscore.LEET_OBTAINED = true;
             } else {
                 // Leet déjà obtenu!
