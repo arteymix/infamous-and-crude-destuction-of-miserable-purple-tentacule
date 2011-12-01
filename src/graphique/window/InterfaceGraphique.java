@@ -210,7 +210,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      */
     @Override
     public void run() {
-        Main.gameValues.timerSeconds++;
+        
         while (Main.gameValues.isRunning) {
 
             Main.gameValues.time = System.currentTimeMillis();

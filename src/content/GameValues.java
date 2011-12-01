@@ -79,7 +79,7 @@ public final class GameValues {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public long timerSeconds = 0;
+    public long timerSeconds = 15;
     /**
      * ArrayList des composantes dessinables.
      */

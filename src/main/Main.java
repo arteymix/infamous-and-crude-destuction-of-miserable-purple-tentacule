@@ -16,6 +16,8 @@
 package main;
 
 import content.GameValues;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Highscores;
 import content.SoundBank;
 import content.images.ImageBank;
@@ -70,9 +72,8 @@ public final class Main {
      * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
      * avec un serveur de sons.
      */
-    public static SoundBank soundBank ;
+    public static SoundBank soundBank;
     public static SoundManager son;
-    
     /**
      * 
      */
@@ -105,6 +106,7 @@ public final class Main {
         interfaceGraphique.keyBoardListener.start();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();
+        
         //gameValues.composantesDessinables.add(new BossInkScreen());
     }
 
@@ -165,15 +167,18 @@ public final class Main {
                 achievements += "1337 obtenu!\n";
 
                 highscore.LEET_OBTAINED = true;
-            } else {
+            }
+            else {
                 // Leet déjà obtenu!
             }
 
-        } else if (gameValues.points > 250) {
+        }
+        else if (gameValues.points > 250) {
             if (!highscore.PRO_OBTAINED) {
                 achievements += "Pro obtenu!\n";
                 highscore.PRO_OBTAINED = true;
-            } else {
+            }
+            else {
                 // pro deja obtenu
             }
         }
@@ -193,7 +198,8 @@ public final class Main {
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {
             Thread.sleep((int) gameValues.latency);
-        } catch (InterruptedException ex) {
+        }
+        catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         // Le thread de swing est stoppé
@@ -203,7 +209,8 @@ public final class Main {
             highscore.serializeOnTheHeap();
 
             System.exit(i);
-        } else {
+        }
+        else {
             System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
             // Le thread de swing est stoppé            
             System.exit(i);

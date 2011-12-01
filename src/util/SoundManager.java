@@ -30,9 +30,9 @@ public class SoundManager extends JApplet {
      * Joue le AudioInputStream en entrée.
      * @param ais 
      */
-    
+    @Override
     public void play(URL ais) {
-    AudioClip ac = Applet.newAudioClip(ais)  ;
+    AudioClip ac = Applet.newAudioClip(ais);
      ac.play();
     }
 }

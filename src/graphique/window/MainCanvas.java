@@ -94,6 +94,9 @@ public final class MainCanvas extends JComponent implements Serializable {
         }
         switch (activity) {
             case JEU:
+                // On incrémente le temps du temps de latence.
+                Main.gameValues.timerSeconds += Main.gameValues.latency;
+                System.out.println(Main.gameValues.timerSeconds);
                 // Le jeu!
                 ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
                 ArrayList<Dessinable> aEnlever = new ArrayList<Dessinable>();
@@ -150,6 +153,13 @@ public final class MainCanvas extends JComponent implements Serializable {
                     }
                 }
                 //</editor-fold>
+                
+                /////////
+                // L'interface utilisateur est dessnié ici
+                if(!Main.gameValues.isDebugEnabled) {
+                drawUserInterface(g);
+                } 
+                /////////////
                 break;
             case HIGHSCORES:
                 /* En cas où c'est le rendu des meilleurs scores qui est activé,
@@ -180,5 +190,11 @@ public final class MainCanvas extends JComponent implements Serializable {
                 }
         }
         Main.gameValues.paintDone = true;
+    }
+    
+    public void drawUserInterface(Graphics g) {
+    
+    
+    
     }
 }
