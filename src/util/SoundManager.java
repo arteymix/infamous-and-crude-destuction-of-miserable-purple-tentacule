@@ -15,19 +15,24 @@
  */
 package util;
 
-import java.io.InputStream;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
+import javax.swing.JApplet;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
-public class SoundManager {
+public class SoundManager extends JApplet {
 
     /**
      * Joue le AudioInputStream en entrée.
      * @param ais 
      */
-    public static void play(InputStream ais) {
-     
+    
+    public void play(URL ais) {
+    AudioClip ac = Applet.newAudioClip(ais)  ;
+     ac.play();
     }
 }

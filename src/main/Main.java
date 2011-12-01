@@ -17,6 +17,7 @@ package main;
 
 import content.GameValues;
 import content.Highscores;
+import content.SoundBank;
 import content.images.ImageBank;
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
@@ -70,7 +71,9 @@ public final class Main implements Serializable {
      * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
      * avec un serveur de sons.
      */
-    public static SoundManager son = new SoundManager();
+    public static SoundBank soundBank ;
+    public static SoundManager son;
+    
     /**
      * 
      */
@@ -89,6 +92,8 @@ public final class Main implements Serializable {
             System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
         }
+        soundBank = new SoundBank();
+        son = new SoundManager();
         gameValues = new GameValues();
         imageBank = new ImageBank();
         imageBank.setStage(1);
@@ -141,7 +146,7 @@ public final class Main implements Serializable {
             interfaceGraphique.keyBoardListener.start();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
-            
+
         }
         Main.gameValues.isPaused = false;
 
@@ -174,7 +179,7 @@ public final class Main implements Serializable {
             }
         }
         highscore.serializeOnTheHeap();
-               JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
+        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
         close(0);
     }
 
@@ -193,7 +198,7 @@ public final class Main implements Serializable {
             ex.printStackTrace();
         }
         // Le thread de swing est stoppé
-        interfaceGraphique.dispose();        
+        interfaceGraphique.dispose();
         if (i == CODE_DE_SORTIE_OK) {
             // On sérialise les highscore à la fermeture.
             highscore.serializeOnTheHeap();

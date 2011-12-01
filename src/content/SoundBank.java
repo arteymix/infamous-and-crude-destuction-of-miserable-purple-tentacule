@@ -15,7 +15,7 @@
  */
 package content;
 
-import java.io.InputStream;
+import java.net.URL;
 
 /**
  * Banque de sons pour le TP2. Les sons sont statiques pour une question 
@@ -30,5 +30,8 @@ public final class SoundBank {
     /**
      * 
      */
-    public final static InputStream MISSILE = ClassLoader.getSystemResourceAsStream("content/sounds/nuage.png");
+    public URL explosion = ClassLoader.getSystemResource("content/sounds/explosion.wav");
+
+    
+   
 }

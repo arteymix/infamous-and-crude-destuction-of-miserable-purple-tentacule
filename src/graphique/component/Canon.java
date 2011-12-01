@@ -204,6 +204,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
     private void tirer() {
 
         if (peutTirer) {
+            //Main.son.play(Main.soundBank.explosion);
             Main.gameValues.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
