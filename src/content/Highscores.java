@@ -30,7 +30,10 @@ import util.Serialization;
  */
 public final class Highscores extends HashMap<String, Integer> implements Serializable {
 
-    
+    public Highscores() {
+        super();
+        put("Guillaume", 999999999);
+    }
 
     public void serializeOnTheHeap() {
         Serialization.serialize(this, "highscores.serial");
@@ -96,21 +99,23 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      * @return un tableau de String contenant les scores des joueurs.
      */
     public String[] getScores() {
-        // TODO Finir l'implémentation des highscores ici!        
+        // TODO Finir l'implémentation des highscores ici!  
+
         String[] highscores = new String[this.size()];
         int i = 0;
-
         for (String s : this.keySet()) {
             highscores[i] = s + " | " + this.get(s);
         }
+        // Tri du dictionnaire
+        for (int j = 0; j < highscores.length; j++) {
+            for (int k = j; k < highscores.length; k++) {
+                if (Integer.parseInt(highscores[k].split(" ")[2]) > Integer.parseInt(highscores[j].split(" ")[2])) {
+                    String temp = highscores[k];
+                    highscores[k] = highscores[j];
+                    highscores[j] = temp;
+                }
+            }
+        }
         return highscores;
-    }
-
-    /**
-     * Sérialize en cas de fermeture soudaine afin de protéger les scores.
-     */
-    public void close() {
-        Serialization.serialize(this, "highscores.serial");
-        System.out.println("Les highscores sont sauvegardés");
     }
 }

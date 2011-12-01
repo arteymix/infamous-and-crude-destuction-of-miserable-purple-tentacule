@@ -161,14 +161,18 @@ public final class MainCanvas extends JComponent implements Serializable {
                 } else {
                     g.setColor(Color.WHITE);
                 }
-                g.drawString(Main.highscore.toString(), x, 400);
-                g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours..."), x, 415);
-                g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours..."), x, 430);
-                g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours..."), x, 445);
-                g.drawString("Nuke " + (Main.highscore.NUKE_OBTAINED ? "complété!" : "en cours..."), x, 460);
-                g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours..."), x, 475);
-                g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours..."), x, 490);
-                g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours..."), x, 505);
+                int positionInit = 385;
+                for(String s : Main.highscore.getScores()) {
+                g.drawString(s, x, positionInit += 15);
+                }
+                
+                g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Nuke " + (Main.highscore.NUKE_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
                 if (Main.gameValues.isDebugEnabled) {
                     g.setColor(Color.WHITE);
                 } else {

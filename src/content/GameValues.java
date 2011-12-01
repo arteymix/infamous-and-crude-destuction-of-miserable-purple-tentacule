@@ -137,7 +137,7 @@ public final class GameValues {
      * 
      */
     public class CanonValues  {
-
+public final int CANON0_ID = 0, CANON1_ID = 1;
         /**
          * 
          */

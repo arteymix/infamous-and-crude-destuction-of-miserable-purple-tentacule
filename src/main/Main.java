@@ -86,6 +86,7 @@ public final class Main implements Serializable {
      */
     public static void main(String[] args) throws IOException {
         if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
+            System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
         }
         gameValues = new GameValues();
@@ -132,14 +133,15 @@ public final class Main implements Serializable {
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
             gameValues = new GameValues();
             imageBank.setStage(1);
-            canon1 = new Canon(0);
-            canon2 = new Canon(1);
+            canon1 = new Canon(gameValues.canon.CANON0_ID);
+            canon2 = new Canon(gameValues.canon.CANON1_ID);
             gameValues.composantesDessinables.add(canon1);
             gameValues.composantesDessinables.add(canon2);
             interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
             interfaceGraphique.keyBoardListener.start();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
+            
         }
         Main.gameValues.isPaused = false;
 
@@ -172,7 +174,7 @@ public final class Main implements Serializable {
             }
         }
         highscore.serializeOnTheHeap();
-        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
+               JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
         close(0);
     }
 
@@ -183,25 +185,23 @@ public final class Main implements Serializable {
      * @param i est le statut de fermeture.
      */
     public static void close(int i) {
+        Main.gameValues.isRunning = false;
+        // On attent au moins la latence pour être sur que tous les threads sont stoppés.
+        try {
+            Thread.sleep((int) gameValues.latency);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        // Le thread de swing est stoppé
+        interfaceGraphique.dispose();        
         if (i == CODE_DE_SORTIE_OK) {
-            highscore.close();
-            Main.gameValues.isRunning = false;
-            /* On récupère 
-             * 
-             */
-            i = Serialization.serialize(gameValues, "save.serial");
-            if (i == CODE_DE_SORTIE_OK) {
-                System.out.println("Save was successful!");
-            } else {
-                System.out.println("Save failed! Code de sortie : " + i);
-            }
-            // Le thread de swing est stoppé
-            interfaceGraphique.dispose();
+            // On sérialise les highscore à la fermeture.
+            highscore.serializeOnTheHeap();
+
             System.exit(i);
         } else {
             System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
-            // Le thread de swing est stoppé
-            interfaceGraphique.dispose();
+            // Le thread de swing est stoppé            
             System.exit(i);
         }
     }
