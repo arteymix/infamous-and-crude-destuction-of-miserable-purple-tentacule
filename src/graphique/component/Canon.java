@@ -19,9 +19,11 @@ import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
 //import java.awt.Graphics2D;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 //import java.awt.geom.AffineTransform;
 
+import java.awt.geom.AffineTransform;
 import java.io.Serializable;
 import main.Main;
 import util.Collisionable;
@@ -250,10 +252,10 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        //AffineTransform at = new AffineTransform();
-        //at.rotate(Main.gameValues.canon.ANGLE_INCREMENT_CANON, piedDeCanon().x,- piedDeCanon().y);
-        //Graphics2D g2d = (Graphics2D)g;
-        //g2d.drawImage(image1, at, null);
+//        AffineTransform at = new AffineTransform();
+//        at.rotate(new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2).orientation(),500,500);
+//        Graphics2D g2d = (Graphics2D)g;
+//        g2d.drawImage(image1, at, null);
         g.drawImage(image1, xPoints[1], yPoints[1], null);
         g.drawImage(image0, (int) position.x, (int) position.y, null);
         g.setColor(Color.RED);

@@ -82,7 +82,7 @@ public final class GameValues {
     /**
      * ArrayList des composantes dessinables.
      */
-    public boolean isDebugEnabled = true;
+    public boolean isDebugEnabled = false;
     /**
      * 
      */
