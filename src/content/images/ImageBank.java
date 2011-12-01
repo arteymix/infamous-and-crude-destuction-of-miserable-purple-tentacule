@@ -43,6 +43,7 @@ public class ImageBank implements Serializable {
     public Image projectileEnnemiSupersonicOr;
     public Image projectileBoss;
     public Image explosion;
+    public Image powerup;
     
     public final Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/icon.png"));
 
@@ -67,5 +68,6 @@ public class ImageBank implements Serializable {
         projectileEnnemiSupersonicOr = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiSupersonicOr.gif"));
         projectileBoss = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileBoss.gif"));
         explosion = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/explosion.gif"));
+        powerup = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/powerup.gif"));
     }
 }

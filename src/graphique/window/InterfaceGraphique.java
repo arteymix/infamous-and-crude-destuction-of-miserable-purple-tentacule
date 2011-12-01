@@ -17,6 +17,8 @@ package graphique.window;
 
 import content.KeySetting;
 import graphique.window.MainCanvas.Activity;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
@@ -184,6 +186,21 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         add(mainCanvas);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
+        ////////////////////////////////////////////////////////////////
+        // Code pour centrer la fenêtre
+        // Source : http://www.java-forums.org/awt-swing/3491-jframe-center-screen.html
+        // Get the size of the screen
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
+        // Determine the new location of the window
+        int w = this.getSize().width;
+        int h = this.getSize().height;
+        int x = (dim.width - w) / 2;
+        int y = (dim.height - h) / 2;
+
+        // Move the window
+        this.setLocation(x, y);
+        ///////////////////////////////////////////////////////////////
         setVisible(true);
         setTitle(Traductions.get("title"));
     }

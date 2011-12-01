@@ -75,7 +75,7 @@ public class KeyBoardListener extends Thread {
      * @param i vérifie si la liste contient la clé i.
      * @return true si la clé est contenue, false autrement.
      */
-    public synchronized boolean contains(Integer i) {
+    public boolean contains(Integer i) {
         return enabledKeys.contains(i);
     }
 

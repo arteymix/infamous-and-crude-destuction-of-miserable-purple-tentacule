@@ -16,13 +16,12 @@
 package main;
 
 import content.GameValues;
-import content.Highscores;
+import util.Highscores;
 import content.SoundBank;
 import content.images.ImageBank;
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
 import java.io.IOException;
-import java.io.Serializable;
 import javax.swing.JOptionPane;
 import util.KeyBoardListener;
 import util.Serialization;
@@ -32,7 +31,7 @@ import util.SoundManager;
  *
  * @author Guillaume Poirier-Morency
  */
-public final class Main implements Serializable {
+public final class Main {
 
     /**
      * 
@@ -97,8 +96,8 @@ public final class Main implements Serializable {
         gameValues = new GameValues();
         imageBank = new ImageBank();
         imageBank.setStage(1);
-        canon1 = new Canon(0);
-        canon2 = new Canon(1);
+        canon1 = new Canon(gameValues.canon.CANON0_ID);
+        canon2 = new Canon(gameValues.canon.CANON1_ID);
         gameValues.composantesDessinables.add(canon1);
         gameValues.composantesDessinables.add(canon2);
         interfaceGraphique = new InterfaceGraphique();

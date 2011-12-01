@@ -18,8 +18,10 @@ package graphique.component;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.Serializable;
+import main.Main;
 import util.Collisionable;
 import util.Dessinable;
+import util.Vecteur;
 
 /**
  * Objet dessinable pour les powerups.
@@ -27,25 +29,51 @@ import util.Dessinable;
  */
 public class Powerup extends Dessinable implements Collisionable, Serializable {
 
+    public Powerup(int x, int y) {
+        rectangle.x =  x;
+        rectangle.y =  y;
+        switch (Main.gameValues.level) {
+            case 1:
+                id = POWER_SHOT;
+                break;
+            case 2:
+                id = FAST_SHOT;
+                break;
+            case 3:
+                id = POWER_FAST_SHOT;
+                break;
+            default:
+                id = -1;
+                System.out.println("Illegal id exception!");
+        }
+        image0 = Main.imageBank.powerup;
+    }
+    public static final int POWER_SHOT = 0, // Powerup stage 1
+            FAST_SHOT = 1, // Powerup stage 2
+            POWER_FAST_SHOT = 2,
+            PROBABILITE_APPARITION_POWERUP = 1000;
+    private Rectangle rectangle;
+    public final int id;
+
     @Override
     public void dessiner(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        g.drawImage(image0, rectangle.x, rectangle.y, null);
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
     @Override
     public Rectangle getRectangle() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return rectangle;
     }
 
     @Override
     public void collision(Collisionable c) {
-        // Un powerup peut peut être détruit par sa collision avec un projectile ennemi ou un ovni
-        if (c instanceof ProjectileEnnemi | c instanceof Ovni) {
+        // Un powerup est détruit par un canon qui l'absorbe ou un projectile/ovni ennemi
+        if (c instanceof ProjectileEnnemi | c instanceof Ovni | c instanceof Canon) {
             this.isDessinable = false;
         }
     }
@@ -55,6 +83,4 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
         // Un powerup ne cause pas de dommages à son contact, sauf exceptions.
         return 0;
     }
-
-   
 }
