@@ -60,11 +60,11 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                 
-                        if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
-                            Main.close(Main.CODE_DE_SORTIE_OK);
-                        }
-                
+
+                if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
+                    Main.close(Main.CODE_DE_SORTIE_OK);
+                }
+
             }
         });
         cbmitemDebug.setState(Main.gameValues.isDebugEnabled);
@@ -90,7 +90,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 Main.restart();
             }
         });
-        
+
         menuFichier.add(mitemNouvellePartie);
         menuFichier.addSeparator();
         menuFichier.add(cbmitemDebug);
@@ -135,7 +135,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      * Constructeur pour générer l'interface graphique.
      */
     public InterfaceGraphique() {
-       
+
         configurerMenus();
         /* Le KeyListener du canon est implémenté dans KeyBoardListener afin
          * de rendre possible le multitouch. 
@@ -148,7 +148,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
                     case KeySetting.PAUSE:
                         Main.gameValues.isPaused = !Main.gameValues.isPaused;
-                        
+
                         break;
                     case KeySetting.SHOW_HIGHSCORES:
                         // On inverse la valeur du show highscores...
@@ -162,7 +162,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
                         break;
                     case KeySetting.QUIT:
-                        
+
                         if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
                             Main.close(0);
                         }
@@ -180,13 +180,12 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             }
         });
         // On rajoute le canon 1 par défaut.
-        
+        setIconImage(Main.imageBank.icon);
         add(mainCanvas);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
         setTitle(Traductions.get("title"));
-        
     }
 
     /**

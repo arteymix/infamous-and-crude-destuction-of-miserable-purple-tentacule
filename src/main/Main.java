@@ -20,7 +20,6 @@ import content.Highscores;
 import content.images.ImageBank;
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
-import graphique.event.BossInkScreen;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.swing.JOptionPane;
@@ -66,7 +65,7 @@ public final class Main implements Serializable {
     /**
      * Objet contenant les highscores du joueur.
      */
-    public static Highscores highscore = new Highscores();
+    public static Highscores highscore;
     /**
      * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
      * avec un serveur de sons.
@@ -86,6 +85,9 @@ public final class Main implements Serializable {
      * @throws IOException  
      */
     public static void main(String[] args) throws IOException {
+        if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
+            highscore = new Highscores();
+        }
         gameValues = new GameValues();
         imageBank = new ImageBank();
         imageBank.setStage(1);

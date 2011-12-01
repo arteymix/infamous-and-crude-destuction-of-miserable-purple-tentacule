@@ -43,6 +43,8 @@ public class ImageBank implements Serializable {
     public Image projectileEnnemiSupersonicOr;
     public Image projectileBoss;
     public Image explosion;
+    
+    public final Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/icon.png"));
 
     public void setStage(int i) {
 
