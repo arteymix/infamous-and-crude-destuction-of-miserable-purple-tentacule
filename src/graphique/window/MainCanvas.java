@@ -193,8 +193,19 @@ public final class MainCanvas extends JComponent implements Serializable {
     }
     
     public void drawUserInterface(Graphics g) {
-    
-    
+        System.out.println("est draw");
+    // Vie du canon 1
+        if(Canon.isCanon2ValidTarget) {
+        g.setColor(Color.GREEN);
+          g.fillRect(0, (int)Main.gameValues.canvasSize.y - 15,Main.canon1.getVie() / 2, 15);
+           g.fillRect((int)(Main.gameValues.canvasSize.x / 2), (int)Main.gameValues.canvasSize.y - 15,Main.canon2.getVie() / 2, 15);
+           g.setColor(Color.BLACK);
+        } else {
+         g.setColor(Color.GREEN);
+          g.fillRect(0, (int)Main.gameValues.canvasSize.y - 15,Main.canon1.getVie() *2, 15);
+           g.setColor(Color.BLACK);
+        }
+  
     
     }
 }

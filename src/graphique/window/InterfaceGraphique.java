@@ -16,6 +16,7 @@
 package graphique.window;
 
 import content.KeySetting;
+import graphique.component.Canon;
 import graphique.window.MainCanvas.Activity;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -81,7 +82,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.gameValues.canon.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
+                Canon.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
 
             }
         });

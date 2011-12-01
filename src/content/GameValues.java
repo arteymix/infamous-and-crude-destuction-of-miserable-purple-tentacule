@@ -15,7 +15,6 @@
  */
 package content;
 
-
 import java.util.ArrayList;
 import util.Dessinable;
 import util.Vecteur;
@@ -100,10 +99,7 @@ public final class GameValues {
      * 
      */
     public DecorFlottantValues decorFlottant = new DecorFlottantValues();
-    /**
-     * 
-     */
-    public CanonValues canon = new CanonValues();
+    
     /**
      * 
      */
@@ -125,7 +121,7 @@ public final class GameValues {
     /**
      * 
      */
-    public class DecorFlottantValues  {
+    public class DecorFlottantValues {
 
         /**
          * 
@@ -133,44 +129,12 @@ public final class GameValues {
         public int PROBABILITE_APPARITION_NUAGE = 1000;
     }
 
-    /**
-     * 
-     */
-    public class CanonValues  {
-public final int CANON0_ID = 0, CANON1_ID = 1;
-        /**
-         * 
-         */
-        public boolean isCanon2ValidTarget = false;
-        /**
-         * 
-         */
-        public final int VIE_INIT_CANON = 1000;
-        /**
-         * 
-         */
-        public final double MOVEMENT_INCREMENT_CANON = 3.0;
-        /**
-         * 
-         */
-        public final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
-        /**
-         * 
-         */
-        public final int LATENCE_DU_TIR = 0; // 250
-        /**
-         * 
-         */
-        /**
-         * 
-         */
-        public final double HAUTEUR_DU_CANON = 100, LARGEUR_DU_CANON = 255;
-    }
+   
 
     /**
      * 
      */
-    public class ProjectileValues  {
+    public class ProjectileValues {
 
         /**
          * 
@@ -181,7 +145,7 @@ public final int CANON0_ID = 0, CANON1_ID = 1;
     /**
      * 
      */
-    public class ProjectileEnnemiValues  {
+    public class ProjectileEnnemiValues {
 
         /**
          *
@@ -192,7 +156,7 @@ public final int CANON0_ID = 0, CANON1_ID = 1;
     /**
      * 
      */
-    public class OvniValues  {
+    public class OvniValues {
 
         /**
          * 

@@ -97,8 +97,8 @@ public final class Main {
         gameValues = new GameValues();
         imageBank = new ImageBank();
         imageBank.setStage(1);
-        canon1 = new Canon(gameValues.canon.CANON0_ID);
-        canon2 = new Canon(gameValues.canon.CANON1_ID);
+        canon1 = new Canon(Canon.CANON0_ID);
+        canon2 = new Canon(Canon.CANON1_ID);
         gameValues.composantesDessinables.add(canon1);
         gameValues.composantesDessinables.add(canon2);
         interfaceGraphique = new InterfaceGraphique();
@@ -139,8 +139,8 @@ public final class Main {
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
             gameValues = new GameValues();
             imageBank.setStage(1);
-            canon1 = new Canon(gameValues.canon.CANON0_ID);
-            canon2 = new Canon(gameValues.canon.CANON1_ID);
+            canon1 = new Canon(Canon.CANON0_ID);
+            canon2 = new Canon(Canon.CANON1_ID);
             gameValues.composantesDessinables.add(canon1);
             gameValues.composantesDessinables.add(canon2);
             interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
