@@ -106,7 +106,7 @@ public final class Main {
         interfaceGraphique.keyBoardListener.start();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();
-        
+
         //gameValues.composantesDessinables.add(new BossInkScreen());
     }
 
@@ -117,7 +117,8 @@ public final class Main {
      * @param i
      */
     public static void setGameLevel(int i) {
-
+        System.out.println("Level " + i + " activé");
+        gameValues.level = i;
         switch (i) {
             case RESET:
                 /* Les valeurs du jeu sont remises à zéro en réinstanciant la

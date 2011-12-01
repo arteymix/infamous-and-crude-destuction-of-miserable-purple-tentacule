@@ -88,6 +88,6 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
 
     @Override
     public int getDommage() {
-        return 25;
+        return 5;
     }
 }
