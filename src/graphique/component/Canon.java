@@ -33,37 +33,66 @@ import util.Vecteur;
  * @author Nafie Hamrani && Guillaume Poirier-Morency
  */
 public final class Canon extends Dessinable implements Collisionable {
-
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables propres aux canons.
     /**
-     * 
+     * ID pour le canon 1.
      */
     /**
-     * 
+     * ID pour le canon 2.
      */
-    public static final int CANON0_ID = 0, CANON1_ID = 1;
+    public static final int CANON1_ID = 0, CANON2_ID = 1;
     /**
      * 
      */
     public static boolean isCanon2ValidTarget = false;
-    public static final int VIE_INIT_CANON = 1000;
-    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
-    private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
-    private static final int LATENCE_DU_TIR = 250;
-    private static final int HAUTEUR_DU_CANON = 100, LARGEUR_DU_CANON = 255;
     /**
-     * Variable définissant si le canon 2 est une cible valide pour un projectile ennemi.
+     * 
+     */
+    public static final int VIE_INIT_CANON = 1000;
+    /**
+     * 
+     */
+    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
+    /**
+     * 
+     */
+    private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
+    /**
+     * 
+     */
+    private static final int LATENCE_DU_TIR = 250;
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    private static final int HAUTEUR_DU_CANON = 100, LARGEUR_DU_CANON = 255;
+    ////////////////////////////////////////////////////////////////////////////
+    /**
+     * Variables définissant si le canon 2 est une cible valide pour un projectile ennemi.
      * Cette variable est particulièrement utile lorsque le joueur joue en mode
      * solo, ainsi les projectiles auto-guidées ne se dirigent pas vers le
      * deuxième canon.
      */
     private Vecteur A, B, C, D;
+    /**
+     * 
+     */
     private Vecteur position;
     // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
     /**
      * 
      */
     private int vie;
+    /**
+     * 
+     */
     final int NUMERO_DU_CANON;
+    /**
+     * 
+     */
     private boolean peutTirer = true;
 
     /**
@@ -86,12 +115,12 @@ public final class Canon extends Dessinable implements Collisionable {
             case 0:
                 image0 = Main.imageBank.ship1;
                 image1 = Main.imageBank.subcanon1;
-                position = new Vecteur(0, Main.gameValues.canvasSize.y - 101);
+                position = new Vecteur(0, Main.canvasSize.y - 101);
                 break;
             case 1:
                 image0 = Main.imageBank.ship2;
                 image1 = Main.imageBank.subcanon2;
-                position = new Vecteur(Main.gameValues.canvasSize.x - 256, Main.gameValues.canvasSize.y - 101);
+                position = new Vecteur(Main.canvasSize.x - 256, Main.canvasSize.y - 101);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
@@ -120,7 +149,7 @@ public final class Canon extends Dessinable implements Collisionable {
             // null check, un évenement null peut arriver.
             return;
         }
-        if (Main.gameValues.isPaused | Main.gameValues.showHighscores) {
+        if (Main.isPaused | Main.showHighscores) {
             return;
         }
         if (NUMERO_DU_CANON == 0) {
@@ -205,7 +234,7 @@ public final class Canon extends Dessinable implements Collisionable {
      * Déplace le canon vers la droite de MOVEMENT_INCREMENT_CANON pixels.
      */
     private void moveDroite() {
-        if (this.position.x + LARGEUR_DU_CANON + 1 < Main.gameValues.canvasSize.x) {
+        if (this.position.x + LARGEUR_DU_CANON + 1 < Main.canvasSize.x) {
             A.x += MOVEMENT_INCREMENT_CANON;
             B.x += MOVEMENT_INCREMENT_CANON;
             C.x += MOVEMENT_INCREMENT_CANON;
@@ -221,7 +250,7 @@ public final class Canon extends Dessinable implements Collisionable {
 
         if (peutTirer) {
             //Main.son.play(Main.soundBank.explosion);
-            Main.gameValues.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
+            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
             (new Thread("Thread pour le temps d'attente entre chaque tir de canon.") {
@@ -249,10 +278,10 @@ public final class Canon extends Dessinable implements Collisionable {
         }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-//        AffineTransform at = new AffineTransform();
-//        at.rotate(new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2).orientation(),500,500);
-//        Graphics2D g2d = (Graphics2D)g;
-//        g2d.drawImage(image1, at, null);
+        //        AffineTransform at = new AffineTransform();
+        //        at.rotate(new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2).orientation(),500,500);
+        //        Graphics2D g2d = (Graphics2D)g;
+        //        g2d.drawImage(image1, at, null);
         g.drawImage(image1, xPoints[1], yPoints[1], null);
         g.drawImage(image0, (int) position.x, (int) position.y, null);
         g.setColor(Color.RED);
@@ -279,7 +308,7 @@ public final class Canon extends Dessinable implements Collisionable {
     @Override
     public void collision(Collisionable c) {
         if (!(c instanceof Canon) && !(c instanceof Projectile)) {
-            if (this.NUMERO_DU_CANON == 1 && !isCanon2ValidTarget) {
+            if (this.NUMERO_DU_CANON == CANON2_ID && !isCanon2ValidTarget) {
             }
             else {
                 this.vie -= c.getDommage();

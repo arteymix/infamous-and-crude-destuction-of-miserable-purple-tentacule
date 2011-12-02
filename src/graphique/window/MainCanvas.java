@@ -43,7 +43,7 @@ public final class MainCanvas extends JComponent {
      */
     MainCanvas() {
         super();
-        setPreferredSize(new Dimension((int) Main.gameValues.canvasSize.x, (int) Main.gameValues.canvasSize.y));
+        setPreferredSize(new Dimension((int) Main.canvasSize.x, (int) Main.canvasSize.y));
     }
     /**
      * Objet contenant l'activité en cours.
@@ -68,17 +68,17 @@ public final class MainCanvas extends JComponent {
     @Override
     public void paintComponent(Graphics g) {
         g.setFont(FONT);
-        if (Main.gameValues.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
+        if (Main.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
             // On affiche les variables seulement en mode de débogage...
-            g.drawString(Traductions.get("debug.latence") + " : " + Main.gameValues.latency + " ms", 5, 15);
-            g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.gameValues.tempsDuRendu + " ms", 5, 30);
-            g.drawString(Traductions.get("debug.modedebogage") + " : " + (Main.gameValues.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
-            g.drawString("Nombre de composantes dessinable" + " : " + Main.gameValues.composantesDessinables.size() + " composantes", 5, 60);
-            g.drawString("Points : " + Main.gameValues.points + " points", 5, 75);
+            g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
+            g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);
+            g.drawString(Traductions.get("debug.modedebogage") + " : " + (Main.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
+            g.drawString("Nombre de composantes dessinable" + " : " + Main.composantesDessinables.size() + " composantes", 5, 60);
+            g.drawString("Points : " + Main.points + " points", 5, 75);
             g.drawString("Vies canon 1 : " + Main.canon1.getVie() + " vies", 5, 90);
             g.drawString("Vies canon 2 : " + Main.canon2.getVie() + " vies", 5, 105);
-            g.drawString("Temps joué : " + Main.gameValues.timerSeconds, 5, 120);
-            g.drawRect(0, 0, (int) Main.gameValues.canvasSize.x - 1, (int) Main.gameValues.canvasSize.y - 1);
+            g.drawString("Temps joué : " + Main.timerSeconds, 5, 120);
+            g.drawRect(0, 0, (int) Main.canvasSize.x - 1, (int) Main.canvasSize.y - 1);
 
         } else {
             // Le background est dessiné ici.
@@ -89,7 +89,7 @@ public final class MainCanvas extends JComponent {
             case JEU:
                 ////////////////////////////////////////////////////////////////////
                 // On incrémente le timer de Main.gameValues.latency millisecondes.
-                Main.gameValues.timerSeconds += Main.gameValues.latency;
+                Main.timerSeconds += Main.latency;
                 ///////////////////////////////////////////////////////
 
                 // Le jeu!
@@ -100,16 +100,16 @@ public final class MainCanvas extends JComponent {
                 // Génération des Ovnis    
                 Ovni.createOvni();
                 // END Génération des Ovnis
-                for (int i = 0; i < Main.gameValues.composantesDessinables.size(); i++) {
-                    Dessinable d = Main.gameValues.composantesDessinables.get(i);
+                for (int i = 0; i < Main.composantesDessinables.size(); i++) {
+                    Dessinable d = Main.composantesDessinables.get(i);
                     /* Sous-boucle pour les collisions, question de tenter toutes
                      * les collisions possibles. 
                      */
                     if (d instanceof Collisionable) {
-                        for (int j = 0; j < Main.gameValues.composantesDessinables.size(); j++) {
+                        for (int j = 0; j < Main.composantesDessinables.size(); j++) {
                             Dessinable e;
                             // Il est important de spécifier que d != e pour ne pas provoquer d'intercollision.
-                            if (((e = Main.gameValues.composantesDessinables.get(j)) instanceof Collisionable) && d != e) {
+                            if (((e = Main.composantesDessinables.get(j)) instanceof Collisionable) && d != e) {
                                 if (((Collisionable) d).getRectangle().intersects(((Collisionable) e).getRectangle())) {
                                     // On provoque une collision entre chacun.
                                     ((Collisionable) d).collision((Collisionable) e);
@@ -120,7 +120,7 @@ public final class MainCanvas extends JComponent {
                     }
                     if (d.isDessinable) {
                         if (!(d instanceof Canon)) {
-                            if (Main.gameValues.isDebugEnabled) {
+                            if (Main.isDebugEnabled) {
                                 d.dessinerDeboguage(g);
                             } else {
                                 d.dessiner(g);
@@ -135,13 +135,13 @@ public final class MainCanvas extends JComponent {
                 }
                 //<editor-fold defaultstate="collapsed" desc="Boucle pour supprimer les objets non dessinable. Autrement, il arrive que certains objets ne soient pas dessinés, car la liste de composantes dessinables est dynamique.">
                 for (Dessinable d : aEnlever) {
-                    Main.gameValues.composantesDessinables.remove(d);
+                    Main.composantesDessinables.remove(d);
                 }
                 //</editor-fold>
 
                 //<editor-fold defaultstate="collapsed" desc="Les canons sont dessinés à la toute fin (ici), afin de s'assurer qu'ils apparaissent par dessus les missiles.">
                 for (Canon c : listeDeCanonDessinable) {
-                    if (Main.gameValues.isDebugEnabled) {
+                    if (Main.isDebugEnabled) {
                         c.dessinerDeboguage(g);
                     } else {
                         c.dessiner(g);
@@ -151,7 +151,7 @@ public final class MainCanvas extends JComponent {
 
                 /////////
                 // L'interface utilisateur est dessnié ici
-                if (!Main.gameValues.isDebugEnabled) {
+                if (!Main.isDebugEnabled) {
                     drawUserInterface(g);
                 }
                 /////////////
@@ -161,7 +161,7 @@ public final class MainCanvas extends JComponent {
                  * on itère le dictionnaire dans Main.highscores.
                  */
                 int x = 100;
-                if (Main.gameValues.isDebugEnabled) {
+                if (Main.isDebugEnabled) {
                     g.setColor(Color.BLACK);
                 } else {
                     g.setColor(Color.WHITE);
@@ -178,13 +178,13 @@ public final class MainCanvas extends JComponent {
                 g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
                 g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
                 g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                if (Main.gameValues.isDebugEnabled) {
+                if (Main.isDebugEnabled) {
                     g.setColor(Color.WHITE);
                 } else {
                     g.setColor(Color.BLACK);
                 }
         }
-        Main.gameValues.paintDone = true;
+        Main.paintDone = true;
     }
     /**
      * Pourcentage de vie pour que les vies soient affichés en rouge.
@@ -206,7 +206,7 @@ public final class MainCanvas extends JComponent {
             } else {
                 g.setColor(Color.GREEN);
             }
-            g.fillRect(0, (int) Main.gameValues.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.gameValues.canvasSize.x), 15);
+            g.fillRect(0, (int) Main.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
             if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
                 g.setColor(Color.RED);
             } else if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
@@ -214,11 +214,11 @@ public final class MainCanvas extends JComponent {
             } else {
                 g.setColor(Color.GREEN);
             }            
-            g.fillRect((int) (Main.gameValues.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.gameValues.canvasSize.x), (int) Main.gameValues.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.gameValues.canvasSize.x), 15);
+            g.fillRect((int) (Main.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), (int) Main.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
             g.setColor(Color.BLACK);
         } else {
             g.setColor(Color.GREEN);
-            g.fillRect(0, (int) Main.gameValues.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.gameValues.canvasSize.x), 15);
+            g.fillRect(0, (int) Main.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.canvasSize.x), 15);
             g.setColor(Color.BLACK);
         }
     }

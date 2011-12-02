@@ -29,7 +29,10 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency
  */
 public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
-
+/**
+         *
+         */
+        public static final int MISSILE_0 = 0;
     /**
      * Vecteur définissant la position du projectile ennemi dans l'espace.
      */
@@ -55,7 +58,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     @Override
     public void dessiner(Graphics g) {
         g.drawImage(image0, (int) position.x, (int) position.y++, 60, 60, null);
-        if (position.y >= Main.gameValues.canvasSize.y) {
+        if (position.y >= Main.canvasSize.y) {
             isDessinable = false;
 
 
@@ -66,7 +69,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     @Override
     public void dessinerDeboguage(Graphics g) {
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
-        if (position.y >= Main.gameValues.canvasSize.y) {
+        if (position.y >= Main.canvasSize.y) {
             isDessinable = false;
 
 
@@ -84,7 +87,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     public void collision(Collisionable c) {
         if (c instanceof Projectile) {
             this.isDessinable = false;
-            Main.gameValues.points += 25;
+            Main.points += 25;
             // On se sert de l'explosion du projectile...
         }
         else if (c instanceof Canon) {
@@ -93,7 +96,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
             }
             else {
                 this.isDessinable = false;
-                Main.gameValues.composantesDessinables.add(new Explosion(this.position));
+                Main.composantesDessinables.add(new Explosion(this.position));
             }
         }
     }

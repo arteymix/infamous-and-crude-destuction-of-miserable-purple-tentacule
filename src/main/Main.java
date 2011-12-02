@@ -22,17 +22,83 @@ import content.images.ImageBank;
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import util.Dessinable;
 import util.KeyBoardListener;
 import util.Serialization;
 import util.SoundManager;
+import util.Vecteur;
 
 /**
  *
  * @author Guillaume Poirier-Morency
  */
 public final class Main {
+    ///////////////////////////
 
+    /**
+     * Si true, les highscores sont affichés.
+     */
+    public static boolean showHighscores = false;
+    /**
+     * Variable définissant si le programme est en exécution afin d'avertir les threads
+     * dans le programme en cas de fermeture.
+     */
+    public static boolean isRunning = true;
+    /**
+     * Variable définissant la durée entre chaque frame. Elle peut être diminué
+     * si le système est rapide, c'est-à-dire qu'il n'a pas besoin d'autant de 
+     * latence pour dessiner l'image. Dans le cas ou le système "time out", la 
+     * latence devrait être augmentée.
+     */
+    public static double latency = 15;
+    /**
+     * Variable définissant si le mode débogage est activé.
+     */
+    public static long tempsDuRendu = 0;
+    /**
+     * Si true, le jeu est en pause, tous les threads sont en attente.
+     */
+    public static boolean isPaused = false;
+    /**
+     * Est true quand le rendu est fini, false quand le rendu est en cours.
+     */
+    public static boolean paintDone = false;
+    /**
+     * Variable qui contient le temps de jeu.
+     */
+    public static long time;
+    /**
+     * Timer qui donne le temps depuis le début du jeu.
+     */
+    public static long timerSeconds = 0;
+    /**
+     * ArrayList des composantes dessinables.
+     */
+    public static boolean isDebugEnabled = false;
+    /**
+     * ArrayList contenant les objets dessinables.
+     */
+    public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
+    /**
+     * La variable points contient les points du/des joueur/s.
+     */
+    public static int points = 0;
+    /**
+     * 
+     */
+    public static int tentaculesKilled = 0;
+    /**
+     * Cette variable définit le niveau du jeu.
+     */
+    public static int level = 1;
+    /**
+     * Ce vecteur est le vecteur dimension du canvas ou les composants et
+     * graphics sont dessinés.
+     */
+    public static Vecteur canvasSize = new Vecteur(1024, 768);
+    ///////////////////////////
     /**
      * 
      */
@@ -95,17 +161,15 @@ public final class Main {
         gameValues = new GameValues();
         imageBank = new ImageBank();
         imageBank.setStage(1);
-        canon1 = new Canon(Canon.CANON0_ID);
-        canon2 = new Canon(Canon.CANON1_ID);
-        gameValues.composantesDessinables.add(canon1);
-        gameValues.composantesDessinables.add(canon2);
+        canon1 = new Canon(Canon.CANON1_ID);
+        canon2 = new Canon(Canon.CANON2_ID);
+        composantesDessinables.add(canon1);
+        composantesDessinables.add(canon2);
         interfaceGraphique = new InterfaceGraphique();
         interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
         interfaceGraphique.keyBoardListener.start();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
         rendu.start();
-
-        //gameValues.composantesDessinables.add(new BossInkScreen());
     }
 
     /**
@@ -116,7 +180,7 @@ public final class Main {
      */
     public static void setGameLevel(int i) {
         System.out.println("Level " + i + " activé");
-        gameValues.level = i;
+        level = i;
         switch (i) {
             case RESET:
                 /* Les valeurs du jeu sont remises à zéro en réinstanciant la
@@ -134,21 +198,23 @@ public final class Main {
      * Méthode appellée lors qu'une nouvelle partie est demandée.
      */
     public static void restart() {
-        Main.gameValues.isPaused = true;
+        isPaused = true;
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
-            gameValues = new GameValues();
+            timerSeconds = 0;
+            composantesDessinables = new ArrayList<Dessinable>();
+            points = 0;
             imageBank.setStage(1);
-            canon1 = new Canon(Canon.CANON0_ID);
-            canon2 = new Canon(Canon.CANON1_ID);
-            gameValues.composantesDessinables.add(canon1);
-            gameValues.composantesDessinables.add(canon2);
+            canon1 = new Canon(Canon.CANON1_ID);
+            canon2 = new Canon(Canon.CANON2_ID);
+            composantesDessinables.add(canon1);
+            composantesDessinables.add(canon2);
             interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
             interfaceGraphique.keyBoardListener.start();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
 
         }
-        Main.gameValues.isPaused = false;
+        isPaused = false;
 
     }
 
@@ -158,31 +224,63 @@ public final class Main {
      * trophées.
      */
     public static void terminerPartie() {
-        gameValues.isPaused = true;
-        highscore.partiesCompletes++;
+        isPaused = true;
         String achievements = "Achievements :\n";
-        if (gameValues.points > 1000) {
-            if (!highscore.LEET_OBTAINED) {
-                achievements += "1337 obtenu!\n";
-
-                highscore.LEET_OBTAINED = true;
-            }
-            else {
+        if (tentaculesKilled >= 100) {
+            if (!highscore.NUKE_OBTAINED) {
+                achievements += "Noob obtenu!\n";
+                highscore.NUKE_OBTAINED = true;
+            } else {
                 // Leet déjà obtenu!
             }
-
         }
-        else if (gameValues.points > 250) {
+        if (highscore.partiesCompletes == 0) {
+            if (!highscore.NOOB_OBTAINED) {
+                achievements += "Noob obtenu!\n";
+                highscore.NOOB_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        } else if (highscore.partiesCompletes >= 1000) {
+            if (!highscore.PWN_OBTAINED) {
+                achievements += "Pwn obtenu!\n";
+                highscore.PWN_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        } else if (highscore.partiesCompletes >= 10) {
+            if (!highscore.OWN_OBTAINED) {
+                achievements += "Own obtenu!\n";
+                highscore.OWN_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (points == 0) {
+            if (!highscore.BAZINGA_OBTAINED) {
+                achievements += "Bazinga! obtenu!\n";
+                highscore.BAZINGA_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        } else if (points >= 1000) {
+            if (!highscore.LEET_OBTAINED) {
+                achievements += "1337 obtenu!\n";
+                highscore.LEET_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        } else if (points >= 250) {
             if (!highscore.PRO_OBTAINED) {
                 achievements += "Pro obtenu!\n";
                 highscore.PRO_OBTAINED = true;
-            }
-            else {
+            } else {
                 // pro deja obtenu
             }
         }
+        highscore.partiesCompletes++;
         highscore.serializeOnTheHeap();
-        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + gameValues.points + " points\n" + achievements);
+        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
         close(0);
     }
 
@@ -193,12 +291,11 @@ public final class Main {
      * @param i est le statut de fermeture.
      */
     public static void close(int i) {
-        Main.gameValues.isRunning = false;
+        isRunning = false;
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {
-            Thread.sleep((int) gameValues.latency);
-        }
-        catch (InterruptedException ex) {
+            Thread.sleep((int) latency);
+        } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         // Le thread de swing est stoppé
@@ -208,8 +305,7 @@ public final class Main {
             highscore.serializeOnTheHeap();
 
             System.exit(i);
-        }
-        else {
+        } else {
             System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
             // Le thread de swing est stoppé            
             System.exit(i);

@@ -50,25 +50,31 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     private static Random random = new Random();
     ////////////////////////////////////////////////////////////////////////////
-    Vecteur position;
+    /**
+     * 
+     */
+    private Vecteur position = new Vecteur();
+    /**
+     * 
+     */
     double vitesseX = 1.0;
-    int id, vie;
-    
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    private int id, vie;    
+    /**
+     * 
+     */
     private Rectangle rectangle = new Rectangle();
-
-    /*
+    
+/**
      * 
-     * 
-     * 
-     * 
-     * 
-     * LES CONSTANTES ONT ÉTÉ TRANSFÉRÉ DANS :
-     * 
-     * Main.gameValues.ovni.XXXXXXXXXXXXXXX
-     * 
-     * 
-     * 
-     * 
+     * @param x
+     * @param y
+     * @param id 
      */
     private Ovni(int x, int y, int id) {
 
@@ -99,12 +105,12 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 return;
             }
             if (i == 1) {
-                Main.gameValues.composantesDessinables.add(new Ovni(0, y, 3));
+                Main.composantesDessinables.add(new Ovni(0, y, 3));
             } else if (i == 2) {
-                Main.gameValues.composantesDessinables.add(new Ovni((int) Main.gameValues.canvasSize.x - 100, y, i));
+                Main.composantesDessinables.add(new Ovni((int) Main.canvasSize.x - 100, y, i));
                 System.out.println("supersonik");
             } else if (i == 3) {
-                Main.gameValues.composantesDessinables.add(new Ovni((int) Main.gameValues.canvasSize.y - 100, y, i));
+                Main.composantesDessinables.add(new Ovni((int) Main.canvasSize.y - 100, y, i));
                 System.out.println("supersonik");
             }
 
@@ -121,8 +127,8 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     private static int initializeID() {
         int generateur = new Random().nextInt(100);
         if (!isBoss) {
-            System.out.println(Main.gameValues.timerSeconds);
-            if (Main.gameValues.timerSeconds == 15) {
+            System.out.println(Main.timerSeconds);
+            if (Main.timerSeconds == 15) {
 
                 System.out.println("creation du boss");
                 return ENNEMI_BOSS_1;
@@ -143,7 +149,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
      */
     private void tirer(int i) {
         // Sa devrait être cool maintenant...
-        Main.gameValues.composantesDessinables.add(new ProjectileEnnemi(position, Main.gameValues.projectileEnnemi.MISSILE_0));
+        Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.MISSILE_0));
     }
 
     private void configurerOvni(int id) {
@@ -161,11 +167,11 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
             case ENNEMI_SUPERSONIQUE:// image0 ennemiSupersonic et supersonicor
                 if (random.nextInt(10000) == 1) {
                     image0 = Main.imageBank.ennemiSupersonicOr;
-                    vie = 50 * Main.gameValues.level;
+                    vie = 50 * Main.level;
                     vitesseX = 3;
                 } else {
                     image0 = Main.imageBank.ennemiSupersonic;
-                    vie = 15 * Main.gameValues.level;
+                    vie = 15 * Main.level;
                     vitesseX = 3;
                 }
                 break;
@@ -217,7 +223,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
 
     private void mouvtBoss12(int ymin, int ymax) {
         final int XMIN = 1;
-        final int XMAX = (int) Main.gameValues.canvasSize.x - 1;
+        final int XMAX = (int) Main.canvasSize.x - 1;
         final int YMIN = ymin;
         final int YMAX = ymax;
         int deplacementX = 3;
@@ -252,7 +258,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         g.setColor(Color.RED);
         g.fillRect((int) position.x, (int) position.y, vie * 7, 10);
         g.setColor(Color.BLACK);
-        if (position.x > Main.gameValues.canvasSize.x) {
+        if (position.x > Main.canvasSize.x) {
             isDessinable = false;
 
 
@@ -263,7 +269,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     public void dessinerDeboguage(Graphics g) {
         action();
         g.drawOval((int) (position.x), (int) (position.y), 100, 100);
-        if (position.x > Main.gameValues.canvasSize.x) {
+        if (position.x > Main.canvasSize.x) {
             isDessinable = false;
 
 
@@ -312,7 +318,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         }
         if (vie <= 0) {
             this.isDessinable = false;
-            Main.gameValues.points += 100;
+            Main.points += 100;
         }
     }
 

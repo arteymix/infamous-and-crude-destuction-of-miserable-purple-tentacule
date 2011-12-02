@@ -32,7 +32,7 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
     public Powerup(int x, int y) {
         rectangle.x =  x;
         rectangle.y =  y;
-        switch (Main.gameValues.level) {
+        switch (Main.level) {
             case 1:
                 id = POWER_SHOT;
                 break;

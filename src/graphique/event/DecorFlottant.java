@@ -15,7 +15,6 @@
  */
 package graphique.event;
 
-import graphique.component.Powerup;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
@@ -28,7 +27,10 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class DecorFlottant extends Dessinable implements Serializable {
-
+  /**
+         * 
+         */
+        private static final int PROBABILITE_APPARITION_NUAGE = 1000;
     /**
      * 
      */
@@ -42,8 +44,8 @@ public final class DecorFlottant extends Dessinable implements Serializable {
      * 
      */
     public static void createNuage() {
-        if ((new Random()).nextInt(Main.gameValues.decorFlottant.PROBABILITE_APPARITION_NUAGE) == 1) {
-            Main.gameValues.composantesDessinables.add(new DecorFlottant());
+        if ((new Random()).nextInt(PROBABILITE_APPARITION_NUAGE) == 1) {
+            Main.composantesDessinables.add(new DecorFlottant());
         }
     }
 
@@ -52,7 +54,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
         /*if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {
             Main.gameValues.composantesDessinables.add(new Powerup((int)position.x,(int)position.y));
         }*/
-        if (position.x > Main.gameValues.canvasSize.x) {
+        if (position.x > Main.canvasSize.x) {
             isDessinable = false;
         } else {
             g.drawImage(image0, (int) position.x, (int) position.y, null);
@@ -62,7 +64,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.x > Main.gameValues.canvasSize.x) {
+        if (position.x > Main.canvasSize.x) {
             isDessinable = false;
         } else {
             g.drawRect((int) position.x, (int) position.y, 200, 100);

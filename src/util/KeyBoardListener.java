@@ -85,10 +85,10 @@ public class KeyBoardListener extends Thread {
      */    
     @Override
     public void run() {
-        while (Main.gameValues.isRunning) {
+        while (Main.isRunning) {
             long currentTime = System.currentTimeMillis();
             for (int i = 0; i < enabledKeys.size(); i++) {
-                if (!Main.gameValues.isPaused) {
+                if (!Main.isPaused) {
                     /* TODO Enlever la gestion d'exceptions
                      * Techniquement, les accès à l'ArrayList sont synchrnoisé,
                      * alors il ne devrait pas y avoir de problèmes.
@@ -104,18 +104,18 @@ public class KeyBoardListener extends Thread {
             }
             try {
                 long tempsDuRendu = System.currentTimeMillis() - currentTime;
-                if (tempsDuRendu > 2 * (int) Main.gameValues.latency) {
+                if (tempsDuRendu > 2 * (int) Main.latency) {
                     Thread.sleep(0);
                 } else {
-                    Thread.sleep(2 * (int) Main.gameValues.latency - tempsDuRendu);
+                    Thread.sleep(2 * (int) Main.latency - tempsDuRendu);
                 }
 
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            while (Main.gameValues.isPaused) {
+            while (Main.isPaused) {
                 try {
-                    Thread.sleep((int) Main.gameValues.latency);
+                    Thread.sleep((int) Main.latency);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }

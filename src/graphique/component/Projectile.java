@@ -29,7 +29,7 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Projectile extends Dessinable implements Collisionable, Serializable {
-
+  private static final double GRAVITY = 0.8;
     private Vecteur position, vitesse = new Vecteur(8, -8);
     private Rectangle rectangle;
 
@@ -48,7 +48,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
 
     @Override
     public void dessiner(Graphics g) {
-        if (position.y > Main.gameValues.canvasSize.y | position.x < 0 | position.x > Main.gameValues.canvasSize.x) {
+        if (position.y > Main.canvasSize.y | position.x < 0 | position.x > Main.canvasSize.x) {
             this.isDessinable = false;
         }
 
@@ -56,16 +56,16 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
 
         g.drawImage(image0, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, null);
 
-        vitesse.y -= Main.gameValues.projectile.GRAVITY;
+        vitesse.y -= GRAVITY;
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.y > Main.gameValues.canvasSize.y | position.x < 0 | position.x > Main.gameValues.canvasSize.x) {
+        if (position.y > Main.canvasSize.y | position.x < 0 | position.x > Main.canvasSize.x) {
             this.isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);
-        vitesse.y -= Main.gameValues.projectile.GRAVITY;
+        vitesse.y -= GRAVITY;
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
             // Le projectile a frappé quelque chose, il sera détruit!
 
             this.isDessinable = false;
-            Main.gameValues.composantesDessinables.add(new Explosion(this.position));
+            Main.composantesDessinables.add(new Explosion(this.position));
             System.out.println(this + " reçoit collision de " + c);
         }
     }

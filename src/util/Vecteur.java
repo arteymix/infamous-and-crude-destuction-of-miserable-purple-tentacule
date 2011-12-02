@@ -40,6 +40,13 @@ public class Vecteur implements Serializable {
         this.x = x;
         this.y = y;
     }
+    /**
+     * Constructeur utilisé si aucune valeurs ne sont spécifiés. Les valeurs des
+     * doubles par défaut seront alors utilisés.
+     */
+    public Vecteur() {
+    
+    }
 
     /**
      * Évalue l'orientation de ce vecteur.

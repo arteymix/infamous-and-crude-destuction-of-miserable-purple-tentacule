@@ -70,12 +70,12 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             }
         });
-        cbmitemDebug.setState(Main.gameValues.isDebugEnabled);
+        cbmitemDebug.setState(Main.isDebugEnabled);
         cbmitemDebug.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.gameValues.isDebugEnabled = cbmitemDebug.getState();
+                Main.isDebugEnabled = cbmitemDebug.getState();
             }
         });
         cbmitemNombreDeCanons.addActionListener(new ActionListener() {
@@ -150,17 +150,17 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 switch (arg0.getKeyCode()) {
 
                     case KeySetting.PAUSE:
-                        Main.gameValues.isPaused = !Main.gameValues.isPaused;
+                        Main.isPaused = !Main.isPaused;
 
                         break;
                     case KeySetting.SHOW_HIGHSCORES:
                         // On inverse la valeur du show highscores...
                         if (mainCanvas.activity.equals(Activity.JEU)) {
                             mainCanvas.activity = Activity.HIGHSCORES;
-                            Main.gameValues.showHighscores = true;
+                            Main.showHighscores = true;
                         } else {
                             mainCanvas.activity = Activity.JEU;
-                            Main.gameValues.showHighscores = false;
+                            Main.showHighscores = false;
                         }
 
                         break;
@@ -212,24 +212,24 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
     @Override
     public void run() {
         
-        while (Main.gameValues.isRunning) {
+        while (Main.isRunning) {
 
-            Main.gameValues.time = System.currentTimeMillis();
-            Main.gameValues.paintDone = false;
+            Main.time = System.currentTimeMillis();
+            Main.paintDone = false;
             // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
             mainCanvas.repaint();
             try {
-                while (!Main.gameValues.paintDone) {
+                while (!Main.paintDone) {
                     Thread.sleep(0, 1);
                 }
-                Main.gameValues.tempsDuRendu = (System.currentTimeMillis() - Main.gameValues.time);
+                Main.tempsDuRendu = (System.currentTimeMillis() - Main.time);
                 /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                  * En quelque sorte, si le rendu est trop long, on attendra moins 
                  * longtemps avant le suivant afin de ne pas causer d'accélération 
                  * subites en cours de jeu. Si le temps de redraw est plus grand que 10 ms,
                  * soit 100 fps, on passe directement au prochain frame.
                  */
-                if (Main.gameValues.tempsDuRendu > Main.gameValues.latency) {
+                if (Main.tempsDuRendu > Main.latency) {
                     /* Thread.sleep(0);
                      * Équivaut tout simplement à ne pas attendre, on lance quand même
                      * un message d'avertissement en sortie.
@@ -237,9 +237,9 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                      * d'essayer de le compenser.
                      */
                 } else {
-                    Thread.sleep((int) (Main.gameValues.latency - Main.gameValues.tempsDuRendu));
+                    Thread.sleep((int) (Main.latency - Main.tempsDuRendu));
                 }
-                while (Main.gameValues.isPaused) {
+                while (Main.isPaused) {
                     Thread.sleep(10);
                 }
             } catch (InterruptedException ex) {
