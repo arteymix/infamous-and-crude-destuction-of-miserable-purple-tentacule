@@ -19,12 +19,9 @@ import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
 //import java.awt.Graphics2D;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 //import java.awt.geom.AffineTransform;
 
-import java.awt.geom.AffineTransform;
-import java.io.Serializable;
 import main.Main;
 import util.Collisionable;
 import util.Dessinable;
@@ -35,7 +32,7 @@ import util.Vecteur;
  * à la volée. Il y a deux canons possibles.
  * @author Nafie Hamrani && Guillaume Poirier-Morency
  */
-public final class Canon extends Dessinable implements Collisionable, Serializable {
+public final class Canon extends Dessinable implements Collisionable {
 
     /**
      * 
@@ -48,7 +45,7 @@ public final class Canon extends Dessinable implements Collisionable, Serializab
      * 
      */
     public static boolean isCanon2ValidTarget = false;
-    private static final int VIE_INIT_CANON = 1000;
+    public static final int VIE_INIT_CANON = 1000;
     private static final double MOVEMENT_INCREMENT_CANON = 3.0;
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
     private static final int LATENCE_DU_TIR = 250;

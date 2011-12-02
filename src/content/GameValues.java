@@ -44,7 +44,7 @@ public final class GameValues {
 
     }
     /**
-     * 
+     * Si true, les highscores sont affichés.
      */
     public boolean showHighscores = false;
     /**
@@ -64,7 +64,7 @@ public final class GameValues {
      */
     public long tempsDuRendu = 0;
     /**
-     * 
+     * Si true, le jeu est en pause, tous les threads sont en attente.
      */
     public boolean isPaused = false;
     /**
@@ -84,7 +84,7 @@ public final class GameValues {
      */
     public boolean isDebugEnabled = false;
     /**
-     * 
+     * ArrayList contenant les objets dessinables.
      */
     public ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
     /**
@@ -92,9 +92,19 @@ public final class GameValues {
      */
     public int points = 0;
     /**
-     * Cette variable définit le level du jeu.
+     * Cette variable définit le niveau du jeu.
      */
     public int level = 1;
+     /**
+     * Ce vecteur est le vecteur dimension du canvas ou les composants et
+     * graphics sont dessinés.
+     */
+    public Vecteur canvasSize = new Vecteur(1024, 768);
+    ////////////////////////////////////////////////////////////////////////////
+    /* Variables pour les objets de valeurs.
+     * Devrait être transféré dans les objets éventuellement.
+     */    
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * 
      */
@@ -112,11 +122,7 @@ public final class GameValues {
      * 
      */
     public ProjectileEnnemiValues projectileEnnemi = new ProjectileEnnemiValues();
-    /**
-     * Ce vecteur est le vecteur dimension du canvas ou les composants et
-     * graphics sont dessinés.
-     */
-    public Vecteur canvasSize = new Vecteur(1024, 768);
+   
 
     /**
      * 
@@ -158,33 +164,6 @@ public final class GameValues {
      */
     public class OvniValues {
 
-        /**
-         * 
-         */
-        public final int PROBABILITE_APPARITION_OVNI = 100;
-        /**
-         * 
-         */
-        public boolean isBoss = false;
-        /**
-         * 
-         */
-        public final int ENNEMI_NORMAL = 1;
-        /**
-         * 
-         */
-        public final int ENNEMI_SUPERSONIQUE = 2;
-        /**
-         * 
-         */
-        public final int ENNEMI_BOSS_1 = 3;
-        /**
-         * 
-         */
-        public final int ENNEMI_BOSS_2 = 4;
-        /**
-         * 
-         */
-        public final int ENNEMI_BOSS_3 = 5;
+        
     }
 }

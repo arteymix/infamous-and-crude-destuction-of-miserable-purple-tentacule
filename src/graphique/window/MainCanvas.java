@@ -22,7 +22,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -37,7 +36,7 @@ import util.Traductions;
  * Classe contenant le canvas principal où les dessins seront effectués.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class MainCanvas extends JComponent implements Serializable {
+public final class MainCanvas extends JComponent {
 
     /**
      * Constructeur pour le canvas où le rendu est effectué.
@@ -81,8 +80,7 @@ public final class MainCanvas extends JComponent implements Serializable {
             g.drawString("Temps joué : " + Main.gameValues.timerSeconds, 5, 120);
             g.drawRect(0, 0, (int) Main.gameValues.canvasSize.x - 1, (int) Main.gameValues.canvasSize.y - 1);
 
-        }
-        else {
+        } else {
             // Le background est dessiné ici.
             g.drawImage(Main.imageBank.background, 0, 0, 1024, 768, null);
 
@@ -90,6 +88,7 @@ public final class MainCanvas extends JComponent implements Serializable {
         switch (activity) {
             case JEU:
                 ////////////////////////////////////////////////////////////////////
+                // On incrémente le timer de Main.gameValues.latency millisecondes.
                 Main.gameValues.timerSeconds += Main.gameValues.latency;
                 ///////////////////////////////////////////////////////
 
@@ -123,16 +122,13 @@ public final class MainCanvas extends JComponent implements Serializable {
                         if (!(d instanceof Canon)) {
                             if (Main.gameValues.isDebugEnabled) {
                                 d.dessinerDeboguage(g);
-                            }
-                            else {
+                            } else {
                                 d.dessiner(g);
                             }
-                        }
-                        else {
+                        } else {
                             listeDeCanonDessinable.add((Canon) d);
                         }
-                    }
-                    else {
+                    } else {
                         aEnlever.add(d);
 
                     }
@@ -147,8 +143,7 @@ public final class MainCanvas extends JComponent implements Serializable {
                 for (Canon c : listeDeCanonDessinable) {
                     if (Main.gameValues.isDebugEnabled) {
                         c.dessinerDeboguage(g);
-                    }
-                    else {
+                    } else {
                         c.dessiner(g);
                     }
                 }
@@ -168,8 +163,7 @@ public final class MainCanvas extends JComponent implements Serializable {
                 int x = 100;
                 if (Main.gameValues.isDebugEnabled) {
                     g.setColor(Color.BLACK);
-                }
-                else {
+                } else {
                     g.setColor(Color.WHITE);
                 }
                 int positionInit = 385;
@@ -186,25 +180,45 @@ public final class MainCanvas extends JComponent implements Serializable {
                 g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
                 if (Main.gameValues.isDebugEnabled) {
                     g.setColor(Color.WHITE);
-                }
-                else {
+                } else {
                     g.setColor(Color.BLACK);
                 }
         }
         Main.gameValues.paintDone = true;
     }
+    /**
+     * Pourcentage de vie pour que les vies soient affichés en rouge.
+     */
+    /**
+     * Pourcentage de vie pour que les vies soient affichés en jaune.
+     */
+    private static final double PERCENTAGE_RED_LIFE = 0.25,
+            PERCENTAGE_YELLOW_LIFE = 0.5;
 
-    public void drawUserInterface(Graphics g) {
+    private void drawUserInterface(Graphics g) {
         // Vie du canon 1
         if (Canon.isCanon2ValidTarget) {
             g.setColor(Color.GREEN);
-            g.fillRect(0, (int) Main.gameValues.canvasSize.y - 15, Main.canon1.getVie() / 2, 15);
-            g.fillRect((int) (Main.gameValues.canvasSize.x / 2), (int) Main.gameValues.canvasSize.y - 15, Main.canon2.getVie() / 2, 15);
+            if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
+                g.setColor(Color.RED);
+            } else if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
+                g.setColor(Color.YELLOW);
+            } else {
+                g.setColor(Color.GREEN);
+            }
+            g.fillRect(0, (int) Main.gameValues.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.gameValues.canvasSize.x), 15);
+            if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
+                g.setColor(Color.RED);
+            } else if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
+                g.setColor(Color.YELLOW);
+            } else {
+                g.setColor(Color.GREEN);
+            }            
+            g.fillRect((int) (Main.gameValues.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.gameValues.canvasSize.x), (int) Main.gameValues.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.gameValues.canvasSize.x), 15);
             g.setColor(Color.BLACK);
-        }
-        else {
+        } else {
             g.setColor(Color.GREEN);
-            g.fillRect(0, (int) Main.gameValues.canvasSize.y - 15, Main.canon1.getVie() * 2, 15);
+            g.fillRect(0, (int) Main.gameValues.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.gameValues.canvasSize.x), 15);
             g.setColor(Color.BLACK);
         }
     }

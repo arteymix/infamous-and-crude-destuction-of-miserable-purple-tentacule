@@ -16,8 +16,6 @@
 package main;
 
 import content.GameValues;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.Highscores;
 import content.SoundBank;
 import content.images.ImageBank;
