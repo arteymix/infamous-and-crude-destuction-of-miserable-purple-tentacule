@@ -176,7 +176,9 @@ public final class Main {
      * Une fois toutes les variables accessibles depuis gameValue, il devient
      * trivial de définir les paramètres associés à chaque niveau. Une série de
      * constantes est définis dans la classe Main sous forme de LEVEL_X. 
-     * @param i
+     * Les boss apparaissent après un temps défini à chaque niveau. On passe
+     * au niveau suivant si il meurt.
+     * @param i est le niveau à configurer.
      */
     public static void setGameLevel(int i) {
         System.out.println("Level " + i + " activé");
@@ -188,8 +190,14 @@ public final class Main {
                  */
                 gameValues = new GameValues();
             case LEVEL_1:
+                imageBank.setStage(1);
+                break;
             case LEVEL_2:
+                imageBank.setStage(2);
+                break;
             case LEVEL_3:
+                imageBank.setStage(3);
+                break;
             case LEVEL_BONUS:
         }
     }

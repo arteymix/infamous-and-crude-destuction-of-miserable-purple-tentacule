@@ -15,6 +15,8 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class Ovni extends Dessinable implements Collisionable, Serializable {
+    
+    
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux ovnis    
     /**

@@ -87,9 +87,10 @@ public final class MainCanvas extends JComponent {
         }
         switch (activity) {
             case JEU:
-                ////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////
                 // On incrémente le timer de Main.gameValues.latency millisecondes.
                 Main.timerSeconds += Main.latency;
+                
                 ///////////////////////////////////////////////////////
 
                 // Le jeu!
@@ -213,7 +214,7 @@ public final class MainCanvas extends JComponent {
                 g.setColor(Color.YELLOW);
             } else {
                 g.setColor(Color.GREEN);
-            }            
+            }
             g.fillRect((int) (Main.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), (int) Main.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
             g.setColor(Color.BLACK);
         } else {
