@@ -15,9 +15,11 @@
  */
 package graphique.window;
 
+import content.KeySetting;
 import graphique.event.DecorFlottant;
 import graphique.component.Ovni;
 import graphique.component.Canon;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -34,6 +36,8 @@ import util.Traductions;
 
 /**
  * Classe contenant le canvas principal où les dessins seront effectués.
+ * C'est ici que le code principal se trouve, que les collisions sont calculées
+ * et tout et tout!
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class MainCanvas extends JComponent {
@@ -57,7 +61,8 @@ public final class MainCanvas extends JComponent {
     enum Activity {
 
         JEU,
-        HIGHSCORES;
+        HIGHSCORES,
+        HELP;
     }
     private final Font FONT = new Font("Comic sans ms", Font.BOLD, 15);
 
@@ -87,12 +92,11 @@ public final class MainCanvas extends JComponent {
         }
         switch (activity) {
             case JEU:
-                /////////////////////////////////////////////////////////////////
+                ////////////////////////////////////////////////////////////////
                 // On incrémente le timer de Main.gameValues.latency millisecondes.
                 Main.timerSeconds += Main.latency;
                 
-                ///////////////////////////////////////////////////////
-
+                ////////////////////////////////////////////////////////////////
                 // Le jeu!
                 ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
                 ArrayList<Dessinable> aEnlever = new ArrayList<Dessinable>();
@@ -150,12 +154,12 @@ public final class MainCanvas extends JComponent {
                 }
                 //</editor-fold>
 
-                /////////
-                // L'interface utilisateur est dessnié ici
+                ////////////////////////////////////////////////////////////////
+                // L'interface utilisateur est dessiné ici
                 if (!Main.isDebugEnabled) {
                     drawUserInterface(g);
                 }
-                /////////////
+                ////////////////////////////////////////////////////////////////
                 break;
             case HIGHSCORES:
                 /* En cas où c'est le rendu des meilleurs scores qui est activé,
@@ -184,6 +188,10 @@ public final class MainCanvas extends JComponent {
                 } else {
                     g.setColor(Color.BLACK);
                 }
+                break;
+            case HELP:
+                KeySetting.drawKeySettingHelp(g);
+                break;
         }
         Main.paintDone = true;
     }
@@ -196,6 +204,10 @@ public final class MainCanvas extends JComponent {
     private static final double PERCENTAGE_RED_LIFE = 0.25,
             PERCENTAGE_YELLOW_LIFE = 0.5;
 
+    /**
+     * Méthode qui fait le rendu de l'interface utilisateur.
+     * @param g est le Graphics sur lequel le rendu est effectué.
+     */
     private void drawUserInterface(Graphics g) {
         // Vie du canon 1
         if (Canon.isCanon2ValidTarget) {
@@ -216,10 +228,10 @@ public final class MainCanvas extends JComponent {
                 g.setColor(Color.GREEN);
             }
             g.fillRect((int) (Main.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), (int) Main.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
-            g.setColor(Color.BLACK);
-        } else {
+                    } else {
             g.setColor(Color.GREEN);
             g.fillRect(0, (int) Main.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.canvasSize.x), 15);
+            // Lorsque tout est terminé, on change la couleur pour noir.
             g.setColor(Color.BLACK);
         }
     }

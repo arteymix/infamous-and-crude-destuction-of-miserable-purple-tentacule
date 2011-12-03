@@ -15,6 +15,8 @@
  */
 package content;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 /**
@@ -79,4 +81,52 @@ public final class KeySetting {
      * 
      */
     public static final int QUIT = KeyEvent.VK_ESCAPE;
+    public static final int SHOW_DEBUG = KeyEvent.VK_F6;
+
+    public static void drawKeySettingHelp(Graphics g) {
+
+        // TODO HERE!
+        g.setColor(Color.WHITE);
+        int i = 440;
+        g.drawString("Agencement du clavier", 15, i += 15);
+
+        g.drawString("Canon 1 (celui de gauche) :", 15, i += 30);
+        g.drawString("W Tirer", 15, i += 15);
+        g.drawString("A Aller à gauche", 15, i += 15);
+        g.drawString("D Aller à droite", 15, i += 15);
+        g.drawString("K Bouger la tête de canon vers la gauche", 15, i += 15);
+        g.drawString("L Bouger la tête de canon vers la droite", 15, i += 15);
+
+        g.drawString("Canon 2 (celui de droite) :", 15, i += 30);
+        g.drawString("UP Tirer", 15, i += 15);
+        g.drawString("LEFT Aller à gauche", 15, i += 15);
+        g.drawString("RIGHT Aller à droite", 15, i += 15);
+        g.drawString("NUMPAD_2 Bouger la tête de canon vers la gauche", 15, i += 15);
+        g.drawString("NUMPAD_3 Bouger la tête de canon vers la droite", 15, i += 15);
+
+        g.drawString("Autres fonctions :", 15, i += 30);
+        g.drawString("ESC Fermer le jeu", 15, i += 15);
+        g.drawString("F6 Entrer en mode débogage", 15, i += 15);
+        g.drawString("P Mettre le jeu en pause", 15, i += 15);
+        g.drawString("H Afficher les highscores", 15, i += 15);
+        g.setColor(Color.BLACK);
+        // Canon 1 tirer vers le haut
+        //        g.drawRect(100, 100, 30, 30);
+        //        g.drawString("W", 107, 120);
+        //        
+        //        // Canon 1 Déplacement à gauche
+        //        g.drawRect(130, 130, 30, 30);
+        //        g.drawString("D", 107, 120);
+        //        
+        //        g.drawRect(70, 130, 30, 30);
+        //        g.drawRect(100, 130, 30, 30);
+        //        
+        //        
+        //        g.drawRect(200, 100, 30, 30);
+        //        g.drawRect(230, 130, 30, 30);
+        //        g.drawRect(170, 130, 30, 30);
+        //        g.drawRect(200, 130, 30, 30);
+
+
+    }
 }

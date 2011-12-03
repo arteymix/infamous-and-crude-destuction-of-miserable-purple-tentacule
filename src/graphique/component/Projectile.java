@@ -82,7 +82,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
 
             this.isDessinable = false;
             Main.composantesDessinables.add(new Explosion(this.position));
-            System.out.println(this + " reçoit collision de " + c);
+            
         }
     }
 

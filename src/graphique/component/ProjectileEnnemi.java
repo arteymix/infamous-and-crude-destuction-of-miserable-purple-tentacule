@@ -26,33 +26,52 @@ import util.Vecteur;
 
 /**
  * Fichier de classe pour un projectile ennemi.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
-/**
-         *
-         */
-        public static final int MISSILE_0 = 0;
+    ////////////////////////////////////////////////////////////////////////////
+    // Constantes pour les projectiles ennemis.
+    public static final int PROJECTILE_ENNEMI = 1,
+            PROJECTILE_ENNEMI_OR = 2,
+            PROJECTILE_ENNEMI_SUPERSONIC = 3,
+            PROJECTILE_ENNEMI_SUPERSONIC_OR = 4,
+            PROJECTILE_BOSS = 5;
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * Vecteur définissant la position du projectile ennemi dans l'espace.
      */
     private Vecteur position;
     /**
-     *
+     * Rectangle définissant l'aire occupé par le projectile ennemi.
      */
     private Rectangle rectangle = new Rectangle(0, 0, 30, 30);
 
     /**
-     * 
-     * @param init
-     * @param id
+     * Constructeur pour un projectile ennemi. Peut uniquement être appelé par
+     * un objet ovni.
+     * @param init est un vecteur position qui définit la position initiale du 
+     * projectile ennemi.
      */
-    public ProjectileEnnemi(Vecteur init, int id) {
+    ProjectileEnnemi(Vecteur init, int id) {
         position = new Vecteur(init.x, init.y);
 
-        image0 = Main.imageBank.projectileEnnemi;
-
-
+        switch (id) {
+            case PROJECTILE_ENNEMI:
+                image0 = Main.imageBank.projectileEnnemi;
+                break;
+            case PROJECTILE_ENNEMI_OR:
+                image0 = Main.imageBank.projectileEnnemiOr;
+                break;
+            case PROJECTILE_ENNEMI_SUPERSONIC:
+                image0 = Main.imageBank.projectileEnnemiSupersonic;
+                break;
+            case PROJECTILE_ENNEMI_SUPERSONIC_OR:
+                image0 = Main.imageBank.projectileEnnemiSupersonicOr;
+                break;
+            case PROJECTILE_BOSS:
+                image0 = Main.imageBank.projectileBoss;
+                break;
+        }
     }
 
     @Override
@@ -60,9 +79,6 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
         g.drawImage(image0, (int) position.x, (int) position.y++, 60, 60, null);
         if (position.y >= Main.canvasSize.y) {
             isDessinable = false;
-
-
-
         }
     }
 
@@ -71,8 +87,6 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
         if (position.y >= Main.canvasSize.y) {
             isDessinable = false;
-
-
         }
     }
 
@@ -89,12 +103,10 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
             this.isDessinable = false;
             Main.points += 25;
             // On se sert de l'explosion du projectile...
-        }
-        else if (c instanceof Canon) {
+        } else if (c instanceof Canon) {
             if (((Canon) c).NUMERO_DU_CANON == 1 && !Canon.isCanon2ValidTarget) {
                 // Ne rien faire, le canon ne  peut être atteint, il est invisible.
-            }
-            else {
+            } else {
                 this.isDessinable = false;
                 Main.composantesDessinables.add(new Explosion(this.position));
             }

@@ -15,8 +15,7 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public class Ovni extends Dessinable implements Collisionable, Serializable {
-    
-    
+
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux ovnis    
     /**
@@ -59,20 +58,20 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
-    double vitesseX = 1.0;
+    private double vitesseX = 1.0;
     /**
      * 
      */
     /**
      * 
      */
-    private int id, vie;    
+    private int id, vie;
     /**
      * 
      */
     private Rectangle rectangle = new Rectangle();
-    
-/**
+
+    /**
      * 
      * @param x
      * @param y
@@ -107,7 +106,7 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
                 return;
             }
             if (i == 1) {
-                Main.composantesDessinables.add(new Ovni(0, y, 3));
+                Main.composantesDessinables.add(new Ovni(0, y, i));
             } else if (i == 2) {
                 Main.composantesDessinables.add(new Ovni((int) Main.canvasSize.x - 100, y, i));
                 System.out.println("supersonik");
@@ -147,11 +146,32 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
 
     /**
      * 
-     * @param id est le id du missile à tirer. 
+     * @param id est le id du missile à tirer. Ce id correspond au id de l'ovni.
      */
     private void tirer(int i) {
         // Sa devrait être cool maintenant...
-        Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.MISSILE_0));
+        /* Le numéro du id correspond au id du missile.
+         * L'ennemi régulier possède le projectile régulier, etc...
+         */
+        switch (id) {
+            // TODO Condition pour ENNEMI_OR ou non.
+            case ENNEMI_NORMAL:
+                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
+                break;
+            case ENNEMI_SUPERSONIQUE:
+                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI_SUPERSONIC));
+                break;
+            /* C'est le même id pour les 3 boss, mais l'image change.
+             * 
+             */
+            case ENNEMI_BOSS_1:
+            case ENNEMI_BOSS_2:
+            case ENNEMI_BOSS_3:
+                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_BOSS));
+                break;
+
+        }
+
     }
 
     private void configurerOvni(int id) {
@@ -310,7 +330,6 @@ public class Ovni extends Dessinable implements Collisionable, Serializable {
         rectangle.width = longeur;
         return rectangle;
     }
-    
 
     @Override
     public void collision(Collisionable c) {

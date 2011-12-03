@@ -15,7 +15,6 @@
  */
 package main;
 
-import content.GameValues;
 import util.Highscores;
 import content.SoundBank;
 import content.images.ImageBank;
@@ -31,8 +30,8 @@ import util.SoundManager;
 import util.Vecteur;
 
 /**
- *
- * @author Guillaume Poirier-Morency
+ * Classe principale du programme.
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Main {
     ///////////////////////////
@@ -41,6 +40,7 @@ public final class Main {
      * Si true, les highscores sont affichés.
      */
     public static boolean showHighscores = false;
+    public static boolean showHelp = false;
     /**
      * Variable définissant si le programme est en exécution afin d'avertir les threads
      * dans le programme en cas de fermeture.
@@ -118,7 +118,6 @@ public final class Main {
     /**
      * 
      */
-    public static GameValues gameValues;
     private static Thread rendu;
     /**
      * 
@@ -158,7 +157,7 @@ public final class Main {
         }
         soundBank = new SoundBank();
         son = new SoundManager();
-        gameValues = new GameValues();
+
         imageBank = new ImageBank();
         imageBank.setStage(1);
         canon1 = new Canon(Canon.CANON1_ID);
@@ -184,11 +183,7 @@ public final class Main {
         System.out.println("Level " + i + " activé");
         level = i;
         switch (i) {
-            case RESET:
-                /* Les valeurs du jeu sont remises à zéro en réinstanciant la
-                 * variable gameValues. 
-                 */
-                gameValues = new GameValues();
+
             case LEVEL_1:
                 imageBank.setStage(1);
                 break;

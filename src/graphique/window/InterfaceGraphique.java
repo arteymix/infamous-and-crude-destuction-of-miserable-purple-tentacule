@@ -49,8 +49,11 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             menuAide = new JMenu(Traductions.get("menu.aide"));
     private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
             mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle"));
+              
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage"));
     private JCheckBoxMenuItem cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons"));
+    private JCheckBoxMenuItem cbmitemMontrerHighscores = new JCheckBoxMenuItem("Highscores"),
+            mitemAide = new JCheckBoxMenuItem(Traductions.get("menu.item.aide"));
     private ButtonGroup bg = new ButtonGroup();
     /**
      * 
@@ -70,12 +73,14 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
             }
         });
+
         cbmitemDebug.setState(Main.isDebugEnabled);
         cbmitemDebug.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.isDebugEnabled = cbmitemDebug.getState();
+
+                changeDebugState(cbmitemDebug.getState());
             }
         });
         cbmitemNombreDeCanons.addActionListener(new ActionListener() {
@@ -93,11 +98,21 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 Main.restart();
             }
         });
+        cbmitemMontrerHighscores.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                changeHighscoresState();
+            }
+        });
+
 
         menuFichier.add(mitemNouvellePartie);
         menuFichier.addSeparator();
         menuFichier.add(cbmitemDebug);
         menuFichier.add(cbmitemNombreDeCanons);
+        menuFichier.addSeparator();
+        menuFichier.add(cbmitemMontrerHighscores);
         menuFichier.add(menuLangue);
         menuFichier.addSeparator();
         menuFichier.add(mitemQuitter);
@@ -118,12 +133,23 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 Traductions.setLangue("en");
 
             }
+        });        
+        mitemAide.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                if (mainCanvas.activity.equals(Activity.HELP)) {
+                    mainCanvas.activity = Activity.JEU;
+                } else {
+                    mainCanvas.activity = Activity.HELP;
+                }
+            }
         });
         bg.add(en);
         bg.add(fr);
         menuLangue.add(fr);
         menuLangue.add(en);
-        menuAide.add(new JMenuItem(Traductions.get("menu.item.aide")));
+        menuAide.add(mitemAide);
         menuAide.addSeparator();
         menuAide.add(new JMenuItem(Traductions.get("menu.item.tableau")));
         menuAide.add(new JMenuItem(Traductions.get("menu.item.trophe")));
@@ -132,6 +158,23 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         jmb.add(menuFichier);
         jmb.add(menuAide);
         setJMenuBar(jmb);
+    }
+
+    private void changeDebugState(boolean b) {
+        Main.isDebugEnabled = b;
+        cbmitemDebug.setState(b);
+    }
+
+    public void changeHighscoresState() {
+        if (mainCanvas.activity.equals(Activity.JEU)) {
+            mainCanvas.activity = Activity.HIGHSCORES;
+            Main.showHighscores = true;
+            this.cbmitemMontrerHighscores.setState(true);
+        } else {
+            mainCanvas.activity = Activity.JEU;
+            Main.showHighscores = false;
+            this.cbmitemMontrerHighscores.setState(false);
+        }
     }
 
     /**
@@ -155,13 +198,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                         break;
                     case KeySetting.SHOW_HIGHSCORES:
                         // On inverse la valeur du show highscores...
-                        if (mainCanvas.activity.equals(Activity.JEU)) {
-                            mainCanvas.activity = Activity.HIGHSCORES;
-                            Main.showHighscores = true;
-                        } else {
-                            mainCanvas.activity = Activity.JEU;
-                            Main.showHighscores = false;
-                        }
+                        changeHighscoresState();
 
                         break;
                     case KeySetting.QUIT:
@@ -169,7 +206,15 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                         if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
                             Main.close(0);
                         }
+                        break;
+                    case KeySetting.SHOW_DEBUG:
+
+                        changeDebugState(!Main.isDebugEnabled);
+
+                        break;
+                    ////////////////////////
                     default:
+
                         if (!keyBoardListener.contains(arg0.getKeyCode())) {
                             keyBoardListener.add(arg0.getKeyCode());
                         }
@@ -211,7 +256,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      */
     @Override
     public void run() {
-        
+
         while (Main.isRunning) {
 
             Main.time = System.currentTimeMillis();
