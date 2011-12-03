@@ -20,7 +20,6 @@ import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
 import java.io.Serializable;
-import javax.swing.JOptionPane;
 import main.Main;
 import util.Collisionable;
 import util.Vecteur;

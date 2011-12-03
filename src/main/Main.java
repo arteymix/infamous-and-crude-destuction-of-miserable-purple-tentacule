@@ -22,7 +22,6 @@ import content.images.ImageBank;
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
 
-import graphique.window.MainCanvas.Activity;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -254,7 +253,6 @@ public final class Main {
             interfaceGraphique.keyBoardListener.start();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
-
         }
         isPaused = false;
 
@@ -267,9 +265,9 @@ public final class Main {
      * @param message 
      */
     public static void terminerPartie(String message) {
-         
+
         isPaused = true;
-       
+
         String achievements = "Achievements :\n";
         if (tentaculesKilled >= 100) {
             if (!highscore.NUKE_OBTAINED) {
@@ -323,18 +321,12 @@ public final class Main {
                 // pro deja obtenu
             }
         }
-        
+
         JOptionPane.showMessageDialog(null, "La partie est terminée!\n" + message + "\nVous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
         highscore.partiesCompletes++;
-        highscore.serializeOnTheHeap(); 
-        
+        highscore.serializeOnTheHeap();
         close(0);
-        
-        
-       
     }
-    
-   
 
     /**
      * Lance la fermeture du jeu. Pour l'instant, cette méthode ne contient
