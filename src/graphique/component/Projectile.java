@@ -48,7 +48,7 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void dessiner(Graphics g) {
-        if (position.y > Main.canvasSize.y | position.x < 0 | position.x > Main.canvasSize.x) {
+        if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
             this.isDessinable = false;
         }
         g.drawImage(image0, (int) ((position.x) -= vitesse.x)-10, (int) (position.y -= vitesse.y) - 10, null);
@@ -57,7 +57,7 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.y > Main.canvasSize.y | position.x < 0 | position.x > Main.canvasSize.x) {
+        if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
             this.isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);

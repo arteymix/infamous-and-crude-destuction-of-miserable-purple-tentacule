@@ -17,13 +17,12 @@ package content.images;
 
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.Serializable;
 
 /**
  * Fichier d'objet pour la banque d'images.
  * @author Guillaume Poirier-Morency
  */
-public class ImageBank implements Serializable {
+public class ImageBank  {
 
     public Image ship1;
     public Image ship2;
@@ -61,8 +60,8 @@ public class ImageBank implements Serializable {
         projectile = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectile.gif"));
         projectileEnnemi = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemi.gif"));
         projectileEnnemiOr = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiOr.gif"));
-        projectileEnnemiSupersonic = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiSupersonic.gif"));
-        projectileEnnemiSupersonicOr = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileEnnemiSupersonicOr.gif"));
+        projectileEnnemiSupersonic = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileSupersonic.gif"));
+        projectileEnnemiSupersonicOr = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileSupersonicOr.gif"));
         projectileBoss = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileBoss.gif"));
         explosion = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/explosion.gif"));
         powerup = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/powerup.gif"));

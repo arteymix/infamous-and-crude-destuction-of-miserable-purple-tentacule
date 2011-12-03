@@ -45,6 +45,9 @@ public final class Ovni extends Dessinable implements Collisionable {
      * ID du boss 3.
      */
     private static final int ENNEMI_BOSS_3 = 5;
+    /**
+     * 
+     */
     private static int ENNEMY_SHOOT_RATE = 500;
     /**
      * Random utilisé pour les génération aléatoires de l'ovni.
@@ -63,11 +66,12 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * 
      */
-    private double vitesseX = 1.0;   
+    private double vitesseX = 1.0;
     /**
      * 
      */
     private int vie;
+    private final int VIE_INIT;
     /**
      * 
      */
@@ -102,6 +106,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         position.x = x;
         position.y = y;
         configurerOvni(id);
+        VIE_INIT = vie;
     }
 
     /**
@@ -144,9 +149,13 @@ public final class Ovni extends Dessinable implements Collisionable {
          */
     }
 
+    /**
+     * Initialise le ID de l'ovni.
+     * @return le id de l'ovni.
+     */
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
-        if (!isBoss) {            
+        if (!isBoss) {
             if (Main.timerSeconds >= 360000) {
                 isBoss = true;
                 return ENNEMI_BOSS_3;
@@ -170,8 +179,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     /**
-     * 
-     * @param id est le id du missile à tirer. Ce id correspond au id de l'ovni.
+     * Effectue un tir ennemi.     
      */
     private void tirer() {
         // Sa devrait être cool maintenant...
@@ -269,7 +277,7 @@ public final class Ovni extends Dessinable implements Collisionable {
 
     private void mouvtBoss12(int ymin, int ymax) {
         final int XMIN = 1;
-        final int XMAX = (int) Main.canvasSize.x - 1;
+        final int XMAX = (int) Main.getCanvasSizeX() - 1;
         final int YMIN = ymin;
         final int YMAX = ymax;
         int deplacementX = 3;
@@ -302,12 +310,10 @@ public final class Ovni extends Dessinable implements Collisionable {
         action();
         g.drawImage(image0, (int) position.x, (int) position.y, null);
         g.setColor(Color.RED);
-        g.fillRect((int) position.x, (int) position.y, vie * 7, 10);
+        g.fillRect((int) position.x, (int) position.y, (int) ((double) image0.getWidth(null) * (((double) vie) / ((double) VIE_INIT))), 10);
         g.setColor(Color.BLACK);
-        if (position.x > Main.canvasSize.x) {
+        if (position.x > Main.getCanvasSizeX()) {
             isDessinable = false;
-
-
         }
     }
 
@@ -315,12 +321,9 @@ public final class Ovni extends Dessinable implements Collisionable {
     public void dessinerDeboguage(Graphics g) {
         action();
         g.drawOval((int) (position.x), (int) (position.y), 100, 100);
-        if (position.x > Main.canvasSize.x) {
+        if (position.x > Main.getCanvasSizeX()) {
             isDessinable = false;
-
-
         }
-
     }
 
     @Override

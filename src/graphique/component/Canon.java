@@ -118,12 +118,12 @@ public final class Canon extends Dessinable implements Collisionable {
             case 0:
                 image0 = Main.imageBank.ship1;
                 image1 = Main.imageBank.subcanon1;
-                position = new Vecteur(0, Main.canvasSize.y - 101);
+                position = new Vecteur(0, Main.getCanvasSizeY() - 101);
                 break;
             case 1:
                 image0 = Main.imageBank.ship2;
                 image1 = Main.imageBank.subcanon2;
-                position = new Vecteur(Main.canvasSize.x - 256, Main.canvasSize.y - 101);
+                position = new Vecteur(Main.getCanvasSizeX() - 256, Main.getCanvasSizeY() - 101);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
@@ -238,7 +238,7 @@ public final class Canon extends Dessinable implements Collisionable {
      * Déplace le canon vers la droite de MOVEMENT_INCREMENT_CANON pixels.
      */
     private void moveDroite() {
-        if (this.position.x + LARGEUR_DU_CANON + 1 < Main.canvasSize.x) {
+        if (this.position.x + LARGEUR_DU_CANON + 1 < Main.getCanvasSizeX()) {
             A.x += MOVEMENT_INCREMENT_CANON;
             B.x += MOVEMENT_INCREMENT_CANON;
             C.x += MOVEMENT_INCREMENT_CANON;

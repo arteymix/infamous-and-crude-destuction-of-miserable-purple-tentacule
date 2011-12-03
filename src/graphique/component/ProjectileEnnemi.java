@@ -17,11 +17,10 @@ package graphique.component;
 
 import graphique.event.Explosion;
 import java.awt.Rectangle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import util.Dessinable;
 import java.awt.Graphics;
 import java.io.Serializable;
+import javax.swing.JOptionPane;
 import main.Main;
 import util.Collisionable;
 import util.Vecteur;
@@ -97,15 +96,14 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
     @Override
     public void dessiner(Graphics g) {
 
-        if (quitNextIterations) {
-            Main.terminerPartie("Quatre tentacules ont touché le sol!");
-        }
+       
 
-        if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.canvasSize.y - rectangle.height) {
+        if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.getCanvasSizeY() - rectangle.height) {
             if (isInvincible == false) {
                 Main.alienAuSol++;
                 if (Main.alienAuSol == 4) {
-                    quitNextIterations = true;
+                    
+                   Main.terminerPartie("dsad");
 
                 }
             }
@@ -117,22 +115,21 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
             return;
         }
         g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
-        if (position.y >= Main.canvasSize.y) {
+        if (position.y >= Main.getCanvasSizeY()) {
             isDessinable = false;
         }
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (quitNextIterations) {
-            Main.terminerPartie("Quatre tentacules ont touché le sol!");
-        }
+        
 
-        if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.canvasSize.y - rectangle.height) {
+        if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.getCanvasSizeY() - rectangle.height) {
             if (isInvincible == false) {
                 Main.alienAuSol++;
                 if (Main.alienAuSol == 4) {
-                    quitNextIterations = true;
+                    
+                   Main.terminerPartie("dsad");
 
                 }
             }
@@ -144,7 +141,7 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
             return;
         }
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
-        if (position.y >= Main.canvasSize.y) {
+        if (position.y >= Main.getCanvasSizeY()) {
             isDessinable = false;
         }
     }

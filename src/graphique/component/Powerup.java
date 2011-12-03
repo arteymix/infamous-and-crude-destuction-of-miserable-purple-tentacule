@@ -57,7 +57,7 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessiner(Graphics g) {
-        if (rectangle.y >= Main.canvasSize.y) {
+        if (rectangle.y >= Main.getCanvasSizeY()) {
             g.drawImage(image0, rectangle.x, rectangle.y, null);
         } else {
             g.drawImage(image0, rectangle.x, rectangle.y++, null);
@@ -67,7 +67,7 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (rectangle.y >= Main.canvasSize.y) {
+        if (rectangle.y >= Main.getCanvasSizeY()) {
             g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         } else {
             g.drawRect(rectangle.x, rectangle.y++, rectangle.width, rectangle.height);

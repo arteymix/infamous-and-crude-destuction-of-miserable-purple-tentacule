@@ -16,18 +16,21 @@
 package main;
 
 import util.Highscores;
-import content.SoundBank;
+
 import content.images.ImageBank;
+
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
+
+import graphique.window.MainCanvas.Activity;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
+
 import util.Dessinable;
 import util.KeyBoardListener;
 import util.Serialization;
-import util.SoundManager;
-import util.Vecteur;
 
 /**
  * Classe principale du programme.
@@ -96,11 +99,27 @@ public final class Main {
      * Cette variable définit le niveau du jeu.
      */
     public static int level = 1;
+
     /**
      * Ce vecteur est le vecteur dimension du canvas ou les composants et
      * graphics sont dessinés.
      */
-    public static Vecteur canvasSize = new Vecteur(1024, 768);
+    //public static Vecteur canvasSize = new Vecteur(1024, 768);
+    public static int getCanvasSizeX() {
+        if (interfaceGraphique == null) {
+            return 1024;
+        } else {
+            return interfaceGraphique.mainCanvas.getWidth();
+        }
+    }
+
+    public static int getCanvasSizeY() {
+        if (interfaceGraphique == null) {
+            return 768;
+        } else {
+            return interfaceGraphique.mainCanvas.getHeight();
+        }
+    }
     ////////////////////////////////////////////////////////////////////////////
     /**
      * 
@@ -135,15 +154,6 @@ public final class Main {
      */
     public static Highscores highscore;
     /**
-     * Banque de sons pour agrémenter la dite expérience utilisateur.
-     */
-    public static SoundBank soundBank;
-    /**
-     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur.
-     * avec un serveur de sons.
-     */
-    public static SoundManager son;
-    /**
      * Variable pour stocker le canon1
      */
     /**
@@ -172,13 +182,7 @@ public final class Main {
         }
         totalTime += System.currentTimeMillis() - loadingTime;
         System.out.println("Highscores chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
-        ////////////////////////////////////////////////////////////////////////
-        loadingTime = System.currentTimeMillis();
-        soundBank = new SoundBank();
-        son = new SoundManager();
-        System.out.println("Sons chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
-        totalTime += System.currentTimeMillis() - loadingTime;
-        //////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////        
         loadingTime = System.currentTimeMillis();
         imageBank = new ImageBank();
         imageBank.setStage(1);
@@ -263,7 +267,9 @@ public final class Main {
      * @param message 
      */
     public static void terminerPartie(String message) {
+         
         isPaused = true;
+       
         String achievements = "Achievements :\n";
         if (tentaculesKilled >= 100) {
             if (!highscore.NUKE_OBTAINED) {
@@ -317,11 +323,18 @@ public final class Main {
                 // pro deja obtenu
             }
         }
-        highscore.partiesCompletes++;
-        highscore.serializeOnTheHeap();
+        
         JOptionPane.showMessageDialog(null, "La partie est terminée!\n" + message + "\nVous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
+        highscore.partiesCompletes++;
+        highscore.serializeOnTheHeap(); 
+        
         close(0);
+        
+        
+       
     }
+    
+   
 
     /**
      * Lance la fermeture du jeu. Pour l'instant, cette méthode ne contient

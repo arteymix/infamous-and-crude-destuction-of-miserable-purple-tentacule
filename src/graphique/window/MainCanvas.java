@@ -47,18 +47,18 @@ public final class MainCanvas extends JComponent {
      */
     MainCanvas() {
         super();
-        setPreferredSize(new Dimension((int) Main.canvasSize.x, (int) Main.canvasSize.y));
+        setPreferredSize(new Dimension((int) Main.getCanvasSizeX(), (int) Main.getCanvasSizeY()));
     }
     /**
      * Objet contenant l'activité en cours.
      */
-    Activity activity = Activity.JEU;
+    public Activity activity = Activity.JEU;
 
     /**
      * Enum contenant les activités possibles (faire le rendu du jeu, afficher
      * les highscores, probablement un menu, etc...).
      */
-    enum Activity {
+    public enum Activity {
 
         JEU,
         HIGHSCORES,
@@ -78,12 +78,12 @@ public final class MainCanvas extends JComponent {
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);
             g.drawString(Traductions.get("debug.modedebogage") + " : " + (Main.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
-            g.drawString(Traductions.get("debug.nbcompo") + " : " + Main.composantesDessinables.size() + " "+Traductions.get("debug.composantes"), 5, 60);
+            g.drawString(Traductions.get("debug.nbcompo") + " : " + Main.composantesDessinables.size() + " " + Traductions.get("debug.composantes"), 5, 60);
             g.drawString("Points : " + Main.points + " points", 5, 75);
             g.drawString(Traductions.get("debug.vies") + " canon 1 : " + Main.canon1.getVie() + " " + Traductions.get("debug.vies"), 5, 90);
             g.drawString(Traductions.get("debug.vies") + " canon 2 : " + Main.canon2.getVie() + " " + Traductions.get("debug.vies"), 5, 105);
             g.drawString(Traductions.get("debug.tempsjoue") + " : " + Main.timerSeconds, 5, 120);
-            g.drawRect(0, 0, (int) Main.canvasSize.x - 1, (int) Main.canvasSize.y - 1);
+            g.drawRect(0, 0,  Main.getCanvasSizeX() - 1,  Main.getCanvasSizeY() - 1);
 
         } else {
             // Le background est dessiné ici.
@@ -194,6 +194,7 @@ public final class MainCanvas extends JComponent {
             case HELP:
                 KeySetting.drawKeySettingHelp(g);
                 break;
+            
         }
         Main.paintDone = true;
     }
@@ -212,9 +213,18 @@ public final class MainCanvas extends JComponent {
      */
     private void drawUserInterface(Graphics g) {
         // Vie du canon 1
+        for (int i = 0; i < 4; i++) {
+
+            g.drawImage(Main.imageBank.projectileEnnemi, (i * 90) + 30, 30, 45, 45, null);
+        }
         for (int i = 0; i < Main.alienAuSol; i++) {
             g.drawImage(Main.imageBank.projectileEnnemi, i * 90, 15, 90, 90, null);
         }
+
+        g.drawString("POINTS " + Main.points, 15, 15);
+        g.drawString("NIVEAU " + Main.level, 15, 30);
+
+
         if (Canon.isCanon2ValidTarget) {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
@@ -224,7 +234,7 @@ public final class MainCanvas extends JComponent {
             } else {
                 g.setColor(Color.GREEN);
             }
-            g.fillRect(0, (int) Main.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
+            g.fillRect(0, (int) Main.getCanvasSizeY() - 15, (int) (((double) Main.canon1.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.getCanvasSizeX()), 15);
             if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
                 g.setColor(Color.RED);
             } else if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
@@ -232,7 +242,7 @@ public final class MainCanvas extends JComponent {
             } else {
                 g.setColor(Color.GREEN);
             }
-            g.fillRect((int) (Main.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), (int) Main.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
+            g.fillRect((int) (Main.getCanvasSizeX()) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.getCanvasSizeX()), (int) Main.getCanvasSizeY() - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.getCanvasSizeX()), 15);
         } else {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
@@ -242,7 +252,7 @@ public final class MainCanvas extends JComponent {
             } else {
                 g.setColor(Color.GREEN);
             }
-            g.fillRect(0, (int) Main.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.canvasSize.x), 15);
+            g.fillRect(0, (int) Main.getCanvasSizeY() - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.getCanvasSizeX()), 15);
             // Lorsque tout est terminé, on change la couleur pour noir.
             g.setColor(Color.BLACK);
         }
