@@ -267,6 +267,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         ///////////////////////////////////////////////////////////////////////
         setVisible(true);
         setTitle(Traductions.get("title"));
+        
     }
 
     /**

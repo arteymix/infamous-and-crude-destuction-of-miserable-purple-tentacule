@@ -51,7 +51,7 @@ public final class Projectile extends Dessinable implements Collisionable {
         if (position.y > Main.canvasSize.y | position.x < 0 | position.x > Main.canvasSize.x) {
             this.isDessinable = false;
         }
-        g.drawImage(image0, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, null);
+        g.drawImage(image0, (int) ((position.x) -= vitesse.x)-10, (int) (position.y -= vitesse.y) - 10, null);
         vitesse.y -= GRAVITY;
     }
 

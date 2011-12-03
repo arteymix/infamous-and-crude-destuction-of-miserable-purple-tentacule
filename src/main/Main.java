@@ -161,24 +161,49 @@ public final class Main {
      * @throws IOException  
      */
     public static void main(String[] args) throws IOException {
+        long loadingTime;
+        long totalTime = 0;
+        System.out.println("Chargement du jeu...");
+        ////////////////////////////////////////////////////////////////////////
+        loadingTime = System.currentTimeMillis();
         if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
             System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
         }
+        totalTime += System.currentTimeMillis() - loadingTime;
+        System.out.println("Highscores chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
+        ////////////////////////////////////////////////////////////////////////
+        loadingTime = System.currentTimeMillis();
         soundBank = new SoundBank();
         son = new SoundManager();
-
+        System.out.println("Sons chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
+        totalTime += System.currentTimeMillis() - loadingTime;
+        //////////////////////////////////////////////////////
+        loadingTime = System.currentTimeMillis();
         imageBank = new ImageBank();
         imageBank.setStage(1);
+        System.out.println("Images chargées! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
+        totalTime += System.currentTimeMillis() - loadingTime;
+        ////////////////////////////////////////////////////////////////////////
+        loadingTime = System.currentTimeMillis();
         canon1 = new Canon(Canon.CANON1_ID);
         canon2 = new Canon(Canon.CANON2_ID);
         composantesDessinables.add(canon1);
         composantesDessinables.add(canon2);
+        System.out.println("Canons chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
+        totalTime += System.currentTimeMillis() - loadingTime;
+        ////////////////////////////////////////////////////////////////////////
+        loadingTime = System.currentTimeMillis();
         interfaceGraphique = new InterfaceGraphique();
         interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
         interfaceGraphique.keyBoardListener.start();
         rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
+        System.out.println("Interface graphique chargé! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
+        totalTime += System.currentTimeMillis() - loadingTime;
+        ////////////////////////////////////////////////////////////////////////
+        System.out.println("Chargement complété en " + totalTime + " ms!");
         rendu.start();
+        System.out.println("Le jeu est commencé!");
     }
 
     /**
