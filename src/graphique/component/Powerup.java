@@ -30,8 +30,8 @@ import util.Vecteur;
 public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     public Powerup(int x, int y) {
-        rectangle.x =  x;
-        rectangle.y =  y;
+        rectangle.x = x;
+        rectangle.y = y;
         switch (Main.level) {
             case 1:
                 id = POWER_SHOT;
@@ -57,12 +57,22 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawImage(image0, rectangle.x, rectangle.y, null);
+        if (rectangle.y >= Main.canvasSize.y) {
+            g.drawImage(image0, rectangle.x, rectangle.y, null);
+        } else {
+            g.drawImage(image0, rectangle.x, rectangle.y++, null);
+        }
+
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        if (rectangle.y >= Main.canvasSize.y) {
+            g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        } else {
+            g.drawRect(rectangle.x, rectangle.y++, rectangle.width, rectangle.height);
+        }
+
     }
 
     @Override

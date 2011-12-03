@@ -32,6 +32,7 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
   private static final double GRAVITY = 0.8;
     private Vecteur position, vitesse = new Vecteur(8, -8);
     private Rectangle rectangle;
+    
 
     /**
      * Un Projectile est un objet qui représente un tir de canon.
@@ -44,16 +45,17 @@ public final class Projectile extends Dessinable implements Collisionable, Seria
         vitesse = orientation;
         image0 = Main.imageBank.projectile;
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
+        
+        
     }
 
     @Override
     public void dessiner(Graphics g) {
+  
+        
         if (position.y > Main.canvasSize.y | position.x < 0 | position.x > Main.canvasSize.x) {
             this.isDessinable = false;
         }
-
-
-
         g.drawImage(image0, (int) ((position.x) -= vitesse.x) - 25, (int) (position.y -= vitesse.y) - 10, null);
 
         vitesse.y -= GRAVITY;

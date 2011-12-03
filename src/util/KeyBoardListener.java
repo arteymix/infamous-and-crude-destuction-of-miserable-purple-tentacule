@@ -82,7 +82,7 @@ public class KeyBoardListener extends Thread {
     /**
      * Itère une ArrayList de touches enfoncés et les envoies aux canons afin
      * qu'ils puissent gérer le multitouch.
-     */    
+     */
     @Override
     public void run() {
         while (Main.isRunning) {

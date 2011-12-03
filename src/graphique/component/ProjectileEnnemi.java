@@ -28,7 +28,7 @@ import util.Vecteur;
  * Fichier de classe pour un projectile ennemi.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
+final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
     ////////////////////////////////////////////////////////////////////////////
     // Constantes pour les projectiles ennemis.
     public static final int PROJECTILE_ENNEMI = 1,
@@ -44,7 +44,19 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     /**
      * Rectangle définissant l'aire occupé par le projectile ennemi.
      */
-    private Rectangle rectangle = new Rectangle(0, 0, 30, 30);
+    private Rectangle rectangle = new Rectangle(0, 0, 60, 60);
+    /**
+     * 
+     */
+    private final int ID;
+    /**
+     * 
+     */
+    private int dommage;
+    /**
+     * 
+     */
+    public boolean isInvincible = false;
 
     /**
      * Constructeur pour un projectile ennemi. Peut uniquement être appelé par
@@ -54,7 +66,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      */
     ProjectileEnnemi(Vecteur init, int id) {
         position = new Vecteur(init.x, init.y);
-
+        ID = id;
         switch (id) {
             case PROJECTILE_ENNEMI:
                 image0 = Main.imageBank.projectileEnnemi;
@@ -76,7 +88,13 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
 
     @Override
     public void dessiner(Graphics g) {
-        g.drawImage(image0, (int) position.x, (int) position.y++, 60, 60, null);
+        if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.canvasSize.y - rectangle.height) {
+            isInvincible = true;
+            dommage = 0;
+            g.drawImage(image0, (int) position.x, (int) position.y, rectangle.width, rectangle.height, null);
+            return;
+        }
+        g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
         if (position.y >= Main.canvasSize.y) {
             isDessinable = false;
         }
@@ -99,6 +117,9 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
 
     @Override
     public void collision(Collisionable c) {
+        if (isInvincible) {
+            return;
+        }
         if (c instanceof Projectile) {
             this.isDessinable = false;
             Main.points += 25;
@@ -115,6 +136,6 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
 
     @Override
     public int getDommage() {
-        return 10;
+        return dommage;
     }
 }

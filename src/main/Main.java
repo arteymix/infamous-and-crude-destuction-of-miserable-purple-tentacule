@@ -114,7 +114,7 @@ public final class Main {
     /**
      * Constantes pour le niveau de jeu.
      */
-    public static final int RESET = 0, LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
+    public static final int LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
     /**
      * 
      */
@@ -150,7 +150,7 @@ public final class Main {
      * @param args est un tableau d'arguments provenant de la ligne de commande.
      * @throws IOException  
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {       
         if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
             System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
@@ -281,9 +281,11 @@ public final class Main {
                 // pro deja obtenu
             }
         }
+        
+        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
         highscore.partiesCompletes++;
         highscore.serializeOnTheHeap();
-        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
+        
         close(0);
     }
 
