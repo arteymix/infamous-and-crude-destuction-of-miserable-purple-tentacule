@@ -17,6 +17,8 @@ package graphique.component;
 
 import graphique.event.Explosion;
 import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Dessinable;
 import java.awt.Graphics;
 import java.io.Serializable;
@@ -31,6 +33,7 @@ import util.Vecteur;
 final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
     ////////////////////////////////////////////////////////////////////////////
     // Constantes pour les projectiles ennemis.
+
     public static final int PROJECTILE_ENNEMI = 1,
             PROJECTILE_ENNEMI_OR = 2,
             PROJECTILE_ENNEMI_SUPERSONIC = 3,
@@ -52,11 +55,16 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
     /**
      * 
      */
-    private int dommage;
+    private int dommage = 10;
     /**
      * 
      */
     public boolean isInvincible = false;
+    /**
+     * Si true, on quitte à la prochaine itération afin de permettre au quatrième
+     * tentacule d'être dessiné.
+     */
+    private boolean quitNextIterations = false;
 
     /**
      * Constructeur pour un projectile ennemi. Peut uniquement être appelé par
@@ -88,10 +96,24 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
 
     @Override
     public void dessiner(Graphics g) {
+
+        if (quitNextIterations) {
+            Main.terminerPartie("Quatre tentacules ont touché le sol!");
+        }
+
         if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.canvasSize.y - rectangle.height) {
+            if (isInvincible == false) {
+                Main.alienAuSol++;
+                if (Main.alienAuSol == 4) {
+                    quitNextIterations = true;
+
+                }
+            }
             isInvincible = true;
             dommage = 0;
+
             g.drawImage(image0, (int) position.x, (int) position.y, rectangle.width, rectangle.height, null);
+
             return;
         }
         g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
@@ -102,6 +124,25 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
 
     @Override
     public void dessinerDeboguage(Graphics g) {
+        if (quitNextIterations) {
+            Main.terminerPartie("Quatre tentacules ont touché le sol!");
+        }
+
+        if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.canvasSize.y - rectangle.height) {
+            if (isInvincible == false) {
+                Main.alienAuSol++;
+                if (Main.alienAuSol == 4) {
+                    quitNextIterations = true;
+
+                }
+            }
+            isInvincible = true;
+            dommage = 0;
+
+            g.drawRect((int) position.x, (int) position.y, rectangle.width, rectangle.height);
+
+            return;
+        }
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
         if (position.y >= Main.canvasSize.y) {
             isDessinable = false;

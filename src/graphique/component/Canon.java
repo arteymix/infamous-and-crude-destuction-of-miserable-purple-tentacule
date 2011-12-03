@@ -18,13 +18,12 @@ package graphique.component;
 import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
-//import java.awt.Graphics2D;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-//import java.awt.geom.AffineTransform;
-
 import java.awt.geom.AffineTransform;
+
 import main.Main;
+
 import util.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
@@ -80,7 +79,7 @@ public final class Canon extends Dessinable implements Collisionable {
      * deuxième canon.
      */
     private Vecteur A, B, C, D;
-     private double tetha = Math.PI;
+    private double tetha = Math.PI;
     /**
      * 
      */
@@ -276,32 +275,22 @@ public final class Canon extends Dessinable implements Collisionable {
 
     @Override
     public void dessiner(Graphics g) {
-        if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
-            return;
-        }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        AffineTransform at = new AffineTransform();   
+        AffineTransform at = new AffineTransform();
         // TODO Rotation du dit canon!
-        at.rotate(tetha);      
-        
+        at.rotate(tetha);
         Graphics2D g2d = (Graphics2D) g;
+
         g2d.drawImage(image1, at, null);
-       
-        
+        g.setColor(Color.BLACK);
+        g.fillPolygon(xPoints, yPoints, 4);
         //g.drawImage(image1, xPoints[1], yPoints[1], null);
         g.drawImage(image0, (int) position.x, (int) position.y, null);
-        g.setColor(Color.RED);
-        g.fillRect((int) position.x, (int) position.y, vie / 5, 10);
-        g.setColor(Color.BLACK);
     }
-   
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (!isCanon2ValidTarget && this.NUMERO_DU_CANON == 1) {
-            return;
-        }
         int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
@@ -324,7 +313,7 @@ public final class Canon extends Dessinable implements Collisionable {
         if (vie < 0) {
             this.isDessinable = false;
             // Un canon est mort, la partie est fini!
-            Main.terminerPartie();
+            Main.terminerPartie("Le canon " + this.NUMERO_DU_CANON + " est mort!");
         }
     }
 

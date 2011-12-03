@@ -28,15 +28,15 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * ID de l'ennemi normal.
      */
-     static final int ENNEMI_NORMAL = 1;
+    static final int ENNEMI_NORMAL = 1;
     /**
      * ID de l'ennemi supersonique.
      */
-    private static  final int ENNEMI_SUPERSONIQUE = 2;
+    private static final int ENNEMI_SUPERSONIQUE = 2;
     /**
      * ID du boss 1.
      */
-     private static final int ENNEMI_BOSS_1 = 3;
+    private static final int ENNEMI_BOSS_1 = 3;
     /**
      * ID du boss 2.
      */
@@ -45,8 +45,9 @@ public final class Ovni extends Dessinable implements Collisionable {
      * ID du boss 3.
      */
     private static final int ENNEMI_BOSS_3 = 5;
+    private static int ENNEMY_SHOOT_RATE = 500;
     /**
-     * Random utilisé pour éviter d'en instancier un au besoin.
+     * Random utilisé pour les génération aléatoires de l'ovni.
      */
     private static Random random = new Random();
     private static final int ENNEMI_BOSS_1_POINTS = 200,
@@ -62,18 +63,22 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * 
      */
-    private double vitesseX = 1.0;
+    private double vitesseX = 1.0;   
     /**
      * 
      */
+    private int vie;
     /**
      * 
      */
-    private int id, vie;
+    private final int ID;
     /**
      * 
      */
     private boolean isOr;
+    /**
+     * 
+     */
     private Rectangle rectangle = new Rectangle();
 
     /**
@@ -93,7 +98,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         }
         // Détermine si l'ennemi est or
         isOr = random.nextInt(10) == 1 ? true : false;
-        this.id = id;
+        this.ID = id;
         position.x = x;
         position.y = y;
         configurerOvni(id);
@@ -169,12 +174,12 @@ public final class Ovni extends Dessinable implements Collisionable {
      * 
      * @param id est le id du missile à tirer. Ce id correspond au id de l'ovni.
      */
-    private void tirer(int i) {
+    private void tirer() {
         // Sa devrait être cool maintenant...
         /* Le numéro du id correspond au id du missile.
          * L'ennemi régulier possède le projectile régulier, etc...
          */
-        switch (id) {
+        switch (ID) {
             // TODO Condition pour ENNEMI_OR ou non.
             case ENNEMI_NORMAL:
                 Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
@@ -238,7 +243,7 @@ public final class Ovni extends Dessinable implements Collisionable {
      * 
      */
     private void action() {
-        switch (id) {
+        switch (ID) {
             case ENNEMI_NORMAL:// mouvement d'un enemi normal 
                 position.x += 3 * vitesseX;
                 break;
@@ -258,8 +263,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
 
         }
-        if ((new Random()).nextInt(100) == 1) {
-            tirer(0);
+        if ((new Random()).nextInt(ENNEMY_SHOOT_RATE) == 1) {
+            tirer();
         }
     }
 
@@ -322,7 +327,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     @Override
     public Rectangle getRectangle() {
         int longeur = 0, hauteur = 0;
-        switch (id) {
+        switch (ID) {
             case ENNEMI_NORMAL://Grandeur du rectangle d'un enemi normal 
                 longeur = hauteur = 100;
                 break;
@@ -360,7 +365,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             this.isDessinable = false;
             Main.points += 100;
             // Mort des boss
-            switch (id) {
+            switch (ID) {
                 case Ovni.ENNEMI_BOSS_1:
                     Main.points += ENNEMI_BOSS_1_POINTS;
                     Main.setGameLevel(Main.LEVEL_2);

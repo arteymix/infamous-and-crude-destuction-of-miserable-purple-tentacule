@@ -18,6 +18,7 @@ package content;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import main.Main;
 
 /**
  * Classe de configuration pour les touches. Sera objet et sérialisable dans un
@@ -86,7 +87,20 @@ public final class KeySetting {
     public static void drawKeySettingHelp(Graphics g) {
 
         // TODO HERE!
-        g.setColor(Color.WHITE);
+        if(Main.isDebugEnabled) {
+            g.setColor(Color.BLACK);
+        } else if(Main.level == Main.LEVEL_1) {
+            g.setColor(Color.WHITE);
+        } else if(Main.level == Main.LEVEL_2) {
+            g.setColor(Color.WHITE);
+        } else if(Main.level == Main.LEVEL_3) {
+            g.setColor(Color.WHITE);
+        } else if(Main.level == Main.LEVEL_BONUS) {
+            g.setColor(Color.WHITE);
+        } else {
+            g.setColor(Color.BLACK);
+        }
+       
         int i = 440;
         g.drawString("Agencement du clavier", 15, i += 15);
 

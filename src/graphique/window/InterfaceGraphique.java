@@ -26,8 +26,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
-import java.io.Serializable;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
@@ -46,7 +47,7 @@ import util.Traductions;
  * Fichier de classe pour l'interface graphique.
  * @author Guillaume Poirier-Morency
  */
-public final class InterfaceGraphique extends JFrame implements Serializable, Runnable {
+public final class InterfaceGraphique extends JFrame implements Runnable {
 
     private JMenuBar jmb = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
@@ -54,7 +55,6 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             menuAide = new JMenu(Traductions.get("menu.aide"));
     private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
             mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle"));
-              
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage"));
     private JCheckBoxMenuItem cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons"));
     private JCheckBoxMenuItem cbmitemMontrerHighscores = new JCheckBoxMenuItem("Highscores"),
@@ -72,7 +72,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
+                if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
                     Main.close(Main.CODE_DE_SORTIE_OK);
                 }
 
@@ -110,8 +110,6 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 changeHighscoresState();
             }
         });
-
-
         menuFichier.add(mitemNouvellePartie);
         menuFichier.addSeparator();
         menuFichier.add(cbmitemDebug);
@@ -138,7 +136,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                 Traductions.setLangue("en");
 
             }
-        });        
+        });
         mitemAide.addActionListener(new ActionListener() {
 
             @Override
@@ -156,18 +154,27 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
         menuLangue.add(en);
         menuAide.add(mitemAide);
         menuAide.addSeparator();
-        menuAide.add(new JMenuItem(Traductions.get("menu.item.tableau")));
-        menuAide.add(new JMenuItem(Traductions.get("menu.item.trophe")));
-        menuAide.addSeparator();
         menuAide.add(new JMenuItem(Traductions.get("menu.item.apropos")));
         jmb.add(menuFichier);
         jmb.add(menuAide);
         setJMenuBar(jmb);
     }
 
+    /**
+     * Change le statut du mode de déboguage.
+     * @param b est true si le mode de déboguage doit être activé, false autrement.
+     */
     private void changeDebugState(boolean b) {
         Main.isDebugEnabled = b;
         cbmitemDebug.setState(b);
+    }
+
+    /**
+     * 
+     */
+    public void translateMenus() {
+        
+        
     }
 
     public void changeHighscoresState() {
@@ -186,7 +193,13 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
      * Constructeur pour générer l'interface graphique.
      */
     public InterfaceGraphique() {
+        this.addWindowListener(new WindowAdapter() {
 
+            @Override
+            public void windowClosing(WindowEvent we) {
+                Main.close(0);
+            }
+        });
         configurerMenus();
         /* Le KeyListener du canon est implémenté dans KeyBoardListener afin
          * de rendre possible le multitouch. 
@@ -208,7 +221,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
                         break;
                     case KeySetting.QUIT:
 
-                        if (JOptionPane.showConfirmDialog(null, "Êtes-vous sur de vouloir quitter?", "", JOptionPane.YES_NO_OPTION) == 0) {
+                        if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
                             Main.close(0);
                         }
                         break;
@@ -251,7 +264,7 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
 
         // Move the window
         this.setLocation(x, y);
-        ///////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////
         setVisible(true);
         setTitle(Traductions.get("title"));
     }
@@ -263,7 +276,6 @@ public final class InterfaceGraphique extends JFrame implements Serializable, Ru
     public void run() {
 
         while (Main.isRunning) {
-
             Main.time = System.currentTimeMillis();
             Main.paintDone = false;
             // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.

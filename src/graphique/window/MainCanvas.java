@@ -78,11 +78,11 @@ public final class MainCanvas extends JComponent {
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);
             g.drawString(Traductions.get("debug.modedebogage") + " : " + (Main.isDebugEnabled ? Traductions.get("debug.active") : Traductions.get("debug.desactive")), 5, 45);
-            g.drawString("Nombre de composantes dessinable" + " : " + Main.composantesDessinables.size() + " composantes", 5, 60);
+            g.drawString(Traductions.get("debug.nbcompo") + " : " + Main.composantesDessinables.size() + " "+Traductions.get("debug.composantes"), 5, 60);
             g.drawString("Points : " + Main.points + " points", 5, 75);
-            g.drawString("Vies canon 1 : " + Main.canon1.getVie() + " vies", 5, 90);
-            g.drawString("Vies canon 2 : " + Main.canon2.getVie() + " vies", 5, 105);
-            g.drawString("Temps joué : " + Main.timerSeconds, 5, 120);
+            g.drawString(Traductions.get("debug.vies") + " canon 1 : " + Main.canon1.getVie() + " " + Traductions.get("debug.vies"), 5, 90);
+            g.drawString(Traductions.get("debug.vies") + " canon 2 : " + Main.canon2.getVie() + " " + Traductions.get("debug.vies"), 5, 105);
+            g.drawString(Traductions.get("debug.tempsjoue") + " : " + Main.timerSeconds, 5, 120);
             g.drawRect(0, 0, (int) Main.canvasSize.x - 1, (int) Main.canvasSize.y - 1);
 
         } else {
@@ -95,10 +95,9 @@ public final class MainCanvas extends JComponent {
                 ////////////////////////////////////////////////////////////////
                 // On incrémente le timer de Main.gameValues.latency millisecondes.
                 Main.timerSeconds += Main.latency;
-                
                 ////////////////////////////////////////////////////////////////
                 // Le jeu!
-                ArrayList<Canon> listeDeCanonDessinable = new ArrayList<Canon>();
+
                 ArrayList<Dessinable> aEnlever = new ArrayList<Dessinable>();
                 // Génération des nuages 
                 DecorFlottant.createNuage();
@@ -130,8 +129,6 @@ public final class MainCanvas extends JComponent {
                             } else {
                                 d.dessiner(g);
                             }
-                        } else {
-                            listeDeCanonDessinable.add((Canon) d);
                         }
                     } else {
                         aEnlever.add(d);
@@ -145,11 +142,15 @@ public final class MainCanvas extends JComponent {
                 //</editor-fold>
 
                 //<editor-fold defaultstate="collapsed" desc="Les canons sont dessinés à la toute fin (ici), afin de s'assurer qu'ils apparaissent par dessus les missiles.">
-                for (Canon c : listeDeCanonDessinable) {
-                    if (Main.isDebugEnabled) {
-                        c.dessinerDeboguage(g);
-                    } else {
-                        c.dessiner(g);
+                if (Main.isDebugEnabled) {
+                    Main.canon1.dessinerDeboguage(g);
+                    if (Canon.isCanon2ValidTarget) {
+                        Main.canon2.dessinerDeboguage(g);
+                    }
+                } else {
+                    Main.canon1.dessiner(g);
+                    if (Canon.isCanon2ValidTarget) {
+                        Main.canon2.dessiner(g);
                     }
                 }
                 //</editor-fold>
@@ -165,17 +166,18 @@ public final class MainCanvas extends JComponent {
                 /* En cas où c'est le rendu des meilleurs scores qui est activé,
                  * on itère le dictionnaire dans Main.highscores.
                  */
-                int x = 100;
+                int x = 15;
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.BLACK);
                 } else {
                     g.setColor(Color.WHITE);
                 }
-                int positionInit = 385;
+                int positionInit = 440;
+                g.drawString("Meilleur scores :", x, positionInit += 15);
                 for (String s : Main.highscore.getScores()) {
                     g.drawString(s, x, positionInit += 15);
                 }
-
+                g.drawString("Trophées :", x, positionInit += 30);
                 g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
                 g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
                 g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
@@ -210,6 +212,9 @@ public final class MainCanvas extends JComponent {
      */
     private void drawUserInterface(Graphics g) {
         // Vie du canon 1
+        for (int i = 0; i < Main.alienAuSol; i++) {
+            g.drawImage(Main.imageBank.projectileEnnemi, i * 90, 15, 90, 90, null);
+        }
         if (Canon.isCanon2ValidTarget) {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
@@ -228,8 +233,15 @@ public final class MainCanvas extends JComponent {
                 g.setColor(Color.GREEN);
             }
             g.fillRect((int) (Main.canvasSize.x) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), (int) Main.canvasSize.y - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.canvasSize.x), 15);
-                    } else {
+        } else {
             g.setColor(Color.GREEN);
+            if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
+                g.setColor(Color.RED);
+            } else if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
+                g.setColor(Color.YELLOW);
+            } else {
+                g.setColor(Color.GREEN);
+            }
             g.fillRect(0, (int) Main.canvasSize.y - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.canvasSize.x), 15);
             // Lorsque tout est terminé, on change la couleur pour noir.
             g.setColor(Color.BLACK);

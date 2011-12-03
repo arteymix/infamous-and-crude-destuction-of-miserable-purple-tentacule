@@ -35,16 +35,16 @@ public class Traductions implements Serializable {
     public static String get(String variable) {
         if (!isInitAlready) {
             initFr();
+            initEn();
             isInitAlready = true;
         }
         if (langue.equals("fr")) {
             return fr.get(variable);
-        }
-        else if (langue.equals("en")) {
+        } else if (langue.equals("en")) {
             return en.get(variable);
         } else {
-        System.out.println("Langue non supportée!");
-        return null;
+            System.out.println("Langue non supportée!");
+            return null;
         }
     }
 
@@ -63,7 +63,7 @@ public class Traductions implements Serializable {
      */
     private static void initFr() {
         fr.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
-        
+
         fr.put("menu.fichier", "Fichier");
         fr.put("menu.editer", "Éditer");
         fr.put("menu.langue", "Langues");
@@ -74,11 +74,13 @@ public class Traductions implements Serializable {
         fr.put("menu.francais", "Français");
         fr.put("menu.anglais", "Anglais");
         fr.put("menu.nouvelle", "Nouvelle Partie");
-        
+
+        fr.put("menu.confirmation", "Êtes-vous sur de vouloir quitter?");
+
         fr.put("menu.item.aide", "Aide...");
         fr.put("menu.item.tableau", "Tableau de pointage...");
         fr.put("menu.item.trophe", "Trophées...");
-        fr.put("menu.item.apropos", "À propos...");      
+        fr.put("menu.item.apropos", "À propos...");
 
         fr.put("debug.latence", "Latence");
         fr.put("debug.tempsrendu", "Temps de rendu");
@@ -87,18 +89,22 @@ public class Traductions implements Serializable {
         fr.put("debug.composantes", "composantes");
         fr.put("debug.active", "Activé");
         fr.put("debug.desactive", "Désactivé");
-        
-        fr.put("debug.tempsdurendu", "Temps du rendu");
-        fr.put("debug.tempsdurendu", "Temps du rendu");
-        fr.put("debug.tempsdurendu", "Temps du rendu");
-        fr.put("debug.tempsdurendu", "Temps du rendu");
-        fr.put("debug.tempsdurendu", "Temps du rendu");
+        fr.put("debug.vies", "Vies");
+        fr.put("debug.tempsjoue", "Temps joué");
+        fr.put("debug.nbcompo", "Nombre de composantes dessinable");
+        fr.put("debug.composantes", "composantes");
+
+        fr.put("highscores.tempsdurendu", "Temps du rendu");
+        fr.put("highscores.tempsdurendu", "Temps du rendu");
+        fr.put("highscores.tempsdurendu", "Temps du rendu");
+        fr.put("highscores.tempsdurendu", "Temps du rendu");
+        fr.put("highscores.tempsdurendu", "Temps du rendu");
+
+
         fr.put("debug.tempsdurendu", "Temps du rendu");
     }
-    
+
     private static void initEn() {
-    
-    
     }
     private static HashMap<String, String> en = new HashMap<String, String>();
     private static HashMap<String, String> fr = new HashMap<String, String>();

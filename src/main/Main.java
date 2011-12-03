@@ -34,12 +34,15 @@ import util.Vecteur;
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Main {
-    ///////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Si true, les highscores sont affichés.
      */
     public static boolean showHighscores = false;
+    /**
+     * 
+     */
     public static boolean showHelp = false;
     /**
      * Variable définissant si le programme est en exécution afin d'avertir les threads
@@ -98,7 +101,7 @@ public final class Main {
      * graphics sont dessinés.
      */
     public static Vecteur canvasSize = new Vecteur(1024, 768);
-    ///////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * 
      */
@@ -132,25 +135,32 @@ public final class Main {
      */
     public static Highscores highscore;
     /**
-     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur
-     * avec un serveur de sons.
+     * Banque de sons pour agrémenter la dite expérience utilisateur.
      */
     public static SoundBank soundBank;
+    /**
+     * Système de gestion du son pour agrémenter l'expérience de l'utilisateur.
+     * avec un serveur de sons.
+     */
     public static SoundManager son;
     /**
-     * 
+     * Variable pour stocker le canon1
      */
+    /**
+     * Variable pour stocker le canon1
+     */
+    public static Canon canon1, canon2;
     /**
      * 
      */
-    public static Canon canon1, canon2;
+    public static int alienAuSol = 0;
 
     /**
      * Méthode principale du programme.
      * @param args est un tableau d'arguments provenant de la ligne de commande.
      * @throws IOException  
      */
-    public static void main(String[] args) throws IOException {       
+    public static void main(String[] args) throws IOException {
         if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
             System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
@@ -225,8 +235,9 @@ public final class Main {
      * Méthode appelée lorsqu'une partie se termine, la méthode close() est 
      * appelée par la suite. Cette méthode calcule si le joueur a obtenu les
      * trophées.
+     * @param message 
      */
-    public static void terminerPartie() {
+    public static void terminerPartie(String message) {
         isPaused = true;
         String achievements = "Achievements :\n";
         if (tentaculesKilled >= 100) {
@@ -281,11 +292,9 @@ public final class Main {
                 // pro deja obtenu
             }
         }
-        
-        JOptionPane.showMessageDialog(null, "La partie est terminée! Vous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
         highscore.partiesCompletes++;
         highscore.serializeOnTheHeap();
-        
+        JOptionPane.showMessageDialog(null, "La partie est terminée!\n" + message + "\nVous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
         close(0);
     }
 
