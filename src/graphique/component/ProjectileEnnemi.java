@@ -94,23 +94,16 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
 
     @Override
     public void dessiner(Graphics g) {
-
-
-
         if (ID == ProjectileEnnemi.PROJECTILE_ENNEMI && position.y >= Main.getCanvasSizeY() - rectangle.height) {
             if (isInvincible == false) {
                 Main.alienAuSol++;
                 if (Main.alienAuSol == 4) {
-
-                    Main.terminerPartie("dsad");
-
+                    Main.terminerPartie("Quatre tentacules ont touché le sol!");
                 }
             }
             isInvincible = true;
             dommage = 0;
-
             g.drawImage(image0, (int) position.x, (int) position.y, rectangle.width, rectangle.height, null);
-
             return;
         }
         g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
@@ -127,9 +120,7 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
             if (isInvincible == false) {
                 Main.alienAuSol++;
                 if (Main.alienAuSol == 4) {
-
                     Main.terminerPartie("Quatre tentacules ont touché le sol!");
-
                 }
             }
             isInvincible = true;

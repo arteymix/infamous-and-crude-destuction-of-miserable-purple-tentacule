@@ -40,6 +40,7 @@ public final class Projectile extends Dessinable implements Collisionable {
      * @param point est le point initial d'où le projectile est tiré.
      * @param orientation est l'orientation initiale du projectile.
      * @param id est propre à chaque projectile et définit ses caractéristiquesé
+     * @param tetha  
      */
     public Projectile(Vecteur point, Vecteur orientation, int id, double tetha) {
         this.tetha = tetha + Math.PI;

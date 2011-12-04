@@ -24,27 +24,91 @@ import java.awt.Toolkit;
  */
 public class ImageBank {
 
+    /**
+     * 
+     */
     public Image ship1;
+    /**
+     * 
+     */
     public Image ship2;
+    /**
+     * 
+     */
     public Image subcanon1;
+    /**
+     * 
+     */
     public Image subcanon2;
+    /**
+     * 
+     */
     public Image decorFlottant;
+    /**
+     * 
+     */
     public Image background;
+    /**
+     * 
+     */
     public Image ennemi;
+    /**
+     * 
+     */
     public Image ennemiSupersonic;
+    /**
+     * 
+     */
     public Image ennemiOr;
+    /**
+     * 
+     */
     public Image ennemiSupersonicOr;
+    /**
+     * 
+     */
     public Image boss;
+    /**
+     * 
+     */
     public Image projectile;
+    /**
+     * 
+     */
     public Image projectileEnnemi;
+    /**
+     * 
+     */
     public Image projectileEnnemiOr;
+    /**
+     * 
+     */
     public Image projectileEnnemiSupersonic;
+    /**
+     * 
+     */
     public Image projectileEnnemiSupersonicOr;
+    /**
+     * 
+     */
     public Image projectileBoss;
+    /**
+     * 
+     */
     public Image explosion;
+    /**
+     * 
+     */
     public Image powerup;
+    /**
+     * 
+     */
     public final Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/icon.png"));
 
+    /**
+     * 
+     * @param i
+     */
     public void setStage(int i) {
         ship1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ship1.gif"));
         ship2 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ship2.gif"));

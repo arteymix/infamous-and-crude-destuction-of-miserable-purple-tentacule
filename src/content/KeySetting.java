@@ -82,8 +82,15 @@ public final class KeySetting {
      * 
      */
     public static final int QUIT = KeyEvent.VK_ESCAPE;
+    /**
+     * 
+     */
     public static final int SHOW_DEBUG = KeyEvent.VK_F6;
 
+    /**
+     * 
+     * @param g
+     */
     public static void drawKeySettingHelp(Graphics g) {
 
         // TODO HERE!

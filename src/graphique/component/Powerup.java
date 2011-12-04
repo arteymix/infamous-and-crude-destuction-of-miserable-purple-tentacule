@@ -30,6 +30,11 @@ import util.Vecteur;
  */
 public class Powerup extends Dessinable implements Collisionable, Serializable {
 
+    /**
+     * 
+     * @param x
+     * @param y
+     */
     public Powerup(int x, int y) {
         rectangle.x = x;
         rectangle.y = y;
@@ -51,12 +56,30 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
         
         rectangle.width = image0.getWidth(null);
         rectangle.height = image0.getHeight(null);
-    }
+    }    
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     public static final int POWER_SHOT = 0, // Powerup stage 1
             FAST_SHOT = 1, // Powerup stage 2
             POWER_FAST_SHOT = 2,
             PROBABILITE_APPARITION_POWERUP = 2000;
+    /**
+     * 
+     */
     private Rectangle rectangle = new Rectangle(0,0,500,500);
+    /**
+     * 
+     */
     public final int id;
 
     @Override

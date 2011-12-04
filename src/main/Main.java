@@ -44,10 +44,6 @@ public final class Main {
      */
     public static boolean showHighscores = false;
     /**
-     * Booléan qui détermine si l'aide doit être affichée ou non.
-     */
-    public static boolean showHelp = false;
-    /**
      * Variable définissant si le programme est en exécution afin d'avertir les threads
      * dans le programme en cas de fermeture.
      */
@@ -71,10 +67,6 @@ public final class Main {
      * Est true quand le rendu est fini, false quand le rendu est en cours.
      */
     public static boolean paintDone = false;
-    /**
-     * Variable qui contient le temps de jeu.
-     */
-    public static long time;
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
@@ -103,6 +95,7 @@ public final class Main {
     /**
      * Ce vecteur est le vecteur dimension du canvas ou les composants et
      * graphics sont dessinés.
+     * @return 
      */
     //public static Vecteur canvasSize = new Vecteur(1024, 768);
     public static int getCanvasSizeX() {
@@ -113,6 +106,10 @@ public final class Main {
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public static int getCanvasSizeY() {
         if (interfaceGraphique == null) {
             return 768;
@@ -233,6 +230,8 @@ public final class Main {
                 imageBank.setStage(3);
                 break;
             case LEVEL_BONUS:
+                // TODO Implémenter le niveau bonus!!
+                break;
         }
     }
 
@@ -241,7 +240,6 @@ public final class Main {
      */
     public static void restart() {
         isPaused = true;
-
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
             timerSeconds = 0;
             composantesDessinables = new ArrayList<Dessinable>();
@@ -258,21 +256,23 @@ public final class Main {
             interfaceGraphique.mainCanvas.activity = Activity.JEU;
         }
         isPaused = false;
-
     }
 
     /**
      * Méthode appelée lorsqu'une partie se termine, la méthode close() est 
      * appelée par la suite. Cette méthode calcule si le joueur a obtenu les
      * trophées.
-     * @param message 
+     * @param s 
      */
     public static void terminerPartie(String s) {
         highscore.partiesCompletes++;
         Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
         messageDeFermeture = s;
     }
-    public static String messageDeFermeture = "";
+    /**
+     * 
+     */
+    public static String messageDeFermeture;
 
     /**
      * Lance la fermeture du jeu. Pour l'instant, cette méthode ne contient
@@ -297,65 +297,33 @@ public final class Main {
                 isPaused = false;
                 return;
             }
+            if (tentaculesKilled >= 100) {
+                highscore.NUKE_OBTAINED = !highscore.NUKE_OBTAINED;
+            }
+            if (highscore.partiesCompletes == 0) {
+                highscore.NOOB_OBTAINED = !highscore.NOOB_OBTAINED;
+            }
+            if (highscore.partiesCompletes >= 1000) {
+                highscore.PWN_OBTAINED = !highscore.PWN_OBTAINED;
+            }
+            if (highscore.partiesCompletes >= 10) {
+                highscore.OWN_OBTAINED = !highscore.OWN_OBTAINED;
+            }
+            if (points == 0) {
+                highscore.BAZINGA_OBTAINED = !highscore.BAZINGA_OBTAINED;
+            }
+            if (points >= 1000) {
+                highscore.LEET_OBTAINED = !highscore.LEET_OBTAINED;
+
+            }
+            if (points >= 250) {
+                highscore.PRO_OBTAINED = !highscore.PRO_OBTAINED;
+            }
+            // On sérialize les highscores une ultime fois!
+            System.out.println("Sérialization finale des highscores");
+            highscore.serializeOnTheHeap();
         }
         isRunning = false;
-        if (tentaculesKilled >= 100) {
-            if (!highscore.NUKE_OBTAINED) {
-
-                highscore.NUKE_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (highscore.partiesCompletes == 0) {
-            if (!highscore.NOOB_OBTAINED) {
-
-                highscore.NOOB_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (highscore.partiesCompletes >= 1000) {
-            if (!highscore.PWN_OBTAINED) {
-
-                highscore.PWN_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (highscore.partiesCompletes >= 10) {
-            if (!highscore.OWN_OBTAINED) {
-
-                highscore.OWN_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (points == 0) {
-            if (!highscore.BAZINGA_OBTAINED) {
-
-                highscore.BAZINGA_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (points >= 1000) {
-            if (!highscore.LEET_OBTAINED) {
-
-                highscore.LEET_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (points >= 250) {
-            if (!highscore.PRO_OBTAINED) {
-
-                highscore.PRO_OBTAINED = true;
-            } else {
-                // pro deja obtenu
-            }
-        }
-
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {
             Thread.sleep((int) latency);
@@ -364,16 +332,9 @@ public final class Main {
         }
         // Le thread de swing est stoppé
         interfaceGraphique.dispose();
-        if (i == CODE_DE_SORTIE_OK) {
-            // On sérialise les highscore à la fermeture.
-            highscore.serializeOnTheHeap();
-
-            System.exit(i);
-        } else {
-            System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
-            // Le thread de swing est stoppé            
-            System.exit(i);
-        }
+        System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
+        // Le thread de swing est stoppé            
+        System.exit(i);
 
     }
 }

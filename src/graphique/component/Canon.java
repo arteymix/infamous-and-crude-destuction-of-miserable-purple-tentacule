@@ -84,7 +84,6 @@ public final class Canon extends Dessinable implements Collisionable {
      * 
      */
     private Vecteur position;
-    
     /**
      * 
      */
@@ -251,7 +250,6 @@ public final class Canon extends Dessinable implements Collisionable {
      * Effectue un tir!
      */
     private void tirer() {
-
         if (peutTirer) {
             //Main.son.play(Main.soundBank.explosion);
             Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0, tetha));
@@ -274,8 +272,8 @@ public final class Canon extends Dessinable implements Collisionable {
     }
 
     @Override
-    public void dessiner(Graphics g) {        
-        AffineTransform at = new AffineTransform();        
+    public void dessiner(Graphics g) {
+        AffineTransform at = new AffineTransform();
         double x = piedDeCanon().x;
         double y = piedDeCanon().y;
         at.translate(x, y);
@@ -284,7 +282,6 @@ public final class Canon extends Dessinable implements Collisionable {
         g2d.drawImage(image1, at, null);
         at.translate(-x, -y);
         g.setColor(Color.BLACK);
-        
         g.drawImage(image0, (int) position.x, (int) position.y, null);
     }
 

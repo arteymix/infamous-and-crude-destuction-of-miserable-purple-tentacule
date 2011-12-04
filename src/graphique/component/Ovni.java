@@ -28,7 +28,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * ID de l'ennemi normal.
      */
-    static final int ENNEMI_NORMAL = 1;
+    private static final int ENNEMI_NORMAL = 1;
     /**
      * ID de l'ennemi supersonique.
      */
@@ -295,14 +295,6 @@ public final class Ovni extends Dessinable implements Collisionable {
         }
         position.x += deplacementX * vitesseX;
         position.y += deplacementY * vitesseX;
-    }
-
-    /**
-     * 
-     * @param vitesseX
-     */
-    public void setVitesseX(int vitesseX) {
-        this.vitesseX = vitesseX;
     }
 
     @Override

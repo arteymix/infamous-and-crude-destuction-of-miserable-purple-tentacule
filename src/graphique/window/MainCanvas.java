@@ -60,9 +60,22 @@ public final class MainCanvas extends JComponent {
      */
     public enum Activity {
 
+        /**
+         * 
+         */
         JEU,
+        /**
+         * 
+         */
         HIGHSCORES,
-        HELP, GAME_OVER;
+        /**
+         * 
+         */
+        HELP,
+        /**
+         * 
+         */
+        GAME_OVER;
     }
     private final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
             FONT_GAME_OVER = new Font("Comic sans ms", Font.BOLD, 70);
@@ -99,7 +112,7 @@ public final class MainCanvas extends JComponent {
                 g.drawString("GAME OVER!", (Main.getCanvasSizeX() / 2) - 300, Main.getCanvasSizeY() / 2);
                 g.setFont(FONT);
                 g.drawString(Main.messageDeFermeture, 15, k += 15);
-                g.drawString("Achievements obtenus :", 15, k +=30);
+                g.drawString("Achievements obtenus :", 15, k += 30);
 
                 if (Main.tentaculesKilled >= 100) {
                     if (!Main.highscore.NUKE_OBTAINED) {
@@ -109,7 +122,7 @@ public final class MainCanvas extends JComponent {
                     } else {
                         g.drawString("Nuke déjà obtenu...", 15, k += 15);
                     }
-                } 
+                }
                 if (Main.highscore.partiesCompletes == 0) {
                     if (!Main.highscore.NOOB_OBTAINED) {
                         g.drawString("Noob obtenu!", 15, k += 15);
@@ -121,7 +134,7 @@ public final class MainCanvas extends JComponent {
                     if (!Main.highscore.PWN_OBTAINED) {
                         g.drawString("Pwn obtenu!", 15, k += 15);
                     } else {
-                       g.drawString("Pwn déjà obtenu...", 15, k += 15);
+                        g.drawString("Pwn déjà obtenu...", 15, k += 15);
                     }
                 }
                 if (Main.highscore.partiesCompletes >= 10) {
@@ -153,7 +166,7 @@ public final class MainCanvas extends JComponent {
 
                     } else {
                         g.drawString("Pro déjà obtenu...", 15, k += 15);
-                       
+
                     }
                 }
                 g.setColor(Color.BLACK);
@@ -164,7 +177,6 @@ public final class MainCanvas extends JComponent {
                 Main.timerSeconds += Main.latency;
                 ////////////////////////////////////////////////////////////////
                 // Le jeu!
-
                 ArrayList<Dessinable> aEnlever = new ArrayList<Dessinable>();
                 // Génération des nuages 
                 DecorFlottant.createNuage();
@@ -202,13 +214,9 @@ public final class MainCanvas extends JComponent {
 
                     }
                 }
-                //<editor-fold defaultstate="collapsed" desc="Boucle pour supprimer les objets non dessinable. Autrement, il arrive que certains objets ne soient pas dessinés, car la liste de composantes dessinables est dynamique.">
                 for (Dessinable d : aEnlever) {
                     Main.composantesDessinables.remove(d);
                 }
-                //</editor-fold>
-
-                //<editor-fold defaultstate="collapsed" desc="Les canons sont dessinés à la toute fin (ici), afin de s'assurer qu'ils apparaissent par dessus les missiles.">
                 if (Main.isDebugEnabled) {
                     Main.canon1.dessinerDeboguage(g);
                     if (Canon.isCanon2ValidTarget) {
@@ -220,8 +228,6 @@ public final class MainCanvas extends JComponent {
                         Main.canon2.dessiner(g);
                     }
                 }
-                //</editor-fold>
-
                 ////////////////////////////////////////////////////////////////
                 // L'interface utilisateur est dessiné ici
                 if (!Main.isDebugEnabled) {
@@ -261,7 +267,6 @@ public final class MainCanvas extends JComponent {
             case HELP:
                 KeySetting.drawKeySettingHelp(g);
                 break;
-
         }
         Main.paintDone = true;
     }
@@ -281,17 +286,13 @@ public final class MainCanvas extends JComponent {
     private void drawUserInterface(Graphics g) {
         // Vie du canon 1
         for (int i = 0; i < 4; i++) {
-
             g.drawImage(Main.imageBank.projectileEnnemi, (i * 90) + 30, 30, 45, 45, null);
         }
         for (int i = 0; i < Main.alienAuSol; i++) {
             g.drawImage(Main.imageBank.projectileEnnemi, i * 90, 15, 90, 90, null);
         }
-
         g.drawString("POINTS " + Main.points, 15, 15);
         g.drawString("NIVEAU " + Main.level, 15, 30);
-
-
         if (Canon.isCanon2ValidTarget) {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {

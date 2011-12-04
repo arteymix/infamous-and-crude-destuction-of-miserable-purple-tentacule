@@ -48,43 +48,48 @@ import util.Traductions;
  * @author Guillaume Poirier-Morency
  */
 public final class InterfaceGraphique extends JFrame implements Runnable {
+    ////////////////////////////////////////////////////////////////////////////
+    // Éléments d'interface
 
-    private JMenuBar jmb = new JMenuBar();
+    private JMenuBar jmbMenuBar = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuLangue = new JMenu(Traductions.get("menu.langue")),
             menuAide = new JMenu(Traductions.get("menu.aide"));
     private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
             mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle"));
-    private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage"));
-    private JCheckBoxMenuItem cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons"));
-    private JCheckBoxMenuItem cbmitemMontrerHighscores = new JCheckBoxMenuItem("Highscores"),
+    private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage")),
+            cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons")),
+            cbmitemMontrerHighscores = new JCheckBoxMenuItem("Highscores"),
             mitemAide = new JCheckBoxMenuItem(Traductions.get("menu.item.aide"));
-    private ButtonGroup bg = new ButtonGroup();
+    private JRadioButtonMenuItem rbtnEnglish = new JRadioButtonMenuItem(Traductions.get("menu.anglais")),
+            rbtnFrancais = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
+    private ButtonGroup bgBoutonsLangues = new ButtonGroup();
     /**
      * 
      */
     public MainCanvas mainCanvas = new MainCanvas();
+    ////////////////////////////////////////////////////////////////////////////
+    /**
+     * 
+     */
     public KeyBoardListener keyBoardListener;
 
+    /**
+     * 
+     */
     private void configurerMenus() {
         mitemQuitter.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
-                
-                    Main.close(Main.CODE_DE_SORTIE_OK);
-                
-
+                Main.close(Main.CODE_DE_SORTIE_OK);
             }
         });
-
         cbmitemDebug.setState(Main.isDebugEnabled);
         cbmitemDebug.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
                 changeDebugState(cbmitemDebug.getState());
             }
         });
@@ -93,7 +98,6 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 Canon.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
-
             }
         });
         mitemNouvellePartie.addActionListener(new ActionListener() {
@@ -119,17 +123,15 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         menuFichier.add(menuLangue);
         menuFichier.addSeparator();
         menuFichier.add(mitemQuitter);
-        JRadioButtonMenuItem fr = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
-        fr.setSelected(true);
-        JRadioButtonMenuItem en = new JRadioButtonMenuItem(Traductions.get("menu.anglais"));
-        fr.addActionListener(new ActionListener() {
+        rbtnFrancais.setSelected(true);
+        rbtnFrancais.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 Traductions.setLangue("fr");
             }
         });
-        en.addActionListener(new ActionListener() {
+        rbtnEnglish.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
@@ -148,16 +150,16 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                 }
             }
         });
-        bg.add(en);
-        bg.add(fr);
-        menuLangue.add(fr);
-        menuLangue.add(en);
+        bgBoutonsLangues.add(rbtnEnglish);
+        bgBoutonsLangues.add(rbtnFrancais);
+        menuLangue.add(rbtnFrancais);
+        menuLangue.add(rbtnEnglish);
         menuAide.add(mitemAide);
         menuAide.addSeparator();
         menuAide.add(new JMenuItem(Traductions.get("menu.item.apropos")));
-        jmb.add(menuFichier);
-        jmb.add(menuAide);
-        setJMenuBar(jmb);
+        jmbMenuBar.add(menuFichier);
+        jmbMenuBar.add(menuAide);
+        setJMenuBar(jmbMenuBar);
     }
 
     /**
@@ -173,10 +175,11 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
      * 
      */
     public void translateMenus() {
-        
-        
     }
 
+    /**
+     * 
+     */
     public void changeHighscoresState() {
         if (mainCanvas.activity.equals(Activity.JEU)) {
             mainCanvas.activity = Activity.HIGHSCORES;
@@ -197,13 +200,14 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void windowClosing(WindowEvent we) {
-               
+
                 Main.close(Main.CODE_DE_SORTIE_AUTRE);
-                
+
             }
-            
+
             @Override
-            public void windowClosed(WindowEvent we) {}
+            public void windowClosed(WindowEvent we) {
+            }
         });
         configurerMenus();
         /* Le KeyListener du canon est implémenté dans KeyBoardListener afin
@@ -260,20 +264,17 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         // Source : http://www.java-forums.org/awt-swing/3491-jframe-center-screen.html
         // Get the size of the screen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
         // Determine the new location of the window
         int w = this.getSize().width;
         int h = this.getSize().height;
         int x = (dim.width - w) / 2;
         int y = (dim.height - h) / 2;
-
         // Move the window
         this.setLocation(x, y);
         ///////////////////////////////////////////////////////////////////////
         setVisible(true);
         setTitle(Traductions.get("title"));
         setResizable(false);
-        
     }
 
     /**
@@ -283,7 +284,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
     public void run() {
 
         while (Main.isRunning) {
-            Main.time = System.currentTimeMillis();
+            long time = System.currentTimeMillis();
             Main.paintDone = false;
             // On peint l'interface, ce qui oblige les composantes à calculer leurs animations.
             mainCanvas.repaint();
@@ -291,7 +292,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                 while (!Main.paintDone) {
                     Thread.sleep(0, 1);
                 }
-                Main.tempsDuRendu = (System.currentTimeMillis() - Main.time);
+                Main.tempsDuRendu = (System.currentTimeMillis() - time);
                 /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
                  * En quelque sorte, si le rendu est trop long, on attendra moins 
                  * longtemps avant le suivant afin de ne pas causer d'accélération 

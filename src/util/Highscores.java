@@ -29,11 +29,18 @@ import javax.swing.JOptionPane;
  */
 public final class Highscores extends HashMap<String, Integer> implements Serializable {
 
+    /**
+     * Constructeur pour l'objet de Highscores. Met mon nom, avec 999999999 points
+     * à battre.
+     */
     public Highscores() {
         super();
         put("Guillaume", 999999999);
     }
 
+    /**
+     * Sérialize sur le champ!
+     */
     public void serializeOnTheHeap() {
         Serialization.serialize(this, "highscores.serial");
     }

@@ -17,6 +17,7 @@ package util;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.io.Serializable;
 
 /**
@@ -41,8 +42,7 @@ public abstract class Dessinable implements Serializable {
      * En temps normaux, ce paramètre est vérifié chaque fois que les composantes doivent
      * être calculés.
      */    
-    public boolean isDessinable = true;
-
+    public boolean isDessinable = true;    
     /**
      * Dessiner le composant sur un Graphics.
      * @param g est le Graphics à utiliser pour effectuer le dessin.
