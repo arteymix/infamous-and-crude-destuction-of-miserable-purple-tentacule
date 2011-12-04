@@ -62,9 +62,10 @@ public final class MainCanvas extends JComponent {
 
         JEU,
         HIGHSCORES,
-        HELP;
+        HELP, GAME_OVER;
     }
-    private final Font FONT = new Font("Comic sans ms", Font.BOLD, 15);
+    private final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
+            FONT_GAME_OVER = new Font("Comic sans ms", Font.BOLD, 70);
 
     /**
      * Peint le JPanel avec le rendu du jeu.
@@ -83,7 +84,7 @@ public final class MainCanvas extends JComponent {
             g.drawString(Traductions.get("debug.vies") + " canon 1 : " + Main.canon1.getVie() + " " + Traductions.get("debug.vies"), 5, 90);
             g.drawString(Traductions.get("debug.vies") + " canon 2 : " + Main.canon2.getVie() + " " + Traductions.get("debug.vies"), 5, 105);
             g.drawString(Traductions.get("debug.tempsjoue") + " : " + Main.timerSeconds, 5, 120);
-            g.drawRect(0, 0,  Main.getCanvasSizeX() - 1,  Main.getCanvasSizeY() - 1);
+            g.drawRect(0, 0, Main.getCanvasSizeX() - 1, Main.getCanvasSizeY() - 1);
 
         } else {
             // Le background est dessiné ici.
@@ -91,6 +92,72 @@ public final class MainCanvas extends JComponent {
 
         }
         switch (activity) {
+            case GAME_OVER:
+                int k = Main.getCanvasSizeY() / 2;
+                g.setColor(Color.WHITE);
+                g.setFont(FONT_GAME_OVER);
+                g.drawString("GAME OVER!", (Main.getCanvasSizeX() / 2) - 300, Main.getCanvasSizeY() / 2);
+                g.setFont(FONT);
+                g.drawString(Main.messageDeFermeture, 15, k += 15);
+                g.drawString("Achievements obtenus :", 15, k +=30);
+
+                if (Main.tentaculesKilled >= 100) {
+                    if (!Main.highscore.NUKE_OBTAINED) {
+                        g.drawString("Nuke obtenu!", 15, k += 15);
+
+
+                    } else {
+                        g.drawString("Nuke déjà obtenu...", 15, k += 15);
+                    }
+                } 
+                if (Main.highscore.partiesCompletes == 0) {
+                    if (!Main.highscore.NOOB_OBTAINED) {
+                        g.drawString("Noob obtenu!", 15, k += 15);
+                    } else {
+                        g.drawString("Noob déjà obtenu...", 15, k += 15);
+                    }
+                }
+                if (Main.highscore.partiesCompletes >= 1000) {
+                    if (!Main.highscore.PWN_OBTAINED) {
+                        g.drawString("Pwn obtenu!", 15, k += 15);
+                    } else {
+                       g.drawString("Pwn déjà obtenu...", 15, k += 15);
+                    }
+                }
+                if (Main.highscore.partiesCompletes >= 10) {
+                    if (!Main.highscore.OWN_OBTAINED) {
+                        g.drawString("Own obtenu!", 15, k += 15);
+                    } else {
+                        g.drawString("Own déjà obtenu...", 15, k += 15);
+                    }
+                }
+                if (Main.points == 0) {
+                    if (!Main.highscore.BAZINGA_OBTAINED) {
+                        g.drawString("Bazinga! obtenu!", 15, k += 15);
+                    } else {
+                        g.drawString("Bazinga déjà obtenu...", 15, k += 15);
+                    }
+                }
+                if (Main.points >= 1000) {
+                    if (!Main.highscore.LEET_OBTAINED) {
+                        g.drawString("1337 obtenu!", 15, k += 15);
+
+
+                    } else {
+                        g.drawString("1337 déjà obtenu...", 15, k += 15);
+                    }
+                }
+                if (Main.points >= 250) {
+                    if (!Main.highscore.PRO_OBTAINED) {
+                        g.drawString("Pro obtenu!", 15, k += 15);
+
+                    } else {
+                        g.drawString("Pro déjà obtenu...", 15, k += 15);
+                       
+                    }
+                }
+                g.setColor(Color.BLACK);
+                break;
             case JEU:
                 ////////////////////////////////////////////////////////////////
                 // On incrémente le timer de Main.gameValues.latency millisecondes.
@@ -194,7 +261,7 @@ public final class MainCanvas extends JComponent {
             case HELP:
                 KeySetting.drawKeySettingHelp(g);
                 break;
-            
+
         }
         Main.paintDone = true;
     }

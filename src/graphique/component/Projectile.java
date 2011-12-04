@@ -19,6 +19,8 @@ import graphique.event.Explosion;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import main.Main;
 import util.Collisionable;
 import util.Vecteur;
@@ -39,7 +41,8 @@ public final class Projectile extends Dessinable implements Collisionable {
      * @param orientation est l'orientation initiale du projectile.
      * @param id est propre à chaque projectile et définit ses caractéristiquesé
      */
-    public Projectile(Vecteur point, Vecteur orientation, int id) {
+    public Projectile(Vecteur point, Vecteur orientation, int id, double tetha) {
+        this.tetha = tetha + Math.PI;
         position = point;
         vitesse = orientation;
         image0 = Main.imageBank.projectile;
@@ -51,9 +54,20 @@ public final class Projectile extends Dessinable implements Collisionable {
         if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
             this.isDessinable = false;
         }
-        g.drawImage(image0, (int) ((position.x) -= vitesse.x)-10, (int) (position.y -= vitesse.y) - 10, null);
+        double x = this.position.x;
+        double y = this.position.y;
+        AffineTransform at = new AffineTransform();
+        at.translate(x, y);
+        at.rotate(tetha += Math.PI / 60, 0, 0);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(image0, at, null);
+        at.translate(-x, -y);
+        //g.drawImage(image0, (int) ((position.x) -= vitesse.x)-10, (int) (position.y -= vitesse.y) - 10, null);
+        position.x -= vitesse.x;
+        position.y -= vitesse.y;
         vitesse.y -= GRAVITY;
     }
+    private double tetha;
 
     @Override
     public void dessinerDeboguage(Graphics g) {
@@ -73,7 +87,7 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        if (!(c instanceof Canon) && !(c instanceof Projectile)) {
+        if (!(c instanceof Canon) && !(c instanceof Projectile) && !(c instanceof Powerup)) {
             // Le projectile a frappé quelque chose, il sera détruit!
             this.isDessinable = false;
             Main.composantesDessinables.add(new Explosion(this.position));

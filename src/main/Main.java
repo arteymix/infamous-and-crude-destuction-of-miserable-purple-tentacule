@@ -21,8 +21,8 @@ import content.images.ImageBank;
 
 import graphique.component.Canon;
 import graphique.window.InterfaceGraphique;
+import graphique.window.MainCanvas.Activity;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -30,6 +30,7 @@ import javax.swing.JOptionPane;
 import util.Dessinable;
 import util.KeyBoardListener;
 import util.Serialization;
+import util.Traductions;
 
 /**
  * Classe principale du programme.
@@ -43,7 +44,7 @@ public final class Main {
      */
     public static boolean showHighscores = false;
     /**
-     * 
+     * Booléan qui détermine si l'aide doit être affichée ou non.
      */
     public static boolean showHelp = false;
     /**
@@ -91,7 +92,7 @@ public final class Main {
      */
     public static int points = 0;
     /**
-     * 
+     * Nombre de tentacules butés pour les trophées.
      */
     public static int tentaculesKilled = 0;
     /**
@@ -121,13 +122,13 @@ public final class Main {
     }
     ////////////////////////////////////////////////////////////////////////////
     /**
-     * 
+     * Quand tout est okay!
      */
     /**
-     * 
+     * Lorsqu'une erreur de sérialization survient.
      */
     /**
-     * 
+     * Pour les autres erreurs...
      */
     public static final int CODE_DE_SORTIE_OK = 0,
             CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
@@ -137,11 +138,11 @@ public final class Main {
      */
     public static final int LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
     /**
-     * 
+     * Thread pour le rendu.
      */
     private static Thread rendu;
     /**
-     * 
+     * Instance de l'interface graphique.
      */
     public static InterfaceGraphique interfaceGraphique;
     /**
@@ -160,16 +161,16 @@ public final class Main {
      */
     public static Canon canon1, canon2;
     /**
-     * 
+     * Variable qui définit combien de projectiles aliens fixes sont au sol, après
+     * quatre, le jeu s'arrête.
      */
     public static int alienAuSol = 0;
 
     /**
      * Méthode principale du programme.
-     * @param args est un tableau d'arguments provenant de la ligne de commande.
-     * @throws IOException  
+     * @param args est un tableau d'arguments provenant de la ligne de commande.     
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         long loadingTime;
         long totalTime = 0;
         System.out.println("Chargement du jeu...");
@@ -240,6 +241,7 @@ public final class Main {
      */
     public static void restart() {
         isPaused = true;
+
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
             timerSeconds = 0;
             composantesDessinables = new ArrayList<Dessinable>();
@@ -253,6 +255,7 @@ public final class Main {
             interfaceGraphique.keyBoardListener.start();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
+            interfaceGraphique.mainCanvas.activity = Activity.JEU;
         }
         isPaused = false;
 
@@ -264,69 +267,12 @@ public final class Main {
      * trophées.
      * @param message 
      */
-    public static void terminerPartie(String message) {
-
-        isPaused = true;
-
-        String achievements = "Achievements :\n";
-        if (tentaculesKilled >= 100) {
-            if (!highscore.NUKE_OBTAINED) {
-                achievements += "Noob obtenu!\n";
-                highscore.NUKE_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (highscore.partiesCompletes == 0) {
-            if (!highscore.NOOB_OBTAINED) {
-                achievements += "Noob obtenu!\n";
-                highscore.NOOB_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        } else if (highscore.partiesCompletes >= 1000) {
-            if (!highscore.PWN_OBTAINED) {
-                achievements += "Pwn obtenu!\n";
-                highscore.PWN_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        } else if (highscore.partiesCompletes >= 10) {
-            if (!highscore.OWN_OBTAINED) {
-                achievements += "Own obtenu!\n";
-                highscore.OWN_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        }
-        if (points == 0) {
-            if (!highscore.BAZINGA_OBTAINED) {
-                achievements += "Bazinga! obtenu!\n";
-                highscore.BAZINGA_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        } else if (points >= 1000) {
-            if (!highscore.LEET_OBTAINED) {
-                achievements += "1337 obtenu!\n";
-                highscore.LEET_OBTAINED = true;
-            } else {
-                // Leet déjà obtenu!
-            }
-        } else if (points >= 250) {
-            if (!highscore.PRO_OBTAINED) {
-                achievements += "Pro obtenu!\n";
-                highscore.PRO_OBTAINED = true;
-            } else {
-                // pro deja obtenu
-            }
-        }
-
-        JOptionPane.showMessageDialog(null, "La partie est terminée!\n" + message + "\nVous avez obtenu\n" + points + " points\n" + achievements + "Ainsi que complété " + highscore.partiesCompletes + " parties.");
+    public static void terminerPartie(String s) {
         highscore.partiesCompletes++;
-        highscore.serializeOnTheHeap();
-        close(0);
+        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
+        messageDeFermeture = s;
     }
+    public static String messageDeFermeture = "";
 
     /**
      * Lance la fermeture du jeu. Pour l'instant, cette méthode ne contient
@@ -335,7 +281,81 @@ public final class Main {
      * @param i est le statut de fermeture.
      */
     public static void close(int i) {
+        isPaused = true;
+        if (i == 0) {
+            if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
+                String s;
+                boolean fail = false;
+                do {
+                    s = JOptionPane.showInputDialog((fail ? "Nom incorrect!\n" : "") + "Veuillez entrer votre nom :");
+                    fail = true;
+                } while ("".equals(s));
+                if (s != null) {
+                    highscore.put(s, Main.points);
+                }
+            } else {
+                isPaused = false;
+                return;
+            }
+        }
         isRunning = false;
+        if (tentaculesKilled >= 100) {
+            if (!highscore.NUKE_OBTAINED) {
+
+                highscore.NUKE_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (highscore.partiesCompletes == 0) {
+            if (!highscore.NOOB_OBTAINED) {
+
+                highscore.NOOB_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (highscore.partiesCompletes >= 1000) {
+            if (!highscore.PWN_OBTAINED) {
+
+                highscore.PWN_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (highscore.partiesCompletes >= 10) {
+            if (!highscore.OWN_OBTAINED) {
+
+                highscore.OWN_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (points == 0) {
+            if (!highscore.BAZINGA_OBTAINED) {
+
+                highscore.BAZINGA_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (points >= 1000) {
+            if (!highscore.LEET_OBTAINED) {
+
+                highscore.LEET_OBTAINED = true;
+            } else {
+                // Leet déjà obtenu!
+            }
+        }
+        if (points >= 250) {
+            if (!highscore.PRO_OBTAINED) {
+
+                highscore.PRO_OBTAINED = true;
+            } else {
+                // pro deja obtenu
+            }
+        }
+
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {
             Thread.sleep((int) latency);
@@ -354,5 +374,6 @@ public final class Main {
             // Le thread de swing est stoppé            
             System.exit(i);
         }
+
     }
 }

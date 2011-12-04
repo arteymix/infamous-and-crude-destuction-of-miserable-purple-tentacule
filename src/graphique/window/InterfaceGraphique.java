@@ -72,9 +72,9 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             @Override
             public void actionPerformed(ActionEvent arg0) {
 
-                if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
+                
                     Main.close(Main.CODE_DE_SORTIE_OK);
-                }
+                
 
             }
         });
@@ -197,8 +197,13 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void windowClosing(WindowEvent we) {
-                Main.close(0);
+               
+                Main.close(Main.CODE_DE_SORTIE_AUTRE);
+                
             }
+            
+            @Override
+            public void windowClosed(WindowEvent we) {}
         });
         configurerMenus();
         /* Le KeyListener du canon est implémenté dans KeyBoardListener afin

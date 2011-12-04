@@ -15,6 +15,7 @@
  */
 package graphique.component;
 
+import graphique.event.Explosion;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.Serializable;
@@ -47,27 +48,32 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
                 System.out.println("Illegal id exception!");
         }
         image0 = Main.imageBank.powerup;
+        
+        rectangle.width = image0.getWidth(null);
+        rectangle.height = image0.getHeight(null);
     }
     public static final int POWER_SHOT = 0, // Powerup stage 1
             FAST_SHOT = 1, // Powerup stage 2
             POWER_FAST_SHOT = 2,
-            PROBABILITE_APPARITION_POWERUP = 1000;
-    private Rectangle rectangle;
+            PROBABILITE_APPARITION_POWERUP = 2000;
+    private Rectangle rectangle = new Rectangle(0,0,500,500);
     public final int id;
 
     @Override
     public void dessiner(Graphics g) {
-        if (rectangle.y >= Main.getCanvasSizeY()) {
+        if (rectangle.y >= Main.getCanvasSizeY() - rectangle.height) {            
             g.drawImage(image0, rectangle.x, rectangle.y, null);
+            
         } else {
             g.drawImage(image0, rectangle.x, rectangle.y++, null);
+           
         }
 
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (rectangle.y >= Main.getCanvasSizeY()) {
+        if (rectangle.y >= Main.getCanvasSizeY()- rectangle.height) {
             g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         } else {
             g.drawRect(rectangle.x, rectangle.y++, rectangle.width, rectangle.height);
@@ -83,9 +89,13 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
     @Override
     public void collision(Collisionable c) {
         // Un powerup est détruit par un canon qui l'absorbe ou un projectile/ovni ennemi
-        if (c instanceof ProjectileEnnemi | c instanceof Ovni | c instanceof Canon) {
+        if(c instanceof Canon) {
+        Main.composantesDessinables.add(new Explosion(new Vecteur(rectangle.x,rectangle.y)));
+            System.out.println(this +" colision avec "+ c);
             this.isDessinable = false;
+        
         }
+       
     }
 
     @Override

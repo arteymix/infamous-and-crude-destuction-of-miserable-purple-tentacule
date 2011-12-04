@@ -15,29 +15,33 @@
  */
 package graphique.event;
 
+import graphique.component.Powerup;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
 import main.Main;
 import util.Dessinable;
-import util.Vecteur;
 
 /**
  * Classe pour les objets Dessinable comme les nuages et les bancs de poissons.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class DecorFlottant extends Dessinable implements Serializable {
-  /**
-         * 
-         */
-        private static final int PROBABILITE_APPARITION_NUAGE = 1000;
+
     /**
      * 
      */
-    private Vecteur position = new Vecteur(0, (new Random()).nextInt(100) + 50);
+    private static final int PROBABILITE_APPARITION_NUAGE = 1000;
+    /**
+     * 
+     */
+    private double x, y;
 
-    private DecorFlottant() {
+    private DecorFlottant(int x, int y) {
         image0 = Main.imageBank.decorFlottant;
+        this.x = x;
+        this.y = y;
+
     }
 
     /**
@@ -45,31 +49,33 @@ public final class DecorFlottant extends Dessinable implements Serializable {
      */
     public static void createNuage() {
         if ((new Random()).nextInt(PROBABILITE_APPARITION_NUAGE) == 1) {
-            Main.composantesDessinables.add(new DecorFlottant());
+
+            Main.composantesDessinables.add(new DecorFlottant(0, 100));
         }
     }
 
     @Override
     public void dessiner(Graphics g) {
-        /*if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {
-            Main.gameValues.composantesDessinables.add(new Powerup((int)position.x,(int)position.y));
-        }*/
-        if (position.x > Main.getCanvasSizeX()) {
+        if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {
+            System.out.println("shit");
+            Main.composantesDessinables.add(new Powerup((int) x, (int) y));
+        }
+        if (x > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
-            g.drawImage(image0, (int) position.x, (int) position.y, null);
-            position.x += 0.5;
+            g.drawImage(image0, (int) x, (int) y, null);
+            x += 0.5;
         }
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (position.x > Main.getCanvasSizeX()) {
+        if (x > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
-            g.drawRect((int) position.x, (int) position.y, 200, 100);
-            g.drawString("Nuage", (int) position.x + 100, (int) position.y + 50);
-            position.x += 0.25;
+            g.drawRect((int) (int) x, (int) y, 200, 100);
+            g.drawString("Nuage", (int) x + 100, (int) y + 50);
+            x += 0.5;
         }
     }
 }

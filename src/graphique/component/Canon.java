@@ -63,7 +63,7 @@ public final class Canon extends Dessinable implements Collisionable {
     /**
      * 
      */
-    private static final int LATENCE_DU_TIR = 250;
+    private int LATENCE_DU_TIR = 250;
     /**
      * 
      */
@@ -84,7 +84,7 @@ public final class Canon extends Dessinable implements Collisionable {
      * 
      */
     private Vecteur position;
-    // TODO Algorithme de draw pour positionner le canon sur la partie la plus basse de l'écran.
+    
     /**
      * 
      */
@@ -254,7 +254,7 @@ public final class Canon extends Dessinable implements Collisionable {
 
         if (peutTirer) {
             //Main.son.play(Main.soundBank.explosion);
-            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0));
+            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0, tetha));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
             (new Thread("Thread pour le temps d'attente entre chaque tir de canon.") {
@@ -274,18 +274,17 @@ public final class Canon extends Dessinable implements Collisionable {
     }
 
     @Override
-    public void dessiner(Graphics g) {
-        int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
-        int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
-        AffineTransform at = new AffineTransform();
-        // TODO Rotation du dit canon!
-        at.rotate(tetha);
+    public void dessiner(Graphics g) {        
+        AffineTransform at = new AffineTransform();        
+        double x = piedDeCanon().x;
+        double y = piedDeCanon().y;
+        at.translate(x, y);
+        at.rotate(tetha, 10, 0);
         Graphics2D g2d = (Graphics2D) g;
-
         g2d.drawImage(image1, at, null);
+        at.translate(-x, -y);
         g.setColor(Color.BLACK);
-        g.fillPolygon(xPoints, yPoints, 4);
-        //g.drawImage(image1, xPoints[1], yPoints[1], null);
+        
         g.drawImage(image0, (int) position.x, (int) position.y, null);
     }
 
@@ -304,7 +303,18 @@ public final class Canon extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        if (!(c instanceof Canon) && !(c instanceof Projectile)) {
+        if (c instanceof Powerup) {
+            switch (((Powerup) c).id) {
+                case Powerup.FAST_SHOT:
+                    this.LATENCE_DU_TIR = 125;
+                    break;
+                case Powerup.POWER_FAST_SHOT:
+                    this.LATENCE_DU_TIR = 125;
+                    break;
+                case Powerup.POWER_SHOT:
+                    break;
+            }
+        } else if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             if (this.NUMERO_DU_CANON == CANON2_ID && !isCanon2ValidTarget) {
             } else {
                 this.vie -= c.getDommage();

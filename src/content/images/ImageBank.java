@@ -22,7 +22,7 @@ import java.awt.Toolkit;
  * Fichier d'objet pour la banque d'images.
  * @author Guillaume Poirier-Morency
  */
-public class ImageBank  {
+public class ImageBank {
 
     public Image ship1;
     public Image ship2;
@@ -50,7 +50,7 @@ public class ImageBank  {
         ship2 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ship2.gif"));
         subcanon1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/subcanon1.gif"));
         subcanon2 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/subcanon2.gif"));
-        decorFlottant = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/objetFlottant.GIF"));
+        decorFlottant = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/objetFlottant.png"));
         background = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/background.jpg"));
         ennemi = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ennemi.gif"));
         ennemiSupersonic = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ennemiSupersonic.gif"));
@@ -64,6 +64,6 @@ public class ImageBank  {
         projectileEnnemiSupersonicOr = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileSupersonicOr.gif"));
         projectileBoss = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileBoss.gif"));
         explosion = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/explosion.gif"));
-        powerup = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/powerup.gif"));
+        powerup = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/powerup.png"));
     }
 }
