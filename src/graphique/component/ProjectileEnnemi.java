@@ -33,6 +33,21 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
     ////////////////////////////////////////////////////////////////////////////
     // Constantes pour les projectiles ennemis.
 
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
     public static final int PROJECTILE_ENNEMI = 1,
             PROJECTILE_ENNEMI_OR = 2,
             PROJECTILE_ENNEMI_SUPERSONIC = 3,
@@ -59,12 +74,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      * 
      */
     public boolean isInvincible = false;
-    /**
-     * Si true, on quitte à la prochaine itération afin de permettre au quatrième
-     * tentacule d'être dessiné.
-     */
-    private boolean quitNextIterations = false;
-
+   
     /**
      * Constructeur pour un projectile ennemi. Peut uniquement être appelé par
      * un objet ovni.

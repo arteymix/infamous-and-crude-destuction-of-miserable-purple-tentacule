@@ -28,7 +28,32 @@ import util.Vecteur;
  * Objet dessinable pour les powerups.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public class Powerup extends Dessinable implements Collisionable, Serializable {
+public final class Powerup extends Dessinable implements Collisionable, Serializable {
+
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    public static final int POWER_SHOT = 0, // Powerup stage 1
+            FAST_SHOT = 1, // Powerup stage 2
+            POWER_FAST_SHOT = 2,
+            PROBABILITE_APPARITION_POWERUP = 2000;
+    /**
+     * 
+     */
+    private Rectangle rectangle = new Rectangle(0, 0, 500, 500);
+    /**
+     * 
+     */
+    public final int id;
 
     /**
      * 
@@ -55,30 +80,6 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
         rectangle.width = image0.getWidth(null);
         rectangle.height = image0.getHeight(null);
     }
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    /**
-     * 
-     */
-    public static final int POWER_SHOT = 0, // Powerup stage 1
-            FAST_SHOT = 1, // Powerup stage 2
-            POWER_FAST_SHOT = 2,
-            PROBABILITE_APPARITION_POWERUP = 2000;
-    /**
-     * 
-     */
-    private Rectangle rectangle = new Rectangle(0, 0, 500, 500);
-    /**
-     * 
-     */
-    public final int id;
 
     @Override
     public void dessiner(Graphics g) {
@@ -110,7 +111,7 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
         // Un powerup est détruit par un canon qui l'absorbe ou un projectile/ovni ennemi
         if (c instanceof Canon) {
             Main.composantesDessinables.add(new Explosion(new Vecteur(rectangle.x, rectangle.y)));
-                        this.isDessinable = false;
+            this.isDessinable = false;
         }
     }
 

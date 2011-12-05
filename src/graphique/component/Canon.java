@@ -56,7 +56,7 @@ public final class Canon extends Dessinable implements Collisionable {
     /**
      * 
      */
-    private static final double MOVEMENT_INCREMENT_CANON =5.0;
+    private static final double MOVEMENT_INCREMENT_CANON = 5.0;
     /**
      * 
      */
@@ -288,22 +288,21 @@ public final class Canon extends Dessinable implements Collisionable {
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
         g.drawRect((int) (position.x), (int) (position.y), (int) LARGEUR_DU_CANON, (int) HAUTEUR_DU_CANON);
-        g.drawString("Canon " + this.NUMERO_DU_CANON, (int)position.x + 15, (int)position.y + 45);
-        g.drawString("Latence du tir : "+this.LATENCE_DU_TIR+ " ms", (int)position.x + 15, (int)position.y + 60);
-        g.drawString("Vies : "+this.vie+ " vies", (int)position.x + 15, (int)position.y + 75);
-        g.drawString("Fast shot : "+FAST_SHOT_OBTAINED, (int)position.x + 15, (int)position.y + 90);
-        g.drawString("Power fast shot : "+POWER_FAST_SHOT_OBTAINED, (int)position.x + 15, (int)position.y + 105);;
-        
-        g.drawString("Power shot : "+POWER_SHOT_OBTAINED, (int)position.x + 15, (int)position.y + 120);
+        g.drawString("Canon " + this.NUMERO_DU_CANON, (int) position.x + 15, (int) position.y + 45);
+        g.drawString("Latence du tir : " + this.LATENCE_DU_TIR + " ms", (int) position.x + 15, (int) position.y + 60);
+        g.drawString("Vies : " + this.vie + " vies", (int) position.x + 15, (int) position.y + 75);
+        g.drawString("Fast shot : " + FAST_SHOT_OBTAINED, (int) position.x + 15, (int) position.y + 90);
+        g.drawString("Power fast shot : " + POWER_FAST_SHOT_OBTAINED, (int) position.x + 15, (int) position.y + 105);
+        g.drawString("Power shot : " + POWER_SHOT_OBTAINED, (int) position.x + 15, (int) position.y + 120);
     }
 
     @Override
     public Rectangle getRectangle() {
         return new Rectangle((int) position.x, (int) position.y, (int) LARGEUR_DU_CANON, (int) HAUTEUR_DU_CANON);
     }
-private boolean FAST_SHOT_OBTAINED = false,
-        POWER_FAST_SHOT_OBTAINED = false,
-        POWER_SHOT_OBTAINED = false;
+    private boolean FAST_SHOT_OBTAINED = false,
+            POWER_FAST_SHOT_OBTAINED = false,
+            POWER_SHOT_OBTAINED = false;
 
     @Override
     public void collision(Collisionable c) {
@@ -325,7 +324,7 @@ private boolean FAST_SHOT_OBTAINED = false,
         } else if (!(c instanceof Canon) && !(c instanceof Projectile)) {
             if (this.NUMERO_DU_CANON == CANON2_ID && !isCanon2ValidTarget) {
             } else {
-                this.vie -= c.getDommage()*Main.level;
+                this.vie -= c.getDommage() * Main.level;
             }
         }
         if (vie < 0) {

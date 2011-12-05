@@ -25,13 +25,19 @@ import util.Dessinable;
  * @author guillaume
  */
 public class PointsObtenus extends Dessinable {
-Integer size = 15;
+
+    int size = 15;
     int delay = 30;
     String points;
-    Font font  = new Font("Comic sans ms", Font.BOLD, size);
+    Font font = new Font("Comic sans ms", Font.BOLD, size);
     int x, y;
-    
 
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param points
+     */
     public PointsObtenus(int x, int y, String points) {
         this.points = points + " points";
         this.x = x;

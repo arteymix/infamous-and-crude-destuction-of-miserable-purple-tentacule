@@ -44,6 +44,23 @@ import util.Traductions;
 public final class MainCanvas extends JComponent {
 
     /**
+     * Pourcentage de vie pour que les vies soient affichés en rouge.
+     */
+    /**
+     * Pourcentage de vie pour que les vies soient affichés en jaune.
+     */
+    private static final double PERCENTAGE_RED_LIFE = 0.25,
+            PERCENTAGE_YELLOW_LIFE = 0.5;
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    public static final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
+            FONT_GAME_OVER = new Font("Comic sans ms", Font.BOLD, 70);
+
+    /**
      * Constructeur pour le canvas où le rendu est effectué.
      */
     MainCanvas() {
@@ -78,8 +95,6 @@ public final class MainCanvas extends JComponent {
          */
         GAME_OVER;
     }
-    public static final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
-            FONT_GAME_OVER = new Font("Comic sans ms", Font.BOLD, 70);
 
     /**
      * Peint le JPanel avec le rendu du jeu.
@@ -99,11 +114,9 @@ public final class MainCanvas extends JComponent {
             g.drawString(Traductions.get("debug.vies") + " canon 2 : " + Main.canon2.getVie() + " " + Traductions.get("debug.vies"), 5, 105);
             g.drawString(Traductions.get("debug.tempsjoue") + " : " + Main.timerSeconds, 5, 120);
             g.drawRect(0, 0, Main.getCanvasSizeX() - 1, Main.getCanvasSizeY() - 1);
-
         } else {
             // Le background est dessiné ici.
             g.drawImage(Main.imageBank.background, 0, 0, 1024, 768, null);
-
         }
         switch (activity) {
             case GAME_OVER:
@@ -264,14 +277,6 @@ public final class MainCanvas extends JComponent {
         }
         Main.paintDone = true;
     }
-    /**
-     * Pourcentage de vie pour que les vies soient affichés en rouge.
-     */
-    /**
-     * Pourcentage de vie pour que les vies soient affichés en jaune.
-     */
-    private static final double PERCENTAGE_RED_LIFE = 0.25,
-            PERCENTAGE_YELLOW_LIFE = 0.5;
 
     /**
      * Méthode qui fait le rendu de l'interface utilisateur.
