@@ -86,11 +86,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      */
     @Override
     public Integer put(String s, Integer i) {
-        if (this.containsKey(s)) {
-            JOptionPane.showMessageDialog(null, "Voulez-vousCe joueur existe déjà, s'il s'agit de vous, voulez-vous remplacer votre score?"
-                    + "\nAutrement, il ne sera pas sauvegardé!");
-            return 0; // TODO Configurer les return ici...
-        }
+        
         Integer jkl = super.put(s, i);
 
         /* TODO On trie le dictionnaire en fonction des scores.
@@ -111,6 +107,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
         int i = 0;
         for (String s : this.keySet()) {
             highscores[i] = s + " | " + this.get(s);
+            i++;            
         }
         // Tri du dictionnaire
         for (int j = 0; j < highscores.length; j++) {
@@ -121,6 +118,13 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
                     highscores[j] = temp;
                 }
             }
+        }
+        if(highscores.length > 5) {
+            String[] s = new String[5];
+            for(int z = 0; z < 5; z++) {
+                s[z] = highscores[z];
+            }
+            highscores = s;
         }
         return highscores;
     }

@@ -176,7 +176,7 @@ public final class Main {
         if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
             System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
-        }
+        }        
         totalTime += System.currentTimeMillis() - loadingTime;
         System.out.println("Highscores chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
         ////////////////////////////////////////////////////////////////////////        
@@ -282,42 +282,47 @@ public final class Main {
      */
     public static void close(int i) {
         isPaused = true;
+
+        if (tentaculesKilled >= 100) {
+            highscore.NUKE_OBTAINED = !highscore.NUKE_OBTAINED;
+        }
+        if (highscore.partiesCompletes == 0) {
+            highscore.NOOB_OBTAINED = !highscore.NOOB_OBTAINED;
+        }
+        if (highscore.partiesCompletes >= 1000) {
+            highscore.PWN_OBTAINED = !highscore.PWN_OBTAINED;
+        }
+        if (highscore.partiesCompletes >= 10) {
+            highscore.OWN_OBTAINED = !highscore.OWN_OBTAINED;
+        }
+        if (points == 0) {
+            highscore.BAZINGA_OBTAINED = !highscore.BAZINGA_OBTAINED;
+        }
+        if (points >= 1000) {
+            highscore.LEET_OBTAINED = !highscore.LEET_OBTAINED;
+
+        }
+        if (points >= 250) {
+            highscore.PRO_OBTAINED = !highscore.PRO_OBTAINED;
+        }
         if (i == 0) {
             if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
                 String s;
                 boolean fail = false;
                 do {
-                    s = JOptionPane.showInputDialog((fail ? "Nom incorrect!\n" : "") + "Veuillez entrer votre nom :");
+                    s = JOptionPane.showInputDialog((fail ? "Ce nom ne peut être utilisé, choisissez-en un autre!\n" : "") + "Veuillez entrer votre nom, celui-ci doit\nêtre composé de trois lettres :");
+                    if (s == null) {
+                        break;
+                    }
                     fail = true;
-                } while ("".equals(s));
+                } while ("".equals(s) | highscore.containsKey(s) | s.length() != 3);
+
                 if (s != null) {
                     highscore.put(s, Main.points);
                 }
             } else {
                 isPaused = false;
                 return;
-            }
-            if (tentaculesKilled >= 100) {
-                highscore.NUKE_OBTAINED = !highscore.NUKE_OBTAINED;
-            }
-            if (highscore.partiesCompletes == 0) {
-                highscore.NOOB_OBTAINED = !highscore.NOOB_OBTAINED;
-            }
-            if (highscore.partiesCompletes >= 1000) {
-                highscore.PWN_OBTAINED = !highscore.PWN_OBTAINED;
-            }
-            if (highscore.partiesCompletes >= 10) {
-                highscore.OWN_OBTAINED = !highscore.OWN_OBTAINED;
-            }
-            if (points == 0) {
-                highscore.BAZINGA_OBTAINED = !highscore.BAZINGA_OBTAINED;
-            }
-            if (points >= 1000) {
-                highscore.LEET_OBTAINED = !highscore.LEET_OBTAINED;
-
-            }
-            if (points >= 250) {
-                highscore.PRO_OBTAINED = !highscore.PRO_OBTAINED;
             }
             // On sérialize les highscores une ultime fois!
             System.out.println("Sérialization finale des highscores");

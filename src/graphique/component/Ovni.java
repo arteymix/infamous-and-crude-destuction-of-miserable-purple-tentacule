@@ -381,31 +381,31 @@ public final class Ovni extends Dessinable implements Collisionable {
             switch (ID) {
                 case Ovni.ENNEMI_BOSS_1:
                     Main.points += ENNEMI_BOSS_1_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int)position.x,(int)position.y,""+ENNEMI_BOSS_1_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_1_POINTS));
                     Main.setGameLevel(Main.LEVEL_2);
                     isBoss = false;
                     break;
                 case Ovni.ENNEMI_BOSS_2:
                     Main.points += ENNEMI_BOSS_2_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int)position.x,(int)position.y,""+ENNEMI_BOSS_2_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_2_POINTS));
                     Main.setGameLevel(Main.LEVEL_3);
                     isBoss = false;
                     break;
                 case Ovni.ENNEMI_BOSS_3:
                     Main.points += ENNEMI_BOSS_3_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int)position.x,(int)position.y,""+ENNEMI_BOSS_3_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_3_POINTS));
                     Main.setGameLevel(Main.LEVEL_BONUS);
                     isBoss = false;
                     break;
                 case Ovni.ENNEMI_NORMAL:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_NORMAL_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int)position.x,(int)position.y,""+ENNEMI_NORMAL_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS));
                     break;
                 case Ovni.ENNEMI_SUPERSONIQUE:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_SUPERSONIQUE_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int)position.x,(int)position.y,""+ENNEMI_SUPERSONIQUE_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS));
                     break;
             }
         }
