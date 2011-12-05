@@ -36,7 +36,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
-    private static final int PROBABILITE_APPARITION_OVNI = 1000;
+    public static  int PROBABILITE_APPARITION_OVNI = 1000;
     /**
      * Détermine si un boss est présent dans le jeu.
      */
@@ -410,6 +410,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                     boss3Killed = true;
                     isBoss = false;
                     Main.timerSeconds = 0;
+                    // TODO Implémenter le niveau bonus ici, mais le jeu va se terminer
+                    Main.terminerPartie("Vous avez tué le dernier boss, félicitations!");
                     break;                
                 case Ovni.ENNEMI_NORMAL:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!

@@ -110,8 +110,7 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
         // Un powerup est détruit par un canon qui l'absorbe ou un projectile/ovni ennemi
         if (c instanceof Canon) {
             Main.composantesDessinables.add(new Explosion(new Vecteur(rectangle.x, rectangle.y)));
-            System.out.println(this + " colision avec " + c);
-            this.isDessinable = false;
+                        this.isDessinable = false;
         }
     }
 

@@ -29,7 +29,7 @@ import util.Vecteur;
  * Fichier de classe pour un projectile ennemi.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
+public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
     ////////////////////////////////////////////////////////////////////////////
     // Constantes pour les projectiles ennemis.
 

@@ -20,6 +20,7 @@ import util.Highscores;
 import content.images.ImageBank;
 
 import graphique.component.Canon;
+import graphique.component.Ovni;
 import graphique.window.InterfaceGraphique;
 import graphique.window.MainCanvas.Activity;
 
@@ -70,7 +71,7 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public static long timerSeconds = 110000;
+    public static long timerSeconds = 0;
     /**
      * ArrayList des composantes dessinables.
      */
@@ -182,7 +183,7 @@ public final class Main {
         ////////////////////////////////////////////////////////////////////////        
         loadingTime = System.currentTimeMillis();
         imageBank = new ImageBank();
-        imageBank.setStage(1);
+        setGameLevel(Main.LEVEL_1);
         System.out.println("Images chargées! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
         totalTime += System.currentTimeMillis() - loadingTime;
         ////////////////////////////////////////////////////////////////////////
@@ -230,7 +231,8 @@ public final class Main {
                 imageBank.setStage(3);
                 break;
             case LEVEL_BONUS:
-                // TODO Implémenter le niveau bonus!!
+                Ovni.PROBABILITE_APPARITION_OVNI = 100;
+                
                 break;
         }
     }

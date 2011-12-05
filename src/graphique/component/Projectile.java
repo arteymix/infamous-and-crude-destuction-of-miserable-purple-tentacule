@@ -60,7 +60,7 @@ public final class Projectile extends Dessinable implements Collisionable {
         double y = this.position.y;
         AffineTransform at = new AffineTransform();
         at.translate(x, y);
-        at.rotate(tetha += Math.PI / 60, 0, 0);
+        at.rotate(tetha, 0, 0);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image0, at, null);
         at.translate(-x, -y);
