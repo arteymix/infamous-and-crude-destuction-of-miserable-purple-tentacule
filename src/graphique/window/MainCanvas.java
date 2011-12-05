@@ -16,6 +16,7 @@
 package graphique.window;
 
 import content.KeySetting;
+
 import graphique.event.DecorFlottant;
 import graphique.component.Ovni;
 import graphique.component.Canon;
@@ -77,7 +78,7 @@ public final class MainCanvas extends JComponent {
          */
         GAME_OVER;
     }
-    private final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
+    public static final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
             FONT_GAME_OVER = new Font("Comic sans ms", Font.BOLD, 70);
 
     /**
