@@ -70,7 +70,7 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public static long timerSeconds = 0;
+    public static long timerSeconds = 110000;
     /**
      * ArrayList des composantes dessinables.
      */

@@ -127,11 +127,11 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
             isInvincible = true;
             dommage = 0;
             g.drawRect((int) position.x, (int) position.y, rectangle.width, rectangle.height);
-            g.drawString("Projectile ennemi au sol", (int)position.x,(int)position.y+15);
+            g.drawString("Projectile ennemi au sol", (int) position.x, (int) position.y + 15);
             return;
         }
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
-        g.drawString("Projectile ennemi", (int)position.x,(int)position.y+15);
+        g.drawString("Projectile ennemi", (int) position.x, (int) position.y + 15);
         if (position.y >= Main.getCanvasSizeY()) {
             isDessinable = false;
         }
@@ -151,8 +151,8 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
         }
         if (c instanceof Projectile) {
             this.isDessinable = false;
-            Main.points += 25;
-            Main.composantesDessinables.add(new PointsObtenus((int)position.x,(int)position.y,"25"));
+            Main.points += 25 * Main.level;
+            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + 25 * Main.level));
             // On se sert de l'explosion du projectile...
         } else if (c instanceof Canon) {
             if (((Canon) c).NUMERO_DU_CANON == 1 && !Canon.isCanon2ValidTarget) {
