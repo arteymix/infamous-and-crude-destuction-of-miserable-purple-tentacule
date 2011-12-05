@@ -72,8 +72,8 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static final int ENNEMI_BOSS_1_POINTS = 200,
             ENNEMI_BOSS_2_POINTS = 300,
             ENNEMI_BOSS_3_POINTS = 400,
-            ENNEMI_NORMAL_POINTS = 10,
-            ENNEMI_SUPERSONIQUE_POINTS = 50;
+            ENNEMI_NORMAL_POINTS = 30,
+            ENNEMI_SUPERSONIQUE_POINTS = 100;
     ////////////////////////////////////////////////////////////////////////////
     /**
      * 
@@ -147,7 +147,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 Main.composantesDessinables.add(new Ovni(0, y, i));
                 break;
             case ENNEMI_SUPERSONIQUE:
-                Main.composantesDessinables.add(new Ovni(0, y, i));
+                Main.composantesDessinables.add(new Ovni(Main.getCanvasSizeX(), y, i));
                 break;
             case 0:
                 return;
@@ -376,7 +376,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         }
         if (vie <= 0) {
             this.isDessinable = false;
-            Main.points += 100;
+            
             // Mort des boss
             switch (ID) {
                 case Ovni.ENNEMI_BOSS_1:
@@ -399,13 +399,13 @@ public final class Ovni extends Dessinable implements Collisionable {
                     break;
                 case Ovni.ENNEMI_NORMAL:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
-                    Main.points += ENNEMI_NORMAL_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS));
+                    Main.points += ENNEMI_NORMAL_POINTS * (isOr?2:1);
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS* (isOr?2:1)));
                     break;
                 case Ovni.ENNEMI_SUPERSONIQUE:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
-                    Main.points += ENNEMI_SUPERSONIQUE_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS));
+                    Main.points += ENNEMI_SUPERSONIQUE_POINTS* (isOr?2:1);
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS* (isOr?2:1)));
                     break;
             }
         }
