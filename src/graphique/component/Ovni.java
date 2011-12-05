@@ -313,6 +313,9 @@ public final class Ovni extends Dessinable implements Collisionable {
     public void dessinerDeboguage(Graphics g) {
         action();
         g.drawOval((int) (position.x), (int) (position.y), 100, 100);
+        g.drawString("Ovni", (int) (position.x) + 20, (int) (position.y) + 45);
+        g.drawString("Type : " + (isOr ? "or" : "normal"), (int) (position.x) + 20, (int) (position.y) + 60);
+        g.drawString("Vies : " + vie + " vies", (int) (position.x) + 20, (int) (position.y) + 75);
         if (position.x > Main.getCanvasSizeX()) {
             isDessinable = false;
         }

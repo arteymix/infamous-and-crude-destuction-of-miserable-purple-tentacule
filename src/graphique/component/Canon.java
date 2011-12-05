@@ -15,6 +15,7 @@
  */
 package graphique.component;
 
+import graphique.event.Powerup;
 import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -291,6 +292,10 @@ public final class Canon extends Dessinable implements Collisionable {
         int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
         g.drawPolygon(xPoints, yPoints, 4);
         g.drawRect((int) (position.x), (int) (position.y), (int) LARGEUR_DU_CANON, (int) HAUTEUR_DU_CANON);
+        g.drawString("Canon " + this.NUMERO_DU_CANON, (int)position.x + 15, (int)position.y + 45);
+        g.drawString("Latence du tir : "+this.LATENCE_DU_TIR+ " ms", (int)position.x + 15, (int)position.y + 60);
+        g.drawString("Vies : "+this.vie+ " vies", (int)position.x + 15, (int)position.y + 75);
+        
     }
 
     @Override

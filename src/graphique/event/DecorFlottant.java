@@ -15,7 +15,6 @@
  */
 package graphique.event;
 
-import graphique.component.Powerup;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Random;
@@ -56,8 +55,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
 
     @Override
     public void dessiner(Graphics g) {
-        if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {
-            System.out.println("shit");
+        if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {            
             Main.composantesDessinables.add(new Powerup((int) x, (int) y));
         }
         if (x > Main.getCanvasSizeX()) {
@@ -74,7 +72,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
             isDessinable = false;
         } else {
             g.drawRect((int) (int) x, (int) y, 200, 100);
-            g.drawString("Nuage", (int) x + 100, (int) y + 50);
+            g.drawString("Décor flottant", (int) x + 100, (int) y + 50);
             x += 0.5;
         }
     }

@@ -15,6 +15,7 @@
  */
 package graphique.component;
 
+import graphique.event.Powerup;
 import graphique.event.Explosion;
 import java.awt.Rectangle;
 import util.Dessinable;
@@ -76,6 +77,7 @@ public final class Projectile extends Dessinable implements Collisionable {
             this.isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);
+        g.drawString("Projectile", (int)position.x,(int)position.y);
         vitesse.y -= GRAVITY;
     }
 

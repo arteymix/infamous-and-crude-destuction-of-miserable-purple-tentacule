@@ -13,8 +13,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique.component;
+package graphique.event;
 
+import graphique.component.Canon;
 import graphique.event.Explosion;
 import java.awt.Graphics;
 import java.awt.Rectangle;

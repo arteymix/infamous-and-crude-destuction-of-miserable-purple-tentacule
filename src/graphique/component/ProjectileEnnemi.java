@@ -126,9 +126,11 @@ final class ProjectileEnnemi extends Dessinable implements Collisionable, Serial
             isInvincible = true;
             dommage = 0;
             g.drawRect((int) position.x, (int) position.y, rectangle.width, rectangle.height);
+            g.drawString("Projectile ennemi au sol", (int)position.x,(int)position.y+15);
             return;
         }
         g.drawRect((int) position.x, (int) position.y++, rectangle.width, rectangle.height);
+        g.drawString("Projectile ennemi", (int)position.x,(int)position.y+15);
         if (position.y >= Main.getCanvasSizeY()) {
             isDessinable = false;
         }
