@@ -56,7 +56,7 @@ public final class Canon extends Dessinable implements Collisionable {
     /**
      * 
      */
-    private static final double MOVEMENT_INCREMENT_CANON = 3.0;
+    private static final double MOVEMENT_INCREMENT_CANON =5.0;
     /**
      * 
      */
@@ -199,26 +199,22 @@ public final class Canon extends Dessinable implements Collisionable {
      * Déplace le canon (direction de tir) vers la gauche.
      */
     private void moveCanonGauche() {
-
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         tetha -= ANGLE_INCREMENT_CANON;
-
     }
 
     /**
      * Déplace le canon (direction de tir) vers la gauche.
      */
     private void moveCanonDroite() {
-
         this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         tetha += ANGLE_INCREMENT_CANON;
-
     }
 
     /**

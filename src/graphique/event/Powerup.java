@@ -16,7 +16,6 @@
 package graphique.event;
 
 import graphique.component.Canon;
-import graphique.event.Explosion;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.io.Serializable;
@@ -51,13 +50,11 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
                 break;
             default:
                 id = -1;
-                System.out.println("Illegal id exception!");
         }
         image0 = Main.imageBank.powerup;
-        
         rectangle.width = image0.getWidth(null);
         rectangle.height = image0.getHeight(null);
-    }    
+    }
     /**
      * 
      */
@@ -77,7 +74,7 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
     /**
      * 
      */
-    private Rectangle rectangle = new Rectangle(0,0,500,500);
+    private Rectangle rectangle = new Rectangle(0, 0, 500, 500);
     /**
      * 
      */
@@ -85,24 +82,22 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
 
     @Override
     public void dessiner(Graphics g) {
-        if (rectangle.y >= Main.getCanvasSizeY() - rectangle.height) {            
+        if (rectangle.y >= Main.getCanvasSizeY() - rectangle.height) {
             g.drawImage(image0, rectangle.x, rectangle.y, null);
-            
         } else {
             g.drawImage(image0, rectangle.x, rectangle.y++, null);
-           
         }
-
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        if (rectangle.y >= Main.getCanvasSizeY()- rectangle.height) {
+        g.drawString("Powerup", rectangle.x + 15, rectangle.y + 15);
+        g.drawString("Type " + this.id + " (1 Power shot, 2 Fast shot, 3 Power & fast shot)", rectangle.x + 15, rectangle.y + 30);
+        if (rectangle.y >= Main.getCanvasSizeY() - rectangle.height) {
             g.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         } else {
             g.drawRect(rectangle.x, rectangle.y++, rectangle.width, rectangle.height);
         }
-
     }
 
     @Override
@@ -113,13 +108,11 @@ public class Powerup extends Dessinable implements Collisionable, Serializable {
     @Override
     public void collision(Collisionable c) {
         // Un powerup est détruit par un canon qui l'absorbe ou un projectile/ovni ennemi
-        if(c instanceof Canon) {
-        Main.composantesDessinables.add(new Explosion(new Vecteur(rectangle.x,rectangle.y)));
-            System.out.println(this +" colision avec "+ c);
+        if (c instanceof Canon) {
+            Main.composantesDessinables.add(new Explosion(new Vecteur(rectangle.x, rectangle.y)));
+            System.out.println(this + " colision avec " + c);
             this.isDessinable = false;
-        
         }
-       
     }
 
     @Override

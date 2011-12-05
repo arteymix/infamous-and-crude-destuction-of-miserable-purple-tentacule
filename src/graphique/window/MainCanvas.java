@@ -109,16 +109,13 @@ public final class MainCanvas extends JComponent {
                 int k = Main.getCanvasSizeY() / 2;
                 g.setColor(Color.WHITE);
                 g.setFont(FONT_GAME_OVER);
-                g.drawString("GAME OVER!", (Main.getCanvasSizeX() / 2) - 300, Main.getCanvasSizeY() / 2);
+                g.drawString("GAME OVER!", (Main.getCanvasSizeX() / 2) - 250, Main.getCanvasSizeY() / 2);
                 g.setFont(FONT);
-                g.drawString(Main.messageDeFermeture, 15, k += 15);
+                g.drawString(Main.messageDeFermeture, 15, k += 60);
                 g.drawString("Achievements obtenus :", 15, k += 30);
-
                 if (Main.tentaculesKilled >= 100) {
                     if (!Main.highscore.NUKE_OBTAINED) {
                         g.drawString("Nuke obtenu!", 15, k += 15);
-
-
                     } else {
                         g.drawString("Nuke déjà obtenu...", 15, k += 15);
                     }
@@ -154,8 +151,6 @@ public final class MainCanvas extends JComponent {
                 if (Main.points >= 1000) {
                     if (!Main.highscore.LEET_OBTAINED) {
                         g.drawString("1337 obtenu!", 15, k += 15);
-
-
                     } else {
                         g.drawString("1337 déjà obtenu...", 15, k += 15);
                     }
@@ -163,10 +158,8 @@ public final class MainCanvas extends JComponent {
                 if (Main.points >= 250) {
                     if (!Main.highscore.PRO_OBTAINED) {
                         g.drawString("Pro obtenu!", 15, k += 15);
-
                     } else {
                         g.drawString("Pro déjà obtenu...", 15, k += 15);
-
                     }
                 }
                 g.setColor(Color.BLACK);
@@ -251,13 +244,13 @@ public final class MainCanvas extends JComponent {
                     g.drawString(s, x, positionInit += 15);
                 }
                 g.drawString("Trophées :", x, positionInit += 30);
-                g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("Nuke " + (Main.highscore.NUKE_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours... (reste " + (1 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
+                g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours... (reste " + (10 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
+                g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours... (reste " + (1000 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
+                g.drawString("Nuke " + (Main.highscore.NUKE_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.WHITE);
                 } else {

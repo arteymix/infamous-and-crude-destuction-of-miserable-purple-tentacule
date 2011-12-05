@@ -22,7 +22,7 @@ import java.awt.Toolkit;
  * Fichier d'objet pour la banque d'images.
  * @author Guillaume Poirier-Morency
  */
-public class ImageBank {
+public final class ImageBank {
 
     /**
      * 

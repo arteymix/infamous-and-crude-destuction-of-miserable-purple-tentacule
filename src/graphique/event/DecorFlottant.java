@@ -53,11 +53,15 @@ public final class DecorFlottant extends Dessinable implements Serializable {
         }
     }
 
-    @Override
-    public void dessiner(Graphics g) {
-        if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {            
+    private void action() {
+        if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {
             Main.composantesDessinables.add(new Powerup((int) x, (int) y));
         }
+    }
+
+    @Override
+    public void dessiner(Graphics g) {
+        action();
         if (x > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
@@ -68,6 +72,7 @@ public final class DecorFlottant extends Dessinable implements Serializable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
+        action();
         if (x > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
