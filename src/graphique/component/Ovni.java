@@ -393,7 +393,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         if (vie <= 0) {
             this.isDessinable = false;
 
-            // Mort des boss
+            // Mort des ovnis
             switch (ID) {
                 case Ovni.ENNEMI_BOSS_1:
                     Main.points += ENNEMI_BOSS_1_POINTS;
@@ -418,18 +418,20 @@ public final class Ovni extends Dessinable implements Collisionable {
                     boss3Killed = true;
                     isBoss = false;
                     Main.timerSeconds = 0;
-                    // TODO Implémenter le niveau bonus ici, mais le jeu va se terminer
-                    Main.terminerPartie("Vous avez tué le dernier boss, félicitations!");
                     break;
                 case Ovni.ENNEMI_NORMAL:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level;
                     Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level));
+                    //Main.tentaculesKilled++;
                     break;
                 case Ovni.ENNEMI_SUPERSONIQUE:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level;
                     Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level));
+                    break;
+                case Ovni.ENNEMI_BOSS_BONUS:
+                    Main.terminerPartie("Vous avez tué le dernier boss, félicitations!");
                     break;
             }
         }

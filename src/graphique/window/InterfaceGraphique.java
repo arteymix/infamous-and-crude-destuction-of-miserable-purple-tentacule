@@ -185,7 +185,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             mainCanvas.activity = Activity.HIGHSCORES;
             Main.showHighscores = true;
             this.cbmitemMontrerHighscores.setState(true);
-        } else if(mainCanvas.activity.equals(Activity.GAME_OVER)){
+        } else if (mainCanvas.activity.equals(Activity.GAME_OVER)) {
             // On fait rien...
         } else {
             mainCanvas.activity = Activity.JEU;
@@ -231,15 +231,10 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
                         break;
                     case KeySetting.QUIT:
-
-                        if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
-                            Main.close(0);
-                        }
+                        Main.close(0);
                         break;
                     case KeySetting.SHOW_DEBUG:
-
                         changeDebugState(!Main.isDebugEnabled);
-
                         break;
                     ////////////////////////
                     default:

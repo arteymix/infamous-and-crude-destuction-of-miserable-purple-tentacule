@@ -160,9 +160,12 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
             return;
         }
         if (c instanceof Projectile) {
-            this.isDessinable = false;
+            
             Main.points += 25 * Main.level;
+            Main.tentaculesKilled++;
+            System.out.println("shit");
             Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + 25 * Main.level));
+            this.isDessinable = false;
             // On se sert de l'explosion du projectile...
         } else if (c instanceof Canon) {
             if (((Canon) c).NUMERO_DU_CANON == 1 && !Canon.isCanon2ValidTarget) {

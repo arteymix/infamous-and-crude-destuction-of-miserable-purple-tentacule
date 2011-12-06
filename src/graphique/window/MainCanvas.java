@@ -52,10 +52,10 @@ public final class MainCanvas extends JComponent {
     private static final double PERCENTAGE_RED_LIFE = 0.25,
             PERCENTAGE_YELLOW_LIFE = 0.5;
     /**
-     * 
+     * Font utilisé par défaut.
      */
     /**
-     * 
+     * Font utilisé pour draw le GAME OVER!
      */
     public static final Font FONT = new Font("Comic sans ms", Font.BOLD, 15),
             FONT_GAME_OVER = new Font("Comic sans ms", Font.BOLD, 70);
@@ -113,10 +113,11 @@ public final class MainCanvas extends JComponent {
             g.drawString(Traductions.get("debug.vies") + " canon 1 : " + Main.canon1.getVie() + " " + Traductions.get("debug.vies"), 5, 90);
             g.drawString(Traductions.get("debug.vies") + " canon 2 : " + Main.canon2.getVie() + " " + Traductions.get("debug.vies"), 5, 105);
             g.drawString(Traductions.get("debug.tempsjoue") + " : " + Main.timerSeconds, 5, 120);
+            g.drawString("Tentacules tués : " + Main.tentaculesKilled + " tentacules", 5, 135);
             g.drawRect(0, 0, Main.getCanvasSizeX() - 1, Main.getCanvasSizeY() - 1);
         } else {
             // Le background est dessiné ici.
-            g.drawImage(Main.imageBank.background, 0, 0, 1024, 768, null);
+            g.drawImage(Main.imageBank.background, 0, 0, Main.getCanvasSizeX(), Main.getCanvasSizeY(), null);
         }
         switch (activity) {
             case GAME_OVER:
@@ -217,13 +218,11 @@ public final class MainCanvas extends JComponent {
                             }
                         }
                     } else {
-                        aEnlever.add(d);
-
+                        Main.composantesDessinables.remove(d);
                     }
                 }
-                for (Dessinable d : aEnlever) {
-                    Main.composantesDessinables.remove(d);
-                }
+                ////////////////////////////////////////////////////////////////
+                // Draw des canons
                 if (Main.isDebugEnabled) {
                     Main.canon1.dessinerDeboguage(g);
                     if (Canon.isCanon2ValidTarget) {
