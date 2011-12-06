@@ -17,6 +17,7 @@ package graphique.component;
 
 import graphique.event.Powerup;
 import graphique.event.Explosion;
+import graphique.event.PointsObtenus;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
@@ -54,16 +55,18 @@ public final class Projectile extends Dessinable implements Collisionable {
     @Override
     public void dessiner(Graphics g) {
         if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
+            Main.composantesDessinables.add(new PointsObtenus((int)position.y, (int)position.x, "-10 points") );
+            Main.points -= 10;
             this.isDessinable = false;
         }
         double x = this.position.x;
         double y = this.position.y;
         AffineTransform at = new AffineTransform();
-        at.translate(x, y);
+        at.translate(x - 5, y);
         at.rotate(tetha, 0, 0);
         Graphics2D g2d = (Graphics2D) g;
         g2d.drawImage(image0, at, null);
-        at.translate(-x, -y);
+        at.translate(-x + 5, -y);
         //g.drawImage(image0, (int) ((position.x) -= vitesse.x)-10, (int) (position.y -= vitesse.y) - 10, null);
         position.x -= vitesse.x;
         position.y -= vitesse.y;

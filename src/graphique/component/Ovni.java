@@ -131,7 +131,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         // Ici tu mets l'algo de génération aléatoire pour le id
 
         int i = initializeID();
-        int y = new Random().nextInt(250);
+        int y = new Random().nextInt(350);
         switch (i) {
             case ENNEMI_BOSS_1:
                 Main.composantesDessinables.add(new Ovni(0, y, i));
