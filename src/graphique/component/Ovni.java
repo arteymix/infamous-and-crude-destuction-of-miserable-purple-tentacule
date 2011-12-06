@@ -36,11 +36,11 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
-    public static  int PROBABILITE_APPARITION_OVNI = 1000;
+    public static int PROBABILITE_APPARITION_OVNI = 1000;
     /**
      * Détermine si un boss est présent dans le jeu.
      */
-    private static boolean isBoss = false;
+    public static boolean isBoss = false;
     /**
      * ID de l'ennemi normal.
      */
@@ -114,10 +114,10 @@ public final class Ovni extends Dessinable implements Collisionable {
          * s'appelle create ovni vas-y! 
          */
 
-        
+
         // Détermine si l'ennemi est or
-        isOr = random.nextInt(10) == 1 ? true : false;
-        this.ID = id;
+        isOr = random.nextInt(10) == 1;
+        ID = id;
         position.x = x;
         position.y = y;
         configurerOvni(id);
@@ -148,7 +148,8 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_SUPERSONIQUE:
                 Main.composantesDessinables.add(new Ovni(Main.getCanvasSizeX(), y, i));
                 break;
-            case 0:
+            case ENNEMI_BOSS_BONUS:
+                Main.composantesDessinables.add(new Ovni(Main.getCanvasSizeX(), y, i));
                 return;
         }
 
@@ -176,7 +177,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         if (!isBoss) {
             if (Main.timerSeconds >= 120000) {
                 isBoss = true;
-                if (!boss1Killed) {                    
+                if (!boss1Killed) {
                     return ENNEMI_BOSS_1;
                 } else if (!boss2Killed) {
                     return ENNEMI_BOSS_2;
@@ -223,6 +224,9 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_3:
                 Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_BOSS));
                 break;
+            case ENNEMI_BOSS_BONUS:
+                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
+                break;
         }
     }
 
@@ -260,6 +264,10 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_3:// image0 boss 3
                 image0 = Main.imageBank.boss;
                 vie = 2000;
+                break;
+            case ENNEMI_BOSS_BONUS:
+                image0 = Main.imageBank.ennemi;
+                vie = 15 * Main.level;
                 break;
             default:
 
@@ -306,18 +314,18 @@ public final class Ovni extends Dessinable implements Collisionable {
         int deplacementY = 3;
 
         if (position.x == XMIN) {
-            deplacementX = 3;
+        deplacementX = 3;
         } else if (position.x == XMAX) {
-            deplacementX = -3;
+        deplacementX = -3;
         }
         if (position.y == YMIN) {
-            deplacementX = 3;
+        deplacementX = 3;
         } else if (position.y == YMAX) {
-            deplacementY = -3;
+        deplacementY = -3;
         }
         position.x += deplacementX * vitesseX;
         position.y += deplacementY * vitesseX;
-         
+
          */
     }
 
@@ -412,16 +420,16 @@ public final class Ovni extends Dessinable implements Collisionable {
                     Main.timerSeconds = 0;
                     // TODO Implémenter le niveau bonus ici, mais le jeu va se terminer
                     Main.terminerPartie("Vous avez tué le dernier boss, félicitations!");
-                    break;                
+                    break;
                 case Ovni.ENNEMI_NORMAL:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1)* Main.level));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level));
                     break;
                 case Ovni.ENNEMI_SUPERSONIQUE:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
-                    Main.points += ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1)* Main.level;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1)* Main.level));
+                    Main.points += ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level;
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level));
                     break;
             }
         }

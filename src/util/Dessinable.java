@@ -17,7 +17,6 @@ package util;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.io.Serializable;
 
 /**

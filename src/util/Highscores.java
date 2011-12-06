@@ -17,7 +17,6 @@ package util;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 
 /**
  * Classe pour l'objet de highscores. Cet objet hérite d'un dictionnaire 

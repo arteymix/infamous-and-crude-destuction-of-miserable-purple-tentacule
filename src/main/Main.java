@@ -71,11 +71,12 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public static long timerSeconds = 0;
+    public static long timerSeconds = 110000;
     /**
      * ArrayList des composantes dessinables.
      */
     public static boolean isDebugEnabled = false;
+    public static boolean isGameOver = false;
     /**
      * ArrayList contenant les objets dessinables.
      */
@@ -134,7 +135,7 @@ public final class Main {
     /**
      * Constantes pour le niveau de jeu.
      */
-    public static final int LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 42;
+    public static final int LEVEL_1 = 1, LEVEL_2 = 2, LEVEL_3 = 3, LEVEL_BONUS = 4;
     /**
      * Thread pour le rendu.
      */
@@ -177,7 +178,7 @@ public final class Main {
         if ((highscore = (Highscores) Serialization.unSerialize("highscores.serial")) == null) {
             System.out.println("Un nouveau fichier de highscores sera généré.");
             highscore = new Highscores();
-        }        
+        }
         totalTime += System.currentTimeMillis() - loadingTime;
         System.out.println("Highscores chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
         ////////////////////////////////////////////////////////////////////////        
@@ -232,7 +233,7 @@ public final class Main {
                 break;
             case LEVEL_BONUS:
                 Ovni.PROBABILITE_APPARITION_OVNI = 100;
-                
+
                 break;
         }
     }
@@ -243,19 +244,39 @@ public final class Main {
     public static void restart() {
         isPaused = true;
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
-            timerSeconds = 0;
+            long totalLoading = 0l;
+            ////////////////////////////////////////////////////////////////////
+            long timeLoading = System.currentTimeMillis();
             composantesDessinables = new ArrayList<Dessinable>();
-            points = 0;
-            imageBank.setStage(1);
             canon1 = new Canon(Canon.CANON1_ID);
             canon2 = new Canon(Canon.CANON2_ID);
             composantesDessinables.add(canon1);
             composantesDessinables.add(canon2);
+            System.out.println("Réinitialisation des objets dessinables (" + (System.currentTimeMillis() - timeLoading) + " ms)");
+            ////////////////////////////////////////////////////////////////////
+            timeLoading = System.currentTimeMillis();
+            imageBank.setStage(1);
+            System.out.println("Réinitialisation des objets dessinables (" + (System.currentTimeMillis() - timeLoading) + " ms)");
+            totalLoading += System.currentTimeMillis() - timeLoading;
+            ////////////////////////////////////////////////////////////////////
+            timeLoading = System.currentTimeMillis();
             interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
             interfaceGraphique.keyBoardListener.start();
+            System.out.println("Redémarrage du thread pour le multitouch (" + (System.currentTimeMillis() - timeLoading) + " ms)");
+            totalLoading += System.currentTimeMillis() - timeLoading;
+            ////////////////////////////////////////////////////////////////////
+            timeLoading = System.currentTimeMillis();
             rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
             rendu.start();
             interfaceGraphique.mainCanvas.activity = Activity.JEU;
+            System.out.println("Redémarrage de l'interface (" + (System.currentTimeMillis() - timeLoading) + " ms)");
+            totalLoading += System.currentTimeMillis() - timeLoading;
+            ////////////////////////////////////////////////////////////////////
+            alienAuSol = 0;
+            timerSeconds = 0;
+            points = 0;
+            Ovni.isBoss = false;
+            System.out.println("Temps de redémarrage " + totalLoading + " ms");
         }
         isPaused = false;
     }
@@ -269,6 +290,7 @@ public final class Main {
     public static void terminerPartie(String s) {
         highscore.partiesCompletes++;
         Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
+        isGameOver = true;
         messageDeFermeture = s;
     }
     /**

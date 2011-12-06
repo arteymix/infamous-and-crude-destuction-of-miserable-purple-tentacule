@@ -185,6 +185,8 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             mainCanvas.activity = Activity.HIGHSCORES;
             Main.showHighscores = true;
             this.cbmitemMontrerHighscores.setState(true);
+        } else if(mainCanvas.activity.equals(Activity.GAME_OVER)){
+            // On fait rien...
         } else {
             mainCanvas.activity = Activity.JEU;
             Main.showHighscores = false;
