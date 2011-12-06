@@ -29,7 +29,8 @@ import util.Vecteur;
  * Classe pour les ovnis.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class Ovni extends Dessinable implements Collisionable {
+public final class Ovni extends Dessinable implements Collisionable
+{
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux ovnis    
 
@@ -101,14 +102,17 @@ public final class Ovni extends Dessinable implements Collisionable {
      * 
      */
     private Rectangle rectangle = new Rectangle();
-
     /**
      * 
      * @param x
      * @param y
      * @param id 
      */
-    private Ovni(int x, int y, int id) {
+    private int xDirection = 1;
+    private int yDirection = 1;
+
+    private Ovni(int x, int y, int id)
+    {
 
         /* On va pas faire ça compliqué. Il y a une méthode en dessous qui
          * s'appelle create ovni vas-y! 
@@ -127,12 +131,14 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * 
      */
-    public static void createOvni() {
+    public static void createOvni()
+    {
         // Ici tu mets l'algo de génération aléatoire pour le id
 
         int i = initializeID();
         int y = new Random().nextInt(350);
-        switch (i) {
+        switch (i)
+        {
             case ENNEMI_BOSS_1:
                 Main.composantesDessinables.add(new Ovni(0, y, i));
                 break;
@@ -172,27 +178,42 @@ public final class Ovni extends Dessinable implements Collisionable {
      * Initialise le ID de l'ovni.
      * @return le id de l'ovni.
      */
-    private static int initializeID() {
+    private static int initializeID()
+    {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
-        if (!isBoss) {
-            if (Main.timerSeconds >= 120000) {
+        if (!isBoss)
+        {
+            if (Main.timerSeconds >= 120000)
+            {
                 isBoss = true;
-                if (!boss1Killed) {
+                if (!boss1Killed)
+                {
                     return ENNEMI_BOSS_1;
-                } else if (!boss2Killed) {
+                }
+                else if (!boss2Killed)
+                {
                     return ENNEMI_BOSS_2;
-                } else if (!boss3Killed) {
+                }
+                else if (!boss3Killed)
+                {
                     return ENNEMI_BOSS_3;
-                } else {
+                }
+                else
+                {
                     Main.setGameLevel(Main.LEVEL_BONUS);
                     isBoss = false;
                 }
             }
-            if (generateur <= 25) {
+            if (generateur <= 25)
+            {
                 return ENNEMI_NORMAL;
-            } else if (generateur <= 30) {
+            }
+            else if (generateur <= 30)
+            {
                 return ENNEMI_SUPERSONIQUE;
-            } else {
+            }
+            else
+            {
                 return 0;
             }
         }
@@ -203,12 +224,14 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Effectue un tir ennemi.     
      */
-    private void tirer() {
+    private void tirer()
+    {
         // Sa devrait être cool maintenant...
         /* Le numéro du id correspond au id du missile.
          * L'ennemi régulier possède le projectile régulier, etc...
          */
-        switch (ID) {
+        switch (ID)
+        {
             // TODO Condition pour ENNEMI_OR ou non.
             case ENNEMI_NORMAL:
                 Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
@@ -230,24 +253,32 @@ public final class Ovni extends Dessinable implements Collisionable {
         }
     }
 
-    private void configurerOvni(int id) {
+    private void configurerOvni(int id)
+    {
 
-        switch (id) {
+        switch (id)
+        {
             case ENNEMI_NORMAL://img enemi et enemi or et vie
-                if (isOr) {
+                if (isOr)
+                {
                     image0 = Main.imageBank.ennemiOr;
                     vie = 30;
-                } else {
+                }
+                else
+                {
                     image0 = Main.imageBank.ennemi;
                     vie = 10;
                 }
                 break;
             case ENNEMI_SUPERSONIQUE:// image0 ennemiSupersonic et supersonicor
-                if (isOr) {
+                if (isOr)
+                {
                     image0 = Main.imageBank.ennemiSupersonicOr;
                     vie = 50 * Main.level;
                     vitesseX = 3;
-                } else {
+                }
+                else
+                {
                     image0 = Main.imageBank.ennemiSupersonic;
                     vie = 15 * Main.level;
                     vitesseX = 3;
@@ -278,8 +309,10 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * 
      */
-    private void action() {
-        switch (ID) {
+    private void action()
+    {
+        switch (ID)
+        {
             case ENNEMI_NORMAL:// mouvement d'un enemi normal 
                 position.x += 3 * vitesseX;
                 break;
@@ -299,64 +332,88 @@ public final class Ovni extends Dessinable implements Collisionable {
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
 
         }
-        if ((new Random()).nextInt(ENNEMY_SHOOT_RATE) == 1) {
+        if ((new Random()).nextInt(ENNEMY_SHOOT_RATE) == 1)
+        {
             tirer();
         }
     }
 
-    private void mouvtBoss12(int ymin, int ymax) {
-        /*
-        final int XMIN = 1;
-        final int XMAX = (int) Main.getCanvasSizeX() - 1;
+    private void mouvtBoss12(int ymin, int ymax)
+    {
+
+        final int XMIN = 0;
+        final int XMAX = (int) (Main.getCanvasSizeX()-this.rectangle.getWidth());
         final int YMIN = ymin;
         final int YMAX = ymax;
         int deplacementX = 3;
         int deplacementY = 3;
-
-        if (position.x == XMIN) {
-        deplacementX = 3;
-        } else if (position.x == XMAX) {
-        deplacementX = -3;
+        
+        if (position.x == XMIN)
+        {
+            setxDirection(1);
         }
-        if (position.y == YMIN) {
-        deplacementX = 3;
-        } else if (position.y == YMAX) {
-        deplacementY = -3;
+        else if (position.x == XMAX)
+        {
+            setxDirection(-1);
         }
-        position.x += deplacementX * vitesseX;
-        position.y += deplacementY * vitesseX;
+        if (position.y == YMIN)
+        {
+            setyDirection(1);
+        }
+        else if (position.y == YMAX)
+        {
+            setyDirection(-1);
+        }
+        position.x += deplacementX * xDirection * vitesseX;
+        position.y += deplacementY * yDirection * vitesseX;
 
-         */
+
+    }
+
+    public void setxDirection(int xDirection)
+    {
+        this.xDirection = xDirection;
+    }
+
+    public void setyDirection(int yDirection)
+    {
+        this.yDirection = yDirection;
     }
 
     @Override
-    public void dessiner(Graphics g) {
+    public void dessiner(Graphics g)
+    {
         action();
         g.drawImage(image0, (int) position.x, (int) position.y, null);
         g.setColor(Color.RED);
         g.fillRect((int) position.x, (int) position.y, (int) ((double) image0.getWidth(null) * (((double) vie) / ((double) VIE_INIT))), 10);
         g.setColor(Color.BLACK);
-        if (position.x > Main.getCanvasSizeX()) {
+        if (position.x > Main.getCanvasSizeX())
+        {
             isDessinable = false;
         }
     }
 
     @Override
-    public void dessinerDeboguage(Graphics g) {
+    public void dessinerDeboguage(Graphics g)
+    {
         action();
         g.drawOval((int) (position.x), (int) (position.y), 100, 100);
         g.drawString("Ovni", (int) (position.x) + 20, (int) (position.y) + 45);
         g.drawString("Type : " + (isOr ? "or" : "normal"), (int) (position.x) + 20, (int) (position.y) + 60);
         g.drawString("Vies : " + vie + " vies", (int) (position.x) + 20, (int) (position.y) + 75);
-        if (position.x > Main.getCanvasSizeX()) {
+        if (position.x > Main.getCanvasSizeX())
+        {
             isDessinable = false;
         }
     }
 
     @Override
-    public Rectangle getRectangle() {
+    public Rectangle getRectangle()
+    {
         int longeur = 0, hauteur = 0;
-        switch (ID) {
+        switch (ID)
+        {
             case ENNEMI_NORMAL://Grandeur du rectangle d'un enemi normal 
                 longeur = hauteur = 100;
                 break;
@@ -366,7 +423,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_1:// Grandeur du rectangle  du boss 1
                 longeur = 450;
-                hauteur = 300;
+                hauteur = 206;
                 break;
             case ENNEMI_BOSS_2:// Grandeur du rectangle  du boss 2
                 longeur = hauteur = 450;
@@ -386,15 +443,19 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     @Override
-    public void collision(Collisionable c) {
-        if (c instanceof Projectile) {
+    public void collision(Collisionable c)
+    {
+        if (c instanceof Projectile)
+        {
             this.vie -= c.getDommage();
         }
-        if (vie <= 0) {
+        if (vie <= 0)
+        {
             this.isDessinable = false;
 
             // Mort des ovnis
-            switch (ID) {
+            switch (ID)
+            {
                 case Ovni.ENNEMI_BOSS_1:
                     Main.points += ENNEMI_BOSS_1_POINTS;
                     Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_1_POINTS));
@@ -438,7 +499,8 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     @Override
-    public int getDommage() {
+    public int getDommage()
+    {
         return 0;
     }
 }
