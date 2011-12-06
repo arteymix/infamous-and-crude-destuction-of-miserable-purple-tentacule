@@ -103,7 +103,8 @@ public final class Main {
     public static int getCanvasSizeX() {
         if (interfaceGraphique == null) {
             return 1024;
-        } else {
+        }
+        else {
             return interfaceGraphique.mainCanvas.getWidth();
         }
     }
@@ -115,7 +116,8 @@ public final class Main {
     public static int getCanvasSizeY() {
         if (interfaceGraphique == null) {
             return 768;
-        } else {
+        }
+        else {
             return interfaceGraphique.mainCanvas.getHeight();
         }
     }
@@ -220,22 +222,8 @@ public final class Main {
     public static void setGameLevel(int i) {
         System.out.println("Level " + i + " activé");
         level = i;
-        switch (i) {
+        imageBank.setStage(i);
 
-            case LEVEL_1:
-                imageBank.setStage(1);
-                break;
-            case LEVEL_2:
-                imageBank.setStage(2);
-                break;
-            case LEVEL_3:
-                imageBank.setStage(3);
-                break;
-            case LEVEL_BONUS:
-                Ovni.PROBABILITE_APPARITION_OVNI = 100;
-
-                break;
-        }
     }
 
     /**
@@ -290,9 +278,40 @@ public final class Main {
      */
     public static void terminerPartie(String s) {
         highscore.partiesCompletes++;
-        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
+
         isGameOver = true;
         messageDeFermeture = s;
+
+        calculerAchievements();
+Main.highscore.serializeOnTheHeap();
+        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
+    }
+
+    /**
+     * Calcule les achievements.
+     */
+    private static void calculerAchievements() {
+        if (tentaculesKilled >= 100) {
+            highscore.NUKE_OBTAINED = true;
+        }
+        if (highscore.partiesCompletes == 1) {
+            highscore.NOOB_OBTAINED = true;
+        }
+        if (highscore.partiesCompletes >= 1000) {
+            highscore.PWN_OBTAINED = true;
+        }
+        if (highscore.partiesCompletes >= 10) {
+            highscore.OWN_OBTAINED = true;
+        }
+        if (points == 0) {
+            highscore.BAZINGA_OBTAINED = true;
+        }
+        if (points >= 1000) {
+            highscore.LEET_OBTAINED = true;
+        }
+        if (points >= 250) {
+            highscore.PRO_OBTAINED = true;
+        }
     }
     /**
      * 
@@ -307,29 +326,6 @@ public final class Main {
      */
     public static void close(int i) {
         isPaused = true;
-
-        if (tentaculesKilled >= 100) {
-            highscore.NUKE_OBTAINED = !highscore.NUKE_OBTAINED;
-        }
-        if (highscore.partiesCompletes == 0) {
-            highscore.NOOB_OBTAINED = !highscore.NOOB_OBTAINED;
-        }
-        if (highscore.partiesCompletes >= 1000) {
-            highscore.PWN_OBTAINED = !highscore.PWN_OBTAINED;
-        }
-        if (highscore.partiesCompletes >= 10) {
-            highscore.OWN_OBTAINED = !highscore.OWN_OBTAINED;
-        }
-        if (points == 0) {
-            highscore.BAZINGA_OBTAINED = !highscore.BAZINGA_OBTAINED;
-        }
-        if (points >= 1000) {
-            highscore.LEET_OBTAINED = !highscore.LEET_OBTAINED;
-
-        }
-        if (points >= 250) {
-            highscore.PRO_OBTAINED = !highscore.PRO_OBTAINED;
-        }
         if (i == 0) {
             if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
                 String s;
@@ -345,7 +341,8 @@ public final class Main {
                 if (s != null) {
                     highscore.put(s, Main.points);
                 }
-            } else {
+            }
+            else {
                 isPaused = false;
                 return;
             }
@@ -357,7 +354,8 @@ public final class Main {
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {
             Thread.sleep((int) latency);
-        } catch (InterruptedException ex) {
+        }
+        catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         // Le thread de swing est stoppé

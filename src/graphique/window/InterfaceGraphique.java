@@ -75,14 +75,14 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
     public KeyBoardListener keyBoardListener;
 
     /**
-     * 
+     * Configure les menus.
      */
     private void configurerMenus() {
         mitemQuitter.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.close(Main.CODE_DE_SORTIE_OK);
+                Main.terminerPartie("Vous avez quitté en cours de partie!");
             }
         });
         cbmitemDebug.setState(Main.isDebugEnabled);
@@ -114,16 +114,6 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                 changeHighscoresState();
             }
         });
-        menuFichier.add(mitemNouvellePartie);
-        menuFichier.addSeparator();
-        menuFichier.add(cbmitemDebug);
-        menuFichier.add(cbmitemNombreDeCanons);
-        menuFichier.addSeparator();
-        menuFichier.add(cbmitemMontrerHighscores);
-        menuFichier.add(menuLangue);
-        menuFichier.addSeparator();
-        menuFichier.add(mitemQuitter);
-        rbtnFrancais.setSelected(true);
         rbtnFrancais.addActionListener(new ActionListener() {
 
             @Override
@@ -143,11 +133,21 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                
-                changeHelpState() ;
-                
+
+                changeHelpState();
+
             }
         });
+        menuFichier.add(mitemNouvellePartie);
+        menuFichier.addSeparator();
+        menuFichier.add(cbmitemDebug);
+        menuFichier.add(cbmitemNombreDeCanons);
+        menuFichier.addSeparator();
+        menuFichier.add(cbmitemMontrerHighscores);
+        menuFichier.add(menuLangue);
+        menuFichier.addSeparator();
+        menuFichier.add(mitemQuitter);
+        rbtnFrancais.setSelected(true);
         bgBoutonsLangues.add(rbtnEnglish);
         bgBoutonsLangues.add(rbtnFrancais);
         menuLangue.add(rbtnFrancais);
@@ -159,15 +159,15 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         jmbMenuBar.add(menuAide);
         setJMenuBar(jmbMenuBar);
     }
-    
+
     private void changeHelpState() {
-        if(!Main.isGameOver) {
-    if (mainCanvas.activity.equals(Activity.HELP)) {
-                    mainCanvas.activity = Activity.JEU;
-                }
-                else {
-                    mainCanvas.activity = Activity.HELP;
-                }
+        if (!Main.isGameOver) {
+            if (mainCanvas.activity.equals(Activity.HELP)) {
+                mainCanvas.activity = Activity.JEU;
+            }
+            else {
+                mainCanvas.activity = Activity.HELP;
+            }
         }
     }
 
@@ -195,7 +195,6 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                 mainCanvas.activity = Activity.HIGHSCORES;
                 Main.showHighscores = true;
                 this.cbmitemMontrerHighscores.setState(true);
-
             }
             else {
                 mainCanvas.activity = Activity.JEU;
@@ -215,11 +214,15 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             public void windowClosing(WindowEvent we) {
 
                 Main.close(Main.CODE_DE_SORTIE_AUTRE);
+                Main.terminerPartie("Vous avez quitté en cours de partie!");
 
             }
 
             @Override
             public void windowClosed(WindowEvent we) {
+
+                Main.terminerPartie("Vous avez quitté en cours de partie!");
+
             }
         });
         configurerMenus();
