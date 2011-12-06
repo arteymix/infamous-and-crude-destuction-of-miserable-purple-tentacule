@@ -276,6 +276,7 @@ public final class Main {
             timerSeconds = 0;
             points = 0;
             Ovni.isBoss = false;
+            isGameOver = false;
             System.out.println("Temps de redémarrage " + totalLoading + " ms");
         }
         isPaused = false;

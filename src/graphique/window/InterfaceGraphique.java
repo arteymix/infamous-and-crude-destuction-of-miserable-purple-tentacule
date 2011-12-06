@@ -143,11 +143,9 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                if (mainCanvas.activity.equals(Activity.HELP)) {
-                    mainCanvas.activity = Activity.JEU;
-                } else {
-                    mainCanvas.activity = Activity.HELP;
-                }
+                
+                changeHelpState() ;
+                
             }
         });
         bgBoutonsLangues.add(rbtnEnglish);
@@ -160,6 +158,17 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         jmbMenuBar.add(menuFichier);
         jmbMenuBar.add(menuAide);
         setJMenuBar(jmbMenuBar);
+    }
+    
+    private void changeHelpState() {
+        if(!Main.isGameOver) {
+    if (mainCanvas.activity.equals(Activity.HELP)) {
+                    mainCanvas.activity = Activity.JEU;
+                }
+                else {
+                    mainCanvas.activity = Activity.HELP;
+                }
+        }
     }
 
     /**
@@ -181,16 +190,18 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
      * 
      */
     public void changeHighscoresState() {
-        if (mainCanvas.activity.equals(Activity.JEU)) {
-            mainCanvas.activity = Activity.HIGHSCORES;
-            Main.showHighscores = true;
-            this.cbmitemMontrerHighscores.setState(true);
-        } else if (mainCanvas.activity.equals(Activity.GAME_OVER)) {
-            // On fait rien...
-        } else {
-            mainCanvas.activity = Activity.JEU;
-            Main.showHighscores = false;
-            this.cbmitemMontrerHighscores.setState(false);
+        if (!Main.isGameOver) {
+            if (mainCanvas.activity.equals(Activity.JEU)) {
+                mainCanvas.activity = Activity.HIGHSCORES;
+                Main.showHighscores = true;
+                this.cbmitemMontrerHighscores.setState(true);
+
+            }
+            else {
+                mainCanvas.activity = Activity.JEU;
+                Main.showHighscores = false;
+                this.cbmitemMontrerHighscores.setState(false);
+            }
         }
     }
 
@@ -219,6 +230,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void keyPressed(KeyEvent arg0) {
+
                 switch (arg0.getKeyCode()) {
 
                     case KeySetting.PAUSE:
@@ -244,6 +256,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                         }
                         break;
                 }
+
             }
 
             @Override
@@ -303,13 +316,15 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                      * Le rendu cumule du retard sur le jeu, il serait intéressant
                      * d'essayer de le compenser.
                      */
-                } else {
+                }
+                else {
                     Thread.sleep((int) (Main.latency - Main.tempsDuRendu));
                 }
                 while (Main.isPaused) {
                     Thread.sleep(10);
                 }
-            } catch (InterruptedException ex) {
+            }
+            catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
         }
