@@ -79,7 +79,7 @@ public final class MainCanvas extends JComponent {
     public enum Activity {
 
         /**
-         * 
+         * Activity pour le jeu.
          */
         JEU,
         /**
@@ -97,7 +97,7 @@ public final class MainCanvas extends JComponent {
     }
 
     /**
-     * Peint le JPanel avec le rendu du jeu.
+     * Peint le JComponent avec le rendu du jeu.
      * @param g est l'objet Graphics du JPanel.
      */
     @Override
@@ -114,6 +114,8 @@ public final class MainCanvas extends JComponent {
             g.drawString(Traductions.get("debug.vies") + " canon 2 : " + Main.canon2.getVie() + " " + Traductions.get("debug.vies"), 5, 105);
             g.drawString(Traductions.get("debug.tempsjoue") + " : " + Main.timerSeconds, 5, 120);
             g.drawString("Tentacules tués : " + Main.tentaculesKilled + " tentacules", 5, 135);
+            g.drawString("Niveau actuel : "+Main.level, 5,150);
+            g.drawString("La partie est-elle finie? "+Main.isGameOver, 5, 165);
             g.drawRect(0, 0, Main.getCanvasSizeX() - 1, Main.getCanvasSizeY() - 1);
         } else {
             // Le background est dessiné ici.

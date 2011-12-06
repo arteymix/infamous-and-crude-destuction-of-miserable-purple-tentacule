@@ -159,11 +159,9 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
         if (isInvincible) {
             return;
         }
-        if (c instanceof Projectile) {
-            
+        if (c instanceof Projectile) {            
             Main.points += 25 * Main.level;
-            Main.tentaculesKilled++;
-            System.out.println("shit");
+            Main.tentaculesKilled++;            
             Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + 25 * Main.level));
             this.isDessinable = false;
             // On se sert de l'explosion du projectile...
