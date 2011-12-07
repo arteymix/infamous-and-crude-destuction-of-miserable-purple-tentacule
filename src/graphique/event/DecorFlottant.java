@@ -54,8 +54,8 @@ public final class DecorFlottant extends Dessinable implements Serializable {
     }
 
     private void action() {
-        if ((new Random()).nextInt(Powerup.PROBABILITE_APPARITION_POWERUP) == 1) {
-            Main.composantesDessinables.add(new Powerup((int) x, (int) y));
+        if ((new Random()).nextInt(PowerUp.PROBABILITE_APPARITION_POWERUP) == 1) {
+            Main.composantesDessinables.add(new PowerUp((int) x, (int) y));
         }
     }
 

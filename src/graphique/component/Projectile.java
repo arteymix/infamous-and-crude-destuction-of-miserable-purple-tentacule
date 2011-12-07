@@ -15,7 +15,7 @@
  */
 package graphique.component;
 
-import graphique.event.Powerup;
+import graphique.event.PowerUp;
 import graphique.event.Explosion;
 import graphique.event.PointsObtenus;
 import java.awt.Rectangle;
@@ -93,7 +93,7 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        if (!(c instanceof Canon) && !(c instanceof Projectile) && !(c instanceof Powerup)) {
+        if (!(c instanceof Canon) && !(c instanceof Projectile) && !(c instanceof PowerUp)) {
             // Le projectile a frappé quelque chose, il sera détruit!
             this.isDessinable = false;
             Main.composantesDessinables.add(new Explosion(this.position));

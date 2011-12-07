@@ -95,7 +95,9 @@ public final class Main {
      */
     public static boolean isDebugEnabled = false;
     /**
-     * 
+     * Est true si la partie est terminée, false autrement. Cette variable est
+     * utile pour savoir si certaines fonctionalités du programmes doivent
+     * être activés pendant le GAME OVER!
      */
     public static boolean isGameOver = false;
     /**
@@ -150,7 +152,7 @@ public final class Main {
     /**
      * Instance de l'interface graphique.
      */
-    public static InterfaceGraphique interfaceGraphique;
+    private static InterfaceGraphique interfaceGraphique;
     /**
      * Objet pour la banque d'images qui contient des images pour le rendu.
      */
@@ -318,7 +320,7 @@ public final class Main {
         }
     }
     /**
-     * 
+     * Message affiché lorsque la partie se termine.
      */
     public static String messageDeFermeture;
 

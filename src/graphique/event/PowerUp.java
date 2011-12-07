@@ -28,7 +28,7 @@ import util.Vecteur;
  * Objet dessinable pour les powerups.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class Powerup extends Dessinable implements Collisionable, Serializable {
+public final class PowerUp extends Dessinable implements Collisionable, Serializable {
 
     /**
      * 
@@ -42,8 +42,8 @@ public final class Powerup extends Dessinable implements Collisionable, Serializ
     /**
      * 
      */
-    public static final int POWER_SHOT = 0, // Powerup stage 1
-            FAST_SHOT = 1, // Powerup stage 2
+    public static final int POWER_SHOT = 0, // PowerUp stage 1
+            FAST_SHOT = 1, // PowerUp stage 2
             POWER_FAST_SHOT = 2,
             PROBABILITE_APPARITION_POWERUP = 2000;
     /**
@@ -60,7 +60,7 @@ public final class Powerup extends Dessinable implements Collisionable, Serializ
      * @param x
      * @param y
      */
-    public Powerup(int x, int y) {
+    public PowerUp(int x, int y) {
         rectangle.x = x;
         rectangle.y = y;
         switch (Main.level) {

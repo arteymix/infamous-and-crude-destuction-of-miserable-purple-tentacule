@@ -15,7 +15,7 @@
  */
 package graphique.component;
 
-import graphique.event.Powerup;
+import graphique.event.PowerUp;
 import content.KeySetting;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -80,7 +80,7 @@ public final class Canon extends Dessinable implements Collisionable {
      * solo, ainsi les projectiles auto-guidées ne se dirigent pas vers le
      * deuxième canon.
      */
-    private Vecteur A, B, C, D;
+    private Vecteur positionA, positionB, positionC, positionD;
     private double tetha = Math.PI;
     /**
      * Est le vecteur position du canon.
@@ -122,10 +122,10 @@ public final class Canon extends Dessinable implements Collisionable {
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;
-        A = piedDeCanon().additionAffine(new Vecteur(15, -70));
-        B = piedDeCanon().additionAffine(new Vecteur(-15, -70));
-        C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
-        D = piedDeCanon().additionAffine(new Vecteur(15, +0));
+        positionA = piedDeCanon().additionAffine(new Vecteur(15, -70));
+        positionB = piedDeCanon().additionAffine(new Vecteur(-15, -70));
+        positionC = piedDeCanon().additionAffine(new Vecteur(-15, +0));
+        positionD = piedDeCanon().additionAffine(new Vecteur(15, +0));
         vie = VIE_INIT_CANON;
     }
 
@@ -203,10 +203,10 @@ public final class Canon extends Dessinable implements Collisionable {
      * Déplace le canon (direction de tir) vers la gauche.
      */
     private void moveCanonGauche() {
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.positionA.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.positionB.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.positionC.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
+        this.positionD.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), -ANGLE_INCREMENT_CANON);
         tetha -= ANGLE_INCREMENT_CANON;
     }
 
@@ -214,10 +214,10 @@ public final class Canon extends Dessinable implements Collisionable {
      * Déplace le canon (direction de tir) vers la gauche.
      */
     private void moveCanonDroite() {
-        this.A.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-        this.B.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-        this.C.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
-        this.D.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.positionA.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.positionB.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.positionC.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
+        this.positionD.rotation(new Vecteur(this.piedDeCanon().x, this.piedDeCanon().y), ANGLE_INCREMENT_CANON);
         tetha += ANGLE_INCREMENT_CANON;
     }
 
@@ -226,10 +226,10 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     private void moveGauche() {
         if (this.position.x > 0) {
-            A.x -= MOVEMENT_INCREMENT_CANON;
-            B.x -= MOVEMENT_INCREMENT_CANON;
-            C.x -= MOVEMENT_INCREMENT_CANON;
-            D.x -= MOVEMENT_INCREMENT_CANON;
+            positionA.x -= MOVEMENT_INCREMENT_CANON;
+            positionB.x -= MOVEMENT_INCREMENT_CANON;
+            positionC.x -= MOVEMENT_INCREMENT_CANON;
+            positionD.x -= MOVEMENT_INCREMENT_CANON;
             position.x -= MOVEMENT_INCREMENT_CANON;
         }
     }
@@ -239,10 +239,10 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     private void moveDroite() {
         if (this.position.x + LARGEUR_DU_CANON + 1 < Main.getCanvasSizeX()) {
-            A.x += MOVEMENT_INCREMENT_CANON;
-            B.x += MOVEMENT_INCREMENT_CANON;
-            C.x += MOVEMENT_INCREMENT_CANON;
-            D.x += MOVEMENT_INCREMENT_CANON;
+            positionA.x += MOVEMENT_INCREMENT_CANON;
+            positionB.x += MOVEMENT_INCREMENT_CANON;
+            positionC.x += MOVEMENT_INCREMENT_CANON;
+            positionD.x += MOVEMENT_INCREMENT_CANON;
             position.x += MOVEMENT_INCREMENT_CANON;
         }
     }
@@ -253,7 +253,7 @@ public final class Canon extends Dessinable implements Collisionable {
     private void tirer() {
         if (peutTirer) {
             //Main.son.play(Main.soundBank.explosion);
-            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((D.x - A.x) / 2, (D.y - A.y) / 2), 0, tetha));
+            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((positionD.x - positionA.x) / 2, (positionD.y - positionA.y) / 2), 0, tetha));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
             (new Thread("Thread pour le temps d'attente entre chaque tir de canon.") {
@@ -289,8 +289,8 @@ public final class Canon extends Dessinable implements Collisionable {
 
     @Override
     public void dessinerDeboguage(Graphics g) {
-        int[] xPoints = {(int) A.x, (int) B.x, (int) C.x, (int) D.x};
-        int[] yPoints = {(int) A.y, (int) B.y, (int) C.y, (int) D.y};
+        int[] xPoints = {(int) positionA.x, (int) positionB.x, (int) positionC.x, (int) positionD.x};
+        int[] yPoints = {(int) positionA.y, (int) positionB.y, (int) positionC.y, (int) positionD.y};
         g.drawPolygon(xPoints, yPoints, 4);
         g.drawRect((int) (position.x), (int) (position.y), (int) LARGEUR_DU_CANON, (int) HAUTEUR_DU_CANON);
         g.drawString("Canon " + this.NUMERO_DU_CANON, (int) position.x + 15, (int) position.y + 45);
@@ -311,17 +311,17 @@ public final class Canon extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        if (c instanceof Powerup) {
-            switch (((Powerup) c).id) {
-                case Powerup.FAST_SHOT:
+        if (c instanceof PowerUp) {
+            switch (((PowerUp) c).id) {
+                case PowerUp.FAST_SHOT:
                     LATENCE_DU_TIR = 125;
                     FAST_SHOT_OBTAINED = true;
                     break;
-                case Powerup.POWER_FAST_SHOT:
+                case PowerUp.POWER_FAST_SHOT:
                     POWER_FAST_SHOT_OBTAINED = true;
                     LATENCE_DU_TIR = 125;
                     break;
-                case Powerup.POWER_SHOT:
+                case PowerUp.POWER_SHOT:
                     POWER_SHOT_OBTAINED = true;
                     LATENCE_DU_TIR = 250;
                     break;
