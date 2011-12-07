@@ -71,7 +71,7 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public static long timerSeconds = 119000;// TODO put 0 here
+    public static long timerSeconds = 0;
     /**
      * ArrayList des composantes dessinables.
      */
@@ -103,8 +103,7 @@ public final class Main {
     public static int getCanvasSizeX() {
         if (interfaceGraphique == null) {
             return 1024;
-        }
-        else {
+        } else {
             return interfaceGraphique.mainCanvas.getWidth();
         }
     }
@@ -116,8 +115,7 @@ public final class Main {
     public static int getCanvasSizeY() {
         if (interfaceGraphique == null) {
             return 768;
-        }
-        else {
+        } else {
             return interfaceGraphique.mainCanvas.getHeight();
         }
     }
@@ -223,7 +221,6 @@ public final class Main {
         System.out.println("Level " + i + " activé");
         level = i;
         imageBank.setStage(i);
-
     }
 
     /**
@@ -278,12 +275,10 @@ public final class Main {
      */
     public static void terminerPartie(String s) {
         highscore.partiesCompletes++;
-
         isGameOver = true;
         messageDeFermeture = s;
-
         calculerAchievements();
-Main.highscore.serializeOnTheHeap();
+        Main.highscore.serializeOnTheHeap();
         Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
     }
 
@@ -341,8 +336,7 @@ Main.highscore.serializeOnTheHeap();
                 if (s != null) {
                     highscore.put(s, Main.points);
                 }
-            }
-            else {
+            } else {
                 isPaused = false;
                 return;
             }
@@ -354,8 +348,7 @@ Main.highscore.serializeOnTheHeap();
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {
             Thread.sleep((int) latency);
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
         // Le thread de swing est stoppé
@@ -363,6 +356,5 @@ Main.highscore.serializeOnTheHeap();
         System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
         // Le thread de swing est stoppé            
         System.exit(i);
-
     }
 }
