@@ -35,7 +35,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 
 import main.Main;
@@ -78,6 +77,8 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
      * Configure les menus.
      */
     private void configurerMenus() {
+        ////////////////////////////////////////////////////////////////////////
+        // Configuration des ActionListener
         mitemQuitter.addActionListener(new ActionListener() {
 
             @Override
@@ -138,6 +139,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             }
         });
+        ////////////////////////////////////////////////////////////////////////
         menuFichier.add(mitemNouvellePartie);
         menuFichier.addSeparator();
         menuFichier.add(cbmitemDebug);
@@ -164,8 +166,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         if (!Main.isGameOver) {
             if (mainCanvas.activity.equals(Activity.HELP)) {
                 mainCanvas.activity = Activity.JEU;
-            }
-            else {
+            } else {
                 mainCanvas.activity = Activity.HELP;
             }
         }
@@ -195,8 +196,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                 mainCanvas.activity = Activity.HIGHSCORES;
                 Main.showHighscores = true;
                 this.cbmitemMontrerHighscores.setState(true);
-            }
-            else {
+            } else {
                 mainCanvas.activity = Activity.JEU;
                 Main.showHighscores = false;
                 this.cbmitemMontrerHighscores.setState(false);
@@ -212,17 +212,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void windowClosing(WindowEvent we) {
-
-                Main.close(Main.CODE_DE_SORTIE_AUTRE);
-                Main.terminerPartie("Vous avez quitté en cours de partie!");
-
-            }
-
-            @Override
-            public void windowClosed(WindowEvent we) {
-
-                Main.terminerPartie("Vous avez quitté en cours de partie!");
-
+                Main.close(Main.CODE_DE_SORTIE_FERMETURE_X);
             }
         });
         configurerMenus();
@@ -233,17 +223,13 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void keyPressed(KeyEvent arg0) {
-
                 switch (arg0.getKeyCode()) {
-
                     case KeySetting.PAUSE:
                         Main.isPaused = !Main.isPaused;
-
                         break;
                     case KeySetting.SHOW_HIGHSCORES:
                         // On inverse la valeur du show highscores...
                         changeHighscoresState();
-
                         break;
                     case KeySetting.QUIT:
                         Main.close(0);
@@ -253,13 +239,11 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                         break;
                     ////////////////////////
                     default:
-
                         if (!keyBoardListener.contains(arg0.getKeyCode())) {
                             keyBoardListener.add(arg0.getKeyCode());
                         }
                         break;
                 }
-
             }
 
             @Override
@@ -272,7 +256,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         add(mainCanvas);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        ////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
         // Code pour centrer la fenêtre
         // Source : http://www.java-forums.org/awt-swing/3491-jframe-center-screen.html
         // Get the size of the screen
@@ -284,18 +268,20 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         int y = (dim.height - h) / 2;
         // Move the window
         this.setLocation(x, y);
-        ///////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////
         setVisible(true);
         setTitle(Traductions.get("title"));
         setResizable(false);
     }
 
     /**
-     * 
+     * Méthode run() principale du thread de rendu graphique. Une gestion
+     * dynamique de la latence devrait éventuellement se retrouver ici, mais
+     * cela prends beaucoup de temps à coder, alors tant que le temps de rendu
+     * ne dépasse pas la latence, on devrait être correct.
      */
     @Override
     public void run() {
-
         while (Main.isRunning) {
             long time = System.currentTimeMillis();
             Main.paintDone = false;
@@ -319,15 +305,13 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                      * Le rendu cumule du retard sur le jeu, il serait intéressant
                      * d'essayer de le compenser.
                      */
-                }
-                else {
+                } else {
                     Thread.sleep((int) (Main.latency - Main.tempsDuRendu));
                 }
                 while (Main.isPaused) {
                     Thread.sleep(10);
                 }
-            }
-            catch (InterruptedException ex) {
+            } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
         }

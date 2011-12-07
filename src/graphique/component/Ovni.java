@@ -36,7 +36,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
-    public static int PROBABILITE_APPARITION_OVNI = 1000;
+    public static final int PROBABILITE_APPARITION_OVNI = 1000;
     /**
      * Détermine si un boss est présent dans le jeu.
      */
@@ -44,27 +44,27 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * ID de l'ennemi normal.
      */
-    private static final int ENNEMI_NORMAL = 1;
     /**
      * ID de l'ennemi supersonique.
      */
-    private static final int ENNEMI_SUPERSONIQUE = 2;
     /**
      * ID du boss 1.
      */
-    private static final int ENNEMI_BOSS_1 = 3;
     /**
      * ID du boss 2.
      */
-    private static final int ENNEMI_BOSS_2 = 4;
     /**
      * ID du boss 3.
      */
-    private static final int ENNEMI_BOSS_3 = 5;
     /**
      * ID du boss bonus.
      */
-    private static final int ENNEMI_BOSS_BONUS = 6;
+    private static final int ENNEMI_NORMAL = 1,
+            ENNEMI_SUPERSONIQUE = 2,
+            ENNEMI_BOSS_1 = 3,
+            ENNEMI_BOSS_2 = 4,
+            ENNEMI_BOSS_3 = 5,
+            ENNEMI_BOSS_BONUS = 6;
     /**
      * Entier utilisé pour définir la vitesse de tir de l'ovni
      */
@@ -79,7 +79,13 @@ public final class Ovni extends Dessinable implements Collisionable {
             ENNEMI_NORMAL_POINTS = 30,
             ENNEMI_SUPERSONIQUE_POINTS = 100,
             ENNEMI_BOSS_BONUS_POINTS = 500;
+    private int xDirection = 1;
+    private int yDirection = 1;
+    private static boolean boss1Killed = false,
+            boss2Killed = false,
+            boss3Killed = false;
     ////////////////////////////////////////////////////////////////////////////
+    // Variables locales
     /**
      * 
      */
@@ -92,6 +98,9 @@ public final class Ovni extends Dessinable implements Collisionable {
      * 
      */
     private int vie;
+    /**
+     * 
+     */
     private final int VIE_INIT;
     /**
      * 
@@ -105,18 +114,14 @@ public final class Ovni extends Dessinable implements Collisionable {
      * 
      */
     private Rectangle rectangle = new Rectangle();
+    ////////////////////////////////////////////////////////////////////////////
+
     /**
-     * 
+     * Constructeur pour l'objet Ovni.
      * @param x
      * @param y
-     * @param id 
+     * @param id est l'id de l'ovni. Voir les constantes pour plus de détails.
      */
-    private int xDirection = 1;
-    private int yDirection = 1;
-    private static boolean boss1Killed = false,
-            boss2Killed = false,
-            boss3Killed = false;
-
     private Ovni(int x, int y, int id) {
         /* On va pas faire ça compliqué. Il y a une méthode en dessous qui
          * s'appelle create ovni vas-y! 
@@ -131,11 +136,10 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     /**
-     * 
+     * Méthode appelée à chaque draw. Elle décide si un ovni doit être créé ainsi
+     * que sa nature.
      */
     public static void createOvni() {
-        // Ici tu mets l'algo de génération aléatoire pour le id
-
         int i = initializeID();
         int y = new Random().nextInt(350);
         switch (i) {
@@ -220,8 +224,11 @@ public final class Ovni extends Dessinable implements Collisionable {
         }
     }
 
+    /**
+     * Configure l'ovni en fonction de son id.
+     * @param id est l'id de l'ovni. Voir les constantes pour plus d'informations.
+     */
     private void configurerOvni(int id) {
-
         switch (id) {
             case ENNEMI_NORMAL://img enemi et enemi or et vie
                 if (isOr) {
@@ -266,7 +273,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     /**
-     * 
+     * Action effectuée à chaque draw du canvas principal.
      */
     private void action() {
         switch (ID) {
@@ -277,23 +284,33 @@ public final class Ovni extends Dessinable implements Collisionable {
                 position.x -= 3 * vitesseX;
                 break;
             case ENNEMI_BOSS_1:// mouvement du boss 1
-                mouvtBoss12(15, 300);
+                mouvementBoss(15, 300);
                 break;
             case ENNEMI_BOSS_2:// mouvement du boss 2
                 vitesseX = 3;
-                mouvtBoss12(15, 745);
+                mouvementBoss(15, 745);
                 break;
             case ENNEMI_BOSS_3:// mouvement du boss 3
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
         }
-        if ((new Random()).nextInt(shootRate) == 1) {
+        /* L'expression ternaire fait en sorte que le shooting rate des boss est
+         * doublé si deux canons sont actifs sur la carte.
+         * 
+         */
+
+        if ((new Random()).nextInt(shootRate / (Canon.isCanon2ValidTarget ? 2 : 1)) == 1) {
             tirer();
         }
     }
 
-    private void mouvtBoss12(int ymin, int ymax) {
+    /**
+     * Mouvements spécifiques des boss.
+     * @param ymin
+     * @param ymax 
+     */
+    private void mouvementBoss(int ymin, int ymax) {
 
         final int XMIN = 0;
         final int XMAX = (int) (Main.getCanvasSizeX() - this.rectangle.getWidth());
@@ -314,17 +331,25 @@ public final class Ovni extends Dessinable implements Collisionable {
         }
         position.x += deplacementX * xDirection * vitesseX;
         position.y += deplacementY * yDirection * vitesseX;
-
-
     }
 
-    public void setxDirection(int xDirection) {
+    /**
+     * 
+     * @param xDirection 
+     */
+    private void setxDirection(int xDirection) {
         this.xDirection = xDirection;
     }
 
-    public void setyDirection(int yDirection) {
+    /**
+     * 
+     * @param yDirection 
+     */
+    private void setyDirection(int yDirection) {
         this.yDirection = yDirection;
     }
+    ////////////////////////////////////////////////////////////////////////////
+    // Méthode de la classe abstraite Dessinable
 
     @Override
     public void dessiner(Graphics g) {
@@ -440,4 +465,5 @@ public final class Ovni extends Dessinable implements Collisionable {
     public int getDommage() {
         return 0;
     }
+    ////////////////////////////////////////////////////////////////////////////
 }

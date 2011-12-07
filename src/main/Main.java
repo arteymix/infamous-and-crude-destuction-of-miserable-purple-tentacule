@@ -39,7 +39,25 @@ import util.Traductions;
  */
 public final class Main {
     ////////////////////////////////////////////////////////////////////////////
+    // Statuts de fermeture
 
+    /**
+     * Quand tout est okay!
+     */
+    /**
+     * Lorsqu'une erreur de sérialization survient.
+     */
+    /**
+     * Pour les autres erreurs...
+     */
+    /**
+     * La fenêtre a été fermée par le X.
+     */
+    public static final int CODE_DE_SORTIE_OK = 0,
+            CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
+            CODE_DE_SORTIE_AUTRE = 2,
+            CODE_DE_SORTIE_FERMETURE_X = 3;
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * Si true, les highscores sont affichés.
      */
@@ -76,6 +94,9 @@ public final class Main {
      * ArrayList des composantes dessinables.
      */
     public static boolean isDebugEnabled = false;
+    /**
+     * 
+     */
     public static boolean isGameOver = false;
     /**
      * ArrayList contenant les objets dessinables.
@@ -95,11 +116,9 @@ public final class Main {
     public static int level = 1;
 
     /**
-     * Ce vecteur est le vecteur dimension du canvas ou les composants et
-     * graphics sont dessinés.
+     *       
      * @return 
-     */
-    //public static Vecteur canvasSize = new Vecteur(1024, 768);
+     */    
     public static int getCanvasSizeX() {
         if (interfaceGraphique == null) {
             return 1024;
@@ -120,18 +139,6 @@ public final class Main {
         }
     }
     ////////////////////////////////////////////////////////////////////////////
-    /**
-     * Quand tout est okay!
-     */
-    /**
-     * Lorsqu'une erreur de sérialization survient.
-     */
-    /**
-     * Pour les autres erreurs...
-     */
-    public static final int CODE_DE_SORTIE_OK = 0,
-            CODE_DE_SORTIE_SERIALIZATION_FAILED = 1,
-            CODE_DE_SORTIE_AUTRE = 2;
     /**
      * Constantes pour le niveau de jeu.
      */
@@ -257,11 +264,13 @@ public final class Main {
             System.out.println("Redémarrage de l'interface (" + (System.currentTimeMillis() - timeLoading) + " ms)");
             totalLoading += System.currentTimeMillis() - timeLoading;
             ////////////////////////////////////////////////////////////////////
+            // Réinitialisation des variables
             alienAuSol = 0;
             timerSeconds = 0;
             points = 0;
             Ovni.isBoss = false;
             isGameOver = false;
+            ////////////////////////////////////////////////////////////////////
             System.out.println("Temps de redémarrage " + totalLoading + " ms");
         }
         isPaused = false;
@@ -353,7 +362,7 @@ public final class Main {
         }
         // Le thread de swing est stoppé
         interfaceGraphique.dispose();
-        System.out.println("Le programme ferme avec une erreur! Statut de la fermeture : " + i);
+        System.out.println("Le programme ferme avec le statut de fermeture suivant : " + i);
         // Le thread de swing est stoppé            
         System.exit(i);
     }
