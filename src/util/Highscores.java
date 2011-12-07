@@ -34,7 +34,9 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      */
     public Highscores() {
         super();
+        // Trololol!
         put("Guillaume", 999999999);
+        put("Nafie", 999999998);
     }
 
     /**
@@ -64,13 +66,13 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
     /**
      * 
      */
-    public boolean NOOB_OBTAINED,
-            OWN_OBTAINED,
-            PWN_OBTAINED,
-            NUKE_OBTAINED,
-            PRO_OBTAINED,
-            LEET_OBTAINED,
-            BAZINGA_OBTAINED;
+    public boolean noobObtained,
+            ownObtained,
+            pwnObtained,
+            nukeObtained,
+            proObtained,
+            leetObtained,
+            bazingaObtained;
     /**
      *
      */
@@ -108,6 +110,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             highscores[i] = s + " | " + this.get(s);
             i++;            
         }
+        ////////////////////////////////////////////////////////////////////////
         // Tri du dictionnaire
         for (int j = 0; j < highscores.length; j++) {
             for (int k = j; k < highscores.length; k++) {
@@ -118,6 +121,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
                 }
             }
         }
+        ////////////////////////////////////////////////////////////////////////
         if(highscores.length > 5) {
             String[] s = new String[5];
             for(int z = 0; z < 5; z++) {

@@ -134,44 +134,44 @@ public final class MainCanvas extends JComponent {
                 // Achievements
                 // Afficher le nombre de parties restantes
                 g.drawString("Achievements obtenus :", 15, k += 30);
-                if (Main.highscore.NOOB_OBTAINED) {
+                if (Main.highscore.noobObtained) {
                     g.drawString("Noob obtenu!", 15, k += 15);
                 }
                 else {
                     g.drawString("Noob en cours... (il reste encore " + (1 - Main.highscore.partiesCompletes) + " partie à compléter)", 15, k += 15);
                 }
-                if (Main.highscore.OWN_OBTAINED) {
+                if (Main.highscore.ownObtained) {
                     g.drawString("Own obtenu!", 15, k += 15);
                 }
                 else {
                     g.drawString("Own en cours... (il reste encore " + (10 - Main.highscore.partiesCompletes) + " parties à compléter)", 15, k += 15);
                 }
-                if (Main.highscore.PWN_OBTAINED) {
+                if (Main.highscore.pwnObtained) {
                     g.drawString("Pwn obtenu!", 15, k += 15);
                 }
                 else {
                     g.drawString("Pwn en cours... (il reste encore " + (1000 - Main.highscore.partiesCompletes) + " parties à compléter)", 15, k += 15);
                 }
-                if (Main.highscore.NUKE_OBTAINED) {
+                if (Main.highscore.nukeObtained) {
                     g.drawString("Nuke obtenu!", 15, k += 15);
                 }
                 else {
                     g.drawString("Nuke en cours... (il faut tuer au moins 100 tentacules en une partie)", 15, k += 15);
                 }
-                if (Main.highscore.PRO_OBTAINED) {
+                if (Main.highscore.proObtained) {
                     g.drawString("Pro obtenu!", 15, k += 15);
                 }
                 else {
                     g.drawString("Pro en cours (il faut terminer une partie avec plus de 250 points pour l'obtenir!)", 15, k += 15);
                 }
-                if (Main.highscore.LEET_OBTAINED) {
+                if (Main.highscore.leetObtained) {
                     g.drawString("1337 obtenu!", 15, k += 15);
                 }
                 else {
                     g.drawString("1337 en cours (il faut terminer une partie avec plus de 1000 points pour l'obtenir!)", 15, k += 15);
 
                 }
-                if (Main.highscore.BAZINGA_OBTAINED) {
+                if (Main.highscore.bazingaObtained) {
                     g.drawString("Bazinga obtenu!", 15, k += 15);
                 }
                 else {
@@ -262,13 +262,13 @@ public final class MainCanvas extends JComponent {
                     g.drawString(s, x, positionInit += 15);
                 }
                 g.drawString("Trophées :", x, positionInit += 30);
-                g.drawString("Noob " + (Main.highscore.NOOB_OBTAINED ? "complété!" : "en cours... (reste " + (1 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
-                g.drawString("Own " + (Main.highscore.OWN_OBTAINED ? "complété!" : "en cours... (reste " + (10 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
-                g.drawString("Pwn " + (Main.highscore.PWN_OBTAINED ? "complété!" : "en cours... (reste " + (1000 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
-                g.drawString("Nuke " + (Main.highscore.NUKE_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
-                g.drawString("Pro " + (Main.highscore.PRO_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
-                g.drawString("1337 " + (Main.highscore.LEET_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
-                g.drawString("Bazinga! " + (Main.highscore.BAZINGA_OBTAINED ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("Noob " + (Main.highscore.noobObtained ? "complété!" : "en cours... (reste " + (1 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
+                g.drawString("Own " + (Main.highscore.ownObtained ? "complété!" : "en cours... (reste " + (10 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
+                g.drawString("Pwn " + (Main.highscore.pwnObtained ? "complété!" : "en cours... (reste " + (1000 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
+                g.drawString("Nuke " + (Main.highscore.nukeObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("Pro " + (Main.highscore.proObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("1337 " + (Main.highscore.leetObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("Bazinga! " + (Main.highscore.bazingaObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.WHITE);
                 }

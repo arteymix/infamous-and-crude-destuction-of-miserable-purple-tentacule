@@ -298,25 +298,25 @@ public final class Main {
      */
     private static void calculerAchievements() {
         if (tentaculesKilled >= 100) {
-            highscore.NUKE_OBTAINED = true;
+            highscore.nukeObtained = true;
         }
         if (highscore.partiesCompletes == 1) {
-            highscore.NOOB_OBTAINED = true;
+            highscore.noobObtained = true;
         }
         if (highscore.partiesCompletes >= 1000) {
-            highscore.PWN_OBTAINED = true;
+            highscore.pwnObtained = true;
         }
         if (highscore.partiesCompletes >= 10) {
-            highscore.OWN_OBTAINED = true;
+            highscore.ownObtained = true;
         }
         if (points == 0) {
-            highscore.BAZINGA_OBTAINED = true;
+            highscore.bazingaObtained = true;
         }
         if (points >= 1000) {
-            highscore.LEET_OBTAINED = true;
+            highscore.leetObtained = true;
         }
         if (points >= 250) {
-            highscore.PRO_OBTAINED = true;
+            highscore.proObtained = true;
         }
     }
     /**
