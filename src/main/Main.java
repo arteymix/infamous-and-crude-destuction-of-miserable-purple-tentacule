@@ -116,8 +116,8 @@ public final class Main {
     public static int level = 1;
 
     /**
-     *       
-     * @return 
+     * Obtient la taille X du canvas.
+     * @return la taille X du canvas.
      */    
     public static int getCanvasSizeX() {
         if (interfaceGraphique == null) {
@@ -128,8 +128,8 @@ public final class Main {
     }
 
     /**
-     * 
-     * @return
+     * Obtient la taille Y du canvas.
+     * @return la taille Y du canvas.
      */
     public static int getCanvasSizeY() {
         if (interfaceGraphique == null) {

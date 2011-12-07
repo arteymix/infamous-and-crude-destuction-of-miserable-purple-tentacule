@@ -66,13 +66,14 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     private int LATENCE_DU_TIR = 250;
     /**
-     * 
+     * Variable qui définit la hauteur standard du canon.
      */
     /**
-     * 
+     * Variable qui définit la largeur standard du canon.
      */
     private static final int HAUTEUR_DU_CANON = 100, LARGEUR_DU_CANON = 255;
     ////////////////////////////////////////////////////////////////////////////
+    // Variables locales
     /**
      * Variables définissant si le canon 2 est une cible valide pour un projectile ennemi.
      * Cette variable est particulièrement utile lorsque le joueur joue en mode
@@ -82,30 +83,24 @@ public final class Canon extends Dessinable implements Collisionable {
     private Vecteur A, B, C, D;
     private double tetha = Math.PI;
     /**
-     * 
+     * Est le vecteur position du canon.
      */
     private Vecteur position;
     /**
-     * 
+     * Est le nombre de points de vie que le canon possède.
      */
     private int vie;
     /**
-     * 
+     * Est l'identifiant unique du canon.
      */
     final int NUMERO_DU_CANON;
     /**
-     * 
+     * Définit si le canon à l'autorisation de tirer. Cette variable est 
+     * controllée par un thread qui la rends true un certain temps après avoir
+     * tiré, ce qui empêche les tirs fous.
      */
     private boolean peutTirer = true;
-
-    /**
-     * Getter pour les vies, cela empêche les autres composantes du programme
-     * d'altérer les points de vies propres au canon.
-     * @return les points de vie du canon.
-     */
-    public int getVie() {
-        return vie;
-    }
+    ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Constructeur pour l'objet de canon.
@@ -132,6 +127,15 @@ public final class Canon extends Dessinable implements Collisionable {
         C = piedDeCanon().additionAffine(new Vecteur(-15, +0));
         D = piedDeCanon().additionAffine(new Vecteur(15, +0));
         vie = VIE_INIT_CANON;
+    }
+
+    /**
+     * Getter pour les vies, cela empêche les autres composantes du programme
+     * d'altérer les points de vies propres au canon.
+     * @return les points de vie du canon.
+     */
+    public int getVie() {
+        return vie;
     }
 
     /**
@@ -267,7 +271,8 @@ public final class Canon extends Dessinable implements Collisionable {
             }).start();
         }
     }
-
+    ////////////////////////////////////////////////////////////////////////////
+    // Méthode propres aux Dessinable et Collisionable
     @Override
     public void dessiner(Graphics g) {
         AffineTransform at = new AffineTransform();
@@ -339,4 +344,5 @@ public final class Canon extends Dessinable implements Collisionable {
         // Entrer en collision avec un canon ne cause pas de dommages, mais le projectile ennemi disparaît quand même.
         return 0;
     }
+    ////////////////////////////////////////////////////////////////////////////
 }

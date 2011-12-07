@@ -120,6 +120,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 Traductions.setLangue("fr");
+                traduire();
             }
         });
         rbtnEnglish.addActionListener(new ActionListener() {
@@ -127,6 +128,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             @Override
             public void actionPerformed(ActionEvent arg0) {
                 Traductions.setLangue("en");
+                traduire();
 
             }
         });
@@ -160,6 +162,35 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         jmbMenuBar.add(menuFichier);
         jmbMenuBar.add(menuAide);
         setJMenuBar(jmbMenuBar);
+    }
+
+    /**
+     * Traduit le contenu du menu avec des setText().
+     */
+    private void traduire() {
+
+   
+           
+            
+  
+   
+    
+        cbmitemDebug.setText(Traductions.get("menu.modedebogage"));
+        menuFichier.setText(Traductions.get("menu.fichier"));
+        cbmitemNombreDeCanons.setText(Traductions.get("menu.deuxcanons"));
+        cbmitemMontrerHighscores.setText("Highscores"); // TODO traduire ici
+        
+        
+       
+        mitemQuitter.setText(Traductions.get("menu.quitter"));
+        rbtnEnglish.setText(Traductions.get("menu.anglais"));
+        rbtnFrancais.setText(Traductions.get("menu.francais"));
+        mitemAide.setText(Traductions.get("menu.item.aide"));
+        
+        menuAide.setText(Traductions.get("menu.aide"));
+        menuLangue.setText(Traductions.get("menu.langue"));
+mitemNouvellePartie.setText(Traductions.get("menu.nouvelle"));
+
     }
 
     private void changeHelpState() {

@@ -105,6 +105,46 @@ public class Traductions implements Serializable {
     }
 
     private static void initEn() {
+        en.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
+
+        en.put("menu.fichier", "File");
+        en.put("menu.editer", "Edit");
+        en.put("menu.langue", "Languages");
+        en.put("menu.aide", "?");
+        en.put("menu.quitter", "Quit");
+        en.put("menu.modedebogage", "Debug mode");
+        en.put("menu.deuxcanons", "Two canons");
+        en.put("menu.francais", "French");
+        en.put("menu.anglais", "English");
+        en.put("menu.nouvelle", "New game");
+
+        en.put("menu.confirmation", "Are you sure you want to quit?");
+
+        en.put("menu.item.aide", "Help...");
+        en.put("menu.item.tableau", "Tableau de pointage...");
+        en.put("menu.item.trophe", "Trophies and achievements...");
+        en.put("menu.item.apropos", "About...");
+
+        en.put("debug.latence", "Latency");
+        en.put("debug.tempsrendu", "Rendering time");
+        en.put("debug.modedebogage", "Debug mode");
+        en.put("debug.nombrecomposantesdessinables", "Amount of Dessinable components");
+        en.put("debug.composantes", "components");
+        en.put("debug.active", "Activated");
+        en.put("debug.desactive", "Desactivated");
+        en.put("debug.vies", "Lifes");
+        en.put("debug.tempsjoue", "Time played");
+        en.put("debug.nbcompo", "Amount of Dessinable components");
+        
+
+        en.put("highscores.tempsdurendu", "Temps du rendu");
+        en.put("highscores.tempsdurendu", "Temps du rendu");
+        en.put("highscores.tempsdurendu", "Temps du rendu");
+        en.put("highscores.tempsdurendu", "Temps du rendu");
+        en.put("highscores.tempsdurendu", "Temps du rendu");
+
+
+        fr.put("debug.tempsdurendu", "Temps du rendu");
     }
     private static HashMap<String, String> en = new HashMap<String, String>();
     private static HashMap<String, String> fr = new HashMap<String, String>();
