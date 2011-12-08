@@ -103,7 +103,7 @@ public final class Main {
     /**
      * ArrayList contenant les objets dessinables.
      */
-    public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>();
+    public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>(); // todo fix here
     /**
      * La variable points contient les points du/des joueur/s.
      */

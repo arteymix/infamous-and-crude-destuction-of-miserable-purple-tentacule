@@ -101,13 +101,14 @@ public final class ImageBank {
      */
     public Image powerup;
     /**
-     * 
+     * Icone de l'application.
      */
     public final Image icon = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/icon.png"));
 
     /**
-     * 
-     * @param i
+     * Méthode qui change les images utilisés dans le jeu en changeant les références
+     * des objets images.
+     * @param i est le niveau du jeu actuel. i doit exister dans les package.
      */
     public void setStage(int i) {
         ship1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ship1.gif"));

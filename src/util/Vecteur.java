@@ -15,13 +15,11 @@
  */
 package util;
 
-import java.io.Serializable;
-
 /**
  * Objet vecteur pour simplifier les différents calculs.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public class Vecteur implements Serializable {
+public class Vecteur {
 
     /**
      * Composante horizontale du vecteur.
@@ -40,12 +38,12 @@ public class Vecteur implements Serializable {
         this.x = x;
         this.y = y;
     }
+
     /**
      * Constructeur utilisé si aucune valeurs ne sont spécifiés. Les valeurs des
      * doubles par défaut seront alors utilisés.
      */
     public Vecteur() {
-    
     }
 
     /**
