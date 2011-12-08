@@ -246,6 +246,8 @@ public final class Canon extends Dessinable implements Collisionable {
             position.x += MOVEMENT_INCREMENT_CANON;
         }
     }
+    
+    private static int PROJECTILE_DEFAULT_DAMAGE = 5;
 
     /**
      * Effectue un tir!
@@ -253,7 +255,11 @@ public final class Canon extends Dessinable implements Collisionable {
     private void tirer() {
         if (peutTirer) {
             //Main.son.play(Main.soundBank.explosion);
-            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((positionD.x - positionA.x) / 2, (positionD.y - positionA.y) / 2), 0, tetha));
+            int dommages= PROJECTILE_DEFAULT_DAMAGE;
+            if(this.POWER_FAST_SHOT_OBTAINED | this.POWER_SHOT_OBTAINED) {
+            dommages = PROJECTILE_DEFAULT_DAMAGE*2;
+            }
+            Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((positionD.x - positionA.x) / 2, (positionD.y - positionA.y) / 2), 0, tetha, dommages));
             peutTirer = false;
             // Le Thread sert à attendre un certain temps avant d'effectuer un autre tir.
             (new Thread("Thread pour le temps d'attente entre chaque tir de canon.") {

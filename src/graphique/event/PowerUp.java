@@ -18,7 +18,6 @@ package graphique.event;
 import graphique.component.Canon;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.io.Serializable;
 import main.Main;
 import util.Collisionable;
 import util.Dessinable;
@@ -28,7 +27,7 @@ import util.Vecteur;
  * Objet dessinable pour les powerups.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class PowerUp extends Dessinable implements Collisionable, Serializable {
+public final class PowerUp extends Dessinable implements Collisionable {
 
     /**
      * 
@@ -42,9 +41,9 @@ public final class PowerUp extends Dessinable implements Collisionable, Serializ
     /**
      * 
      */
-    public static final int POWER_SHOT = 0, // PowerUp stage 1
-            FAST_SHOT = 1, // PowerUp stage 2
-            POWER_FAST_SHOT = 2,
+    public static final int POWER_SHOT = 1, // PowerUp stage 1
+            FAST_SHOT = 2, // PowerUp stage 2
+            POWER_FAST_SHOT = 3, // PowerUp stage 3
             PROBABILITE_APPARITION_POWERUP = 2000;
     /**
      * 
@@ -64,21 +63,24 @@ public final class PowerUp extends Dessinable implements Collisionable, Serializ
         rectangle.x = x;
         rectangle.y = y;
         switch (Main.level) {
-            case 1:
+            case Main.LEVEL_1:
                 id = POWER_SHOT;
                 break;
-            case 2:
+            case Main.LEVEL_2:
                 id = FAST_SHOT;
                 break;
-            case 3:
+            case Main.LEVEL_3:
+                id = POWER_FAST_SHOT;
+                break;
+            case Main.LEVEL_BONUS:
                 id = POWER_FAST_SHOT;
                 break;
             default:
                 id = -1;
         }
         image0 = Main.imageBank.powerup;
-        rectangle.width = image0.getWidth(null);
-        rectangle.height = image0.getHeight(null);
+        rectangle.width = 187;
+        rectangle.height = 140;
     }
 
     @Override

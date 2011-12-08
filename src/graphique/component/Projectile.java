@@ -36,6 +36,7 @@ public final class Projectile extends Dessinable implements Collisionable {
     private static final double GRAVITY = 0.8;
     private Vecteur position, vitesse = new Vecteur(8, -8);
     private Rectangle rectangle;
+    private final int DOMMAGES;
 
     /**
      * Un Projectile est un objet qui représente un tir de canon.
@@ -44,12 +45,13 @@ public final class Projectile extends Dessinable implements Collisionable {
      * @param id est propre à chaque projectile et définit ses caractéristiquesé
      * @param tetha  
      */
-    public Projectile(Vecteur point, Vecteur orientation, int id, double tetha) {
+    public Projectile(Vecteur point, Vecteur orientation, int id, double tetha, int damage) {
         this.tetha = tetha + Math.PI;
         position = point;
         vitesse = orientation;
         image0 = Main.imageBank.projectile;
         rectangle = new Rectangle((int) point.x, (int) point.y, 10, 10);
+        DOMMAGES = damage;
     }
 
     @Override
@@ -81,6 +83,7 @@ public final class Projectile extends Dessinable implements Collisionable {
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);
         g.drawString("Projectile", (int)position.x,(int)position.y);
+        g.drawString("Dommages : " + DOMMAGES, (int)position.x,(int)position.y + 15);
         vitesse.y -= GRAVITY;
     }
 
@@ -93,6 +96,12 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
+        if(c instanceof ProjectileEnnemi) {
+        
+            if(((ProjectileEnnemi)c).isInvincible) {
+                return;
+            }
+        }
         if (!(c instanceof Canon) && !(c instanceof Projectile) && !(c instanceof PowerUp)) {
             // Le projectile a frappé quelque chose, il sera détruit!
             this.isDessinable = false;
@@ -102,6 +111,6 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public int getDommage() {
-        return 5;
+        return DOMMAGES;
     }
 }
