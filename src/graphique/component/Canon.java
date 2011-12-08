@@ -62,10 +62,6 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
     /**
-     * 
-     */
-    private int LATENCE_DU_TIR = 250;
-    /**
      * Variable qui définit la hauteur standard du canon.
      */
     /**
@@ -74,6 +70,10 @@ public final class Canon extends Dessinable implements Collisionable {
     private static final int HAUTEUR_DU_CANON = 100, LARGEUR_DU_CANON = 255;
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
+    /**
+     * 
+     */
+    private int LATENCE_DU_TIR = 250;
     /**
      * Variables définissant si le canon 2 est une cible valide pour un projectile ennemi.
      * Cette variable est particulièrement utile lorsque le joueur joue en mode
@@ -246,7 +246,6 @@ public final class Canon extends Dessinable implements Collisionable {
             position.x += MOVEMENT_INCREMENT_CANON;
         }
     }
-    
     private static int PROJECTILE_DEFAULT_DAMAGE = 5;
 
     /**
@@ -255,9 +254,9 @@ public final class Canon extends Dessinable implements Collisionable {
     private void tirer() {
         if (peutTirer) {
             //Main.son.play(Main.soundBank.explosion);
-            int dommages= PROJECTILE_DEFAULT_DAMAGE;
-            if(this.POWER_FAST_SHOT_OBTAINED | this.POWER_SHOT_OBTAINED) {
-            dommages = PROJECTILE_DEFAULT_DAMAGE*2;
+            int dommages = PROJECTILE_DEFAULT_DAMAGE;
+            if (this.POWER_FAST_SHOT_OBTAINED | this.POWER_SHOT_OBTAINED) {
+                dommages = PROJECTILE_DEFAULT_DAMAGE * 2;
             }
             Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((positionD.x - positionA.x) / 2, (positionD.y - positionA.y) / 2), 0, tetha, dommages));
             peutTirer = false;
@@ -279,6 +278,7 @@ public final class Canon extends Dessinable implements Collisionable {
     }
     ////////////////////////////////////////////////////////////////////////////
     // Méthode propres aux Dessinable et Collisionable
+
     @Override
     public void dessiner(Graphics g) {
         AffineTransform at = new AffineTransform();

@@ -20,7 +20,6 @@ import graphique.event.PointsObtenus;
 import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
-import java.io.Serializable;
 import main.Main;
 import util.Collisionable;
 import util.Vecteur;
@@ -29,7 +28,7 @@ import util.Vecteur;
  * Fichier de classe pour un projectile ennemi.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class ProjectileEnnemi extends Dessinable implements Collisionable, Serializable {
+public final class ProjectileEnnemi extends Dessinable implements Collisionable {
     ////////////////////////////////////////////////////////////////////////////
     // Constantes pour les projectiles ennemis.
 
@@ -54,6 +53,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
             PROJECTILE_ENNEMI_SUPERSONIC_OR = 4,
             PROJECTILE_BOSS = 5;
     ////////////////////////////////////////////////////////////////////////////
+    // Variables locales
     /**
      * Vecteur définissant la position du projectile ennemi dans l'espace.
      */
@@ -74,7 +74,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable,
      * 
      */
     public boolean isInvincible = false;
-   
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * Constructeur pour un projectile ennemi. Peut uniquement être appelé par
      * un objet ovni.

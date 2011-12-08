@@ -66,10 +66,6 @@ public final class Ovni extends Dessinable implements Collisionable {
             ENNEMI_BOSS_3 = 5,
             ENNEMI_BOSS_BONUS = 6;
     /**
-     * Entier utilisé pour définir la vitesse de tir de l'ovni
-     */
-    private int shootRate = 500;
-    /**
      * Random utilisé pour les génération aléatoires de l'ovni.
      */
     private static Random random = new Random();
@@ -79,12 +75,16 @@ public final class Ovni extends Dessinable implements Collisionable {
             ENNEMI_NORMAL_POINTS = 30,
             ENNEMI_SUPERSONIQUE_POINTS = 100,
             ENNEMI_BOSS_BONUS_POINTS = 500;
-    private int xDirection = 1;
-    private int yDirection = 1;
     private static boolean boss1Killed = false,
             boss2Killed = false,
             boss3Killed = false;
     ////////////////////////////////////////////////////////////////////////////
+    /**
+     * Entier utilisé pour définir la vitesse de tir de l'ovni
+     */
+    private int shootRate = 500;
+    private int xDirection = 1;
+    private int yDirection = 1;
     // Variables locales
     /**
      * 
@@ -216,10 +216,8 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_1:
             case ENNEMI_BOSS_2:
             case ENNEMI_BOSS_3:
-                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_BOSS));
-                break;
             case ENNEMI_BOSS_BONUS:
-                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
+                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_BOSS));
                 break;
         }
     }
@@ -267,7 +265,6 @@ public final class Ovni extends Dessinable implements Collisionable {
                 vie = 15 * Main.level;
                 break;
             default:
-
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet" + id);
         }
     }
@@ -277,20 +274,28 @@ public final class Ovni extends Dessinable implements Collisionable {
      */
     private void action() {
         switch (ID) {
-            case ENNEMI_NORMAL:// mouvement d'un enemi normal 
+            case ENNEMI_NORMAL:
+                // mouvement d'un enemi normal 
                 position.x += 3 * vitesseX;
                 break;
-            case ENNEMI_SUPERSONIQUE:// mouvement du ennemiSupersonic
+            case ENNEMI_SUPERSONIQUE:
+                // mouvement du ennemiSupersonic
                 position.x -= 3 * vitesseX;
                 break;
-            case ENNEMI_BOSS_1:// mouvement du boss 1
+            case ENNEMI_BOSS_1:
+                // mouvement du boss 1
                 mouvementBoss(15, 300);
                 break;
-            case ENNEMI_BOSS_2:// mouvement du boss 2
+            case ENNEMI_BOSS_2:
+                // mouvement du boss 2
                 vitesseX = 3;
                 mouvementBoss(15, 745);
                 break;
-            case ENNEMI_BOSS_3:// mouvement du boss 3
+            case ENNEMI_BOSS_3:
+                // mouvement du boss 3
+                break;
+            case ENNEMI_BOSS_BONUS:
+                // Mouvement du boss bonus
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");

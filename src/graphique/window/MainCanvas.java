@@ -277,8 +277,22 @@ public final class MainCanvas extends JComponent {
                 }
                 break;
             case HELP:
+                ////////////////////////////////////////////////////////////////
+                // Draw pour l'aide
+                int y = 15;
+                positionInit = 0;
+                g.setColor(Color.WHITE);
+                g.drawString("Aide", y, positionInit += 15);
+                g.drawString("Le but du jeu est simple : survivre le plus longtemps possible afin de faire le maximum de points", y, positionInit += 30);
+                g.drawString("et éventuellement mériter sa place dans les highscores ainsi qu'obtenir les prestigieux achievements.", y, positionInit += 15);
+                g.drawString("Pour ce faire, il ne faut, mais surtout pas, laisser tentacule mauve (le gros boss méchant) envoyer", y, positionInit += 30);
+                g.drawString("quatre de ses tentacules au sol, autrement c'est la fin pour vous et vos compatriotes humains.", y, positionInit += 15);
+                g.drawString("L'équipe des développeurs vous invitent à avoir beaucoup de plaisir à jouer à ce jeu, et surtout", y, positionInit += 30);
+                g.drawString("nous rapporter les bugs et autre dysfonctionnements. Nous apprécions aussi les idées et nouveaux", y, positionInit += 15);
+                g.drawString("concepts révolutionnaires!", y, positionInit += 15);
                 KeySetting.drawKeySettingHelp(g);
-                break;
+                g.setColor(Color.BLACK);
+                break;                
         }
         Main.paintDone = true;
     }

@@ -16,31 +16,40 @@
 package graphique.event;
 
 import java.awt.Graphics;
-import java.io.Serializable;
 import java.util.Random;
+
 import main.Main;
+
 import util.Dessinable;
 
 /**
  * Classe pour les objets Dessinable comme les nuages et les bancs de poissons.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
-public final class DecorFlottant extends Dessinable implements Serializable {
-
+public final class DecorFlottant extends Dessinable {
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables propres aux décors flottants (nuages, poissons, sous-marins, etc...)
     /**
      * 
      */
     private static final int PROBABILITE_APPARITION_NUAGE = 1000;
+    ////////////////////////////////////////////////////////////////////////////
+    // Varaibles locales
     /**
      * 
      */
     private double x, y;
-
+    ////////////////////////////////////////////////////////////////////////////
+    
+    /**
+     * 
+     * @param x
+     * @param y 
+     */
     private DecorFlottant(int x, int y) {
         image0 = Main.imageBank.decorFlottant;
         this.x = x;
         this.y = y;
-
     }
 
     /**
@@ -53,6 +62,9 @@ public final class DecorFlottant extends Dessinable implements Serializable {
         }
     }
 
+    /**
+     * 
+     */
     private void action() {
         if ((new Random()).nextInt(PowerUp.PROBABILITE_APPARITION_POWERUP) == 1) {
             Main.composantesDessinables.add(new PowerUp((int) x, (int) y));

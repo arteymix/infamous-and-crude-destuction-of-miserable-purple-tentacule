@@ -33,10 +33,16 @@ import util.Vecteur;
  */
 public final class Projectile extends Dessinable implements Collisionable {
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables propres aux projectiles
     private static final double GRAVITY = 0.8;
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables locales
     private Vecteur position, vitesse = new Vecteur(8, -8);
     private Rectangle rectangle;
     private final int DOMMAGES;
+    private double tetha;
+    ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Un Projectile est un objet qui représente un tir de canon.
@@ -57,7 +63,7 @@ public final class Projectile extends Dessinable implements Collisionable {
     @Override
     public void dessiner(Graphics g) {
         if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
-            Main.composantesDessinables.add(new PointsObtenus((int)position.y, (int)position.x, "-10 points") );
+            Main.composantesDessinables.add(new PointsObtenus((int) position.y, (int) position.x, "-10 points"));
             Main.points -= 10;
             this.isDessinable = false;
         }
@@ -74,16 +80,15 @@ public final class Projectile extends Dessinable implements Collisionable {
         position.y -= vitesse.y;
         vitesse.y -= GRAVITY;
     }
-    private double tetha;
 
     @Override
     public void dessinerDeboguage(Graphics g) {
         if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
-            this.isDessinable = false;
+            isDessinable = false;
         }
         g.drawRect((int) ((position.x) -= vitesse.x) - 5, (int) (position.y -= vitesse.y) - 5, 10, 10);
-        g.drawString("Projectile", (int)position.x,(int)position.y);
-        g.drawString("Dommages : " + DOMMAGES, (int)position.x,(int)position.y + 15);
+        g.drawString("Projectile", (int) position.x, (int) position.y);
+        g.drawString("Dommages : " + DOMMAGES, (int) position.x, (int) position.y + 15);
         vitesse.y -= GRAVITY;
     }
 
@@ -96,15 +101,15 @@ public final class Projectile extends Dessinable implements Collisionable {
 
     @Override
     public void collision(Collisionable c) {
-        if(c instanceof ProjectileEnnemi) {
-        
-            if(((ProjectileEnnemi)c).isInvincible) {
+        if (c instanceof ProjectileEnnemi) {
+
+            if (((ProjectileEnnemi) c).isInvincible) {
                 return;
             }
         }
         if (!(c instanceof Canon) && !(c instanceof Projectile) && !(c instanceof PowerUp)) {
             // Le projectile a frappé quelque chose, il sera détruit!
-            this.isDessinable = false;
+            isDessinable = false;
             Main.composantesDessinables.add(new Explosion(this.position));
         }
     }

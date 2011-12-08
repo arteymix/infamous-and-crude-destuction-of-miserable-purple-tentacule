@@ -267,11 +267,15 @@ public final class Main {
             totalLoading += System.currentTimeMillis() - timeLoading;
             ////////////////////////////////////////////////////////////////////
             // Réinitialisation des variables
+            // Il est plus intelligent de réinitialiser quelques variables que
+            // le programme en entier.
             alienAuSol = 0;
             timerSeconds = 0;
             points = 0;
             Ovni.isBoss = false;
             isGameOver = false;
+            Canon.isCanon2ValidTarget = false;
+            tentaculesKilled = 0;
             ////////////////////////////////////////////////////////////////////
             System.out.println("Temps de redémarrage " + totalLoading + " ms");
         }

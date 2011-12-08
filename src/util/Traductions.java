@@ -24,6 +24,14 @@ import java.util.HashMap;
  */
 public class Traductions implements Serializable {
 
+    /**
+     * 
+     */
+    private static HashMap<String, String> en = new HashMap<String, String>();
+    /**
+     * 
+     */
+    private static HashMap<String, String> fr = new HashMap<String, String>();
     private static String langue = "fr";
     private static boolean isInitAlready = false;
 
@@ -62,8 +70,11 @@ public class Traductions implements Serializable {
      * Initialise le dictionnaire de traductions.
      */
     private static void initFr() {
+        ////////////////////////////////////////////////////////////////////////
+        // Titre
         fr.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
-
+        ////////////////////////////////////////////////////////////////////////
+        // Menu
         fr.put("menu.fichier", "Fichier");
         fr.put("menu.editer", "Éditer");
         fr.put("menu.langue", "Langues");
@@ -74,14 +85,13 @@ public class Traductions implements Serializable {
         fr.put("menu.francais", "Français");
         fr.put("menu.anglais", "Anglais");
         fr.put("menu.nouvelle", "Nouvelle Partie");
-
         fr.put("menu.confirmation", "Êtes-vous sur de vouloir quitter?");
-
         fr.put("menu.item.aide", "Aide...");
         fr.put("menu.item.tableau", "Tableau de pointage...");
         fr.put("menu.item.trophe", "Trophées...");
         fr.put("menu.item.apropos", "À propos...");
-
+        ////////////////////////////////////////////////////////////////////////
+        // Mode de débogage
         fr.put("debug.latence", "Latence");
         fr.put("debug.tempsrendu", "Temps de rendu");
         fr.put("debug.modedebogage", "Mode de débogage");
@@ -93,17 +103,17 @@ public class Traductions implements Serializable {
         fr.put("debug.tempsjoue", "Temps joué");
         fr.put("debug.nbcompo", "Nombre de composantes dessinable");
         fr.put("debug.composantes", "composantes");
-
+        // Highscores
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
-
-
-        fr.put("debug.tempsdurendu", "Temps du rendu");
     }
 
+    /**
+     * Voir initFr().
+     */
     private static void initEn() {
         en.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
 
@@ -135,7 +145,7 @@ public class Traductions implements Serializable {
         en.put("debug.vies", "Lifes");
         en.put("debug.tempsjoue", "Time played");
         en.put("debug.nbcompo", "Amount of Dessinable components");
-        
+
 
         en.put("highscores.tempsdurendu", "Temps du rendu");
         en.put("highscores.tempsdurendu", "Temps du rendu");
@@ -146,6 +156,4 @@ public class Traductions implements Serializable {
 
         fr.put("debug.tempsdurendu", "Temps du rendu");
     }
-    private static HashMap<String, String> en = new HashMap<String, String>();
-    private static HashMap<String, String> fr = new HashMap<String, String>();
 }

@@ -35,6 +35,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 
 import main.Main;
@@ -55,21 +56,22 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             menuLangue = new JMenu(Traductions.get("menu.langue")),
             menuAide = new JMenu(Traductions.get("menu.aide"));
     private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
-            mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle"));
+            mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle")),
+            mitemAPropos = new JMenuItem("À propos...");
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage")),
             cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons")),
             cbmitemMontrerHighscores = new JCheckBoxMenuItem("Highscores"),
             mitemAide = new JCheckBoxMenuItem(Traductions.get("menu.item.aide"));
     private JRadioButtonMenuItem rbtnEnglish = new JRadioButtonMenuItem(Traductions.get("menu.anglais")),
-            rbtnFrancais = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
+            rbtnFrancais = new JRadioButtonMenuItem(Traductions.get(Traductions.get("menu.francais")));
     private ButtonGroup bgBoutonsLangues = new ButtonGroup();
     /**
-     * 
+     * Canvas où le draw est effectué.
      */
     public MainCanvas mainCanvas = new MainCanvas();
     ////////////////////////////////////////////////////////////////////////////
     /**
-     * 
+     * Listener personalisé pour gérer le multitouch.
      */
     public KeyBoardListener keyBoardListener;
 
@@ -141,6 +143,24 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             }
         });
+        mitemAPropos.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Main.isPaused = true;
+                JOptionPane.showMessageDialog(null,
+                        "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... s'il y en a une)"
+                        + "\n\nRemis le vendredi 9 décembre 2011"
+                        + "\n\nDéveloppeurs et programmeurs :"
+                        + "\nGuillaume Poirier-Morency"
+                        + "\nNafie Hamrani"
+                        + "\n\nTesteurs :"
+                        + "\nAomar"
+                        + "\n\nVous trouverez toutes l'information nécéssaire sur le dépôt svn à cette addresse :"
+                        + "\nhttp://code.google.com/p/tp2-guillaume-poirier-nafie-harmani/", "À propos", JOptionPane.INFORMATION_MESSAGE);
+                Main.isPaused = false;
+            }
+        });
         ////////////////////////////////////////////////////////////////////////
         menuFichier.add(mitemNouvellePartie);
         menuFichier.addSeparator();
@@ -158,7 +178,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         menuLangue.add(rbtnEnglish);
         menuAide.add(mitemAide);
         menuAide.addSeparator();
-        menuAide.add(new JMenuItem(Traductions.get("menu.item.apropos")));
+        menuAide.add(mitemAPropos);
         jmbMenuBar.add(menuFichier);
         jmbMenuBar.add(menuAide);
         setJMenuBar(jmbMenuBar);
@@ -168,29 +188,17 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
      * Traduit le contenu du menu avec des setText().
      */
     private void traduire() {
-
-   
-           
-            
-  
-   
-    
         cbmitemDebug.setText(Traductions.get("menu.modedebogage"));
         menuFichier.setText(Traductions.get("menu.fichier"));
         cbmitemNombreDeCanons.setText(Traductions.get("menu.deuxcanons"));
         cbmitemMontrerHighscores.setText("Highscores"); // TODO traduire ici
-        
-        
-       
         mitemQuitter.setText(Traductions.get("menu.quitter"));
         rbtnEnglish.setText(Traductions.get("menu.anglais"));
         rbtnFrancais.setText(Traductions.get("menu.francais"));
         mitemAide.setText(Traductions.get("menu.item.aide"));
-        
         menuAide.setText(Traductions.get("menu.aide"));
         menuLangue.setText(Traductions.get("menu.langue"));
-mitemNouvellePartie.setText(Traductions.get("menu.nouvelle"));
-
+        mitemNouvellePartie.setText(Traductions.get("menu.nouvelle"));
     }
 
     private void changeHelpState() {
