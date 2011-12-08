@@ -87,14 +87,14 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      */
     @Override
     public Integer put(String s, Integer i) {
-        
-        Integer jkl = super.put(s, i);
+
+        Integer putReturn = super.put(s, i);
 
         /* TODO On trie le dictionnaire en fonction des scores.
          * On sérialize quand le dictionnaire est altéré.
          */
         Serialization.serialize(this, "highscores.serial");
-        return jkl;
+        return putReturn;
     }
 
     /**
@@ -102,13 +102,11 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      * @return un tableau de String contenant les scores des joueurs.
      */
     public String[] getScores() {
-        // TODO Finir l'implémentation des highscores ici!  
-
         String[] highscores = new String[this.size()];
         int i = 0;
         for (String s : this.keySet()) {
             highscores[i] = s + " | " + this.get(s);
-            i++;            
+            i++;
         }
         ////////////////////////////////////////////////////////////////////////
         // Tri du dictionnaire
@@ -122,9 +120,9 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             }
         }
         ////////////////////////////////////////////////////////////////////////
-        if(highscores.length > 5) {
+        if (highscores.length > 5) {
             String[] s = new String[5];
-            for(int z = 0; z < 5; z++) {
+            for (int z = 0; z < 5; z++) {
                 s[z] = highscores[z];
             }
             highscores = s;

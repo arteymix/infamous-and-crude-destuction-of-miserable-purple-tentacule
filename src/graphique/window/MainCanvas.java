@@ -117,8 +117,7 @@ public final class MainCanvas extends JComponent {
             g.drawString("Niveau actuel : " + Main.level, 5, 150);
             g.drawString("La partie est-elle finie? " + Main.isGameOver, 5, 165);
             g.drawRect(0, 0, Main.getCanvasSizeX() - 1, Main.getCanvasSizeY() - 1);
-        }
-        else {
+        } else {
             // Le background est dessiné ici.
             g.drawImage(Main.imageBank.background, 0, 0, Main.getCanvasSizeX(), Main.getCanvasSizeY(), null);
         }
@@ -136,45 +135,38 @@ public final class MainCanvas extends JComponent {
                 g.drawString("Achievements obtenus :", 15, k += 30);
                 if (Main.highscore.noobObtained) {
                     g.drawString("Noob obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("Noob en cours... (il reste encore " + (1 - Main.highscore.partiesCompletes) + " partie à compléter)", 15, k += 15);
                 }
                 if (Main.highscore.ownObtained) {
                     g.drawString("Own obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("Own en cours... (il reste encore " + (10 - Main.highscore.partiesCompletes) + " parties à compléter)", 15, k += 15);
                 }
                 if (Main.highscore.pwnObtained) {
                     g.drawString("Pwn obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("Pwn en cours... (il reste encore " + (1000 - Main.highscore.partiesCompletes) + " parties à compléter)", 15, k += 15);
                 }
                 if (Main.highscore.nukeObtained) {
                     g.drawString("Nuke obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("Nuke en cours... (il faut tuer au moins 100 tentacules en une partie)", 15, k += 15);
                 }
                 if (Main.highscore.proObtained) {
                     g.drawString("Pro obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("Pro en cours (il faut terminer une partie avec plus de 250 points pour l'obtenir!)", 15, k += 15);
                 }
                 if (Main.highscore.leetObtained) {
                     g.drawString("1337 obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("1337 en cours (il faut terminer une partie avec plus de 1000 points pour l'obtenir!)", 15, k += 15);
 
                 }
                 if (Main.highscore.bazingaObtained) {
                     g.drawString("Bazinga obtenu!", 15, k += 15);
-                }
-                else {
+                } else {
                     g.drawString("Bazinga en cours... (terminer une partie sans gagner de points pour l'obtenir!)", 15, k += 15);
                 }
                 ////////////////////////////////////////////////////////////////
@@ -214,13 +206,11 @@ public final class MainCanvas extends JComponent {
                         if (!(d instanceof Canon)) {
                             if (Main.isDebugEnabled) {
                                 d.dessinerDeboguage(g);
-                            }
-                            else {
+                            } else {
                                 d.dessiner(g);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         Main.composantesDessinables.remove(d);
                     }
                 }
@@ -231,8 +221,7 @@ public final class MainCanvas extends JComponent {
                     if (Canon.isCanon2ValidTarget) {
                         Main.canon2.dessinerDeboguage(g);
                     }
-                }
-                else {
+                } else {
                     Main.canon1.dessiner(g);
                     if (Canon.isCanon2ValidTarget) {
                         Main.canon2.dessiner(g);
@@ -252,8 +241,7 @@ public final class MainCanvas extends JComponent {
                 int x = 15;
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.BLACK);
-                }
-                else {
+                } else {
                     g.setColor(Color.WHITE);
                 }
                 int positionInit = 440;
@@ -271,8 +259,7 @@ public final class MainCanvas extends JComponent {
                 g.drawString("Bazinga! " + (Main.highscore.bazingaObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.WHITE);
-                }
-                else {
+                } else {
                     g.setColor(Color.BLACK);
                 }
                 break;
@@ -292,8 +279,12 @@ public final class MainCanvas extends JComponent {
                 g.drawString("concepts révolutionnaires!", y, positionInit += 15);
                 KeySetting.drawKeySettingHelp(g);
                 g.setColor(Color.BLACK);
-                break;                
+                break;
+                ////////////////////////////////////////////////////////////////
         }
+        /* On met paintDone true, ainsi le programme sais exactement quand le
+         * draw est terminé et peut rappeler un redessinage.
+         */
         Main.paintDone = true;
     }
 
@@ -315,34 +306,27 @@ public final class MainCanvas extends JComponent {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
                 g.setColor(Color.RED);
-            }
-            else if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
+            } else if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
                 g.setColor(Color.YELLOW);
-            }
-            else {
+            } else {
                 g.setColor(Color.GREEN);
             }
             g.fillRect(0, (int) Main.getCanvasSizeY() - 15, (int) (((double) Main.canon1.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.getCanvasSizeX()), 15);
             if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
                 g.setColor(Color.RED);
-            }
-            else if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
+            } else if ((double) Main.canon2.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
                 g.setColor(Color.YELLOW);
-            }
-            else {
+            } else {
                 g.setColor(Color.GREEN);
             }
             g.fillRect((int) (Main.getCanvasSizeX()) - (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.getCanvasSizeX()), (int) Main.getCanvasSizeY() - 15, (int) (((double) Main.canon2.getVie() / (2.0 * (double) Canon.VIE_INIT_CANON)) * Main.getCanvasSizeX()), 15);
-        }
-        else {
+        } else {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
                 g.setColor(Color.RED);
-            }
-            else if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
+            } else if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_YELLOW_LIFE) {
                 g.setColor(Color.YELLOW);
-            }
-            else {
+            } else {
                 g.setColor(Color.GREEN);
             }
             g.fillRect(0, (int) Main.getCanvasSizeY() - 15, (int) (((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON) * Main.getCanvasSizeX()), 15);
