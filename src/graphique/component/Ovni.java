@@ -69,12 +69,17 @@ public final class Ovni extends Dessinable implements Collisionable {
      * Random utilisé pour les génération aléatoires de l'ovni.
      */
     private static Random random = new Random();
-    private static final int ENNEMI_BOSS_1_POINTS = 200,
-            ENNEMI_BOSS_2_POINTS = 300,
-            ENNEMI_BOSS_3_POINTS = 400,
-            ENNEMI_NORMAL_POINTS = 30,
-            ENNEMI_SUPERSONIQUE_POINTS = 100,
-            ENNEMI_BOSS_BONUS_POINTS = 500;
+    ////////////////////////////////////////////////////////////////////////////
+    /* Points!
+     * Le joueur accumule Main.level fois les points ci-dessous.
+     */
+    private static final int ENNEMI_BOSS_1_POINTS = 20,
+            ENNEMI_BOSS_2_POINTS = 30,
+            ENNEMI_BOSS_3_POINTS = 40,
+            ENNEMI_NORMAL_POINTS = 3,
+            ENNEMI_SUPERSONIQUE_POINTS = 10,
+            ENNEMI_BOSS_BONUS_POINTS = 50;
+    ////////////////////////////////////////////////////////////////////////////
     private static boolean boss1Killed = false,
             boss2Killed = false,
             boss3Killed = false;

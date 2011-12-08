@@ -35,11 +35,11 @@ public final class KeySetting {
     /**
      * 
      */
-    public static final int CANON_1_LEFT = KeyEvent.VK_D;
+    public static final int CANON_1_LEFT = KeyEvent.VK_A;
     /**
      * 
      */
-    public static final int CANON_1_RIGHT = KeyEvent.VK_A;
+    public static final int CANON_1_RIGHT = KeyEvent.VK_D;
     /**
      * 
      */

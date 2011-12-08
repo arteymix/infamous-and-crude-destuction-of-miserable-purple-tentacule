@@ -52,6 +52,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
             PROJECTILE_ENNEMI_SUPERSONIC = 3,
             PROJECTILE_ENNEMI_SUPERSONIC_OR = 4,
             PROJECTILE_BOSS = 5;
+    private static final int POINTS = 5;
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
     /**
@@ -160,9 +161,9 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
             return;
         }
         if (c instanceof Projectile) {            
-            Main.points += 25 * Main.level;
+            Main.points += POINTS * Main.level;
             Main.tentaculesKilled++;            
-            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + 25 * Main.level));
+            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + POINTS * Main.level));
             this.isDessinable = false;
             // On se sert de l'explosion du projectile...
         } else if (c instanceof Canon) {
