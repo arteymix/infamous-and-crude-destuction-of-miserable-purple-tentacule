@@ -149,7 +149,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         int y = new Random().nextInt(350);
         switch (i) {
             case ENNEMI_BOSS_1:
-                Main.composantesDessinables.add(new Ovni(0, y, i));
+                Main.composantesDessinables.add(new Ovni(0, 0, i));
                 break;
             case ENNEMI_BOSS_2:
                 Main.composantesDessinables.add(new Ovni(0, y, i));
