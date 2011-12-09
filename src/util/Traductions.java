@@ -115,8 +115,9 @@ public final class Traductions {
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
-        // Messages d'information
+        // Messages d'information (JOptionPane)
         fr.put("message.vousavezquitte", "Vous avez quitté en cours de partie!");
+        // Message d'information (System.out)
     }
 
     /**
