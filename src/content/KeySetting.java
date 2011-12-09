@@ -23,76 +23,77 @@ import main.Main;
 /**
  * Classe de configuration pour les touches. Sera objet et sérialisable dans un
  * avenir proche.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class KeySetting {
     ////////////////////////////////////////////////////////////////////////////
     // Canon 1
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_1_SHOOT = KeyEvent.VK_W;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_1_LEFT = KeyEvent.VK_A;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_1_RIGHT = KeyEvent.VK_D;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_1_AIM_LEFT = KeyEvent.VK_K;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_1_AIM_RIGHT = KeyEvent.VK_L;
     ////////////////////////////////////////////////////////////////////////////
     // Canon 2
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_2_SHOOT = KeyEvent.VK_UP;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_2_LEFT = KeyEvent.VK_LEFT;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_2_RIGHT = KeyEvent.VK_RIGHT;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_2_AIM_LEFT = KeyEvent.VK_NUMPAD2;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int CANON_2_AIM_RIGHT = KeyEvent.VK_NUMPAD3;
     ////////////////////////////////////////////////////////////////////////////
     // Other settings
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int SHOW_HIGHSCORES = KeyEvent.VK_H;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int PAUSE = KeyEvent.VK_P;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int QUIT = KeyEvent.VK_ESCAPE;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int SHOW_DEBUG = KeyEvent.VK_F6;
     ////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
-     * @param g
+     * Dessine la configuration des touches sur un Graphics.
+     * @param g est le Graphics sur lequel la configuration des touches sera
+     * dessinée.
      */
     public static void drawKeySettingHelp(Graphics g) {
         if (Main.isDebugEnabled) {

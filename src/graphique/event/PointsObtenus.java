@@ -22,16 +22,36 @@ import util.Dessinable;
 
 /**
  *
- * @author guillaume
+ * @author Guillaume Poirier-Morency et Nafie Hamrani
  */
-public class PointsObtenus extends Dessinable {
+public final class PointsObtenus extends Dessinable {
 
-    int size = 15;
-    int delay = 30;
-    String points;
-    Font font = new Font("Comic sans ms", Font.BOLD, size);
-    int x, y;
-
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables locales
+    /**
+     * 
+     */
+    private int size = 15;
+    /**
+     * 
+     */
+    private int delay = 30;
+    /**
+     * 
+     */
+    private final String POINTS;
+    /**
+     * 
+     */
+    private Font font = new Font("Comic sans ms", Font.BOLD, size);
+    /**
+     * 
+     */
+    /**
+     * 
+     */
+    private final int POSITION_X, POSITION_Y;
+    ////////////////////////////////////////////////////////////////////////////
     /**
      * 
      * @param x
@@ -39,16 +59,16 @@ public class PointsObtenus extends Dessinable {
      * @param points
      */
     public PointsObtenus(int x, int y, String points) {
-        this.points = points + " points";
-        this.x = x;
-        this.y = y;
+        this.POINTS = points + " points";
+        this.POSITION_X = x;
+        this.POSITION_Y = y;
     }
 
     @Override
     public void dessiner(Graphics g) {
         action();
         g.setFont(font);
-        g.drawString(points, x, y);
+        g.drawString(POINTS, POSITION_X, POSITION_Y);
         g.setFont(MainCanvas.FONT);
 
     }
@@ -57,7 +77,7 @@ public class PointsObtenus extends Dessinable {
     public void dessinerDeboguage(Graphics g) {
         action();
         g.setFont(font);
-        g.drawString(points, x, y);
+        g.drawString(POINTS, POSITION_X, POSITION_Y);
         g.setFont(MainCanvas.FONT);
     }
 

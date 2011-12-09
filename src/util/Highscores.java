@@ -46,25 +46,25 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
         Serialization.serialize(this, "highscores.serial");
     }
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     public boolean noobObtained,
             ownObtained,
@@ -74,7 +74,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             leetObtained,
             bazingaObtained;
     /**
-     *
+     * TODO Javadoc ici
      */
     public int partiesCompletes = 0;
 
@@ -87,12 +87,8 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
      */
     @Override
     public Integer put(String s, Integer i) {
-
         Integer putReturn = super.put(s, i);
-
-        /* TODO On trie le dictionnaire en fonction des scores.
-         * On sérialize quand le dictionnaire est altéré.
-         */
+        // On sérialize quand le dictionnaire est altéré.
         Serialization.serialize(this, "highscores.serial");
         return putReturn;
     }

@@ -64,15 +64,15 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
      */
     private Rectangle rectangle = new Rectangle(0, 0, 60, 60);
     /**
-     * 
+     * TODO Javadoc ici
      */
     private final int ID;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private int dommage = 10;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public boolean isInvincible = false;
     ////////////////////////////////////////////////////////////////////////////

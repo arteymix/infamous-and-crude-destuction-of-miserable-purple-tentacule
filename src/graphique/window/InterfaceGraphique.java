@@ -45,22 +45,21 @@ import util.Traductions;
 
 /**
  * Fichier de classe pour l'interface graphique.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class InterfaceGraphique extends JFrame implements Runnable {
     ////////////////////////////////////////////////////////////////////////////
     // Éléments d'interface
-
     private JMenuBar jmbMenuBar = new JMenuBar();
     private JMenu menuFichier = new JMenu(Traductions.get("menu.fichier")),
             menuLangue = new JMenu(Traductions.get("menu.langue")),
             menuAide = new JMenu(Traductions.get("menu.aide"));
     private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
             mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle")),
-            mitemAPropos = new JMenuItem("À propos...");
+            mitemAPropos = new JMenuItem(Traductions.get("menu.apropos"));
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage")),
             cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons")),
-            cbmitemMontrerHighscores = new JCheckBoxMenuItem("Highscores"),
+            cbmitemMontrerHighscores = new JCheckBoxMenuItem(Traductions.get("menu.highscores")),
             mitemAide = new JCheckBoxMenuItem(Traductions.get("menu.item.aide"));
     private JRadioButtonMenuItem rbtnEnglish = new JRadioButtonMenuItem(Traductions.get("menu.anglais")),
             rbtnFrancais = new JRadioButtonMenuItem(Traductions.get(Traductions.get("menu.francais")));
@@ -74,174 +73,6 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
      * Listener personalisé pour gérer le multitouch.
      */
     public KeyBoardListener keyBoardListener;
-
-    /**
-     * Configure les menus.
-     */
-    private void configurerMenus() {
-        ////////////////////////////////////////////////////////////////////////
-        // Configuration des ActionListener
-        mitemQuitter.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Main.terminerPartie("Vous avez quitté en cours de partie!");
-            }
-        });
-        cbmitemDebug.setState(Main.isDebugEnabled);
-        cbmitemDebug.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                changeDebugState(cbmitemDebug.getState());
-            }
-        });
-        cbmitemNombreDeCanons.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Canon.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
-            }
-        });
-        mitemNouvellePartie.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Main.restart();
-            }
-        });
-        cbmitemMontrerHighscores.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                changeHighscoresState();
-            }
-        });
-        rbtnFrancais.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Traductions.setLangue("fr");
-                traduire();
-            }
-        });
-        rbtnEnglish.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Traductions.setLangue("en");
-                traduire();
-
-            }
-        });
-        mitemAide.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-
-                changeHelpState();
-
-            }
-        });
-        mitemAPropos.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                Main.isPaused = true;
-                JOptionPane.showMessageDialog(null,
-                        "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... s'il y en a une)"
-                        + "\n\nRemis le vendredi 9 décembre 2011"
-                        + "\n\nDéveloppeurs et programmeurs :"
-                        + "\nGuillaume Poirier-Morency"
-                        + "\nNafie Hamrani"
-                        + "\n\nTesteurs :"
-                        + "\nAomar"
-                        + "\n\nVous trouverez toutes l'information nécéssaire sur le dépôt svn à cette addresse :"
-                        + "\nhttp://code.google.com/p/tp2-guillaume-poirier-nafie-harmani/", "À propos", JOptionPane.INFORMATION_MESSAGE);
-                Main.isPaused = false;
-            }
-        });
-        ////////////////////////////////////////////////////////////////////////
-        menuFichier.add(mitemNouvellePartie);
-        menuFichier.addSeparator();
-        menuFichier.add(cbmitemDebug);
-        menuFichier.add(cbmitemNombreDeCanons);
-        menuFichier.addSeparator();
-        menuFichier.add(cbmitemMontrerHighscores);
-        menuFichier.add(menuLangue);
-        menuFichier.addSeparator();
-        menuFichier.add(mitemQuitter);
-        rbtnFrancais.setSelected(true);
-        bgBoutonsLangues.add(rbtnEnglish);
-        bgBoutonsLangues.add(rbtnFrancais);
-        menuLangue.add(rbtnFrancais);
-        menuLangue.add(rbtnEnglish);
-        menuAide.add(mitemAide);
-        menuAide.addSeparator();
-        menuAide.add(mitemAPropos);
-        jmbMenuBar.add(menuFichier);
-        jmbMenuBar.add(menuAide);
-        setJMenuBar(jmbMenuBar);
-    }
-
-    /**
-     * Traduit le contenu du menu avec des setText().
-     */
-    private void traduire() {
-        cbmitemDebug.setText(Traductions.get("menu.modedebogage"));
-        menuFichier.setText(Traductions.get("menu.fichier"));
-        cbmitemNombreDeCanons.setText(Traductions.get("menu.deuxcanons"));
-        cbmitemMontrerHighscores.setText("Highscores"); // TODO traduire ici
-        mitemQuitter.setText(Traductions.get("menu.quitter"));
-        rbtnEnglish.setText(Traductions.get("menu.anglais"));
-        rbtnFrancais.setText(Traductions.get("menu.francais"));
-        mitemAide.setText(Traductions.get("menu.item.aide"));
-        menuAide.setText(Traductions.get("menu.aide"));
-        menuLangue.setText(Traductions.get("menu.langue"));
-        mitemNouvellePartie.setText(Traductions.get("menu.nouvelle"));
-    }
-
-    private void changeHelpState() {
-        if (!Main.isGameOver) {
-            if (mainCanvas.activity.equals(Activity.HELP)) {
-                mainCanvas.activity = Activity.JEU;
-            } else {
-                mainCanvas.activity = Activity.HELP;
-            }
-        }
-    }
-
-    /**
-     * Change le statut du mode de déboguage.
-     * @param b est true si le mode de déboguage doit être activé, false autrement.
-     */
-    private void changeDebugState(boolean b) {
-        Main.isDebugEnabled = b;
-        cbmitemDebug.setState(b);
-    }
-
-    /**
-     * 
-     */
-    public void translateMenus() {
-    }
-
-    /**
-     * 
-     */
-    public void changeHighscoresState() {
-        if (!Main.isGameOver) {
-            if (mainCanvas.activity.equals(Activity.JEU)) {
-                mainCanvas.activity = Activity.HIGHSCORES;
-                Main.showHighscores = true;
-                this.cbmitemMontrerHighscores.setState(true);
-            } else {
-                mainCanvas.activity = Activity.JEU;
-                Main.showHighscores = false;
-                this.cbmitemMontrerHighscores.setState(false);
-            }
-        }
-    }
 
     /**
      * Constructeur pour générer l'interface graphique.
@@ -352,6 +183,177 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                 }
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Configure les menus.
+     */
+    private void configurerMenus() {
+        ////////////////////////////////////////////////////////////////////////
+        // Configuration des ActionListener
+        mitemQuitter.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Main.terminerPartie(Traductions.get("message.vousavezquitte"));
+            }
+        });
+        cbmitemDebug.setState(Main.isDebugEnabled);
+        cbmitemDebug.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                changeDebugState(cbmitemDebug.getState());
+            }
+        });
+        cbmitemNombreDeCanons.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Canon.isCanon2ValidTarget = cbmitemNombreDeCanons.getState();
+            }
+        });
+        mitemNouvellePartie.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Main.restart();
+            }
+        });
+        cbmitemMontrerHighscores.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                changeHighscoresState();
+            }
+        });
+        rbtnFrancais.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+                traduire("fr");
+            }
+        });
+        rbtnEnglish.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                
+                traduire("en");
+
+            }
+        });
+        mitemAide.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+
+                changeHelpState();
+
+            }
+        });
+        mitemAPropos.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent arg0) {
+                Main.isPaused = true;
+                // TODO Traduire ce JOptionPane!
+                JOptionPane.showMessageDialog(null,
+                        "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... s'il y en a une)"
+                        + "\n\nRemis le vendredi 9 décembre 2011"
+                        + "\n\nDéveloppeurs et programmeurs :"
+                        + "\nGuillaume Poirier-Morency"
+                        + "\nNafie Hamrani"
+                        + "\n\nTesteurs :"
+                        + "\nAomar"
+                        + "\n\nVous trouverez toutes l'information nécéssaire sur le dépôt svn à cette addresse :"
+                        + "\nhttp://code.google.com/p/tp2-guillaume-poirier-nafie-harmani/", "À propos", JOptionPane.INFORMATION_MESSAGE);
+                Main.isPaused = false;
+            }
+        });
+        ////////////////////////////////////////////////////////////////////////
+        // ADD TIME!
+        menuFichier.add(mitemNouvellePartie);
+        menuFichier.addSeparator();
+        menuFichier.add(cbmitemDebug);
+        menuFichier.add(cbmitemNombreDeCanons);
+        menuFichier.addSeparator();
+        menuFichier.add(cbmitemMontrerHighscores);
+        menuFichier.add(menuLangue);
+        menuFichier.addSeparator();
+        menuFichier.add(mitemQuitter);
+        rbtnFrancais.setSelected(true);
+        bgBoutonsLangues.add(rbtnEnglish);
+        bgBoutonsLangues.add(rbtnFrancais);
+        menuLangue.add(rbtnFrancais);
+        menuLangue.add(rbtnEnglish);
+        menuAide.add(mitemAide);
+        menuAide.addSeparator();
+        menuAide.add(mitemAPropos);
+        jmbMenuBar.add(menuFichier);
+        jmbMenuBar.add(menuAide);
+        ////////////////////////////////////////////////////////////////////////
+        setJMenuBar(jmbMenuBar);
+    }
+
+    /**
+     * Traduit le contenu du menu avec des setText().
+     */
+    private void traduire(String langue) {
+        Traductions.setLangue(langue);
+        cbmitemDebug.setText(Traductions.get("menu.modedebogage"));
+        menuFichier.setText(Traductions.get("menu.fichier"));
+        cbmitemNombreDeCanons.setText(Traductions.get("menu.deuxcanons"));
+        cbmitemMontrerHighscores.setText(Traductions.get("menu.highscores"));
+        mitemQuitter.setText(Traductions.get("menu.quitter"));
+        rbtnEnglish.setText(Traductions.get("menu.anglais"));
+        rbtnFrancais.setText(Traductions.get("menu.francais"));
+        mitemAide.setText(Traductions.get("menu.item.aide"));
+        menuAide.setText(Traductions.get("menu.aide"));
+        mitemAPropos.setText(Traductions.get("menu.apropos"));
+        menuLangue.setText(Traductions.get("menu.langue"));
+        mitemNouvellePartie.setText(Traductions.get("menu.nouvelle"));
+    }
+
+    /**
+     * Change l'état de l'aide pour true ou false. L'aide est affichée à 
+     * l'instar du jeu.
+     */
+    private void changeHelpState() {
+        if (!Main.isGameOver) {
+            if (mainCanvas.activity.equals(Activity.HELP)) {
+                mainCanvas.activity = Activity.JEU;
+            } else {
+                mainCanvas.activity = Activity.HELP;
+            }
+        }
+    }
+
+    /**
+     * Change le statut du mode de déboguage.
+     * @param b est true si le mode de déboguage doit être activé, false autrement.
+     */
+    private void changeDebugState(boolean b) {
+        Main.isDebugEnabled = b;
+        cbmitemDebug.setState(b);
+    }
+
+    /**
+     * TODO Javadoc ici
+     */
+    public void changeHighscoresState() {
+        if (!Main.isGameOver) {
+            if (mainCanvas.activity.equals(Activity.JEU)) {
+                mainCanvas.activity = Activity.HIGHSCORES;
+                Main.showHighscores = true;
+                this.cbmitemMontrerHighscores.setState(true);
+            } else {
+                mainCanvas.activity = Activity.JEU;
+                Main.showHighscores = false;
+                this.cbmitemMontrerHighscores.setState(false);
             }
         }
     }

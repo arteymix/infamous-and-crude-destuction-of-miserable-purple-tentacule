@@ -207,8 +207,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         /* Le numéro du id correspond au id du missile.
          * L'ennemi régulier possède le projectile régulier, etc...
          */
-        switch (ID) {
-            // TODO Condition pour ENNEMI_OR ou non.
+        switch (ID) {           
             case ENNEMI_NORMAL:
                 Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
                 break;

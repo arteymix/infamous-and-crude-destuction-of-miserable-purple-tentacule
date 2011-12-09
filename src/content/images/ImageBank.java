@@ -20,84 +20,84 @@ import java.awt.Toolkit;
 
 /**
  * Fichier d'objet pour la banque d'images.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class ImageBank {
 
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image ship1;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image ship2;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image subcanon1;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image subcanon2;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image decorFlottant;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image background;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image ennemi;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image ennemiSupersonic;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image ennemiOr;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image ennemiSupersonicOr;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image boss;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image projectile;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image projectileEnnemi;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image projectileEnnemiOr;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image projectileEnnemiSupersonic;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image projectileEnnemiSupersonicOr;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image projectileBoss;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image explosion;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public Image powerup;
     /**

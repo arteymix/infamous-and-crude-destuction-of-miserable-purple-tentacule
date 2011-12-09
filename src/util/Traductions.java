@@ -19,24 +19,30 @@ import java.util.HashMap;
 
 /**
  * Classe pour le système de traductions.
- * @author Guillaume Poirier-Morency
+ * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class Traductions {
 
     /**
-     * 
+     * TODO Javadoc ici
      */
     private static HashMap<String, String> en = new HashMap<String, String>();
     /**
-     * 
+     * TODO Javadoc ici
      */
     private static HashMap<String, String> fr = new HashMap<String, String>();
+    /**
+     * TODO Javadoc ici
+     */
     private static String langue = "fr";
+    /**
+     * TODO Javadoc ici
+     */
     private static boolean isInitAlready = false;
 
     /**
-     * 
-     * @param variable 
+     * TODO Javadoc ici
+     * @param variable TODO Javadoc ici
      * @return la traduction correspondant à la variable.
      */
     public static String get(String variable) {
@@ -77,7 +83,7 @@ public final class Traductions {
         fr.put("menu.fichier", "Fichier");
         fr.put("menu.editer", "Éditer");
         fr.put("menu.langue", "Langues");
-        fr.put("menu.aide", "?");
+        fr.put("menu.aide", "?");        
         fr.put("menu.quitter", "Quitter");
         fr.put("menu.modedebogage", "Mode de débogage");
         fr.put("menu.deuxcanons", "Deux canons");
@@ -85,6 +91,7 @@ public final class Traductions {
         fr.put("menu.anglais", "Anglais");
         fr.put("menu.nouvelle", "Nouvelle Partie");
         fr.put("menu.confirmation", "Êtes-vous sur de vouloir quitter?");
+        fr.put("menu.highscores", "Meilleurs scores");
         fr.put("menu.item.aide", "Aide...");
         fr.put("menu.item.tableau", "Tableau de pointage...");
         fr.put("menu.item.trophe", "Trophées...");
@@ -108,6 +115,8 @@ public final class Traductions {
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
         fr.put("highscores.tempsdurendu", "Temps du rendu");
+        // Messages d'information
+        fr.put("message.vousavezquitte", "Vous avez quitté en cours de partie!");
     }
 
     /**
@@ -115,7 +124,7 @@ public final class Traductions {
      */
     private static void initEn() {
         en.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
-
+fr.put("menu.highscores", "Highscores");
         en.put("menu.fichier", "File");
         en.put("menu.editer", "Edit");
         en.put("menu.langue", "Languages");

@@ -89,10 +89,8 @@ public class KeyBoardListener extends Thread {
             long currentTime = System.currentTimeMillis();
             for (int i = 0; i < enabledKeys.size(); i++) {
                 if (!Main.isPaused) {
-                    /* TODO Enlever la gestion d'exceptions
-                     * Techniquement, les accès à l'ArrayList sont synchrnoisé,
-                     * alors il ne devrait pas y avoir de problèmes.
-                     */
+                    // TODO Il y a un problème occasionnel d'exceptions ici!
+                    
                     try {
                         CANON_1.gererEvenementDuClavier(enabledKeys.get(i));
                         CANON_2.gererEvenementDuClavier(enabledKeys.get(i));

@@ -21,6 +21,8 @@ package util;
  */
 public final class Vecteur {
 
+    ////////////////////////////////////////////////////////////////////////////
+    // Variables locales
     /**
      * Composante horizontale du vecteur.
      */
@@ -28,6 +30,7 @@ public final class Vecteur {
      * Composante verticale du vecteur.
      */
     public double x, y;
+    ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Constructeur de l'objet Vecteur.

@@ -83,15 +83,15 @@ public final class MainCanvas extends JComponent {
          */
         JEU,
         /**
-         * 
+         * TODO Javadoc ici
          */
         HIGHSCORES,
         /**
-         * 
+         * TODO Javadoc ici
          */
         HELP,
         /**
-         * 
+         * TODO Javadoc ici
          */
         GAME_OVER;
     }
@@ -103,7 +103,7 @@ public final class MainCanvas extends JComponent {
     @Override
     public void paintComponent(Graphics g) {
         g.setFont(FONT);
-        if (Main.isDebugEnabled) { // TODO Temporaire le | true, c'est pour avoir des valeurs en mode normal seulement
+        if (Main.isDebugEnabled) {
             // On affiche les variables seulement en mode de débogage...
             g.drawString(Traductions.get("debug.latence") + " : " + Main.latency + " ms", 5, 15);
             g.drawString(Traductions.get("debug.tempsdurendu") + " : " + Main.tempsDuRendu + " ms", 5, 30);

@@ -32,19 +32,22 @@ public final class DecorFlottant extends Dessinable {
     /**
      * 
      */
-    private static final int PROBABILITE_APPARITION_NUAGE = 1000;
+    private static final int PROBABILITE_APPARITION_OBJET_FLOTTANT = 1000;
     ////////////////////////////////////////////////////////////////////////////
     // Varaibles locales
     /**
-     * 
+     * TODO Javadoc ici
+     */
+    /**
+     * TODO Javadoc ici
      */
     private double x, y;
     ////////////////////////////////////////////////////////////////////////////
     
     /**
-     * 
-     * @param x
-     * @param y 
+     * TODO Javadoc ici
+     * @param x TODO Javadoc ici
+     * @param y TODO Javadoc ici
      */
     private DecorFlottant(int x, int y) {
         image0 = Main.imageBank.decorFlottant;
@@ -53,17 +56,17 @@ public final class DecorFlottant extends Dessinable {
     }
 
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static void createNuage() {
-        if ((new Random()).nextInt(PROBABILITE_APPARITION_NUAGE) == 1) {
+        if ((new Random()).nextInt(PROBABILITE_APPARITION_OBJET_FLOTTANT) == 1) {
 
             Main.composantesDessinables.add(new DecorFlottant(0, 100));
         }
     }
 
     /**
-     * 
+     * TODO Javadoc ici
      */
     private void action() {
         if ((new Random()).nextInt(PowerUp.PROBABILITE_APPARITION_POWERUP) == 1) {

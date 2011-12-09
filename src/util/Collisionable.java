@@ -18,7 +18,9 @@ package util;
 import java.awt.Rectangle;
 
 /**
- *
+ * Interface utilisé pour rendre un objet Dessinable collisionable. Ainsi, le
+ * instanceof retournera true et le cast (Collisionable) sera légal pour tester
+ * une collision entre deux objets du type Collisionable.
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public interface Collisionable {
