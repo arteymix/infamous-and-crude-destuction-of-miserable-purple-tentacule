@@ -120,7 +120,7 @@ public final class Main {
     /**
      * Obtient la taille X du canvas.
      * @return la taille X du canvas.
-     */    
+     */
     public static int getCanvasSizeX() {
         if (interfaceGraphique == null) {
             return 1024;
@@ -181,7 +181,7 @@ public final class Main {
     public static void main(String[] args) {
         ////////////////////////////////////////////////////////////////////////
         // À l'intention du professeur TODO l'enlever un de ces jours...
-        JOptionPane.showMessageDialog(null, 
+        JOptionPane.showMessageDialog(null,
                 "Bonjour monsieur le professeur!"
                 + "\n\nÉtant donné que nous sommes conscient que"
                 + "\ncorriger des travaux pratiques, c'est long,"
@@ -190,9 +190,13 @@ public final class Main {
                 + "\n\nW pour tirer"
                 + "\nA et D pour aller à gauche et à droite"
                 + "\nK et L pour orienter le canon!"
-                + "\n\nAmusez-vous!", 
-                "À l'intention du professeur", 
-                JOptionPane.INFORMATION_MESSAGE);        
+                + "\nF6 pour activer le mode de déboguage"
+                + "\nP pour mettre le jeu en pause"
+                + "\nH pour afficher les meilleurs scores"
+                + "\nESC pour quitter..."
+                + "\n\nAmusez-vous!",
+                "À l'intention du professeur",
+                JOptionPane.INFORMATION_MESSAGE);
         ////////////////////////////////////////////////////////////////////////
         long loadingTime;
         long totalTime = 0;
@@ -304,12 +308,14 @@ public final class Main {
      * @param s 
      */
     public static void terminerPartie(String s) {
+        
         highscore.partiesCompletes++;
         isGameOver = true;
         messageDeFermeture = s;
         calculerAchievements();
         Main.highscore.serializeOnTheHeap();
-        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
+        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;  
+        
     }
 
     /**
@@ -353,6 +359,8 @@ public final class Main {
         isPaused = true;
         if (i == 0) {
             if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
+                isPaused = false;
+                Main.terminerPartie(messageDeFermeture);
                 String s;
                 boolean fail = false;
                 do {
@@ -373,7 +381,7 @@ public final class Main {
             // On sérialize les highscores une ultime fois!
             System.out.println("Sérialization finale des highscores");
             highscore.serializeOnTheHeap();
-        }
+        }       
         isRunning = false;
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {

@@ -151,7 +151,7 @@ public final class MainCanvas extends JComponent {
                 if (Main.highscore.nukeObtained) {
                     g.drawString("Nuke obtenu!", 15, k += 15);
                 } else {
-                    g.drawString("Nuke en cours... (il faut tuer au moins 100 tentacules en une partie)", 15, k += 15);
+                    g.drawString("Nuke en cours... (il faut tuer au moins 100 tentacules en une partie)", 15, k += 15);                    
                 }
                 if (Main.highscore.proObtained) {
                     g.drawString("Pro obtenu!", 15, k += 15);
@@ -253,10 +253,10 @@ public final class MainCanvas extends JComponent {
                 g.drawString("Noob " + (Main.highscore.noobObtained ? "complété!" : "en cours... (reste " + (1 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
                 g.drawString("Own " + (Main.highscore.ownObtained ? "complété!" : "en cours... (reste " + (10 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
                 g.drawString("Pwn " + (Main.highscore.pwnObtained ? "complété!" : "en cours... (reste " + (1000 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
-                g.drawString("Nuke " + (Main.highscore.nukeObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
-                g.drawString("Pro " + (Main.highscore.proObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
-                g.drawString("1337 " + (Main.highscore.leetObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
-                g.drawString("Bazinga! " + (Main.highscore.bazingaObtained ? "complété!" : "en cours...") + " ", x, positionInit += 15);
+                g.drawString("Nuke " + (Main.highscore.nukeObtained ? "complété!" : "en cours... (éliminez au moints 250 tentacules mauves en une partie, seulement "+Main.tentaculesKilled+" sont morts)"), x, positionInit += 15);
+                g.drawString("Pro " + (Main.highscore.proObtained ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("1337 " + (Main.highscore.leetObtained ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Bazinga! " + (Main.highscore.bazingaObtained ? "complété!" : "en cours..."), x, positionInit += 15);
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.WHITE);
                 } else {

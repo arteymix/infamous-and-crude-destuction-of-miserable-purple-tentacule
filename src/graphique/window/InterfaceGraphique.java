@@ -100,8 +100,9 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
                         // On inverse la valeur du show highscores...
                         changeHighscoresState();
                         break;
-                    case KeySetting.QUIT:
-                        Main.close(0);
+                    case KeySetting.QUIT:   
+                        Main.messageDeFermeture = Traductions.get("message.vousavezquitte");
+                        Main.close(0);                       
                         break;
                     case KeySetting.SHOW_DEBUG:
                         changeDebugState(!Main.isDebugEnabled);
@@ -140,8 +141,9 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         ////////////////////////////////////////////////////////////////////////
         configurerMenus();
         setTitle(Traductions.get("title"));
+        
+        setVisible(true);   
         setResizable(false);
-        setVisible(true);        
     }
 
     /**
@@ -197,7 +199,9 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                Main.terminerPartie(Traductions.get("message.vousavezquitte"));
+                Main.messageDeFermeture = Traductions.get("message.vousavezquitte");
+                Main.close(0);
+                
             }
         });
         cbmitemDebug.setState(Main.isDebugEnabled);
@@ -232,27 +236,22 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         rbtnFrancais.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent arg0) {
-                
+            public void actionPerformed(ActionEvent arg0) {                
                 traduire("fr");
             }
         });
         rbtnEnglish.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent arg0) {
-                
+            public void actionPerformed(ActionEvent arg0) {                
                 traduire("en");
-
             }
         });
         mitemAide.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent arg0) {
-
                 changeHelpState();
-
             }
         });
         mitemAPropos.addActionListener(new ActionListener() {
