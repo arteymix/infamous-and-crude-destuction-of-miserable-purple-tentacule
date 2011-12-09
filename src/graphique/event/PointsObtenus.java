@@ -16,8 +16,10 @@
 package graphique.event;
 
 import graphique.window.MainCanvas;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import main.Main;
 import util.Dessinable;
 
 /**
@@ -39,7 +41,7 @@ public final class PointsObtenus extends Dessinable {
     /**
      * 
      */
-    private final String POINTS;
+    private final int POINTS;
     /**
      * 
      */
@@ -52,14 +54,15 @@ public final class PointsObtenus extends Dessinable {
      */
     private final int POSITION_X, POSITION_Y;
     ////////////////////////////////////////////////////////////////////////////
+
     /**
      * 
      * @param x
      * @param y
      * @param points
      */
-    public PointsObtenus(int x, int y, String points) {
-        this.POINTS = points + " points";
+    public PointsObtenus(int x, int y, int points) {
+        this.POINTS = points;
         this.POSITION_X = x;
         this.POSITION_Y = y;
     }
@@ -68,17 +71,30 @@ public final class PointsObtenus extends Dessinable {
     public void dessiner(Graphics g) {
         action();
         g.setFont(font);
-        g.drawString(POINTS, POSITION_X, POSITION_Y);
+        if ((POINTS) > 0) {
+            g.setColor(Color.BLUE);
+            g.drawString(POINTS + " points", POSITION_X, POSITION_Y);
+        } else {
+            g.setColor(Color.RED);
+            g.drawString(POINTS + " points", (Main.getCanvasSizeX() / 2) - 60, 45);
+        }
         g.setFont(MainCanvas.FONT);
-
+        g.setColor(Color.BLACK);
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
         action();
         g.setFont(font);
-        g.drawString(POINTS, POSITION_X, POSITION_Y);
+        if ((POINTS) > 0) {
+            g.setColor(Color.BLUE);
+            g.drawString(POINTS + " points", POSITION_X, POSITION_Y);
+        } else {
+            g.setColor(Color.RED);
+            g.drawString(POINTS + " points", (Main.getCanvasSizeX() / 2) - 60, 45);
+        }
         g.setFont(MainCanvas.FONT);
+        g.setColor(Color.BLACK);
     }
 
     private void action() {

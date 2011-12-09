@@ -207,7 +207,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         /* Le numéro du id correspond au id du missile.
          * L'ennemi régulier possède le projectile régulier, etc...
          */
-        switch (ID) {           
+        switch (ID) {
             case ENNEMI_NORMAL:
                 Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
                 break;
@@ -428,7 +428,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             switch (ID) {
                 case Ovni.ENNEMI_BOSS_1:
                     Main.points += ENNEMI_BOSS_1_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_1_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_BOSS_1_POINTS));
                     Main.setGameLevel(Main.LEVEL_2);
                     boss1Killed = true;
                     isBoss = false;
@@ -436,7 +436,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                     break;
                 case Ovni.ENNEMI_BOSS_2:
                     Main.points += ENNEMI_BOSS_2_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_2_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_BOSS_2_POINTS));
                     Main.setGameLevel(Main.LEVEL_3);
                     boss2Killed = true;
                     isBoss = false;
@@ -444,7 +444,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                     break;
                 case Ovni.ENNEMI_BOSS_3:
                     Main.points += ENNEMI_BOSS_3_POINTS;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_BOSS_3_POINTS));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_BOSS_3_POINTS));
                     Main.setGameLevel(Main.LEVEL_BONUS);
                     boss3Killed = true;
                     isBoss = false;
@@ -453,13 +453,13 @@ public final class Ovni extends Dessinable implements Collisionable {
                 case Ovni.ENNEMI_NORMAL:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_NORMAL_POINTS * (isOr ? 2 : 1) * Main.level));
                     //Main.tentaculesKilled++;
                     break;
                 case Ovni.ENNEMI_SUPERSONIQUE:
                     // Il ne s'agit pas d'un boss... Mais on donne des points!
                     Main.points += ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level;
-                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level));
+                    Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_SUPERSONIQUE_POINTS * (isOr ? 2 : 1) * Main.level));
                     break;
                 case Ovni.ENNEMI_BOSS_BONUS:
                     Main.points += ENNEMI_BOSS_BONUS_POINTS;

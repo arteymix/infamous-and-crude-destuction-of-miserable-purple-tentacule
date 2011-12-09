@@ -125,7 +125,7 @@ public final class Traductions {
      */
     private static void initEn() {
         en.put("title", "La cruelle et infâme destruction du misérable tentacule mauve (suite et fin... si il y en a une)");
-fr.put("menu.highscores", "Highscores");
+        en.put("menu.highscores", "Highscores");
         en.put("menu.fichier", "File");
         en.put("menu.editer", "Edit");
         en.put("menu.langue", "Languages");

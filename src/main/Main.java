@@ -179,6 +179,21 @@ public final class Main {
      * @param args est un tableau d'arguments provenant de la ligne de commande.     
      */
     public static void main(String[] args) {
+        ////////////////////////////////////////////////////////////////////////
+        // À l'intention du professeur TODO l'enlever un de ces jours...
+        JOptionPane.showMessageDialog(null, 
+                "Bonjour monsieur le professeur!"
+                + "\n\nÉtant donné que nous sommes conscient que"
+                + "\ncorriger des travaux pratiques, c'est long,"
+                + "\nnous vous évitons de perdre votre temps"
+                + "\net vous expliquons les touches de base!"
+                + "\n\nW pour tirer"
+                + "\nA et D pour aller à gauche et à droite"
+                + "\nK et L pour orienter le canon!"
+                + "\n\nAmusez-vous!", 
+                "À l'intention du professeur", 
+                JOptionPane.INFORMATION_MESSAGE);        
+        ////////////////////////////////////////////////////////////////////////
         long loadingTime;
         long totalTime = 0;
         System.out.println("Chargement du jeu...");

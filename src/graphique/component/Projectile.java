@@ -63,7 +63,7 @@ public final class Projectile extends Dessinable implements Collisionable {
     @Override
     public void dessiner(Graphics g) {
         if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
-            Main.composantesDessinables.add(new PointsObtenus((int) position.y, (int) position.x, "-10 points"));
+            Main.composantesDessinables.add(new PointsObtenus((int) position.y, (int) position.x, -10));
             Main.points -= 2;
             this.isDessinable = false;
         }
@@ -84,7 +84,7 @@ public final class Projectile extends Dessinable implements Collisionable {
     @Override
     public void dessinerDeboguage(Graphics g) {
         if (position.y > Main.getCanvasSizeY() | position.x < 0 | position.x > Main.getCanvasSizeX()) {
-            Main.composantesDessinables.add(new PointsObtenus((int) position.y, (int) position.x, "-10 points"));
+            Main.composantesDessinables.add(new PointsObtenus((int) position.y, (int) position.x, -10));
             Main.points -= 2;
             isDessinable = false;
         }

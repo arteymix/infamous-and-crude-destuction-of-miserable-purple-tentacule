@@ -163,7 +163,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
         if (c instanceof Projectile) {            
             Main.points += POINTS * Main.level;
             Main.tentaculesKilled++;            
-            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, "" + POINTS * Main.level));
+            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y,  POINTS * Main.level));
             this.isDessinable = false;
             // On se sert de l'explosion du projectile...
         } else if (c instanceof Canon) {

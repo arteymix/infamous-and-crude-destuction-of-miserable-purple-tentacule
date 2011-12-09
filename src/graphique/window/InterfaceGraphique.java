@@ -62,7 +62,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             cbmitemMontrerHighscores = new JCheckBoxMenuItem(Traductions.get("menu.highscores")),
             mitemAide = new JCheckBoxMenuItem(Traductions.get("menu.item.aide"));
     private JRadioButtonMenuItem rbtnEnglish = new JRadioButtonMenuItem(Traductions.get("menu.anglais")),
-            rbtnFrancais = new JRadioButtonMenuItem(Traductions.get(Traductions.get("menu.francais")));
+            rbtnFrancais = new JRadioButtonMenuItem(Traductions.get("menu.francais"));
     private ButtonGroup bgBoutonsLangues = new ButtonGroup();
     /**
      * Canvas où le draw est effectué.
@@ -84,8 +84,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             public void windowClosing(WindowEvent we) {
                 Main.close(Main.CODE_DE_SORTIE_FERMETURE_X);
             }
-        });
-        configurerMenus();
+        });        
         /* Le KeyListener du canon est implémenté dans KeyBoardListener afin
          * de rendre possible le multitouch. 
          */
@@ -139,9 +138,10 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         // Move the window
         this.setLocation(x, y);
         ////////////////////////////////////////////////////////////////////////
-        setVisible(true);
+        configurerMenus();
         setTitle(Traductions.get("title"));
         setResizable(false);
+        setVisible(true);        
     }
 
     /**
