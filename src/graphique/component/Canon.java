@@ -253,7 +253,6 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     private void tirer() {
         if (peutTirer) {
-            //Main.son.play(Main.soundBank.explosion);
             int dommages = PROJECTILE_DEFAULT_DAMAGE;
             if (this.POWER_FAST_SHOT_OBTAINED | this.POWER_SHOT_OBTAINED) {
                 dommages = PROJECTILE_DEFAULT_DAMAGE * 2;

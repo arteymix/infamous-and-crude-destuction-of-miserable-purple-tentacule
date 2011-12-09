@@ -41,7 +41,7 @@ public final class DecorFlottant extends Dessinable {
     /**
      * TODO Javadoc ici
      */
-    private double x, y;
+    private double positionX, positionY;
     ////////////////////////////////////////////////////////////////////////////
     
     /**
@@ -51,8 +51,8 @@ public final class DecorFlottant extends Dessinable {
      */
     private DecorFlottant(int x, int y) {
         image0 = Main.imageBank.decorFlottant;
-        this.x = x;
-        this.y = y;
+        this.positionX = x;
+        this.positionY = y;
     }
 
     /**
@@ -70,30 +70,30 @@ public final class DecorFlottant extends Dessinable {
      */
     private void action() {
         if ((new Random()).nextInt(PowerUp.PROBABILITE_APPARITION_POWERUP) == 1) {
-            Main.composantesDessinables.add(new PowerUp((int) x, (int) y));
+            Main.composantesDessinables.add(new PowerUp((int) positionX, (int) positionY));
         }
     }
 
     @Override
     public void dessiner(Graphics g) {
         action();
-        if (x > Main.getCanvasSizeX()) {
+        if (positionX > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
-            g.drawImage(image0, (int) x, (int) y, null);
-            x += 0.5;
+            g.drawImage(image0, (int) positionX, (int) positionY, null);
+            positionX += 0.5;
         }
     }
 
     @Override
     public void dessinerDeboguage(Graphics g) {
         action();
-        if (x > Main.getCanvasSizeX()) {
+        if (positionX > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
-            g.drawRect((int) (int) x, (int) y, 200, 100);
-            g.drawString("Décor flottant", (int) x + 100, (int) y + 50);
-            x += 0.5;
+            g.drawRect((int) (int) positionX, (int) positionY, 200, 100);
+            g.drawString("Décor flottant", (int) positionX + 100, (int) positionY + 50);
+            positionX += 0.5;
         }
     }
 }
