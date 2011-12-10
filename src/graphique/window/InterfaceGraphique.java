@@ -56,7 +56,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             menuAide = new JMenu(Traductions.get("menu.aide"));
     private JMenuItem mitemQuitter = new JMenuItem(Traductions.get("menu.quitter")),
             mitemNouvellePartie = new JMenuItem(Traductions.get("menu.nouvelle")),
-            mitemAPropos = new JMenuItem(Traductions.get("menu.apropos"));
+            mitemAPropos = new JMenuItem(Traductions.get("menu.item.apropos"));
     private JCheckBoxMenuItem cbmitemDebug = new JCheckBoxMenuItem(Traductions.get("menu.modedebogage")),
             cbmitemNombreDeCanons = new JCheckBoxMenuItem(Traductions.get("menu.deuxcanons")),
             cbmitemMontrerHighscores = new JCheckBoxMenuItem(Traductions.get("menu.highscores")),
@@ -161,7 +161,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
             mainCanvas.repaint();
             try {
                 while (!Main.paintDone) {
-                    Thread.sleep(0, 1);
+                    Thread.sleep(0, 500);
                 }
                 Main.tempsDuRendu = (System.currentTimeMillis() - time);
                 /* currentTime vaut le temps en millisecondes prit pour faire un rendu.
@@ -312,7 +312,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         rbtnFrancais.setText(Traductions.get("menu.francais"));
         mitemAide.setText(Traductions.get("menu.item.aide"));
         menuAide.setText(Traductions.get("menu.aide"));
-        mitemAPropos.setText(Traductions.get("menu.apropos"));
+        mitemAPropos.setText(Traductions.get("menu.item.apropos"));
         menuLangue.setText(Traductions.get("menu.langue"));
         mitemNouvellePartie.setText(Traductions.get("menu.nouvelle"));
     }

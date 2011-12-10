@@ -110,14 +110,10 @@ public final class Canon extends Dessinable implements Collisionable {
     public Canon(int numeroDuCanon) {
 
         switch (numeroDuCanon) {
-            case 0:
-                image0 = Main.imageBank.ship1;
-                image1 = Main.imageBank.subcanon1;
+            case 0:               
                 position = new Vecteur(0, Main.getCanvasSizeY() - 101 - 30);
                 break;
-            case 1:
-                image0 = Main.imageBank.ship2;
-                image1 = Main.imageBank.subcanon2;
+            case 1:                
                 position = new Vecteur(Main.getCanvasSizeX() - 256, Main.getCanvasSizeY() - 101 - 30);
                 break;
         }
@@ -286,10 +282,10 @@ public final class Canon extends Dessinable implements Collisionable {
         at.translate(x, y);
         at.rotate(tetha, 10, 0);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(image1, at, null);
+        g2d.drawImage(this.NUMERO_DU_CANON == 0 ? Main.imageBank.subcanon1 : Main.imageBank.subcanon2, at, null);
         at.translate(-x, -y);
         g.setColor(Color.BLACK);
-        g.drawImage(image0, (int) position.x, (int) position.y, null);
+        g.drawImage(this.NUMERO_DU_CANON == 0 ? Main.imageBank.ship1 : Main.imageBank.ship2, (int) position.x, (int) position.y, null);
     }
 
     @Override

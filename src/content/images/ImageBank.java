@@ -17,6 +17,7 @@ package content.images;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import main.Main;
 
 /**
  * Fichier d'objet pour la banque d'images.
@@ -111,6 +112,8 @@ public final class ImageBank {
      * @param i est le niveau du jeu actuel. i doit exister dans les package.
      */
     public void setStage(int i) {
+        Main.isPaused = true;
+        try {
         ship1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ship1.gif"));
         ship2 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/ship2.gif"));
         subcanon1 = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/subcanon1.gif"));
@@ -130,5 +133,10 @@ public final class ImageBank {
         projectileBoss = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/projectileBoss.gif"));
         explosion = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/explosion.gif"));
         powerup = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("content/images/stage" + i + "/powerup.png"));
+        } catch(NullPointerException npe) {
+        
+           npe.printStackTrace();
+        }
+        Main.isPaused = false;
     }
 }
