@@ -116,30 +116,6 @@ public final class Main {
      * Cette variable définit le niveau du jeu.
      */
     public static int level = 1;
-
-    /**
-     * Obtient la taille X du canvas.
-     * @return la taille X du canvas.
-     */
-    public static int getCanvasSizeX() {
-        if (interfaceGraphique == null) {
-            return 1024;
-        } else {
-            return interfaceGraphique.mainCanvas.getWidth();
-        }
-    }
-
-    /**
-     * Obtient la taille Y du canvas.
-     * @return la taille Y du canvas.
-     */
-    public static int getCanvasSizeY() {
-        if (interfaceGraphique == null) {
-            return 768;
-        } else {
-            return interfaceGraphique.mainCanvas.getHeight();
-        }
-    }
     ////////////////////////////////////////////////////////////////////////////
     /**
      * Constantes pour le niveau de jeu.
@@ -238,6 +214,30 @@ public final class Main {
     }
 
     /**
+     * Obtient la taille X du canvas.
+     * @return la taille X du canvas.
+     */
+    public static int getCanvasSizeX() {
+        if (interfaceGraphique == null) {
+            return 1024;
+        } else {
+            return interfaceGraphique.mainCanvas.getWidth();
+        }
+    }
+
+    /**
+     * Obtient la taille Y du canvas.
+     * @return la taille Y du canvas.
+     */
+    public static int getCanvasSizeY() {
+        if (interfaceGraphique == null) {
+            return 768;
+        } else {
+            return interfaceGraphique.mainCanvas.getHeight();
+        }
+    }
+
+    /**
      * Une fois toutes les variables accessibles depuis gameValue, il devient
      * trivial de définir les paramètres associés à chaque niveau. Une série de
      * constantes est définis dans la classe Main sous forme de LEVEL_X. 
@@ -257,6 +257,21 @@ public final class Main {
     public static void restart() {
         isPaused = true;
         if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
+            boolean fail = false;
+            Main.isPaused = true;
+            String s;
+            do {
+                s = JOptionPane.showInputDialog((fail ? "Ce nom ne peut être utilisé, choisissez-en un autre!\n" : "") + "Veuillez entrer votre nom, celui-ci doit\nêtre composé de trois lettres :");
+                if (s == null) {
+                    break;
+                }
+                fail = true;
+            } while ("".equals(s) | highscore.containsKey(s) | s.length() != 3);
+
+            if (s != null) {
+                highscore.put(s, Main.points);
+            }
+            isPaused = false;
             long totalLoading = 0l;
             ////////////////////////////////////////////////////////////////////
             long timeLoading = System.currentTimeMillis();
@@ -292,11 +307,16 @@ public final class Main {
             timerSeconds = 0;
             points = 0;
             Ovni.isBoss = false;
+            Ovni.boss1Killed = false;
+            Ovni.boss2Killed = false;
+            Ovni.boss3Killed = false;
             isGameOver = false;
             Canon.isCanon2ValidTarget = false;
             tentaculesKilled = 0;
             ////////////////////////////////////////////////////////////////////
             System.out.println("Temps de redémarrage " + totalLoading + " ms");
+            ////////////////////////////////////////////////////////////////////
+
         }
         isPaused = false;
     }
@@ -308,14 +328,14 @@ public final class Main {
      * @param s TODO Javadoc ici
      */
     public static void terminerPartie(String s) {
-        
+
         highscore.partiesCompletes++;
         isGameOver = true;
         messageDeFermeture = s;
         calculerAchievements();
         Main.highscore.serializeOnTheHeap();
-        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;  
-        
+        Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
+
     }
 
     /**
@@ -384,7 +404,7 @@ public final class Main {
             // On sérialize les highscores une ultime fois!
             System.out.println("Sérialization finale des highscores");
             highscore.serializeOnTheHeap();
-        }       
+        }
         isRunning = false;
         // On attent au moins la latence pour être sur que tous les threads sont stoppés.
         try {

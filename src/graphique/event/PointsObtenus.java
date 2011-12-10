@@ -23,7 +23,8 @@ import main.Main;
 import util.Dessinable;
 
 /**
- *
+ * Classe contenant l'objet qui affiche les points que l'utilisateur
+ * obtient.
  * @author Guillaume Poirier-Morency et Nafie Hamrani
  */
 public final class PointsObtenus extends Dessinable {

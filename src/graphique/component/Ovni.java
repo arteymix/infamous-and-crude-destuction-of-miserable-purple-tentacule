@@ -84,7 +84,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             ENNEMI_SUPERSONIQUE_POINTS = 10,
             ENNEMI_BOSS_BONUS_POINTS = 50;
     ////////////////////////////////////////////////////////////////////////////
-    private static boolean boss1Killed = false,
+    public static boolean boss1Killed = false,
             boss2Killed = false,
             boss3Killed = false;
     ////////////////////////////////////////////////////////////////////////////
