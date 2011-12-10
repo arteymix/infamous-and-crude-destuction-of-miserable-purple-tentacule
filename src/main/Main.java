@@ -89,9 +89,12 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public static long timerSeconds = 0;
+
+    public static long timerSeconds = 0; 
+
+
     /**
-     * ArrayList des composantes dessinables.
+     * Définit si le mode de débogage est activé.
      */
     public static boolean isDebugEnabled = false;
     /**
@@ -115,8 +118,7 @@ public final class Main {
     /**
      * Cette variable définit le niveau du jeu.
      */
-    public static int level = 1;
-    ////////////////////////////////////////////////////////////////////////////
+    public static int level = 1;    
     /**
      * Constantes pour le niveau de jeu.
      */
@@ -325,13 +327,13 @@ public final class Main {
      * Méthode appelée lorsqu'une partie se termine, la méthode close() est 
      * appelée par la suite. Cette méthode calcule si le joueur a obtenu les
      * trophées.
-     * @param s TODO Javadoc ici
+     * @param message est le message à la fermeture.
      */
-    public static void terminerPartie(String s) {
+    public static void terminerPartie(String message) {
 
         highscore.partiesCompletes++;
         isGameOver = true;
-        messageDeFermeture = s;
+        messageDeFermeture = message;
         calculerAchievements();
         Main.highscore.serializeOnTheHeap();
         Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;

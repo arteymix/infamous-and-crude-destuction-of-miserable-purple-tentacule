@@ -24,25 +24,26 @@ import java.util.HashMap;
 public final class Traductions {
 
     /**
-     * TODO Javadoc ici
+     * Liste pour les traductions anglaises.
      */
     private static HashMap<String, String> en = new HashMap<String, String>();
     /**
-     * TODO Javadoc ici
+     * Liste pour les traductions françaises.
      */
     private static HashMap<String, String> fr = new HashMap<String, String>();
     /**
-     * TODO Javadoc ici
+     * Langue du dictionnaire de traductions.
      */
     private static String langue = "fr";
     /**
-     * TODO Javadoc ici
+     * Définit si le dictionnaire est initialisé, si il ne l'est pas, il le sera
+     * dans la méthode get().
      */
     private static boolean isInitAlready = false;
 
     /**
-     * TODO Javadoc ici
-     * @param variable TODO Javadoc ici
+     * Récupérer un String depuis le dictionnaire de traductions.
+     * @param variable est la variable à récupérer.
      * @return la traduction correspondant à la variable.
      */
     public static String get(String variable) {

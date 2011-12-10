@@ -84,6 +84,15 @@ public final class Ovni extends Dessinable implements Collisionable {
             ENNEMI_SUPERSONIQUE_POINTS = 10,
             ENNEMI_BOSS_BONUS_POINTS = 50;
     ////////////////////////////////////////////////////////////////////////////
+    /**
+     * Définit si le boss 1 est mort.
+     */
+    /**
+     * Définit si le boss 2 est mort.
+     */
+    /**
+     * Définit si le boss 3 est mort.
+     */
     public static boolean boss1Killed = false,
             boss2Killed = false,
             boss3Killed = false;
@@ -91,16 +100,16 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Entier utilisé pour définir la vitesse de tir de l'ovni
      */
-    private int shootRate = 100;
+    private int shootRate = 500;
     /**
      * xDirection est une variable qui determine la direction en x.
-     * Si il est negative, l'ovni se deplace vers la gauche.
+     * Si il est négatif, l'ovni se deplace vers la gauche.
      * Si il est positif, l'ovni se deplace vers la droite.
      */
     private int xDirection = 1;
     /**
      *  yDirection est une variable qui determine la direction en y.
-     * Si il est negative, l'ovni se deplace vers la haut.
+     * Si il est négatif, l'ovni se deplace vers la haut.
      * Si il est positif, l'ovni se deplace vers la bas.
      */
     private int yDirection = 1;
@@ -189,7 +198,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
         if (!isBoss) {
-            if (Main.timerSeconds >= 120000) {
+            if (Main.timerSeconds >= TIME_BEFORE_BOSS) {
                 isBoss = true;
                 if (!boss1Killed) {
                     return ENNEMI_BOSS_1;

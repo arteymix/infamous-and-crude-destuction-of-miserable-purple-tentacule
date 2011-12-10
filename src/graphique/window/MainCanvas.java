@@ -83,15 +83,15 @@ public final class MainCanvas extends JComponent {
          */
         JEU,
         /**
-         * TODO Javadoc ici
+         * Activité pour montrer les highscores à l'écran.
          */
         HIGHSCORES,
         /**
-         * TODO Javadoc ici
+         * Activité pour montrer l'aide à l'écran.
          */
         HELP,
         /**
-         * TODO Javadoc ici
+         * Activité pour montrer la fin du jeu à l'écran.
          */
         GAME_OVER;
     }
