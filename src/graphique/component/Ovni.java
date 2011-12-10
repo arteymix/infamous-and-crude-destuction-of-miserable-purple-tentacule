@@ -91,7 +91,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Entier utilisé pour définir la vitesse de tir de l'ovni
      */
-    private int shootRate = 500;
+    private int shootRate = 100;
     /**
      * TODO Javadoc ici
      */
@@ -314,11 +314,9 @@ public final class Ovni extends Dessinable implements Collisionable {
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
         }
-        /* L'expression ternaire fait en sorte que le shooting rate des boss est
+        /* L'expression ternaire fait en sorte que le shooting rate des ennemis est
          * doublé si deux canons sont actifs sur la carte.
-         * 
          */
-
         if ((new Random()).nextInt(shootRate / (Canon.isCanon2ValidTarget ? 2 : 1)) == 1) {
             tirer();
         }
