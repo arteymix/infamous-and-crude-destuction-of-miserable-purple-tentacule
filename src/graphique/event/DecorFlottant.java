@@ -80,7 +80,7 @@ public final class DecorFlottant extends Dessinable {
         if (positionX > Main.getCanvasSizeX()) {
             isDessinable = false;
         } else {
-            g.drawImage(image0, (int) positionX, (int) positionY, null);
+            g.drawImage(Main.imageBank.decorFlottant, (int) positionX, (int) positionY, null);
             positionX += 0.5;
         }
     }
