@@ -30,16 +30,16 @@ public final class Serialization {
 
     /**
      * Ce code a été adapté du site web : http://ydisanto.developpez.com/tutoriels/java/serialisation-binaire/ 
-     * @param o est l'objet à sérialiser.
+     * @param object est l'objet à sérialiser.
      * @param filename est le nom du fichier où l'objet sera sérialisé.
      * @return  un code de sortie pour vérifier l'état de la sérialisation.
      */
-    public static int serialize(Object o, String filename) {
+    public static int serialize(Object object, String filename) {
         try {
             FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             try {
-                oos.writeObject(o);
+                oos.writeObject(object);
                 oos.flush();
             } finally {
                 //fermeture des flux

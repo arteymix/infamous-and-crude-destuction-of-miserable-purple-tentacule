@@ -31,35 +31,35 @@ public final class PointsObtenus extends Dessinable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
     /**
-     * 
+     * TODO Javadoc ici
      */
     private int size = 15;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private int delay = 30;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private final int POINTS;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private Font font = new Font("Comic sans ms", Font.BOLD, size);
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     private final int POSITION_X, POSITION_Y;
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param points
+     * TODO Javadoc ici
+     * @param x TODO Javadoc ici
+     * @param y TODO Javadoc ici
+     * @param points TODO Javadoc ici
      */
     public PointsObtenus(int x, int y, int points) {
         this.POINTS = points;

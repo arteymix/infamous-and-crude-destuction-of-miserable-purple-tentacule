@@ -33,19 +33,19 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
     // Constantes pour les projectiles ennemis.
 
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int PROJECTILE_ENNEMI = 1,
             PROJECTILE_ENNEMI_OR = 2,

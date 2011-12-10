@@ -30,7 +30,7 @@ public final class DecorFlottant extends Dessinable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux décors flottants (nuages, poissons, sous-marins, etc...)
     /**
-     * 
+     * TODO Javadoc ici
      */
     private static final int PROBABILITE_APPARITION_OBJET_FLOTTANT = 1000;
     ////////////////////////////////////////////////////////////////////////////
