@@ -30,34 +30,34 @@ import util.Vecteur;
 public final class PowerUp extends Dessinable implements Collisionable {
 
     /**
-     * TODO Javadoc ici
+     * POWER_SHOT est l'identificateur du power up du stage 1.
      */
     /**
-     * TODO Javadoc ici
+     * FAST_SHOT est l'identificateur du power up du stage 2.
      */
     /**
-     * TODO Javadoc ici
+     * POWER_FAST_SHOT est l'identificateur du power up du stage 3.
      */
     /**
-     * TODO Javadoc ici
+     * PROBABILITE_APPARITION_POWERUP est la probabilité d'appartion du power up.
      */
     public static final int POWER_SHOT = 1, // PowerUp stage 1
             FAST_SHOT = 2, // PowerUp stage 2
             POWER_FAST_SHOT = 3, // PowerUp stage 3
             PROBABILITE_APPARITION_POWERUP = 2000;
     /**
-     * TODO Javadoc ici
+     * rectangle qui représente le power up dans le mode débugage.
      */
     private Rectangle rectangle = new Rectangle(0, 0, 500, 500);
     /**
-     * TODO Javadoc ici
+     * id est la variable qui détermine l'identité du power up.
      */
     public final int id;
 
     /**
-     * TODO Javadoc ici
-     * @param x TODO Javadoc ici
-     * @param y TODO Javadoc ici
+     * Constructeur du power up.
+     * @param x est la position en x du power up.
+     * @param y est la position en y du power up.
      */
     public PowerUp(int x, int y) {
         rectangle.x = x;

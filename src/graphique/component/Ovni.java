@@ -93,54 +93,57 @@ public final class Ovni extends Dessinable implements Collisionable {
      */
     private int shootRate = 100;
     /**
-     * TODO Javadoc ici
+     * xDirection est une variable qui determine la direction en x.
+     * Si il est negative, l'ovni se deplace vers la gauche.
+     * Si il est positif, l'ovni se deplace vers la droite.
      */
     private int xDirection = 1;
     /**
-     * TODO Javadoc ici
+     *  yDirection est une variable qui determine la direction en y.
+     * Si il est negative, l'ovni se deplace vers la haut.
+     * Si il est positif, l'ovni se deplace vers la bas.
      */
     private int yDirection = 1;
     // Variables locales
     /**
-     * TODO Javadoc ici
+     * position est une varisble qui determine la position de l'ovni.
      */
     private Vecteur position = new Vecteur();
     /**
-     * TODO Javadoc ici
+     * Vitesse de l'ovni sur l'axe des x.
      */
     private double vitesseX = 1.0;
     /**
-     * TODO Javadoc ici
+     * vie est la variable qui determine la valeur des vie de l'ovni.
      */
     private int vie;
     /**
-     * TODO Javadoc ici
+     * VIE_INIT est la variable qui determine initialement les vide de l'ovni
      */
     private final int VIE_INIT;
     /**
-     * TODO Javadoc ici
+     * ID est la variable qui determine l'identificateur de l'ovni.
      */
     private final int ID;
     /**
-     * TODO Javadoc ici
+     * isOr est un variable qui determine si l'ovni est en or.
+     * Si isOr et true alors l'ovni et en or.
+     * Si isOr est false alors l'ovni est normal.
      */
     private boolean isOr;
     /**
-     * TODO Javadoc ici
+     * rectangle est une variable qui represente l'ovni en mode debug.
      */
     private Rectangle rectangle = new Rectangle();
     ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Constructeur pour l'objet Ovni.
-     * @param x TODO Javadoc ici
-     * @param y TODO Javadoc ici
+     * @param x est la position sur x dans laquel apparait l'ovni.
+     * @param y est la position sur y dans laquel apparait l'ovni.
      * @param id est l'id de l'ovni. Voir les constantes pour plus de détails.
      */
     private Ovni(int x, int y, int id) {
-        /* On va pas faire ça compliqué. Il y a une méthode en dessous qui
-         * s'appelle create ovni vas-y! 
-         */
         // Détermine si l'ennemi est or
         isOr = random.nextInt(10) == 1;
         ID = id;
@@ -324,8 +327,8 @@ public final class Ovni extends Dessinable implements Collisionable {
 
     /**
      * Mouvements spécifiques des boss.
-     * @param ymin TODO Javadoc ici
-     * @param ymax TODO Javadoc ici
+     * @param ymin est la position minimale sur y dans laquelle l'ovni pourrait être.
+     * @param ymax est la position maximale sur y dans laquelle l'ovni pourrait être.
      */
     private void mouvementBoss(int ymin, int ymax) {
 
@@ -352,16 +355,16 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     /**
-     * TODO Javadoc ici
-     * @param xDirection TODO Javadoc ici
+     * Methode qui determine la direction en x de l'ovni.
+     * @param xDirection est une variable qui determine la direction en x.
      */
     private void setxDirection(int xDirection) {
         this.xDirection = xDirection;
     }
 
     /**
-     * TODO Javadoc ici
-     * @param yDirection TODO Javadoc ici
+     * Methode qui determine la direction en y de l'ovni.
+     * @param yDirection est une variable qui determine la direction en y.
      */
     private void setyDirection(int yDirection) {
         this.yDirection = yDirection;

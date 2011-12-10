@@ -340,7 +340,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
     }
 
     /**
-     * TODO Javadoc ici
+     * Méthode qui permet de initialiser le tableau des pointages.
      */
     public void changeHighscoresState() {
         if (!Main.isGameOver) {

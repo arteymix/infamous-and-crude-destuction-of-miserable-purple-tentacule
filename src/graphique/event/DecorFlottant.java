@@ -30,24 +30,25 @@ public final class DecorFlottant extends Dessinable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux décors flottants (nuages, poissons, sous-marins, etc...)
     /**
-     * TODO Javadoc ici
+     * PROBABILITE_APPARITION_OBJET_FLOTTANT est la variable qui determine la probabilité d'apparition
+     * des décors flottants.
      */
     private static final int PROBABILITE_APPARITION_OBJET_FLOTTANT = 1000;
     ////////////////////////////////////////////////////////////////////////////
     // Varaibles locales
     /**
-     * TODO Javadoc ici
+     * positionX est la variable qui determine la position en x du décors flottants.
      */
     /**
-     * TODO Javadoc ici
+     * positionY est la variable qui determine la position en y du décors flottants.
      */
     private double positionX, positionY;
     ////////////////////////////////////////////////////////////////////////////
     
     /**
-     * TODO Javadoc ici
-     * @param x TODO Javadoc ici
-     * @param y TODO Javadoc ici
+     * Constructeur du décor flottant.
+     * @param x  est la position initiale en x.
+     * @param est la position initiale en y.
      */
     private DecorFlottant(int x, int y) {
         image0 = Main.imageBank.decorFlottant;
@@ -56,9 +57,9 @@ public final class DecorFlottant extends Dessinable {
     }
 
     /**
-     * TODO Javadoc ici
+     * Methode qui genere un décors flottant
      */
-    public static void createNuage() {
+    public static void createDecorsFlottants() {
         if ((new Random()).nextInt(PROBABILITE_APPARITION_OBJET_FLOTTANT) == 1) {
 
             Main.composantesDessinables.add(new DecorFlottant(0, 100));
@@ -66,7 +67,7 @@ public final class DecorFlottant extends Dessinable {
     }
 
     /**
-     * TODO Javadoc ici
+     * Méthode qui fait apparaitre les powers ups.
      */
     private void action() {
         if ((new Random()).nextInt(PowerUp.PROBABILITE_APPARITION_POWERUP) == 1) {

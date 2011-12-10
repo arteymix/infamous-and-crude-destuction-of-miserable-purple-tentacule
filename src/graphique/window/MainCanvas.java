@@ -180,7 +180,7 @@ public final class MainCanvas extends JComponent {
                 // Le jeu!
                 ArrayList<Dessinable> aEnlever = new ArrayList<Dessinable>();
                 // Génération des nuages 
-                DecorFlottant.createNuage();
+                DecorFlottant.createDecorsFlottants();
                 // Génération des Ovnis    
                 Ovni.createOvni();
                 // END Génération des Ovnis

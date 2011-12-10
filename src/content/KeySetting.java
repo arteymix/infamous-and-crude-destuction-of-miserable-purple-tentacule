@@ -28,68 +28,78 @@ import main.Main;
 public final class KeySetting {
     ////////////////////////////////////////////////////////////////////////////
     // Canon 1
+
     /**
-     * TODO Javadoc ici
+     * CANON_1_SHOOT est un identifiant de clavier qui permet au Canon 1 de tirer. 
      */
     public static final int CANON_1_SHOOT = KeyEvent.VK_W;
     /**
-     * TODO Javadoc ici
+     *  CANON_1_LEFT est un identifiant de clavier qui permet au Canon 1 de se 
+     *                deplacer à gauche si possible.
      */
     public static final int CANON_1_LEFT = KeyEvent.VK_A;
     /**
-     * TODO Javadoc ici
+     *  CANON_1_RIGHT est un identifiant de clavier qui permet au Canon 1 de se 
+     *                 deplacer à droite si possible.
      */
     public static final int CANON_1_RIGHT = KeyEvent.VK_D;
     /**
-     * TODO Javadoc ici
+     *  CANON_1_AIM_LEFT est un identifiant de clavier qui permet au Canon 1 
+     *                   d'orienter son tir vers la gauche si possible.
      */
     public static final int CANON_1_AIM_LEFT = KeyEvent.VK_K;
     /**
-     * TODO Javadoc ici
+     * CANON_1_AIM_RIGHT est un identifiant de clavier qui permet au Canon 1 
+     *                   d'orienter son tir vers la droite si possible.
      */
     public static final int CANON_1_AIM_RIGHT = KeyEvent.VK_L;
     ////////////////////////////////////////////////////////////////////////////
     // Canon 2
     /**
-     * TODO Javadoc ici
+     * CANON_2_SHOOT est un identifiant de clavier qui permet au Canon 2 de tirer.
      */
     public static final int CANON_2_SHOOT = KeyEvent.VK_UP;
     /**
-     * TODO Javadoc ici
+     * CANON_2_LEFT est un identifiant de clavier qui permet au Canon 2 de se 
+     *                deplacer à gauche si possible.
      */
     public static final int CANON_2_LEFT = KeyEvent.VK_LEFT;
     /**
-     * TODO Javadoc ici
+     * CANON_2_RIGHT est un identifiant de clavier qui permet au Canon 2 de se 
+     *                 deplacer à droite si possible.
      */
     public static final int CANON_2_RIGHT = KeyEvent.VK_RIGHT;
     /**
-     * TODO Javadoc ici
+     * CANON_2_AIM_LEFT est un identifiant de clavier qui permet au Canon 2 
+     *                   d'orienter son tir vers la gauche si possible.
      */
     public static final int CANON_2_AIM_LEFT = KeyEvent.VK_NUMPAD2;
     /**
-     * TODO Javadoc ici
+     *  CANON_2_AIM_RIGHT est un identifiant de clavier qui permet au Canon 2 
+     *                   d'orienter son tir vers la droite si possible.
      */
     public static final int CANON_2_AIM_RIGHT = KeyEvent.VK_NUMPAD3;
     ////////////////////////////////////////////////////////////////////////////
     // Other settings
     /**
-     * TODO Javadoc ici
+     * SHOW_HIGHSCORES est un identifiant de clavier qui permet d'afficher 
+     *                 le tableau de pointage.
      */
     public static final int SHOW_HIGHSCORES = KeyEvent.VK_H;
     /**
-     * TODO Javadoc ici
+     * PAUSE est un identifiant de clavier qui permet de mettre le programme en pause.
      */
     public static final int PAUSE = KeyEvent.VK_P;
     /**
-     * TODO Javadoc ici
+     * QUIT est un identifiant de clavier qui permet de quitter le programme.
      */
     public static final int QUIT = KeyEvent.VK_ESCAPE;
     /**
-     * TODO Javadoc ici
+     * SHOW_DEBUG est un identifiant de clavier qui permet de mettre le programme en mode debug.
      */
     public static final int SHOW_DEBUG = KeyEvent.VK_F6;
     ////////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * Dessine la configuration des touches sur un Graphics.
      * @param g est le Graphics sur lequel la configuration des touches sera

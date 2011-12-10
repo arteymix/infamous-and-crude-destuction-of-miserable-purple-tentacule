@@ -33,19 +33,19 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
     // Constantes pour les projectiles ennemis.
 
     /**
-     * TODO Javadoc ici
+     * PROJECTILE_ENNEMI est l'identifiant du projectile de l'ennemi normale.
      */
     /**
-     * TODO Javadoc ici
+     * PROJECTILE_ENNEMI_OR est l'identifiant du projectile de l'ennemi en or.
      */
     /**
-     * TODO Javadoc ici
+     * PROJECTILE_ENNEMI_SUPERSONIC est l'identifiant du projectile du ennemi supersonic.
      */
     /**
-     * TODO Javadoc ici
+     * PROJECTILE_ENNEMI_SUPERSONIC_OR est l'identifiant du projectile du ennemi supersonic en or.
      */
     /**
-     * TODO Javadoc ici
+     * PROJECTILE_BOSS est l'identifiant du projectile du boss .
      */
     public static final int PROJECTILE_ENNEMI = 1,
             PROJECTILE_ENNEMI_OR = 2,
@@ -64,15 +64,15 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
      */
     private Rectangle rectangle = new Rectangle(0, 0, 60, 60);
     /**
-     * TODO Javadoc ici
+     * ID est la variable identifiante du type de projectile.
      */
     private final int ID;
     /**
-     * TODO Javadoc ici
+     * dommage est la variable qui détermine la nombre de vie à oter au canon avec lequel il y rentre en collision.
      */
     private int dommage = 10;
     /**
-     * TODO Javadoc ici
+     * isInvincible est la variable qui détermine si le projectile est invincible.
      */
     public boolean isInvincible = false;
     ////////////////////////////////////////////////////////////////////////////

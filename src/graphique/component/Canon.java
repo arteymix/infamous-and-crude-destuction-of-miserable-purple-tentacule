@@ -46,19 +46,23 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     public static final int CANON1_ID = 0, CANON2_ID = 1;
     /**
-     * TODO Javadoc ici
+     * isCanon2ValidTarget est une variable boolean qui determine si le Canon 2 est dessiné.
+     * Si la variable est de valeur true, le Canon 2 est dessiner.
+     * Si la variable est de valeur false, le Canon 2 est n'est pas dessiner.
      */
     public static boolean isCanon2ValidTarget = false;
     /**
-     * TODO Javadoc ici
+     * VIE_INIT_CANON est une variable qui determine les vies des canons
      */
     public static final int VIE_INIT_CANON = 1000;
     /**
-     * TODO Javadoc ici
+     * MOVEMENT_INCREMENT_CANON est une constante qui determine le nombre de pixel que le canon 
+     *                          se deplacerai si l'on appelle les fonctions qui deplace le canon.
      */
     private static final double MOVEMENT_INCREMENT_CANON = 5.0; 
     /**
-     * TODO Javadoc ici
+     * ANGLE_INCREMENT_CANON est une constante qui determine le nombre de pixel que le canon 
+     *                          ajusterai son tir si l'on appelle les fonctions qui ajuste le tir du canon.
      */
     private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
     /**
@@ -71,7 +75,7 @@ public final class Canon extends Dessinable implements Collisionable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
     /**
-     * TODO Javadoc ici
+     * latenceDuTir est une variable qui determine le temps entre chaque tir.
      */
     private int latenceDuTir = 250;
     /**
@@ -82,7 +86,7 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     private Vecteur positionA, positionB, positionC, positionD;
     /**
-     * TODO Javadoc ici
+     * tetha est une variable qui determine l'angle de rotation de la tete de canon.
      */
     private double tetha = Math.PI;
     /**

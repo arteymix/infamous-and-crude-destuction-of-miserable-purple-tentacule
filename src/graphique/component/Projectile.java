@@ -48,9 +48,9 @@ public final class Projectile extends Dessinable implements Collisionable {
      * Un Projectile est un objet qui représente un tir de canon.
      * @param point est le point initial d'où le projectile est tiré.
      * @param orientation est l'orientation initiale du projectile.
-     * @param id est propre à chaque projectile et définit ses caractéristiquesé
-     * @param angle TODO Javadoc ici
-     * @param damage TODO Javadoc ici 
+     * @param id est propre à chaque projectile et définit ses caractéristiquesé.
+     * @param angle est l'angle avec lequel le projectile est tiré.
+     * @param damage est la variable qui détermine le nombre de vie à enlever à l'ovni qui rentre en collision avec le projectile.
      */
     public Projectile(Vecteur point, Vecteur orientation, int id, double angle, int damage) {
         tetha = angle + Math.PI;

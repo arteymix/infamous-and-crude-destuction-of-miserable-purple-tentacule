@@ -32,35 +32,35 @@ public final class PointsObtenus extends Dessinable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
     /**
-     * TODO Javadoc ici
+     * size est la variable qui détermine la taille du texte qui apparait.
      */
     private int size = 15;
     /**
-     * TODO Javadoc ici
+     * delay est la variable de temps en milliseconde de l'apparition du texte.
      */
     private int delay = 30;
     /**
-     * TODO Javadoc ici
+     * POINTS est la variable qui détermine le pointage de l'action performé.
      */
     private final int POINTS;
     /**
-     * TODO Javadoc ici
+     * font est la variable qui détermine le font du texte apparue.
      */
     private Font font = new Font("Comic sans ms", Font.BOLD, size);
     /**
-     * TODO Javadoc ici
+     * POSITION_X est la position en x de l'apparition du texte.
      */
     /**
-     * TODO Javadoc ici
+     * POSITION_Y est la position en y de l'apparition du texte.
      */
     private final int POSITION_X, POSITION_Y;
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * TODO Javadoc ici
-     * @param x TODO Javadoc ici
-     * @param y TODO Javadoc ici
-     * @param points TODO Javadoc ici
+     * Méthode qui détermine les points obtenus
+     * @param x est la position en x de l'apparition du texte.
+     * @param y  est la position en y de l'apparition du texte.
+     * @param points est la variable qui détermine le pointage de l'action performé.
      */
     public PointsObtenus(int x, int y, int points) {
         this.POINTS = points;
