@@ -89,10 +89,7 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-
-    public static long timerSeconds = 0; 
-
-
+    public static long timerSeconds =0;
     /**
      * Définit si le mode de débogage est activé.
      */
@@ -118,7 +115,7 @@ public final class Main {
     /**
      * Cette variable définit le niveau du jeu.
      */
-    public static int level = 1;    
+    public static int level = 1;
     /**
      * Constantes pour le niveau de jeu.
      */
