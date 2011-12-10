@@ -32,7 +32,10 @@ import util.Vecteur;
 public final class Ovni extends Dessinable implements Collisionable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux ovnis    
-
+    /**
+     * Temps avant qu'un boss apparaisse.
+     */
+    private static final int TIME_BEFORE_BOSS = 60000;
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
@@ -176,7 +179,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
         if (!isBoss) {
-            if (Main.timerSeconds >= 120000) {
+            if (Main.timerSeconds >= TIME_BEFORE_BOSS) {
                 isBoss = true;
                 if (!boss1Killed) {
                     return ENNEMI_BOSS_1;
@@ -437,7 +440,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 case Ovni.ENNEMI_BOSS_2:
                     Main.points += ENNEMI_BOSS_2_POINTS;
                     Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_BOSS_2_POINTS));
-                    Main.setGameLevel(Main.LEVEL_3);
+                    Main.terminerPartie("Vous avez tué le dernier boss, félicitations!"); // TODO Enlever quand le mode bonus sera fait
+                    //Main.setGameLevel(Main.LEVEL_3); TODO Enlever les commentaires quand le niveau 3 sera implémenté
                     boss2Killed = true;
                     isBoss = false;
                     Main.timerSeconds = 0;
@@ -445,7 +449,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 case Ovni.ENNEMI_BOSS_3:
                     Main.points += ENNEMI_BOSS_3_POINTS;
                     Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_BOSS_3_POINTS));
-                    Main.setGameLevel(Main.LEVEL_BONUS);
+                    Main.terminerPartie("Vous avez tué le dernier boss, félicitations!"); // TODO Enlever quand le mode bonus sera fait
+                    //Main.setGameLevel(Main.LEVEL_BONUS); TODO Enlever les commentaires quand le niveau bonus sera implémenté
                     boss3Killed = true;
                     isBoss = false;
                     Main.timerSeconds = 0;
