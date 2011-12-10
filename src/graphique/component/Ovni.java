@@ -162,7 +162,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 Main.composantesDessinables.add(new Ovni(0, 0, i));
                 break;
             case ENNEMI_BOSS_2:
-                Main.composantesDessinables.add(new Ovni(0, y, i));
+                Main.composantesDessinables.add(new Ovni(0, 0, i));
                 break;
             case ENNEMI_BOSS_3:
                 Main.composantesDessinables.add(new Ovni(0, y, i));
@@ -186,7 +186,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
         if (!isBoss) {
-            if (Main.timerSeconds >= TIME_BEFORE_BOSS) {
+            if (Main.timerSeconds >= 1) {
                 isBoss = true;
                 if (!boss1Killed) {
                     return ENNEMI_BOSS_1;
@@ -303,7 +303,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_2:
                 // mouvement du boss 2
                 vitesseX = 3;
-                mouvementBoss(15, 745);
+                mouvementBoss(15, 300);
                 break;
             case ENNEMI_BOSS_3:
                 // mouvement du boss 3
@@ -332,24 +332,25 @@ public final class Ovni extends Dessinable implements Collisionable {
     private void mouvementBoss(int ymin, int ymax) {
 
         final int XMIN = 0;
-        final int XMAX = (int) (Main.getCanvasSizeX() - this.rectangle.getWidth());
+        final int XMAX = 584;
         final int YMIN = ymin;
         final int YMAX = ymax;
         int deplacementX = 3;
         int deplacementY = 3;
-//
-//        if (position.x == XMIN) {
-//            setxDirection(1);
-//        } else if (position.x == XMAX) {
-//            setxDirection(-1);
-//        }
-//        if (position.y == YMIN) {
-//            setyDirection(1);
-//        } else if (position.y == YMAX) {
-//            setyDirection(-1);
-//        }
-     //   position.x += deplacementX * xDirection * vitesseX;
-       // position.y += deplacementY * yDirection * vitesseX;
+ 
+        if (position.x < XMIN) {
+            setxDirection(1);
+        } else if (position.x > XMAX) {
+            setxDirection(-1);
+           
+        }
+        if (position.y < YMIN) {
+            setyDirection(1);
+        } else if (position.y > YMAX) {
+            setyDirection(-1);
+        }
+        position.x += deplacementX * xDirection * vitesseX;
+        position.y += deplacementY * yDirection * vitesseX;
     }
 
     /**

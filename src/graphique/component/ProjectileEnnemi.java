@@ -118,7 +118,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
             g.drawImage(image0, (int) position.x, (int) position.y, rectangle.width, rectangle.height, null);
             return;
         }
-        g.drawImage(image0, (int) position.x, (int) position.y++, rectangle.width, rectangle.height, null);
+        g.drawImage(image0, (int) position.x, (int) position.y++, null);
         if (position.y >= Main.getCanvasSizeY()) {
             isDessinable = false;
         }
