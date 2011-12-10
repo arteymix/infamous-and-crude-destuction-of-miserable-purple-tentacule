@@ -60,7 +60,7 @@ public final class Canon extends Dessinable implements Collisionable {
     /**
      * TODO Javadoc ici
      */
-    private static final double ANGLE_INCREMENT_CANON = -Math.PI / 60.0;
+    private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
     /**
      * Variable qui définit la hauteur standard du canon.
      */
@@ -73,7 +73,7 @@ public final class Canon extends Dessinable implements Collisionable {
     /**
      * TODO Javadoc ici
      */
-    private int LATENCE_DU_TIR = 250;
+    private int latenceDuTir = 250;
     /**
      * Variables définissant si le canon 2 est une cible valide pour un projectile ennemi.
      * Cette variable est particulièrement utile lorsque le joueur joue en mode
@@ -253,7 +253,7 @@ public final class Canon extends Dessinable implements Collisionable {
     private void tirer() {
         if (peutTirer) {
             int dommages = PROJECTILE_DEFAULT_DAMAGE;
-            if (this.POWER_FAST_SHOT_OBTAINED | this.POWER_SHOT_OBTAINED) {
+            if (this.powerFastShotObtained | this.powerShotObtained) {
                 dommages = PROJECTILE_DEFAULT_DAMAGE * 2;
             }
             Main.composantesDessinables.add(new Projectile(piedDeCanon(), new Vecteur((positionD.x - positionA.x) / 2, (positionD.y - positionA.y) / 2), 0, tetha, dommages));
@@ -264,7 +264,7 @@ public final class Canon extends Dessinable implements Collisionable {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(LATENCE_DU_TIR);
+                        Thread.sleep(latenceDuTir);
                     } catch (InterruptedException ie) {
                         ie.printStackTrace();
                     } finally {
@@ -298,36 +298,36 @@ public final class Canon extends Dessinable implements Collisionable {
         g.drawPolygon(xPoints, yPoints, 4);
         g.drawRect((int) (position.x), (int) (position.y), (int) LARGEUR_DU_CANON, (int) HAUTEUR_DU_CANON);
         g.drawString("Canon " + this.NUMERO_DU_CANON, (int) position.x + 15, (int) position.y + 45);
-        g.drawString("Latence du tir : " + this.LATENCE_DU_TIR + " ms", (int) position.x + 15, (int) position.y + 60);
+        g.drawString("Latence du tir : " + this.latenceDuTir + " ms", (int) position.x + 15, (int) position.y + 60);
         g.drawString("Vies : " + this.vie + " vies", (int) position.x + 15, (int) position.y + 75);
-        g.drawString("Fast shot : " + FAST_SHOT_OBTAINED, (int) position.x + 15, (int) position.y + 90);
-        g.drawString("Power fast shot : " + POWER_FAST_SHOT_OBTAINED, (int) position.x + 15, (int) position.y + 105);
-        g.drawString("Power shot : " + POWER_SHOT_OBTAINED, (int) position.x + 15, (int) position.y + 120);
+        g.drawString("Fast shot : " + fastShotObtained, (int) position.x + 15, (int) position.y + 90);
+        g.drawString("Power fast shot : " + powerFastShotObtained, (int) position.x + 15, (int) position.y + 105);
+        g.drawString("Power shot : " + powerShotObtained, (int) position.x + 15, (int) position.y + 120);
     }
 
     @Override
     public Rectangle getRectangle() {
         return new Rectangle((int) position.x, (int) position.y, (int) LARGEUR_DU_CANON, (int) HAUTEUR_DU_CANON);
     }
-    private boolean FAST_SHOT_OBTAINED = false,
-            POWER_FAST_SHOT_OBTAINED = false,
-            POWER_SHOT_OBTAINED = false;
+    private boolean fastShotObtained = false,
+            powerFastShotObtained = false,
+            powerShotObtained = false;
 
     @Override
     public void collision(Collisionable c) {
         if (c instanceof PowerUp) {
             switch (((PowerUp) c).id) {
                 case PowerUp.FAST_SHOT:
-                    LATENCE_DU_TIR = 125;
-                    FAST_SHOT_OBTAINED = true;
+                    latenceDuTir = 125;
+                    fastShotObtained = true;
                     break;
                 case PowerUp.POWER_FAST_SHOT:
-                    POWER_FAST_SHOT_OBTAINED = true;
-                    LATENCE_DU_TIR = 125;
+                    powerFastShotObtained = true;
+                    latenceDuTir = 125;
                     break;
                 case PowerUp.POWER_SHOT:
-                    POWER_SHOT_OBTAINED = true;
-                    LATENCE_DU_TIR = 250;
+                    powerShotObtained = true;
+                    latenceDuTir = 250;
                     break;
             }
         } else if (!(c instanceof Canon) && !(c instanceof Projectile)) {
