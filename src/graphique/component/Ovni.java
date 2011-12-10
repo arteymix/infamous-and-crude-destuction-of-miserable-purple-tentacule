@@ -229,12 +229,15 @@ public final class Ovni extends Dessinable implements Collisionable {
         /* Le numéro du id correspond au id du missile.
          * L'ennemi régulier possède le projectile régulier, etc...
          */
+        Vecteur tir = new Vecteur(position.x + rectangle.width / 2, position.y + rectangle.height);
+        
+        
         switch (ID) {
             case ENNEMI_NORMAL:
-                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI));
+                Main.composantesDessinables.add(new ProjectileEnnemi(tir, ProjectileEnnemi.PROJECTILE_ENNEMI));
                 break;
             case ENNEMI_SUPERSONIQUE:
-                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_ENNEMI_SUPERSONIC));
+                Main.composantesDessinables.add(new ProjectileEnnemi(tir, ProjectileEnnemi.PROJECTILE_ENNEMI_SUPERSONIC));
                 break;
             /* C'est le même id pour les 3 boss, mais l'image change.
              * 
@@ -243,7 +246,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_2:
             case ENNEMI_BOSS_3:
             case ENNEMI_BOSS_BONUS:
-                Main.composantesDessinables.add(new ProjectileEnnemi(position, ProjectileEnnemi.PROJECTILE_BOSS));
+                Main.composantesDessinables.add(new ProjectileEnnemi(tir, ProjectileEnnemi.PROJECTILE_BOSS));
                 break;
         }
     }
@@ -276,7 +279,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_1:// image0 boss 1
                 image0 = Main.imageBank.boss;
-                vie = 1000;
+                vie = 1000; 
+                
                 break;
             case ENNEMI_BOSS_2:// image0 boss 2
                 image0 = Main.imageBank.boss;
