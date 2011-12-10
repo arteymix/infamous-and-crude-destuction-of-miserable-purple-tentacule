@@ -46,25 +46,25 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
         Serialization.serialize(this, "highscores.serial");
     }
     /**
-     * TODO Javadoc ici
+     * noobObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     /**
-     * TODO Javadoc ici
+     * ownObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     /**
-     * TODO Javadoc ici
+     * pwnObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     /**
-     * TODO Javadoc ici
+     * nukeObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     /**
-     * TODO Javadoc ici
+     * proObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     /**
-     * TODO Javadoc ici
+     * leetObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     /**
-     * TODO Javadoc ici
+     * bazingaObtained est un boolean qui détermine si un certain score a été obtenu.
      */
     public boolean noobObtained,
             ownObtained,
@@ -74,7 +74,7 @@ public final class Highscores extends HashMap<String, Integer> implements Serial
             leetObtained,
             bazingaObtained;
     /**
-     * TODO Javadoc ici
+     * partiesCompletes est la variable qui détermine le nombre de partie complétée.
      */
     public int partiesCompletes = 0;
 

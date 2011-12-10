@@ -189,7 +189,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
         if (!isBoss) {
-            if (Main.timerSeconds >= 1) {
+            if (Main.timerSeconds >= 120000) {
                 isBoss = true;
                 if (!boss1Killed) {
                     return ENNEMI_BOSS_1;
