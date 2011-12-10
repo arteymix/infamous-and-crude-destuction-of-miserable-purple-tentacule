@@ -57,7 +57,7 @@ public class KeyBoardListener extends Thread {
      * clavier.
      * @param i est la touche à ajouter.
      */
-    public synchronized void add(Integer i) {
+    public void add(Integer i) {
         enabledKeys.add(i);
     }
 
@@ -66,7 +66,7 @@ public class KeyBoardListener extends Thread {
      * clavier.
      * @param i est la touche à enlever.
      */
-    public synchronized void remove(Integer i) {
+    public void remove(Integer i) {
         enabledKeys.remove(i);
     }
 

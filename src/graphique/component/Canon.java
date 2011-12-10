@@ -46,21 +46,21 @@ public final class Canon extends Dessinable implements Collisionable {
      */
     public static final int CANON1_ID = 0, CANON2_ID = 1;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static boolean isCanon2ValidTarget = false;
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int VIE_INIT_CANON = 1000;
     /**
-     * 
+     * TODO Javadoc ici
      */
-    private static final double MOVEMENT_INCREMENT_CANON = 5.0;
+    private static final double MOVEMENT_INCREMENT_CANON = 5.0; 
     /**
-     * 
+     * TODO Javadoc ici
      */
-    private static final double ANGLE_INCREMENT_CANON = Math.PI / 60.0;
+    private static final double ANGLE_INCREMENT_CANON = -Math.PI / 60.0;
     /**
      * Variable qui définit la hauteur standard du canon.
      */
@@ -81,6 +81,9 @@ public final class Canon extends Dessinable implements Collisionable {
      * deuxième canon.
      */
     private Vecteur positionA, positionB, positionC, positionD;
+    /**
+     * TODO Javadoc ici
+     */
     private double tetha = Math.PI;
     /**
      * Est le vecteur position du canon.
@@ -122,7 +125,7 @@ public final class Canon extends Dessinable implements Collisionable {
         positionB = piedDeCanon().additionAffine(new Vecteur(-15, -70));
         positionC = piedDeCanon().additionAffine(new Vecteur(-15, +0));
         positionD = piedDeCanon().additionAffine(new Vecteur(15, +0));
-        vie = VIE_INIT_CANON;
+        vie = VIE_INIT_CANON; 
     }
 
     /**

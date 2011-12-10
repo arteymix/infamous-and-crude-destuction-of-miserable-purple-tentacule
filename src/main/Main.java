@@ -358,6 +358,9 @@ public final class Main {
     public static void close(int i) {
         isPaused = true;
         if (i == 0) {
+            /* On ferme avec un statut normal, on peut donc demander à l'utilisateur
+             * d'entrer son nom... 
+             */
             if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
                 isPaused = false;
                 Main.terminerPartie(messageDeFermeture);

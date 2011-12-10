@@ -15,11 +15,12 @@
  */
 package graphique.component;
 
-import graphique.event.PointsObtenus;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
+
+import graphique.event.PointsObtenus;
 import main.Main;
 import util.Collisionable;
 import util.Dessinable;
@@ -91,43 +92,49 @@ public final class Ovni extends Dessinable implements Collisionable {
      * Entier utilisé pour définir la vitesse de tir de l'ovni
      */
     private int shootRate = 500;
+    /**
+     * TODO Javadoc ici
+     */
     private int xDirection = 1;
+    /**
+     * TODO Javadoc ici
+     */
     private int yDirection = 1;
     // Variables locales
     /**
-     * 
+     * TODO Javadoc ici
      */
     private Vecteur position = new Vecteur();
     /**
-     * 
+     * TODO Javadoc ici
      */
     private double vitesseX = 1.0;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private int vie;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private final int VIE_INIT;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private final int ID;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private boolean isOr;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private Rectangle rectangle = new Rectangle();
     ////////////////////////////////////////////////////////////////////////////
 
     /**
      * Constructeur pour l'objet Ovni.
-     * @param x
-     * @param y
+     * @param x TODO Javadoc ici
+     * @param y TODO Javadoc ici
      * @param id est l'id de l'ovni. Voir les constantes pour plus de détails.
      */
     private Ovni(int x, int y, int id) {
@@ -319,8 +326,8 @@ public final class Ovni extends Dessinable implements Collisionable {
 
     /**
      * Mouvements spécifiques des boss.
-     * @param ymin
-     * @param ymax 
+     * @param ymin TODO Javadoc ici
+     * @param ymax TODO Javadoc ici
      */
     private void mouvementBoss(int ymin, int ymax) {
 
@@ -346,16 +353,16 @@ public final class Ovni extends Dessinable implements Collisionable {
     }
 
     /**
-     * 
-     * @param xDirection 
+     * TODO Javadoc ici
+     * @param xDirection TODO Javadoc ici
      */
     private void setxDirection(int xDirection) {
         this.xDirection = xDirection;
     }
 
     /**
-     * 
-     * @param yDirection 
+     * TODO Javadoc ici
+     * @param yDirection TODO Javadoc ici
      */
     private void setyDirection(int yDirection) {
         this.yDirection = yDirection;
