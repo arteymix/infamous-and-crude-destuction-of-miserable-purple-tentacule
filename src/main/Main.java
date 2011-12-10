@@ -305,7 +305,7 @@ public final class Main {
      * Méthode appelée lorsqu'une partie se termine, la méthode close() est 
      * appelée par la suite. Cette méthode calcule si le joueur a obtenu les
      * trophées.
-     * @param s 
+     * @param s TODO Javadoc ici
      */
     public static void terminerPartie(String s) {
         

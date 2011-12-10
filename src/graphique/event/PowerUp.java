@@ -30,34 +30,34 @@ import util.Vecteur;
 public final class PowerUp extends Dessinable implements Collisionable {
 
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     /**
-     * 
+     * TODO Javadoc ici
      */
     public static final int POWER_SHOT = 1, // PowerUp stage 1
             FAST_SHOT = 2, // PowerUp stage 2
             POWER_FAST_SHOT = 3, // PowerUp stage 3
             PROBABILITE_APPARITION_POWERUP = 2000;
     /**
-     * 
+     * TODO Javadoc ici
      */
     private Rectangle rectangle = new Rectangle(0, 0, 500, 500);
     /**
-     * 
+     * TODO Javadoc ici
      */
     public final int id;
 
     /**
-     * 
-     * @param x
-     * @param y
+     * TODO Javadoc ici
+     * @param x TODO Javadoc ici
+     * @param y TODO Javadoc ici
      */
     public PowerUp(int x, int y) {
         rectangle.x = x;

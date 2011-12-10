@@ -71,7 +71,7 @@ public final class Canon extends Dessinable implements Collisionable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables locales
     /**
-     * 
+     * TODO Javadoc ici
      */
     private int LATENCE_DU_TIR = 250;
     /**
