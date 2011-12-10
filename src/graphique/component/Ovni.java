@@ -327,19 +327,19 @@ public final class Ovni extends Dessinable implements Collisionable {
         final int YMAX = ymax;
         int deplacementX = 3;
         int deplacementY = 3;
-
-        if (position.x == XMIN) {
-            setxDirection(1);
-        } else if (position.x == XMAX) {
-            setxDirection(-1);
-        }
-        if (position.y == YMIN) {
-            setyDirection(1);
-        } else if (position.y == YMAX) {
-            setyDirection(-1);
-        }
-        position.x += deplacementX * xDirection * vitesseX;
-        position.y += deplacementY * yDirection * vitesseX;
+//
+//        if (position.x == XMIN) {
+//            setxDirection(1);
+//        } else if (position.x == XMAX) {
+//            setxDirection(-1);
+//        }
+//        if (position.y == YMIN) {
+//            setyDirection(1);
+//        } else if (position.y == YMAX) {
+//            setyDirection(-1);
+//        }
+     //   position.x += deplacementX * xDirection * vitesseX;
+       // position.y += deplacementY * yDirection * vitesseX;
     }
 
     /**

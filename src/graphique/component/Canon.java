@@ -161,7 +161,7 @@ public final class Canon extends Dessinable implements Collisionable {
         }
         if (NUMERO_DU_CANON == 0) {
             switch (e) {
-                case KeySetting.CANON_1_LEFT:                    
+                case KeySetting.CANON_1_LEFT:
                     moveGauche();
                     break;
                 case KeySetting.CANON_1_RIGHT:
