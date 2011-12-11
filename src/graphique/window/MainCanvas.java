@@ -66,8 +66,8 @@ public final class MainCanvas extends JComponent {
      */
     MainCanvas() {
         super();
-        Dimension screenSize = new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 100, Toolkit.getDefaultToolkit().getScreenSize().height - 100);
-        setPreferredSize(screenSize);
+        //Dimension screenSize = new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 100, Toolkit.getDefaultToolkit().getScreenSize().height - 100);
+        setPreferredSize(new Dimension(1024,768));
     }
     /**
      * Objet contenant l'activité en cours.

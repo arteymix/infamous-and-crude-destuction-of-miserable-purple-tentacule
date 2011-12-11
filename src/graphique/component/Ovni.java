@@ -41,7 +41,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
-    public static final int PROBABILITE_APPARITION_OVNI = 1000;
+    private static final int PROBABILITE_APPARITION_OVNI = 1000;
     /**
      * Détermine si un boss est présent dans le jeu.
      */

@@ -47,7 +47,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
     /**
      * PROJECTILE_BOSS est l'identifiant du projectile du boss .
      */
-    public static final int PROJECTILE_ENNEMI = 1,
+    static final int PROJECTILE_ENNEMI = 1,
             PROJECTILE_ENNEMI_OR = 2,
             PROJECTILE_ENNEMI_SUPERSONIC = 3,
             PROJECTILE_ENNEMI_SUPERSONIC_OR = 4,
@@ -74,7 +74,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
     /**
      * isInvincible est la variable qui détermine si le projectile est invincible.
      */
-    public boolean isInvincible = false;
+    boolean isInvincible = false;
     ////////////////////////////////////////////////////////////////////////////
     /**
      * Constructeur pour un projectile ennemi. Peut uniquement être appelé par

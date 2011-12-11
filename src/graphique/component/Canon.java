@@ -146,7 +146,7 @@ public final class Canon extends Dessinable implements Collisionable {
      * origine à cette position.
      * @return ce vecteur.
      */
-    public Vecteur piedDeCanon() {
+    private Vecteur piedDeCanon() {
         return new Vecteur(position.x + LARGEUR_DU_CANON / 2, position.y + HAUTEUR_DU_CANON / 4);
     }
 
