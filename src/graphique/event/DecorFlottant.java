@@ -48,7 +48,7 @@ public final class DecorFlottant extends Dessinable {
     /**
      * Constructeur du décor flottant.
      * @param x  est la position initiale en x.
-     * @param est la position initiale en y.
+     * @param y est la position initiale en y.
      */
     private DecorFlottant(int x, int y) {
         image0 = Main.imageBank.decorFlottant;
