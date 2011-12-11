@@ -76,6 +76,7 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
      */
     boolean isInvincible = false;
     ////////////////////////////////////////////////////////////////////////////
+
     /**
      * Constructeur pour un projectile ennemi. Peut uniquement être appelé par
      * un objet ovni.
@@ -100,6 +101,9 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
                 break;
             case PROJECTILE_BOSS:
                 image0 = Main.imageBank.projectileBoss;
+                break;
+            default:
+                System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
                 break;
         }
     }
@@ -160,10 +164,10 @@ public final class ProjectileEnnemi extends Dessinable implements Collisionable 
         if (isInvincible) {
             return;
         }
-        if (c instanceof Projectile) {            
+        if (c instanceof Projectile) {
             Main.points += POINTS * Main.level;
-            Main.tentaculesKilled++;            
-            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y,  POINTS * Main.level));
+            Main.tentaculesKilled++;
+            Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, POINTS * Main.level));
             this.isDessinable = false;
             // On se sert de l'explosion du projectile...
         } else if (c instanceof Canon) {

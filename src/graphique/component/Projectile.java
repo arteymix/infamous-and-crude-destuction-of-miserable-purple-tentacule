@@ -53,7 +53,7 @@ public final class Projectile extends Dessinable implements Collisionable {
      * @param damage est la variable qui détermine le nombre de vie à enlever à l'ovni qui rentre en collision avec le projectile.
      */
     public Projectile(Vecteur point, Vecteur orientation, int id, double angle, int damage) {
-        tetha = angle + Math.PI;
+        tetha = (angle + Math.PI);
         position = point;
         vitesse = orientation;
         image0 = Main.imageBank.projectile;
