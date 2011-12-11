@@ -318,15 +318,15 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_1:
                 // mouvement du boss 1
-                mouvementBoss(15, 200,0,584);
+                mouvementBoss(15, 200, 0, 584);
                 break;
             case ENNEMI_BOSS_2:
                 // mouvement du boss 2
                 vitesseX = 3;
-                mouvementBoss(15, 200,0,584);
+                mouvementBoss(15, 200, 0, 584);
                 break;
             case ENNEMI_BOSS_3:
-                 mouvementBoss(0, 0,0,584);
+                mouvementBoss(0, 0, 0, 584);
                 break;
             case ENNEMI_BOSS_BONUS:
                 // Mouvement du boss bonus
@@ -348,7 +348,7 @@ public final class Ovni extends Dessinable implements Collisionable {
      * @param ymin est la position minimale sur y dans laquelle l'ovni pourrait être.
      * @param ymax est la position maximale sur y dans laquelle l'ovni pourrait être.
      */
-    private void mouvementBoss(int ymin, int ymax,int xmin, int xmax) {
+    private void mouvementBoss(int ymin, int ymax, int xmin, int xmax) {
 
         final int XMIN = xmin;
         final int XMAX = xmax;
@@ -405,7 +405,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     @Override
     public void dessinerDeboguage(Graphics g) {
         action();
-        g.drawOval((int) (position.x), (int) (position.y), 100, 100);
+        g.drawRect((int) (position.x), (int) (position.y), getRectangle().width, getRectangle().height);
         g.drawString("Ovni", (int) (position.x) + 20, (int) (position.y) + 45);
         g.drawString("Type : " + (isOr ? "or" : "normal"), (int) (position.x) + 20, (int) (position.y) + 60);
         g.drawString("Vies : " + vie + " vies", (int) (position.x) + 20, (int) (position.y) + 75);
@@ -419,23 +419,23 @@ public final class Ovni extends Dessinable implements Collisionable {
         int longeur = 0, hauteur = 0;
         switch (ID) {
             case ENNEMI_NORMAL://Grandeur du rectangle d'un enemi normal 
-                longeur = hauteur = 100;
+
+                longeur = Main.imageBank.ennemi.getWidth(null);
+                hauteur = Main.imageBank.ennemi.getHeight(null);
                 break;
             case ENNEMI_SUPERSONIQUE:// Grandeur du rectangle  du ennemiSupersonic
-                longeur = 150;
-                hauteur = 100;
+                longeur = Main.imageBank.ennemiSupersonic.getWidth(null);
+                hauteur = Main.imageBank.ennemiSupersonic.getHeight(null);
                 break;
             case ENNEMI_BOSS_1:// Grandeur du rectangle  du boss 1
-                longeur = 450;
-                hauteur = 206;
-                break;
             case ENNEMI_BOSS_2:// Grandeur du rectangle  du boss 2
-                longeur = hauteur = 450;
-                break;
+                
             case ENNEMI_BOSS_3:// Grandeur du rectangle  du boss 3
-                longeur = 443;
-                hauteur = 325;
+                longeur = Main.imageBank.boss.getWidth(null);
+                hauteur = Main.imageBank.boss.getHeight(null);
                 break;
+
+
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
                 Main.close(Main.CODE_DE_SORTIE_AUTRE);
