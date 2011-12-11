@@ -37,7 +37,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Temps avant qu'un boss apparaisse.
      */
-    private static final int TIME_BEFORE_BOSS = 60000;
+    private static final int TIME_BEFORE_BOSS = 0;
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
@@ -94,8 +94,8 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Définit si le boss 3 est mort.
      */
-    public static boolean boss1Killed = false,
-            boss2Killed = false,
+    public static boolean boss1Killed = false, // TODO false
+            boss2Killed = false, // TODO false
             boss3Killed = false;
     ////////////////////////////////////////////////////////////////////////////
     /**
@@ -468,8 +468,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 case Ovni.ENNEMI_BOSS_2:
                     Main.points += ENNEMI_BOSS_2_POINTS;
                     Main.composantesDessinables.add(new PointsObtenus((int) position.x, (int) position.y, ENNEMI_BOSS_2_POINTS));
-                    Main.terminerPartie("Vous avez tué le dernier boss, félicitations!"); // TODO Enlever quand le mode bonus sera fait
-                    //Main.setGameLevel(Main.LEVEL_3); TODO Enlever les commentaires quand le niveau 3 sera implémenté
+                    //Main.terminerPartie("Vous avez tué le dernier boss, félicitations!"); // TODO Enlever quand le mode bonus sera fait
+                    Main.setGameLevel(Main.LEVEL_3);
                     boss2Killed = true;
                     isBoss = false;
                     Main.timerSeconds = 0;
