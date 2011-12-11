@@ -279,16 +279,17 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_1:// image0 boss 1
                 image0 = Main.imageBank.boss;
                 vie = 1000;
-                this.shootRate = 20;
+                shootRate = 20;
                 break;
             case ENNEMI_BOSS_2:// image0 boss 2
                 image0 = Main.imageBank.boss;
                 vie = 1500;
-                this.shootRate = 20;
+                shootRate = 20;
                 break;
             case ENNEMI_BOSS_3:// image0 boss 3
                 image0 = Main.imageBank.boss;
                 vie = 2000;
+                shootRate = 20;
                 break;
             case ENNEMI_BOSS_BONUS:
                 image0 = Main.imageBank.ennemi;
