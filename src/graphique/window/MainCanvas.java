@@ -25,6 +25,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 
 import javax.swing.JComponent;
@@ -65,7 +66,8 @@ public final class MainCanvas extends JComponent {
      */
     MainCanvas() {
         super();
-        setPreferredSize(new Dimension((int) Main.getCanvasSizeX(), (int) Main.getCanvasSizeY()));
+        Dimension screenSize = new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 100, Toolkit.getDefaultToolkit().getScreenSize().height - 100);
+        setPreferredSize(screenSize);
     }
     /**
      * Objet contenant l'activité en cours.

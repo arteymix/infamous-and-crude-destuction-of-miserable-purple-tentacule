@@ -118,10 +118,10 @@ public final class Canon extends Dessinable implements Collisionable {
 
         switch (numeroDuCanon) {
             case 0:               
-                position = new Vecteur(0, Main.getCanvasSizeY() - 131);
+                position = new Vecteur(0, Main.getCanvasSizeY() - 110);
                 break;
             case 1:                
-                position = new Vecteur(Main.getCanvasSizeX() - 256, Main.getCanvasSizeY() - 131);
+                position = new Vecteur(Main.getCanvasSizeX() - 256, Main.getCanvasSizeY()- 110);
                 break;
         }
         NUMERO_DU_CANON = numeroDuCanon;

@@ -190,6 +190,12 @@ public final class Main {
         setGameLevel(Main.LEVEL_1);
         System.out.println("Images chargées! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
         totalTime += System.currentTimeMillis() - loadingTime;
+        ////////////////////////////////////////////////////////////////////////        
+        loadingTime = System.currentTimeMillis();
+        interfaceGraphique = new InterfaceGraphique();
+        rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
+        System.out.println("Interface graphique chargé! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
+        totalTime += System.currentTimeMillis() - loadingTime;
         ////////////////////////////////////////////////////////////////////////
         loadingTime = System.currentTimeMillis();
         canon1 = new Canon(Canon.CANON1_ID);
@@ -197,14 +203,8 @@ public final class Main {
         composantesDessinables.add(canon1);
         composantesDessinables.add(canon2);
         System.out.println("Canons chargés! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
-        totalTime += System.currentTimeMillis() - loadingTime;
-        ////////////////////////////////////////////////////////////////////////
-        loadingTime = System.currentTimeMillis();
-        interfaceGraphique = new InterfaceGraphique();
         interfaceGraphique.keyBoardListener = new KeyBoardListener(canon1, canon2);
         interfaceGraphique.keyBoardListener.start();
-        rendu = new Thread(interfaceGraphique, "Thread pour le rendu graphique");
-        System.out.println("Interface graphique chargé! (" + ((System.currentTimeMillis() - loadingTime)) + " ms)");
         totalTime += System.currentTimeMillis() - loadingTime;
         ////////////////////////////////////////////////////////////////////////
         System.out.println("Chargement complété en " + totalTime + " ms!");
@@ -221,6 +221,7 @@ public final class Main {
             return 1024;
         } else {
             return interfaceGraphique.mainCanvas.getWidth();
+
         }
     }
 
