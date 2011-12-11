@@ -71,7 +71,7 @@ public final class DecorFlottant extends Dessinable {
      */
     private void action() {
         if ((new Random()).nextInt(PowerUp.PROBABILITE_APPARITION_POWERUP) == 1) {
-            Main.composantesDessinables.add(new PowerUp((int) positionX, (int) positionY));
+            Main.composantesDessinables.add(new PowerUp((int) positionX +image0.getWidth( null) / 2, (int) positionY));
         }
     }
 

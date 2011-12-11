@@ -44,7 +44,7 @@ public final class PowerUp extends Dessinable implements Collisionable {
     public static final int POWER_SHOT = 1,
             FAST_SHOT = 2,
             POWER_FAST_SHOT = 3,
-            PROBABILITE_APPARITION_POWERUP = 4000;
+            PROBABILITE_APPARITION_POWERUP = 2000;
     /**
      * rectangle qui représente le power up dans le mode débugage.
      */
@@ -79,8 +79,8 @@ public final class PowerUp extends Dessinable implements Collisionable {
                 id = -1;
         }
         image0 = Main.imageBank.powerup;
-        rectangle.width = 187;
-        rectangle.height = 140;
+        rectangle.width = 65;
+        rectangle.height = 65;
     }
 
     @Override
