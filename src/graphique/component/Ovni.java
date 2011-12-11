@@ -178,7 +178,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 Main.composantesDessinables.add(new Ovni(0, 0, i));
                 break;
             case ENNEMI_BOSS_3:
-                Main.composantesDessinables.add(new Ovni(0, y, i));
+                Main.composantesDessinables.add(new Ovni(0, 0, i));
                 break;
             case ENNEMI_NORMAL:
                 Main.composantesDessinables.add(new Ovni(0, y, i));
@@ -199,7 +199,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
         if (!isBoss) {
-            if (Main.timerSeconds >= TIME_BEFORE_BOSS) {
+            if (Main.timerSeconds >= 1) {
                 isBoss = true;
                 if (!boss1Killed) {
                     return ENNEMI_BOSS_1;
@@ -288,7 +288,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_3:// image0 boss 3
                 image0 = Main.imageBank.boss;
-                vie = 2000;
+                vie = 2500;
+                this.shootRate = 10;
                 shootRate = 20;
                 break;
             case ENNEMI_BOSS_BONUS:
@@ -317,15 +318,15 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_1:
                 // mouvement du boss 1
-                mouvementBoss(15, 300);
+                mouvementBoss(15, 200,0,584);
                 break;
             case ENNEMI_BOSS_2:
                 // mouvement du boss 2
                 vitesseX = 3;
-                mouvementBoss(15, 250);
+                mouvementBoss(15, 200,0,584);
                 break;
             case ENNEMI_BOSS_3:
-                 mouvementBoss(0, 0);
+                 mouvementBoss(0, 0,0,584);
                 break;
             case ENNEMI_BOSS_BONUS:
                 // Mouvement du boss bonus
@@ -347,10 +348,10 @@ public final class Ovni extends Dessinable implements Collisionable {
      * @param ymin est la position minimale sur y dans laquelle l'ovni pourrait être.
      * @param ymax est la position maximale sur y dans laquelle l'ovni pourrait être.
      */
-    private void mouvementBoss(int ymin, int ymax) {
+    private void mouvementBoss(int ymin, int ymax,int xmin, int xmax) {
 
-        final int XMIN = 0;
-        final int XMAX = 584;
+        final int XMIN = xmin;
+        final int XMAX = xmax;
         final int YMIN = ymin;
         final int YMAX = ymax;
         int deplacementX = 3;
@@ -432,8 +433,8 @@ public final class Ovni extends Dessinable implements Collisionable {
                 longeur = hauteur = 450;
                 break;
             case ENNEMI_BOSS_3:// Grandeur du rectangle  du boss 3
-                longeur = 500;
-                hauteur = 400;
+                longeur = 443;
+                hauteur = 325;
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
