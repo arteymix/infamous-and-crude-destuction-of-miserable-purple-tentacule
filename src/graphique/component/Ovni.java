@@ -199,7 +199,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     private static int initializeID() {
         int generateur = new Random().nextInt(PROBABILITE_APPARITION_OVNI);
         if (!isBoss) {
-            if (Main.timerSeconds >= 1) {
+            if (Main.timerSeconds >= TIME_BEFORE_BOSS) {
                 isBoss = true;
                 if (!boss1Killed) {
                     return ENNEMI_BOSS_1;
@@ -295,7 +295,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_BONUS:
                 image0 = Main.imageBank.ennemi;
                 vie = 15 * Main.level;
-                this.shootRate = 20;
+                shootRate = 20;
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet" + id);
