@@ -397,7 +397,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         g.setColor(Color.RED);
         g.fillRect((int) position.x, (int) position.y, (int) ((double) image0.getWidth(null) * (((double) vie) / ((double) VIE_INIT))), 10);
         g.setColor(Color.BLACK);
-        if (position.x > Main.getCanvasSizeX() | position.x < 0) {
+        if (position.x > Main.getCanvasSizeX()) {
             isDessinable = false;
         }
     }
@@ -409,7 +409,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         g.drawString("Ovni", (int) (position.x) + 20, (int) (position.y) + 45);
         g.drawString("Type : " + (isOr ? "or" : "normal"), (int) (position.x) + 20, (int) (position.y) + 60);
         g.drawString("Vies : " + vie + " vies", (int) (position.x) + 20, (int) (position.y) + 75);
-        if (position.x > Main.getCanvasSizeX() | position.x < 0) {
+        if (position.x > Main.getCanvasSizeX()) {
             isDessinable = false;
         }
     }
