@@ -36,7 +36,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Temps avant qu'un boss apparaisse.
      */
-    private static final int TIME_BEFORE_BOSS = 60000;
+    private static final int TIME_BEFORE_BOSS =60000;
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
@@ -279,12 +279,13 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_1:// image0 boss 1
                 image0 = Main.imageBank.boss;
-                vie = 1000; 
-                
+                vie = 1000;  
+                this.shootRate = 20;
                 break;
             case ENNEMI_BOSS_2:// image0 boss 2
                 image0 = Main.imageBank.boss;
                 vie = 1500;
+                this.shootRate = 20;
                 break;
             case ENNEMI_BOSS_3:// image0 boss 3
                 image0 = Main.imageBank.boss;
@@ -293,6 +294,7 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_BONUS:
                 image0 = Main.imageBank.ennemi;
                 vie = 15 * Main.level;
+                this.shootRate = 20;
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet" + id);

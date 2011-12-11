@@ -89,7 +89,7 @@ public final class Main {
     /**
      * Timer qui donne le temps depuis le début du jeu.
      */
-    public static long timerSeconds =0;
+    public static long timerSeconds = 0;
     /**
      * Définit si le mode de débogage est activé.
      */
@@ -250,26 +250,33 @@ public final class Main {
         imageBank.setStage(i);
     }
 
+    private static void sauvegarder() {
+        String s;
+        boolean fail = false;
+        do {
+            s = JOptionPane.showInputDialog((fail ? "Ce nom ne peut être utilisé, choisissez-en un autre!\n" : "") + "Veuillez entrer votre nom, celui-ci doit\nêtre composé de trois lettres :");
+            if (s == null) {
+                break;
+            }
+            fail = true;
+        } while ("".equals(s) | highscore.containsKey(s) | s.length() != 3);
+
+        if (s != null) {
+            highscore.put(s, Main.points);
+        }
+
+
+
+    }
+
     /**
      * Méthode appellée lors qu'une nouvelle partie est demandée.
      */
     public static void restart() {
         isPaused = true;
-        if (JOptionPane.showConfirmDialog(null, "Recommencer?", "", JOptionPane.YES_NO_OPTION) == 0) {
-            boolean fail = false;
+        if (JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir recommencer?", "Recommencer?", JOptionPane.YES_NO_OPTION) == 0) {
             Main.isPaused = true;
-            String s;
-            do {
-                s = JOptionPane.showInputDialog((fail ? "Ce nom ne peut être utilisé, choisissez-en un autre!\n" : "") + "Veuillez entrer votre nom, celui-ci doit\nêtre composé de trois lettres :");
-                if (s == null) {
-                    break;
-                }
-                fail = true;
-            } while ("".equals(s) | highscore.containsKey(s) | s.length() != 3);
-
-            if (s != null) {
-                highscore.put(s, Main.points);
-            }
+            sauvegarder();
             isPaused = false;
             long totalLoading = 0l;
             ////////////////////////////////////////////////////////////////////
@@ -315,7 +322,6 @@ public final class Main {
             ////////////////////////////////////////////////////////////////////
             System.out.println("Temps de redémarrage " + totalLoading + " ms");
             ////////////////////////////////////////////////////////////////////
-
         }
         isPaused = false;
     }
@@ -327,14 +333,12 @@ public final class Main {
      * @param message est le message à la fermeture.
      */
     public static void terminerPartie(String message) {
-
         highscore.partiesCompletes++;
         isGameOver = true;
         messageDeFermeture = message;
         calculerAchievements();
         Main.highscore.serializeOnTheHeap();
         Main.interfaceGraphique.mainCanvas.activity = Activity.GAME_OVER;
-
     }
 
     /**
@@ -383,19 +387,7 @@ public final class Main {
             if (JOptionPane.showConfirmDialog(null, Traductions.get("menu.confirmation"), "", JOptionPane.YES_NO_OPTION) == 0) {
                 isPaused = false;
                 Main.terminerPartie(messageDeFermeture);
-                String s;
-                boolean fail = false;
-                do {
-                    s = JOptionPane.showInputDialog((fail ? "Ce nom ne peut être utilisé, choisissez-en un autre!\n" : "") + "Veuillez entrer votre nom, celui-ci doit\nêtre composé de trois lettres :");
-                    if (s == null) {
-                        break;
-                    }
-                    fail = true;
-                } while ("".equals(s) | highscore.containsKey(s) | s.length() != 3);
-
-                if (s != null) {
-                    highscore.put(s, Main.points);
-                }
+                sauvegarder();
             } else {
                 isPaused = false;
                 return;
