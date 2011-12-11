@@ -256,9 +256,9 @@ public final class MainCanvas extends JComponent {
                 g.drawString("Own " + (Main.highscore.ownObtained ? "complété!" : "en cours... (reste " + (10 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
                 g.drawString("Pwn " + (Main.highscore.pwnObtained ? "complété!" : "en cours... (reste " + (1000 - Main.highscore.partiesCompletes) + " partie à terminer)"), x, positionInit += 15);
                 g.drawString("Nuke " + (Main.highscore.nukeObtained ? "complété!" : "en cours... (éliminez au moints 250 tentacules mauves en une partie"), x, positionInit += 15);
-                g.drawString("Pro " + (Main.highscore.proObtained ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("1337 " + (Main.highscore.leetObtained ? "complété!" : "en cours..."), x, positionInit += 15);
-                g.drawString("Bazinga! " + (Main.highscore.bazingaObtained ? "complété!" : "en cours..."), x, positionInit += 15);
+                g.drawString("Pro " + (Main.highscore.proObtained ? "complété!" : "en cours...(obtenir 250 points en une partie)"), x, positionInit += 15);
+                g.drawString("1337 " + (Main.highscore.leetObtained ? "complété!" : "en cours...(obtenir 1000 points en une partie)"), x, positionInit += 15);
+                g.drawString("Bazinga! " + (Main.highscore.bazingaObtained ? "complété!" : "en cours...(obtenir 0 point en une partie)"), x, positionInit += 15);
                 if (Main.isDebugEnabled) {
                     g.setColor(Color.WHITE);
                 } else {
@@ -301,9 +301,11 @@ public final class MainCanvas extends JComponent {
         }
         for (int i = 0; i < Main.alienAuSol; i++) {
             g.drawImage(Main.imageBank.projectileEnnemi, i * 90, 15, 90, 90, null);
-        }
-        g.drawString("POINTS " + Main.points, 15, 15);
-        g.drawString("NIVEAU " + Main.level, 15, 30);
+        }      
+        g.setColor(Color.WHITE);        
+        g.drawString("POINTS : " + Main.points, Main.getCanvasSizeX() - 150, 15);
+        g.drawString("NIVEAU : " + Main.level, Main.getCanvasSizeX() - 150, 30);
+         g.setColor(Color.BLACK);
         if (Canon.isCanon2ValidTarget) {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {
