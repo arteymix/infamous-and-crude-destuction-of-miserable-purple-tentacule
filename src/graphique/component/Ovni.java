@@ -323,10 +323,10 @@ public final class Ovni extends Dessinable implements Collisionable {
             case ENNEMI_BOSS_2:
                 // mouvement du boss 2
                 vitesseX = 3;
-                mouvementBoss(15, 300);
+                mouvementBoss(15, 250);
                 break;
             case ENNEMI_BOSS_3:
-                // mouvement du boss 3
+                 mouvementBoss(0, 0);
                 break;
             case ENNEMI_BOSS_BONUS:
                 // Mouvement du boss bonus
