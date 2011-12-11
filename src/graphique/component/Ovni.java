@@ -33,10 +33,11 @@ import util.Vecteur;
 public final class Ovni extends Dessinable implements Collisionable {
     ////////////////////////////////////////////////////////////////////////////
     // Variables propres aux ovnis    
+
     /**
      * Temps avant qu'un boss apparaisse.
      */
-    private static final int TIME_BEFORE_BOSS =60000;
+    private static final int TIME_BEFORE_BOSS = 60000;
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
@@ -230,8 +231,8 @@ public final class Ovni extends Dessinable implements Collisionable {
          * L'ennemi régulier possède le projectile régulier, etc...
          */
         Vecteur tir = new Vecteur(position.x + rectangle.width / 2, position.y + rectangle.height);
-        
-        
+
+
         switch (ID) {
             case ENNEMI_NORMAL:
                 Main.composantesDessinables.add(new ProjectileEnnemi(tir, ProjectileEnnemi.PROJECTILE_ENNEMI));
@@ -279,7 +280,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             case ENNEMI_BOSS_1:// image0 boss 1
                 image0 = Main.imageBank.boss;
-                vie = 1000;  
+                vie = 1000;
                 this.shootRate = 20;
                 break;
             case ENNEMI_BOSS_2:// image0 boss 2
@@ -298,6 +299,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet" + id);
+                Main.close(Main.CODE_DE_SORTIE_AUTRE);
         }
     }
 
@@ -331,6 +333,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
+                Main.close(Main.CODE_DE_SORTIE_AUTRE);
         }
         /* L'expression ternaire fait en sorte que le shooting rate des ennemis est
          * doublé si deux canons sont actifs sur la carte.
@@ -353,12 +356,12 @@ public final class Ovni extends Dessinable implements Collisionable {
         final int YMAX = ymax;
         int deplacementX = 3;
         int deplacementY = 3;
- 
+
         if (position.x < XMIN) {
             setxDirection(1);
         } else if (position.x > XMAX) {
             setxDirection(-1);
-           
+
         }
         if (position.y < YMIN) {
             setyDirection(1);
@@ -394,7 +397,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         g.setColor(Color.RED);
         g.fillRect((int) position.x, (int) position.y, (int) ((double) image0.getWidth(null) * (((double) vie) / ((double) VIE_INIT))), 10);
         g.setColor(Color.BLACK);
-        if (position.x > Main.getCanvasSizeX()) {
+        if (position.x > Main.getCanvasSizeX() | position.x < 0) {
             isDessinable = false;
         }
     }
@@ -406,7 +409,7 @@ public final class Ovni extends Dessinable implements Collisionable {
         g.drawString("Ovni", (int) (position.x) + 20, (int) (position.y) + 45);
         g.drawString("Type : " + (isOr ? "or" : "normal"), (int) (position.x) + 20, (int) (position.y) + 60);
         g.drawString("Vies : " + vie + " vies", (int) (position.x) + 20, (int) (position.y) + 75);
-        if (position.x > Main.getCanvasSizeX()) {
+        if (position.x > Main.getCanvasSizeX() | position.x < 0) {
             isDessinable = false;
         }
     }
@@ -435,6 +438,7 @@ public final class Ovni extends Dessinable implements Collisionable {
                 break;
             default:
                 System.out.println("Veuillez entre une identification valide (id) dans le constructuer de l'objet");
+                Main.close(Main.CODE_DE_SORTIE_AUTRE);
         }
         rectangle.x = (int) position.x;
         rectangle.y = (int) position.y;
@@ -494,6 +498,10 @@ public final class Ovni extends Dessinable implements Collisionable {
                     Main.points += ENNEMI_BOSS_BONUS_POINTS;
                     isBoss = false;
                     Main.terminerPartie("Vous avez tué le dernier boss, félicitations!");
+                    break;
+                default:
+                    System.out.println("Un id invalide a été entré!");
+                    Main.close(Main.CODE_DE_SORTIE_AUTRE);
                     break;
             }
         }

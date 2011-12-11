@@ -142,7 +142,7 @@ public final class InterfaceGraphique extends JFrame implements Runnable {
         setTitle(Traductions.get("title"));
         
         setVisible(true);   
-        setResizable(false);
+        setResizable(false); 
     }
 
     /**

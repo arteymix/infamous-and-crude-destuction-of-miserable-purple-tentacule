@@ -30,21 +30,21 @@ import util.Vecteur;
 public final class PowerUp extends Dessinable implements Collisionable {
 
     /**
-     * POWER_SHOT est l'identificateur du power up du stage 1.
+     * Identificateur du power up du stage 1.
      */
     /**
-     * FAST_SHOT est l'identificateur du power up du stage 2.
+     * Identificateur du power up du stage 2.
      */
     /**
-     * POWER_FAST_SHOT est l'identificateur du power up du stage 3.
+     * Identificateur du power up du stage 3.
      */
     /**
-     * PROBABILITE_APPARITION_POWERUP est la probabilité d'appartion du power up.
+     * Probabilité d'appartion du power up.
      */
     public static final int POWER_SHOT = 1, // PowerUp stage 1
             FAST_SHOT = 2, // PowerUp stage 2
             POWER_FAST_SHOT = 3, // PowerUp stage 3
-            PROBABILITE_APPARITION_POWERUP = 2000;
+            PROBABILITE_APPARITION_POWERUP = 4000;
     /**
      * rectangle qui représente le power up dans le mode débugage.
      */
