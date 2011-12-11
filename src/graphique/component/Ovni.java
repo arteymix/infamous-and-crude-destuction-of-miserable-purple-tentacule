@@ -37,7 +37,7 @@ public final class Ovni extends Dessinable implements Collisionable {
     /**
      * Temps avant qu'un boss apparaisse.
      */
-    private static final int TIME_BEFORE_BOSS = 30000;
+    private static final int TIME_BEFORE_BOSS = 2;
     /**
      * Probabilité utilisé pour faire apparaître les ovnis.
      */
