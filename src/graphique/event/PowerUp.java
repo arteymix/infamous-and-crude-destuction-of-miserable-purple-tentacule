@@ -44,7 +44,7 @@ public final class PowerUp extends Dessinable implements Collisionable {
     public static final int POWER_SHOT = 1, // PowerUp stage 1
             FAST_SHOT = 2, // PowerUp stage 2
             POWER_FAST_SHOT = 3, // PowerUp stage 3
-            PROBABILITE_APPARITION_POWERUP = 4000;
+            PROBABILITE_APPARITION_POWERUP = 5; // 4000
     /**
      * rectangle qui représente le power up dans le mode débugage.
      */
@@ -64,7 +64,7 @@ public final class PowerUp extends Dessinable implements Collisionable {
         rectangle.y = y;
         switch (Main.level) {
             case Main.LEVEL_1:
-                id = POWER_SHOT;
+                id = POWER_SHOT; 
                 break;
             case Main.LEVEL_2:
                 id = FAST_SHOT;

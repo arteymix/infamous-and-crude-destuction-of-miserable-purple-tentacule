@@ -34,11 +34,11 @@ public final class PointsObtenus extends Dessinable {
     /**
      * size est la variable qui détermine la taille du texte qui apparait.
      */
-    private int size = 15;
+    private int size = 15; 
     /**
      * delay est la variable de temps en milliseconde de l'apparition du texte.
      */
-    private int delay = 30;
+    private int delay = 30; 
     /**
      * POINTS est la variable qui détermine le pointage de l'action performé.
      */
