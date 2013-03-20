@@ -24,7 +24,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import main.Main;
-import util.Collisionable;
+import collision.Collisionable;
 import util.Vecteur;
 
 /**

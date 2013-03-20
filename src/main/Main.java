@@ -21,10 +21,10 @@ import content.images.ImageBank;
 
 import graphique.component.Canon;
 import graphique.component.Ovni;
-import graphique.window.InterfaceGraphique;
-import graphique.window.MainCanvas.Activity;
+import view.InterfaceGraphique;
+import view.MainCanvas.Activity;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -103,7 +103,7 @@ public final class Main {
     /**
      * ArrayList contenant les objets dessinables.
      */
-    public static ArrayList<Dessinable> composantesDessinables = new ArrayList<Dessinable>(); // todo fix here
+    public static CopyOnWriteArrayList<Dessinable> composantesDessinables = new CopyOnWriteArrayList<Dessinable>(); // todo fix here
     /**
      * La variable points contient les points du/des joueur/s.
      */
@@ -282,7 +282,7 @@ public final class Main {
             long totalLoading = 0l;
             ////////////////////////////////////////////////////////////////////
             long timeLoading = System.currentTimeMillis();
-            composantesDessinables = new ArrayList<Dessinable>();
+            composantesDessinables = new CopyOnWriteArrayList<Dessinable>();
             canon1 = new Canon(Canon.CANON1_ID);
             canon2 = new Canon(Canon.CANON2_ID);
             composantesDessinables.add(canon1);

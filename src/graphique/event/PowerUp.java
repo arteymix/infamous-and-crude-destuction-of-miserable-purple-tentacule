@@ -19,7 +19,7 @@ import graphique.component.Canon;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import main.Main;
-import util.Collisionable;
+import collision.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
 

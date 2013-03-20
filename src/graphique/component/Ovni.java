@@ -22,7 +22,7 @@ import java.util.Random;
 
 import graphique.event.PointsObtenus;
 import main.Main;
-import util.Collisionable;
+import collision.Collisionable;
 import util.Dessinable;
 import util.Vecteur;
 

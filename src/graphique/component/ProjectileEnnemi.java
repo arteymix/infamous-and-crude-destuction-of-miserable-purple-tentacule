@@ -21,7 +21,7 @@ import java.awt.Rectangle;
 import util.Dessinable;
 import java.awt.Graphics;
 import main.Main;
-import util.Collisionable;
+import collision.Collisionable;
 import util.Vecteur;
 
 /**

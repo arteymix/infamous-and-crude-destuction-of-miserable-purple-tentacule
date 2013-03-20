@@ -13,7 +13,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique.window;
+package view;
 
 import content.KeySetting;
 
@@ -31,14 +31,15 @@ import javax.swing.JComponent;
 
 import main.Main;
 
-import util.Collisionable;
+import collision.Collisionable;
 import util.Dessinable;
 import util.Traductions;
 
 /**
- * Classe contenant le canvas principal où les dessins seront effectués.
- * C'est ici que le code principal se trouve, que les collisions sont calculées
- * et tout et tout!
+ * Classe contenant le canvas principal où les dessins seront effectués. C'est
+ * ici que le code principal se trouve, que les collisions sont calculées et
+ * tout et tout!
+ *
  * @author Guillaume Poirier-Morency && Nafie Hamrani
  */
 public final class MainCanvas extends JComponent {
@@ -66,7 +67,7 @@ public final class MainCanvas extends JComponent {
     MainCanvas() {
         super();
         //Dimension screenSize = new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width - 100, Toolkit.getDefaultToolkit().getScreenSize().height - 100);
-        setPreferredSize(new Dimension(1024,768));
+        setPreferredSize(new Dimension(1024, 768));
     }
     /**
      * Objet contenant l'activité en cours.
@@ -99,6 +100,7 @@ public final class MainCanvas extends JComponent {
 
     /**
      * Peint le JComponent avec le rendu du jeu.
+     *
      * @param g est l'objet Graphics du JPanel.
      */
     @Override
@@ -152,7 +154,7 @@ public final class MainCanvas extends JComponent {
                 if (Main.highscore.nukeObtained) {
                     g.drawString("Nuke obtenu!", 15, k += 15);
                 } else {
-                    g.drawString("Nuke en cours... (il faut tuer au moins 100 tentacules en une partie)", 15, k += 15);                    
+                    g.drawString("Nuke en cours... (il faut tuer au moins 100 tentacules en une partie)", 15, k += 15);
                 }
                 if (Main.highscore.proObtained) {
                     g.drawString("Pro obtenu!", 15, k += 15);
@@ -185,16 +187,14 @@ public final class MainCanvas extends JComponent {
                 // Génération des Ovnis    
                 Ovni.createOvni();
                 // END Génération des Ovnis
-                for (int i = 0; i < Main.composantesDessinables.size(); i++) {
-                    Dessinable d = Main.composantesDessinables.get(i);
+                for (Dessinable d : Main.composantesDessinables) {
                     /* Sous-boucle pour les collisions, question de tenter toutes
                      * les collisions possibles. 
                      */
                     if (d instanceof Collisionable) {
-                        for (int j = 0; j < Main.composantesDessinables.size(); j++) {
-                            Dessinable e;
+                        for (Dessinable e : Main.composantesDessinables) {
                             // Il est important de spécifier que d != e pour ne pas provoquer d'intercollision.
-                            if (((e = Main.composantesDessinables.get(j)) instanceof Collisionable) && d != e) {
+                            if ((e instanceof Collisionable) && d != e) {
                                 if (((Collisionable) d).getRectangle().intersects(((Collisionable) e).getRectangle())) {
                                     // On provoque une collision entre chacun.
                                     ((Collisionable) d).collision((Collisionable) e);
@@ -281,7 +281,7 @@ public final class MainCanvas extends JComponent {
                 KeySetting.drawKeySettingHelp(g);
                 g.setColor(Color.BLACK);
                 break;
-                ////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////
         }
         /* On met paintDone true, ainsi le programme sais exactement quand le
          * draw est terminé et peut rappeler un redessinage.
@@ -291,6 +291,7 @@ public final class MainCanvas extends JComponent {
 
     /**
      * Méthode qui fait le rendu de l'interface utilisateur.
+     *
      * @param g est le Graphics sur lequel le rendu est effectué.
      */
     private void drawUserInterface(Graphics g) {
@@ -300,11 +301,11 @@ public final class MainCanvas extends JComponent {
         }
         for (int i = 0; i < Main.alienAuSol; i++) {
             g.drawImage(Main.imageBank.projectileEnnemi, i * 90, 15, 90, 90, null);
-        }      
-        g.setColor(Color.WHITE);        
+        }
+        g.setColor(Color.WHITE);
         g.drawString("POINTS : " + Main.points, Main.getCanvasSizeX() - 150, 15);
         g.drawString("NIVEAU : " + Main.level, Main.getCanvasSizeX() - 150, 30);
-         g.setColor(Color.BLACK);
+        g.setColor(Color.BLACK);
         if (Canon.isCanon2ValidTarget) {
             g.setColor(Color.GREEN);
             if ((double) Main.canon1.getVie() / (double) Canon.VIE_INIT_CANON < PERCENTAGE_RED_LIFE) {

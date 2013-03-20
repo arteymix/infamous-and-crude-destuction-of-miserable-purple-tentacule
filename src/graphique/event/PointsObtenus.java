@@ -15,7 +15,7 @@
  */
 package graphique.event;
 
-import graphique.window.MainCanvas;
+import view.MainCanvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;

@@ -13,12 +13,12 @@
  *   You should have received a copy of the GNU General Public License
  *   along with TP2.  If not, see <http://www.gnu.org/licenses/>.
  */
-package graphique.window;
+package view;
 
 import content.KeySetting;
 
 import graphique.component.Canon;
-import graphique.window.MainCanvas.Activity;
+import view.MainCanvas.Activity;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
